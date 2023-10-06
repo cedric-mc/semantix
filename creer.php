@@ -56,35 +56,8 @@ if($_POST) {
   $mdp=$_POST['mdp'];
   $mdpConf=$_POST['mdpConf'];
 
-  
+  $validation_token = md5(uniqid(rand(), true));
 
-try {
-    //Server settings
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'partage.u-pem.fr';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'mamadou.ba2@edu.univ-eiffel.fr';                     //SMTP username
-    $mail->Password   = '';                               //SMTP password
-    $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
-    $mail->addAddress($email, $pseudo);
-    $mail->Subject = 'Validation de votre compte';
-    $mail->Body = "Bonjour $pseudo,\n\nCliquez sur ce lien pour valider votre compte : ";
-    
-    $mail->send();
-    echo 'Un lien de vérification a été encoyé à votre e-mail';
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-
-
-
-
-  /*
   $ok = true;
 
   if ($email != $emailConf || $mdp != $mdpConf){
@@ -98,18 +71,37 @@ try {
     }
   }
   if ($ok){
-  
-  $dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $results="INSERT INTO user (pseudo, email, annee, mdp) VALUES ('$pseudo', '$email', '$annee', md5('$mdp'))";
-  $dbh->exec($results);
-  echo $pseudo." votre compte a été créé.";
-}else{
+    try {
+        //Server settings
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'partage.u-pem.fr';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = 'mamadou.ba2@edu.univ-eiffel.fr';                     //SMTP username
+        $mail->Password   = 'Ahmed  77186';                               //SMTP password
+        $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+        $mail->addAddress($email, $pseudo);
+        $mail->Subject = 'Validation de votre compte';
+        $mail->Body = "Bonjour $pseudo,\n\nCliquez sur ce lien pour valider votre compte : https://perso-etudiant.u-pem.fr/~mamadou.ba2/validation.php?token=$validation_token";
+        
+        $mail->send();
+        echo 'Un lien de vérification a été envoyé à votre e-mail';
+        $dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $results="INSERT INTO validation (pseudo, email, annee, mdp, token) VALUES ('$pseudo', '$email', '$annee', md5('$mdp'), '$validation_token')";
+        $dbh->exec($results);
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+  }else{
   echo "Ce pseudo existe déjà ou il y a une erreur dans le formulaire";
+  }
 }
-  
-*/  
-}
+
 ?>
 </html>
 
