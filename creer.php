@@ -12,6 +12,10 @@
       <input type="email" id="email" name="email" required/>
     </li>
     <li>
+      <label for="emailConf">Confirmez votre e-mail: </label>
+      <input type="email" id="emailConf" name="emailConf" required/>
+    </li>
+    <li>
       <label for="annee">Année de naissance: </label>
       <input type="number" id="annee" name="annee" required/>
     </li>
@@ -19,30 +23,92 @@
       <label for="mdp">Mot de passe: </label>
       <input type="password" id="mdp" name="mdp" required/>
     </li>
+    <li>
+      <label for="mdpConf">Confirmez votre mot de passe: </label>
+      <input type="password" id="mdpConf" name="mdpConf" required/>
+    </li>
     <div class="button">
   <button type="submit">Créer le compte</button>
 </div>
 </ul>
 </form>
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+if(!file_exists('PHPMailer/src/Exception.php')) exit("Le fichier 'PHPMailer/src/Exception.php' n'existe pas !");
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 if($_POST) {
   $user =  'mamadou.ba2';
   $pass =  'mamadou';
-  $dbh = new PDO('pgsql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+  $dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
 
   $pseudo=$_POST['pseudo'];
   $email=$_POST['email'];
+  $emailConf=$_POST['emailConf'];
   $annee=$_POST['annee'];
   $mdp=$_POST['mdp'];
+  $mdpConf=$_POST['mdpConf'];
 
   
-  $dbh = new PDO('pgsql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+
+try {
+    //Server settings
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'partage.u-pem.fr';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'mamadou.ba2@edu.univ-eiffel.fr';                     //SMTP username
+    $mail->Password   = '';                               //SMTP password
+    $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+    $mail->addAddress($email, $pseudo);
+    $mail->Subject = 'Validation de votre compte';
+    $mail->Body = "Bonjour $pseudo,\n\nCliquez sur ce lien pour valider votre compte : ";
+    
+    $mail->send();
+    echo 'Un lien de vérification a été encoyé à votre e-mail';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+
+
+
+
+  /*
+  $ok = true;
+
+  if ($email != $emailConf || $mdp != $mdpConf){
+    $ok = false;
+  }
+
+  $results=$dbh->query("SELECT pseudo FROM user");
+  while( $ligne = $results->fetch(PDO::FETCH_OBJ) ){
+    if ($ligne->pseudo == $pseudo){
+      $ok = false;
+    }
+  }
+  if ($ok){
+  
+  $dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $results="INSERT INTO tp1_dev.player VALUES ('$pseudo', '$email', '$annee', md5('$mdp'))";
+  $results="INSERT INTO user (pseudo, email, annee, mdp) VALUES ('$pseudo', '$email', '$annee', md5('$mdp'))";
   $dbh->exec($results);
   echo $pseudo." votre compte a été créé.";
+}else{
+  echo "Ce pseudo existe déjà ou il y a une erreur dans le formulaire";
+}
   
-        
+*/  
 }
 ?>
 </html>

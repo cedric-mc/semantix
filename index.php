@@ -28,7 +28,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
 if($_POST) {
   $user =  'mamadou.ba2';
   $pass =  'mamadou';
-  $dbh = new PDO('pgsql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+  $dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
 
 session_start();
 $pseudo=$_POST['pseudo'];
@@ -36,7 +36,7 @@ $mdp=$_POST['mdp'];
 
 $ok = false;
 
-$results=$dbh->query("SELECT pseudo FROM tp1_dev.player");
+$results=$dbh->query("SELECT pseudo FROM user");
 while( $ligne = $results->fetch(PDO::FETCH_OBJ) ){
 	if ($ligne->pseudo == $pseudo){
 		$ok = true;
@@ -44,7 +44,7 @@ while( $ligne = $results->fetch(PDO::FETCH_OBJ) ){
 }
 
 if ($ok){
-	$results=$dbh->query("SELECT pseudo, mdp FROM tp1_dev.player where pseudo = '$pseudo'");
+	$results=$dbh->query("SELECT pseudo, mdp FROM user where pseudo = '$pseudo'");
 	$ligne = $results->fetch(PDO::FETCH_OBJ);
 	if ($ligne->mdp == md5($mdp)){
 		$_SESSION['pseudo'] = $pseudo;
