@@ -23,7 +23,7 @@ while( $ligne = $results->fetch(PDO::FETCH_OBJ) ){
 if ($ok) {
 	$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
  	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- 	$results="INSERT INTO user (pseudo, email, annee, mdp) VALUES ('$pseudo', '$email', '$annee', md5('$mdp'))";
+ 	$results="INSERT INTO user (pseudo, email, annee, mdp) VALUES ('$pseudo', '$email', '$annee','$mdp')";
  	$dbh->exec($results);
     echo $pseudo." Votre compte a été activé avec succès!";
 } else {
