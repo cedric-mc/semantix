@@ -20,13 +20,19 @@ while( $ligne = $results->fetch(PDO::FETCH_OBJ) ){
     $mdp = $ligne->mdp;
   }
 }
+$results=$dbh->query("SELECT pseudo FROM user");
+  while( $ligne = $results->fetch(PDO::FETCH_OBJ) ){
+    if ($ligne->pseudo == $pseudo){
+      $ok = false;
+    }
+  }
 if ($ok) {
 	$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
  	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  	$results="INSERT INTO user (pseudo, email, annee, mdp) VALUES ('$pseudo', '$email', '$annee','$mdp')";
  	$dbh->exec($results);
-    echo $pseudo." Votre compte a été activé avec succès!";
+    echo $pseudo." votre compte a été activé avec succès!";
 } else {
-    echo "Erreur lors de l'activation du compte. Veuillez contacter l'assistance.";
+    echo "Erreur lors de l'activation du compte ou votre a déjà été activé";
 }
 ?>

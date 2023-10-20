@@ -1,30 +1,20 @@
 <html>
-<?php
-session_start();
-if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
-	header('Location: compte.php');
-	exit();
-}
-?>
-<p>Se connecter</p>
-<form action="" method="post">
+
+<p>Récupérer votre compte</p>
+<form action="recup.php" method="post">
   <ul>
     <li>
-      <label for="pseudo">Pseudo: </label>
-      <input type="text" id="pseudo" name="pseudo" />
-    </li>
-    <li>
-      <label for="mdp">Mot de passe: </label>
-      <input type="password" id="mdp" name="mdp" />
+      <label for="email">E-mail: </label>
+      <input type="email" id="email" name="email" required/>
     </li>
     <div class="button">
-  <button type="submit">Se connecter</button>
+  <button type="submit">Récupérer le compte</button>
 </div>
 </ul>
 </form>
-<a href="creer.php"> Si vous n'avez pas de compte créez-en un</a>
-<br>
-<a href="recup.php"> Si vous avez oublié votre mot de passe, cliquez sur ce lien</a>
+<form action="index.php">
+    <button type="submit">Retour</button>
+</form>
 
 <?php
 error_reporting(E_ALL);
@@ -36,31 +26,25 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 if($_POST) {
   $user =  'mamadou.ba2';
   $pass =  'mamadou';
   $dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
 
-$pseudo=$_POST['pseudo'];
-$mdp=$_POST['mdp'];
+$email=$_POST['email'];
 
 $ok = false;
-
-$results=$dbh->query("SELECT pseudo FROM user");
+$results=$dbh->query("SELECT pseudo, email FROM user");
 while( $ligne = $results->fetch(PDO::FETCH_OBJ) ){
-	if ($ligne->pseudo == $pseudo){
-		$ok = true;
-	}
+  if ($ligne->email == $email){
+    $ok = true;
+    $pseudo = $ligne->pseudo;
+  }
 }
 
 if ($ok){
-	$results=$dbh->query("SELECT pseudo, mdp, email FROM user where pseudo = '$pseudo'");
-	$ligne = $results->fetch(PDO::FETCH_OBJ);
-    if (password_verify($mdp, $ligne->mdp)) {
-		$_SESSION['pseudo'] = $pseudo;
-		$_SESSION['mdp'] = $mdp; 
-		$email = $ligne->email;
-		try {
+  try {
         //Server settings
         $mail = new PHPMailer(true);
         $mail->isSMTP();                                            //Send using SMTP
@@ -74,22 +58,18 @@ if ($ok){
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
         $mail->addAddress($email, $pseudo);
-        $mail->Subject = 'Connection de votre compte';
-        $mail->Body = "Bonjour $pseudo, vous venez de vous connecter à votre compte. Si ce n'était pas vous, modifiez immédiatement votre mot de passe.";
+        $mail->Subject = 'Récuperation de votre compte';
+        $mail->Body = "Bonjour $pseudo,\n\nCliquez sur ce lien pour récupérer votre compte : https://perso-etudiant.u-pem.fr/~mamadou.ba2/recup2.php?email=$email";
         
         $mail->send();
+        echo 'Un lien de récupération a été envoyé à '.$email.' si elle est dans notre base de donnée.';
+    
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
-		header('Location: compte.php');
-		exit();
-	}else{
-		echo "<center>Authentification ratée</center>";
-	}
 }else{
-	echo "<center>Pseudo inexistant</center>";
+  echo 'Un lien de récupération a été envoyé à '.$email.' si elle est dans notre base de donnée.';
 }
-$results->closeCursor();
 }
 ?>
 </html>

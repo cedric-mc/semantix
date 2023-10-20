@@ -56,9 +56,32 @@ if($_POST) {
   $mdp=$_POST['mdp'];
   $mdpConf=$_POST['mdpConf'];
 
-  $validation_token = md5(uniqid(rand(), true));
+    $ok = true;
 
-  $ok = true;
+    // Fonction de vérification du mot de passe
+    function verifierMotDePasse($mdp) {
+        // Vérifie si le mot de passe contient au moins 1 majuscule, 1 minuscule,
+        // 1 chiffre, 1 caractère spécial et a au moins 7 caractères de longueur
+        $pattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/";
+
+        // Utilisez la fonction preg_match() pour vérifier le motif
+        if (preg_match($pattern, $mdp)) {
+            return true; // Mot de passe valide
+        } else {
+            return false; // Mot de passe invalide
+        }
+    }
+
+    if (verifierMotDePasse($mdp)) {
+        1;
+    } else {
+        $ok = false;
+        echo "Mot de passe invalide. Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial et avoir au moins 7 caractères de long.";
+    }
+
+  $mdpHash = password_hash($mdp, PASSWORD_BCRYPT);
+
+  $validation_token = md5(uniqid(rand(), true));
 
   if ($email != $emailConf || $mdp != $mdpConf){
     $ok = false;
@@ -68,6 +91,7 @@ if($_POST) {
   while( $ligne = $results->fetch(PDO::FETCH_OBJ) ){
     if ($ligne->pseudo == $pseudo){
       $ok = false;
+      echo "<br>Ce pseudo existe déjà, choisissez-en un autre.";
     }
   }
   if ($ok){
@@ -89,19 +113,22 @@ if($_POST) {
         $mail->Body = "Bonjour $pseudo,\n\nCliquez sur ce lien pour valider votre compte : https://perso-etudiant.u-pem.fr/~mamadou.ba2/validation.php?token=$validation_token";
         
         $mail->send();
-        echo 'Un lien de vérification a été envoyé à votre e-mail';
+        echo 'Un lien de vérification a été envoyé à votre e-mail : '.$email;
         $dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $results="INSERT INTO validation (pseudo, email, annee, mdp, token) VALUES ('$pseudo', '$email', '$annee', md5('$mdp'), '$validation_token')";
+        $results="INSERT INTO validation (pseudo, email, annee, mdp, token) VALUES ('$pseudo', '$email', '$annee', '$mdpHash', '$validation_token')";
         $dbh->exec($results);
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
   }else{
-  echo "Ce pseudo existe déjà ou il y a une erreur dans le formulaire";
+  echo "<br>Il y a une erreur dans le formulaire.";
   }
 }
 
 ?>
+<form action="index.php">
+    <button type="submit">Retour</button>
+</form>
 </html>
 
