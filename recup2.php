@@ -1,11 +1,14 @@
 <html>
 <?php
 $email = $_GET['email'];
-echo $email;
 ?>
 <p>Réinitialisez votre mot de passe</p>
 <form action="recup2.php" method="post">
   <ul>
+    <li>
+      <label for="email">E-mail :</label>
+      <input type="text" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly required>
+    </li>
     <li>
       <label for="mdp">Mot de passe: </label>
       <input type="password" id="mdp" name="mdp" required/>
@@ -26,6 +29,7 @@ $user =  'mamadou.ba2';
 $pass =  'mamadou';
 $dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
 
+$email=$_POST['email'];
 $mdp=$_POST['mdp'];
 $mdpConf=$_POST['mdpConf'];
 $ok = true;
@@ -61,8 +65,8 @@ if ($ok){
 	try{
 	$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$results=$dbh->query("UPDATE user set mdp = '$mdpHash' where email = '$email'");
-	$dbh->exec($results);
+	$results=$dbh->query("UPDATE user SET mdp = '$mdpHash' WHERE email = '$email'");
+  $dbh->exec($results);
 	echo "Votre mot de passe a été modifié avec succès";
 	}catch(PDOException $e){
 		echo "Erreur : " . $e->getMessage();

@@ -59,7 +59,8 @@ if ($ok){
         $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
         $mail->addAddress($email, $pseudo);
         $mail->Subject = 'Récuperation de votre compte';
-        $mail->Body = "Bonjour $pseudo,\n\nCliquez sur ce lien pour récupérer votre compte : https://perso-etudiant.u-pem.fr/~mamadou.ba2/recup2.php?email=$email";
+        $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour récupérer votre compte : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet/recup2.php?email=$email'>Récupérer le compte</a>";
+
         
         $mail->send();
         echo 'Un lien de récupération a été envoyé à '.$email.' si elle est dans notre base de donnée.';

@@ -110,7 +110,7 @@ if($_POST) {
         $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
         $mail->addAddress($email, $pseudo);
         $mail->Subject = 'Validation de votre compte';
-        $mail->Body = "Bonjour $pseudo,\n\nCliquez sur ce lien pour valider votre compte : https://perso-etudiant.u-pem.fr/~mamadou.ba2/validation.php?token=$validation_token";
+        $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour valider votre compte : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet/validation.php?token=$validation_token'>Valider le compte</a>";
         
         $mail->send();
         echo 'Un lien de vérification a été envoyé à votre e-mail : '.$email;
