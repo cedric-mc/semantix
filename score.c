@@ -1,16 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 
 typedef char Element;
-typedef struct node {
+
+typedef struct node{
     Element elem;
     int offset;
     struct node* firstChild;
     struct node* nextSibling;
 } Node;
-
 typedef Node* CSTree;
+
+
+typedef struct {
+    Element elem;
+    int offset;
+    unsigned int firstChild;
+    unsigned int nSiblings;
+} ArrayCell;
+typedef struct {
+    ArrayCell* nodeArray;
+    unsigned int nNodes;
+} StaticTree;
+
+#define NONE -1 
+
 
 CSTree newCSTree(Element elem, int offset, CSTree firstChild, CSTree nextSibling) {
     CSTree t = malloc(sizeof(Node));
@@ -24,103 +40,127 @@ CSTree newCSTree(Element elem, int offset, CSTree firstChild, CSTree nextSibling
     return t;
 }
 
-void insertWordWithOffset(CSTree* root, const char* word, int offset) {
-    CSTree currentNode = *root;
-    int i;
-
-    for (i = 0; word[i] != '\0'; i++) {
-        char currentChar = word[i];
-        CSTree child = currentNode->firstChild;
-
-        while (child != NULL && child->elem != currentChar) {
-            child = child->nextSibling;
-        }
-
-        if (child == NULL) {
-            currentNode->firstChild = newCSTree(currentChar, -1, NULL, currentNode->firstChild);
-            currentNode = currentNode->firstChild;
-        } else {
-            currentNode = child;
-        }
+int size(CSTree t){
+    if (t == NULL){
+        return 0;
     }
-
-    currentNode->offset = offset;
+    return 1+size(t->firstChild)+size(t->nextSibling);
 }
 
-void insertWordsFromFile(CSTree* root, const char* filename) {
-    FILE* file = fopen(filename, "r");
-    if (file == NULL) {
-        fprintf(stderr, "Erreur lors de l'ouverture du fichier %s.\n", filename);
+int nbChildren(CSTree t) {
+    if (t == NULL){
+        return 0;
+    }
+    return 1+nbChildren(t->nextSibling);
+}
+
+int nChildren(CSTree t) {
+    if (t == NULL){
+        return 0;
+    }
+    if (t->firstChild == NULL){
+        return 0;
+    }
+    return nbChildren(t->firstChild);
+}
+
+void fill_array_cells(StaticTree* st, CSTree t, int index_for_t, int nSiblings, int* reserved_cells) {
+    int firstChild_index;
+    if (t->firstChild != NULL) {
+        firstChild_index = *reserved_cells;
+    } else {
+        firstChild_index = NONE;
+    }
+
+    st->nodeArray[index_for_t].elem = t->elem;
+    st->nodeArray[index_for_t].offset = t->offset; // Nouveau champ pour stocker l'offset
+    st->nodeArray[index_for_t].nSiblings = nSiblings;
+    st->nodeArray[index_for_t].firstChild = firstChild_index;
+
+    *reserved_cells += nChildren(t);
+
+    if (t->nextSibling != NULL) {
+        fill_array_cells(st, t->nextSibling, index_for_t + 1, nSiblings - 1, reserved_cells);
+    }
+    if (t->firstChild != NULL) {
+        fill_array_cells(st, t->firstChild, firstChild_index, nChildren(t) - 1, reserved_cells);
+    }
+}
+
+// Crée un arbre statique avec le même contenu que t.
+StaticTree exportStaticTree(CSTree t) {
+    StaticTree st = {NULL, 0};
+    int reserved_cells = 0;
+
+    st.nNodes = size(t);
+    st.nodeArray = malloc(st.nNodes * sizeof(ArrayCell));
+    reserved_cells = nbChildren(t);
+
+    fill_array_cells(&st, t, 0, reserved_cells - 1, &reserved_cells);
+
+    if (reserved_cells != st.nNodes && t != NULL) {
+        printf("Erreur lors de la création de l'arbre statique, taille finale incorrecte\n");
         exit(EXIT_FAILURE);
     }
 
-    char word[100];  // Assumption: Maximum word length is 100 characters
-    int offset = 0;
-
-    while (fscanf(file, "%99s", word) == 1) {
-        insertWordWithOffset(root, word, offset);
-        offset++;
-    }
-
-    fclose(file);
+    return st;
 }
 
-void exportCSTreeToFile(CSTree root, FILE* file) {
+void printCSTree(CSTree root, int depth) {
     if (root == NULL) {
         return;
     }
 
-    fprintf(file, "%c %d\n", root->elem, root->offset);
+    for (int i = 0; i < depth; i++) {
+        printf("  ");
+    }
 
-    exportCSTreeToFile(root->firstChild, file);
-    exportCSTreeToFile(root->nextSibling, file);
+    printf("%c (Offset: %d)\n", root->elem, root->offset);
+
+    printCSTree(root->firstChild, depth + 1);
+    printCSTree(root->nextSibling, depth);
 }
 
-CSTree findNodeByWord(CSTree root, const char* word) {
-    CSTree currentNode = root;
-    int i;
+void insertWordWithOffset(CSTree* root, const char* word, int offset) {
+    CSTree currentNode = *root;
 
-    for (i = 0; word[i] != '\0'; i++) {
-        char currentChar = word[i];
+    for (int i = 0; i <= strlen(word); i++) {
+        // Vérifie si le caractère existe déjà comme premier enfant du nœud actuel
         CSTree child = currentNode->firstChild;
-
-        while (child != NULL && child->elem != currentChar) {
+        while (child != NULL && child->elem != word[i]) {
             child = child->nextSibling;
         }
 
         if (child == NULL) {
-            // Le mot n'est pas trouvé dans l'arbre
-            return NULL;
+            // Le caractère n'existe pas comme premier enfant, l'ajouter
+            CSTree newChild = newCSTree(word[i], -1, NULL, NULL);
+            newChild->nextSibling = currentNode->firstChild;
+            currentNode->firstChild = newChild;
+            currentNode = newChild;
         } else {
+            // Le caractère existe déjà, passer au prochain nœud
             currentNode = child;
         }
     }
 
-    // Vérifier si le mot complet a été trouvé
-    if (currentNode->elem == '\0') {
-        return currentNode;
-    } else {
-        // Le mot n'est pas trouvé dans l'arbre
-        return NULL;
-    }
+    // Atteint la fin du mot, mettre à jour l'offset
+    currentNode->offset = offset;
 }
+
 
 int main() {
     CSTree root = newCSTree('\0', -1, NULL, NULL);
 
-    // Exemple d'insertion de mots avec leurs offsets à partir d'un fichier texte
-    insertWordsFromFile(&root, "liste_mots.txt");
+    insertWordWithOffset(&root, "word", 42);
+    insertWordWithOffset(&root, "work", 87);
+    insertWordWithOffset(&root, "walou", 50);
 
-    // Exemple d'exportation de l'arbre dans un fichier .lex
-    FILE* lexFile = fopen("arbre.lex", "w");
-    if (lexFile == NULL) {
-        fprintf(stderr, "Erreur lors de l'ouverture du fichier .lex.\n");
-        return EXIT_FAILURE;
-    }
-    exportCSTreeToFile(root, lexFile);
-    fclose(lexFile);
 
-    // Libérer la mémoire utilisée par l'arbre
+    StaticTree root2 = exportStaticTree(root);
+
+
+    printf("Arbre Lexicographique :\n");
+    printCSTree(root, 0);
 
     return 0;
 }
