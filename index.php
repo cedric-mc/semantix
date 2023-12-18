@@ -6,6 +6,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
     header('Location: compte.php');
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -15,64 +16,86 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 50px;
-            text-align: center;
-        }
-        .container {
-            width: 400px;
-        }
-        .form-group {
-            text-align: left;
-        }
-        .button {
-            margin-top: 15px;
-        }
-        .error {
-            color: red;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>Se connecter</h1>
+    <h1>Se connecter</h1>
 
-        <form action="" method="post">
-            <div class="form-group">
+    <form action="" method="post">
+        <ul>
+            <li>
                 <label for="pseudo">Pseudo: </label>
-                <input type="text" id="pseudo" name="pseudo" class="form-control" />
-            </div>
-            <div class="form-group">
+                <input type="text" id="pseudo" name="pseudo" />
+            </li>
+            <li>
                 <label for="mdp">Mot de passe: </label>
-                <input type="password" id="mdp" name="mdp" class="form-control" />
-            </div>
+                <input type="password" id="mdp" name="mdp" />
+            </li>
             <div class="button">
-                <button type="submit" class="btn btn-primary">Se connecter</button>
+                <button type="submit">Se connecter</button>
             </div>
-        </form>
+        </ul>
+    </form>
 
-        <p class="mt-3"><a href="creer.php"> Si vous n'avez pas de compte créez-en un</a></p>
-        <p><a href="recup.php"> Si vous avez oublié votre mot de passe, cliquez sur ce lien</a></p>
+    <a href="creer.php"> Si vous n'avez pas de compte créez-en un</a><br>
+    <a href="recup.php"> Si vous avez oublié votre mot de passe, cliquez sur ce lien</a>
 
-        <?php
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
+    <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Votre logique de connexion ici...
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $pseudo = $_POST['pseudo'];
+        $mdp = $_POST['mdp'];
+        $ok = false;
+
+        $stmt = $dbh->prepare("SELECT pseudo FROM user WHERE pseudo = :pseudo");
+        $stmt->bindParam(':pseudo', $pseudo);
+        $stmt->execute();
+
+        while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+            $ok = true;
         }
-        ?>
-    </div>
 
-    <!-- Bootstrap JS and dependencies (jQuery, Popper.js) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        if ($ok) {
+            $stmt = $dbh->prepare("SELECT pseudo, mdp, email FROM user WHERE pseudo = :pseudo");
+            $stmt->bindParam(':pseudo', $pseudo);
+            $stmt->execute();
+
+            $ligne = $stmt->fetch(PDO::FETCH_OBJ);
+
+            if (password_verify($mdp, $ligne->mdp)) {
+                $_SESSION['pseudo'] = $pseudo;
+                $_SESSION['mdp'] = $mdp;
+                $email = $ligne->email;
+
+                try {
+                    include('connexion_mail.php');
+                    $mail->isHTML(true);
+                    $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+                    $mail->addAddress($email, $pseudo);
+                    $mail->Subject = 'Connection de votre compte';
+                    $mail->Body = "Bonjour $pseudo, vous venez de vous connecter à votre compte. Si ce n'était pas vous, modifiez immédiatement votre mot de passe.";
+                    $mail->CharSet = 'utf-8';
+                    $mail->send();
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
+
+                header('Location: compte.php');
+                exit();
+            } else {
+                echo "<center>Authentification ratée</center>";
+            }
+        } else {
+            echo "<center>Pseudo inexistant</center>";
+        }
+
+        $stmt->closeCursor();
+    }
+    ?>
+
 </body>
 
 </html>
