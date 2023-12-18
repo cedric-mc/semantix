@@ -1,7 +1,6 @@
 <?php
-$user =  'mamadou.ba2';
-$pass =  'mamadou';
-$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+include('connexion.php');
+
 // Récupérez le jeton de validation depuis l'URL
 $validation_token = $_GET['token'];
 
@@ -27,7 +26,7 @@ $results=$dbh->query("SELECT pseudo FROM user");
     }
   }
 if ($ok) {
-	$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+	
  	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  	$results="INSERT INTO user (pseudo, email, annee, mdp) VALUES ('$pseudo', '$email', '$annee','$mdp')";
  	$dbh->exec($results);

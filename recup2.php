@@ -1,5 +1,6 @@
 <html>
 <?php
+include('connexion.php');
 $email = $_GET['email'];
 ?>
 <p>Réinitialisez votre mot de passe</p>
@@ -25,9 +26,7 @@ $email = $_GET['email'];
 
 <?php
 if($_POST) {
-$user =  'mamadou.ba2';
-$pass =  'mamadou';
-$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+
 
 $email=$_POST['email'];
 $mdp=$_POST['mdp'];
@@ -63,7 +62,7 @@ if ($mdp != $mdpConf){
 
 if ($ok){
 	try{
-	$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+	
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$results=$dbh->query("UPDATE user SET mdp = '$mdpHash' WHERE email = '$email'");
   $dbh->exec($results);

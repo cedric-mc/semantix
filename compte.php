@@ -2,10 +2,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-$user =  'mamadou.ba2';
-$pass =  'mamadou';
+include('connexion.php');
 
-$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+
 $results = $dbh->query("SELECT id FROM user WHERE pseudo = '{$_SESSION['pseudo']}'");
 $ligne = $results->fetch(PDO::FETCH_OBJ);
 $id = $ligne->id;
@@ -34,13 +33,13 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
 			echo "<h1>Partie lancée en mode multijoueur</h1>";
 		}
 
-		$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+		
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  		$results="INSERT INTO score_game (score, user_id) VALUES ('$score', '$id')";
  		$dbh->exec($results);
 		echo "<br> Votre score : ".$score;
 	}
-	$dbh = new PDO('mysql:host=sqletud.u-pem.fr;dbname=mamadou.ba2_db',$user,$pass);
+	
 	$results = $dbh->query("SELECT COUNT(score) as nb FROM score_game WHERE user_id='$id'");
 	$ligne = $results->fetch(PDO::FETCH_OBJ);
 	$nb_partie = $ligne->nb;
