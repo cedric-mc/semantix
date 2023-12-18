@@ -4,77 +4,85 @@ ini_set('display_errors', 1);
 session_start();
 include('connexion.php');
 
+if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])) {
+    $stmt = $dbh->prepare("SELECT id FROM user WHERE pseudo = :pseudo");
+    $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
+    $stmt->execute();
+    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
+    $id = $ligne->id;
 
-$results = $dbh->query("SELECT id FROM user WHERE pseudo = '{$_SESSION['pseudo']}'");
-$ligne = $results->fetch(PDO::FETCH_OBJ);
-$id = $ligne->id;
-
-if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
-	echo "Bonjour ".$_SESSION['pseudo'];
-	echo '<br><br><form action="compte.php" method="post">
-	<li>
+    echo "Bonjour " . htmlspecialchars($_SESSION['pseudo']);
+    echo '<br><br><form action="compte.php" method="post">
+    <li>
     <label for="un">1 Joueur</label>
     <input type="radio" id="un" name="nb" value="un" required>
-	</li>
-	<li>
+    </li>
+    <li>
     <label for="multi">Multijoueur</label>
     <input type="radio" id="multi" name="nb" value="multi" required>
-	</li>
+    </li>
     <input type="submit" value="Lancer la Partie">
-	</form>';
+    </form>';
 
-	if($_POST) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $score = random_int(50, 100);
+        $nb = isset($_POST['nb']) ? $_POST['nb'] : '';
 
-		$score = random_int(50, 100);
-		$nb = isset($_POST['nb']);
-		if ($nb === 'un') {
-			echo "<h1>Partie lancée avec 1 joueur</h1>";
-		} else{
-			echo "<h1>Partie lancée en mode multijoueur</h1>";
-		}
+        if ($nb === 'un') {
+            echo "<h1>Partie lancée avec 1 joueur</h1>";
+        } else {
+            echo "<h1>Partie lancée en mode multijoueur</h1>";
+        }
 
-		
-		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- 		$results="INSERT INTO score_game (score, user_id) VALUES ('$score', '$id')";
- 		$dbh->exec($results);
-		echo "<br> Votre score : ".$score;
-	}
-	
-	$results = $dbh->query("SELECT COUNT(score) as nb FROM score_game WHERE user_id='$id'");
-	$ligne = $results->fetch(PDO::FETCH_OBJ);
-	$nb_partie = $ligne->nb;
+        $stmt = $dbh->prepare("INSERT INTO score_game (score, user_id) VALUES (:score, :id)");
+        $stmt->bindParam(':score', $score);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
 
-	$results = $dbh->query("SELECT MAX(score) as max FROM score_game WHERE user_id='$id'");
-	$ligne = $results->fetch(PDO::FETCH_OBJ);
-	$max = $ligne->max;
+        echo "<br> Votre score : " . $score;
+    }
 
-	$results = $dbh->query("SELECT MIN(score) as min FROM score_game WHERE user_id='$id'");
-	$ligne = $results->fetch(PDO::FETCH_OBJ);
-	$min = $ligne->min;
+    $stmt = $dbh->prepare("SELECT COUNT(score) as nb FROM score_game WHERE user_id=:id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
+    $nb_partie = $ligne->nb;
 
-	$results = $dbh->query("SELECT SUM(score) as sum FROM score_game WHERE user_id='$id'");
-	$ligne = $results->fetch(PDO::FETCH_OBJ);
-	$sum = $ligne->sum;
+    $stmt = $dbh->prepare("SELECT MAX(score) as max FROM score_game WHERE user_id=:id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
+    $max = $ligne->max;
 
-	$moyenne = ($sum/$nb_partie);
+    $stmt = $dbh->prepare("SELECT MIN(score) as min FROM score_game WHERE user_id=:id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
+    $min = $ligne->min;
 
-	echo "<h2>Statistiques de Parties</h2>
+    $stmt = $dbh->prepare("SELECT SUM(score) as sum FROM score_game WHERE user_id=:id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
+    $sum = $ligne->sum;
 
-		<table border='1'>
-			<tr>
-				<th>Moyenne</th>
-				<th>Minimum</th>
-				<th>Maximum</th>
-				<th>Nombre de Parties</th>
-			</tr>
-			<tr>
-				<td>".$moyenne."</td>
-				<td>".$min."</td>
-				<td>".$max."</td>
-				<td>".$nb_partie."</td>
-			</tr>
-		</table>";
+    $moyenne = ($nb_partie > 0) ? ($sum / $nb_partie) : 0;
 
+    echo "<h2>Statistiques de Parties</h2>
+        <table border='1'>
+            <tr>
+                <th>Moyenne</th>
+                <th>Minimum</th>
+                <th>Maximum</th>
+                <th>Nombre de Parties</th>
+            </tr>
+            <tr>
+                <td>" . $moyenne . "</td>
+                <td>" . $min . "</td>
+                <td>" . $max . "</td>
+                <td>" . $nb_partie . "</td>
+            </tr>
+        </table>";
 }
 ?>
 <br>
