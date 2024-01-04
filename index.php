@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="style.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <?php
 include('connexion.php');
@@ -22,21 +23,18 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
 
 <body>
     <div class="wrapper">
-
-
     <form action="" method="post">
         <h1>Se connecter</h1>
         <div class="input-box">
             <input type="text" id="pseudo" name="pseudo" placeholder = "Pseudo" required>
+            <i class='bx bx-user'></i>
         </div>
-
-
-
         <div class="input-box">
-                <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
+            <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
+            <i class='bx bxs-lock-alt' ></i>
         </div>
         <div class="forgot">
-            <a href="recup.php"> Si vous avez oublié votre mot de passe, cliquez sur ce lien</a>
+           <center> <a href="recup.php"> Mot de passe oublié ?</a></center>
         </div>
 
                 <button class="btn" type="submit">Se connecter</button>
