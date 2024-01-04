@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="style.css">
+
 <?php
 include('connexion.php');
 session_start();
@@ -19,27 +21,32 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
 </head>
 
 <body>
+    <div class="wrapper">
 
-    <h1>Se connecter</h1>
 
     <form action="" method="post">
-        <ul>
-            <li>
-                <label for="pseudo">Pseudo: </label>
-                <input type="text" id="pseudo" name="pseudo" />
-            </li>
-            <li>
-                <label for="mdp">Mot de passe: </label>
-                <input type="password" id="mdp" name="mdp" />
-            </li>
-            <div class="button">
-                <button type="submit">Se connecter</button>
-            </div>
-        </ul>
-    </form>
+        <h1>Se connecter</h1>
+        <div class="input-box">
+            <input type="text" id="pseudo" name="pseudo" placeholder = "Pseudo" required>
+        </div>
 
-    <a href="creer.php"> Si vous n'avez pas de compte créez-en un</a><br>
-    <a href="recup.php"> Si vous avez oublié votre mot de passe, cliquez sur ce lien</a>
+
+
+        <div class="input-box">
+                <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
+        </div>
+        <div class="forgot">
+            <a href="recup.php"> Si vous avez oublié votre mot de passe, cliquez sur ce lien</a>
+        </div>
+
+                <button class="btn" type="submit">Se connecter</button>
+
+    <div class="register-link">
+        <a href="creer.php"> Si vous n'avez pas de compte créez-en un</a><br>
+    </div>
+    </form>
+    </div>
+
 
     <?php
     error_reporting(E_ALL);
