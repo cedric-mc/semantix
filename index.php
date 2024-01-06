@@ -6,7 +6,7 @@ include('connexion.php');
 session_start();
 
 if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
-    header('Location: compte.php');
+    header('Location: acceuil.php');
     exit();
 }
 
@@ -88,7 +88,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
 
-                header('Location: compte.php');
+                header('Location: acceuil.php');
                 exit();
             } else {
                 echo "<center>Authentification ratée</center>";

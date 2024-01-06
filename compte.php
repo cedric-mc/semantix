@@ -12,7 +12,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])) {
     $id = $ligne->id;
 
     echo "Bonjour " . htmlspecialchars($_SESSION['pseudo']);
-    echo '<br><br><form action="compte.php" method="post">
+    echo '<br><br><form action="acceuil.php" method="post">
     <li>
     <label for="un">1 Joueur</label>
     <input type="radio" id="un" name="nb" value="un" required>
