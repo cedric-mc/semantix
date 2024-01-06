@@ -2,43 +2,40 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Créer un compte</title>
 </head>
 
-<body>
-    <p>Créer un compte</p>
+<div class="wrapper">
     <form action="creer.php" method="post">
-        <ul>
-            <li>
-                <label for="pseudo">Pseudo: </label>
-                <input type="text" id="pseudo" name="pseudo" required />
-            </li>
-            <li>
-                <label for="email">E-mail: </label>
-                <input type="email" id="email" name="email" required />
-            </li>
-            <li>
-                <label for="emailConf">Confirmez votre e-mail: </label>
-                <input type="email" id="emailConf" name="emailConf" required />
-            </li>
-            <li>
-                <label for="annee">Année de naissance: </label>
-                <input type="number" id="annee" name="annee" required />
-            </li>
-            <li>
-                <label for="mdp">Mot de passe: </label>
-                <input type="password" id="mdp" name="mdp" required />
-            </li>
-            <li>
-                <label for="mdpConf">Confirmez votre mot de passe: </label>
-                <input type="password" id="mdpConf" name="mdpConf" required />
-            </li>
-            <div class="button">
-                <button type="submit">Créer le compte</button>
-            </div>
-        </ul>
-    </form>
+        <h1>Créer un compte</h1>
+                <div class="input-box">
+                    <input placeholder="Pseudo" type="text" id="pseudo" name="pseudo" required />
+                </div>
 
+                <div class="input-box">
+                <input placeholder="Email" type="email" id="email" name="email" required />
+                </div>
+                <div class="input-box">
+                    <input placeholder="Confirmez votre e-mail" type="email" id="emailConf" name="emailConf" required />
+                </div>
+                <div class="input-box">
+                    <input placeholder="Année de naissance" type="number" id="annee" name="annee" required />
+                </div>
+                <div class="input-box">
+                    <input placeholder="Mot de passe" type="password" id="mdp" name="mdp" required />
+                </div>
+                <div class="input-box">
+                <input placeholder="Confirmez votre mot de passe:" type="password" id="mdpConf" name="mdpConf" required />
+                </div>
+
+                <button class ="btn" type="submit">Créer le compte</button>
+        <div class="register-link"><a href="index.php">Retour</a></div>
+
+
+    </form>
+</div>
     <?php
     include('connexion.php');
     error_reporting(E_ALL);
@@ -53,21 +50,18 @@
         $mdpConf = $_POST['mdpConf'];
 
         $ok = true;
-
+        if ($ok) {
+            $display = 'none';
+        } else {
+            $display = '';
+        }
         // Fonction de vérification du mot de passe
         function verifierMotDePasse($mdp)
-        {
-            // Vérifie si le mot de passe contient au moins 1 majuscule, 1 minuscule,
-            // 1 chiffre, 1 caractère spécial et a au moins 7 caractères de longueur
-            $pattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/";
-
-            // Utilisez la fonction preg_match() pour vérifier le motif
-            return preg_match($pattern, $mdp);
-        }
+        {return preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/', $mdp);}
 
         if (!verifierMotDePasse($mdp)) {
             $ok = false;
-            echo "Mot de passe invalide. Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial et avoir au moins 7 caractères de long.";
+            echo "Mot de passe invalide. Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial et avoir au moins 12 caractères de long.";
         }
 
         $mdpHash = password_hash($mdp, PASSWORD_BCRYPT);
@@ -118,9 +112,7 @@
     }
     ?>
 
-    <form action="index.php">
-        <button type="submit">Retour</button>
-    </form>
+
 </body>
 
 </html>

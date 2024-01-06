@@ -1,28 +1,29 @@
+<link rel="stylesheet" href="style.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <!DOCTYPE html>
 <html>
 
 <head>
+
     <title>Récupérer votre compte</title>
 </head>
 
 <body>
-    <p>Récupérer votre compte</p>
+<div class="wrapper">
     <form action="recup.php" method="post">
-        <ul>
-            <li>
-                <label for="email">E-mail: </label>
-                <input type="email" id="email" name="email" required />
-            </li>
-            <div class="button">
-                <button type="submit">Récupérer le compte</button>
-            </div>
-        </ul>
-    </form>
+        <h1>Récupérer votre compte</h1>
+        <div class ="input-box">
+                <input type="email" id="email" name="email" placeholder="Email" required />
+        </div>
+        <div class="register-link">
+            <a href="index.php">Retour</a>
+        </div>
+            <button class="btn" type="submit">Récupérer le compte</button>
 
-    <form action="index.php">
-        <button type="submit">Retour</button>
-    </form>
 
+
+    </form>
+</div>
     <?php
     include('connexion.php');
     error_reporting(E_ALL);

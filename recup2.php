@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Réinitialisez votre mot de passe</title>
 </head>
 
@@ -11,27 +13,24 @@
     $email = isset($_GET['email']) ? $_GET['email'] : '';
     ?>
 
-    <p>Réinitialisez votre mot de passe</p>
+<div class ="wrapper">
     <form action="recup2.php" method="post">
-        <ul>
-            <li>
-                <label for="email">E-mail :</label>
-                <input type="text" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly required>
-            </li>
-            <li>
-                <label for="mdp">Mot de passe: </label>
-                <input type="password" id="mdp" name="mdp" required />
-            </li>
-            <li>
-                <label for="mdpConf">Confirmez votre mot de passe: </label>
-                <input type="password" id="mdpConf" name="mdpConf" required />
-            </li>
-            <div class="button">
-                <button type="submit">Réinitialiser le mot de passe</button>
-            </div>
-        </ul>
+        <h1>Réinitialisez votre mot de passe</h1>
+        <div class="input-box">
+                <input placeholder = "Email" type="text" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly required>
+        </div>
+        <div class="input-box">
+            <input placeholder ="Mot de passe" type="password" id="mdp" name="mdp" required />
+        </div>
+        <div class="input-box">
+                <input placeholder="Confirmez votre mot de passe:" type="password" id="mdpConf" name="mdpConf" required />
+        </div>
+                <button class="btn" type="submit">Réinitialiser le mot de passe</button>
+        <div class="register-link">
+            <a href="index.php"> Revenir à l'acceuil </a>
+        </div>
     </form>
-
+</div>
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
