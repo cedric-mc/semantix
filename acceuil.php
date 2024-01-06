@@ -1,5 +1,7 @@
 <head><title> Acceuil </title></head>
 <link href='menu.css' rel='stylesheet'>
+<link href='style2.css' rel='stylesheet'>
+
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
