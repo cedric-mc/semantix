@@ -47,7 +47,7 @@
                 $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
                 $mail->addAddress($email, $pseudo);
                 $mail->Subject = 'Récupération de votre compte';
-                $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour récupérer votre compte : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet/recup2.php?email=$email'>Récupérer le compte</a>";
+                $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour récupérer votre compte : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/recup2.php?email=$email'>Récupérer le compte</a>";
                 $mail->CharSet = 'utf-8';
 
                 $mail->send();

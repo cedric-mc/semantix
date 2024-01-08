@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family-Poppins:wght@300;400;500; 600; 700; 800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url(bg.jpg);
+}
+
+
+
+
+.box {
+    text-align: center; /* Pour centrer le contenu à l'intérieur de la div */
+    border: 1px solid #ccc; /* Ajoutez une bordure pour mieux visualiser la boîte */
+}
+
+
+.box {
+    margin: 0 auto;
+    width: 1000px;
+    background : transparent;
+    border : 2px solid rgba(255, 255, 255, .2);
+    color : #fff;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+.box h1{
+    font-size: 36px;
+    text-align: center;
+}

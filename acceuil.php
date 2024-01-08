@@ -31,6 +31,8 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $score = random_int(50, 100);
         $nb = isset($_POST['nb']) ? $_POST['nb'] : '';
+        date_default_timezone_set('Europe/Paris');
+        $date = date('y-m-d');
 
         if ($nb === 'un') {
             echo "<h1>Partie lancée avec 1 joueur</h1>";
@@ -38,55 +40,17 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])) {
             echo "<h1>Partie lancée en mode multijoueur</h1>";
         }
 
-        $stmt = $dbh->prepare("INSERT INTO score_game (score, user_id) VALUES (:score, :id)");
+        $stmt = $dbh->prepare("INSERT INTO score_game (score, user_id, date) VALUES (:score, :id, :date)");
         $stmt->bindParam(':score', $score);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $id);  // Supposons que $id contient l'ID de l'utilisateur
+        $stmt->bindParam(':date', $date);
         $stmt->execute();
 
         echo "<br> Votre score : " . $score;
     }
 
-    $stmt = $dbh->prepare("SELECT COUNT(score) as nb FROM score_game WHERE user_id=:id");
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
-    $nb_partie = $ligne->nb;
 
-    $stmt = $dbh->prepare("SELECT MAX(score) as max FROM score_game WHERE user_id=:id");
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
-    $max = $ligne->max;
 
-    $stmt = $dbh->prepare("SELECT MIN(score) as min FROM score_game WHERE user_id=:id");
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
-    $min = $ligne->min;
-
-    $stmt = $dbh->prepare("SELECT SUM(score) as sum FROM score_game WHERE user_id=:id");
-    $stmt->bindParam(':id', $id);
-    $stmt->execute();
-    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
-    $sum = $ligne->sum;
-
-    $moyenne = ($nb_partie > 0) ? ($sum / $nb_partie) : 0;
-
-    echo "<h2>Statistiques de Parties</h2>
-        <table border='1'>
-            <tr>
-                <th>Moyenne</th>
-                <th>Minimum</th>
-                <th>Maximum</th>
-                <th>Nombre de Parties</th>
-            </tr>
-            <tr>
-                <td>" . $moyenne . "</td>
-                <td>" . $min . "</td>
-                <td>" . $max . "</td>
-                <td>" . $nb_partie . "</td>
-            </tr>
-        </table>";
 }
 ?>
 <br>
