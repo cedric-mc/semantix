@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
+include('connexion.php');
 $score = 0;
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
 ?>
 <html>
 <head>
@@ -13,28 +17,44 @@ $score = 0;
 <body>
 <main>
     <br><br>
-    <div>
+    <div class="scoreboard">
         <p>Score actuel : <span id="scoreDisplay"><?php echo $score; ?></span></p>
     </div>
-    <div >
+    <div class="wrapper" style="top:30%;">
         <form id="addNodeForm" method = "post">
+            <div class="input-box">
             <input type="text" id="newNodeName" placeholder="Enter node">
-            <button type="submit">Add Node</button>
+            </div>
+            <button class="btn" type="submit">Add Node</button>
         </form>
-    </div>
-    <div class="wrapper">
-
+        <br>
         <form action ="jeu_solo.php" method = "post">
-            <button id="endGameButton" type="submit" name="submit" value="sub">Fin de la partie</button>
+            <button class="btn" id="endGameButton" type="submit" name="submit" value="sub">Fin de la partie</button>
         </form>
-        <div id="networkGraph" style="width: 600px; height: 400px; "></div>
     </div>
+
+
+        <div id="networkGraph" style="width: 600px; height: 500px; top=10%;"></div>
 </main>
 
 <?php
 if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
-    sleep(5);
-    echo '<meta http-equiv="refresh" content="0;url=jeu.php">';
+    $stmt = $dbh->prepare("SELECT id FROM user WHERE pseudo = :pseudo");
+    $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
+    $stmt->execute();
+    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
+    $id = $ligne->id;
+
+    date_default_timezone_set('Europe/Paris');
+    $date = date('y-m-d');
+    $stmt = $dbh->prepare("INSERT INTO score_game (score, user_id, date) VALUES (:score, :id, :date)");
+    $stmt->bindParam(':score', $score);
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':date', $date);
+    $stmt->execute();
+
+   // sleep(3);
+    //echo '<meta http-equiv="refresh" content="0;url=jeu.php">';
 }
 
 ?>
@@ -59,7 +79,7 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
                 height: '100%'
             },
             title: {
-                text: 'Animal Network Graph'
+                text: ''
             },
             series: [{
                 dataLabels: {
