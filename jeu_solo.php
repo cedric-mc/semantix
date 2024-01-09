@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+$score = 0;
+?>
 <html>
 <head>
     <title>Partie solo</title>
@@ -10,15 +13,31 @@
 <body>
 <main>
     <br><br>
-    <div class="wrapper">
-        <form id="addNodeForm">
+    <div>
+        <p>Score actuel : <span id="scoreDisplay"><?php echo $score; ?></span></p>
+    </div>
+    <div >
+        <form id="addNodeForm" method = "post">
             <input type="text" id="newNodeName" placeholder="Enter node">
             <button type="submit">Add Node</button>
         </form>
-    <div id="networkGraph" style="width: 600px; height: 400px; "></div>
+    </div>
+    <div class="wrapper">
+
+        <form action ="jeu_solo.php" method = "post">
+            <button id="endGameButton" type="submit" name="submit" value="sub">Fin de la partie</button>
+        </form>
+        <div id="networkGraph" style="width: 600px; height: 400px; "></div>
     </div>
 </main>
 
+<?php
+if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
+    sleep(5);
+    echo '<meta http-equiv="refresh" content="0;url=jeu.php">';
+}
+
+?>
 <script>
     var chart;
     var animalNames = ['Lion', 'Tiger', 'Bear', 'Elephant', 'Giraffe', 'Zebra', 'Panda', 'Kangaroo', 'Wolf', 'Fox'];
@@ -68,6 +87,7 @@
             }]
 
         });
+
         document.getElementById('addNodeForm').addEventListener('submit', function(e) {
             e.preventDefault();
             var newNodeName = document.getElementById('newNodeName').value;
@@ -77,6 +97,9 @@
                     id: newNodeName,
                     name: newNodeName
                 });
+
+
+
                 if (isFirstAddition) {
                     // For the first addition, link the new node between the initial nodes
                     chart.series[0].addPoint({ from: newNodeName, to: selectedAnimals[0] });
@@ -91,10 +114,28 @@
                     }
                 }
 
+                // Obtenez le score actuel côté client
+                var currentScore = parseInt(document.getElementById('scoreDisplay').textContent);
+
+                // Effectuez une requête AJAX pour mettre à jour le score
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'update_score.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // Mettez à jour le score côté client
+                        var newScore = parseInt(xhr.responseText);
+                        document.getElementById('scoreDisplay').textContent = newScore;
+                    }
+                };
+                xhr.send('newNodeName=' + encodeURIComponent(newNodeName) + '&currentScore=' + currentScore);
+
                 document.getElementById('newNodeName').value = ''; // Clear the input field
             }
         });
     });
+
+
 
 
 
