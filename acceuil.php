@@ -9,11 +9,13 @@ session_start();
 include('connexion.php');
 include('menu.php');
 if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])) {
+
     $stmt = $dbh->prepare("SELECT id FROM user WHERE pseudo = :pseudo");
     $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
     $stmt->execute();
     $ligne = $stmt->fetch(PDO::FETCH_OBJ);
     $id = $ligne->id;
+    
     echo "<main> <body>";
     echo "Bonjour " . htmlspecialchars($_SESSION['pseudo']);
     echo '<br><br><form action="acceuil.php" method="post">

@@ -45,14 +45,7 @@
 
         // Fonction de vérification du mot de passe
         function verifierMotDePasse($mdp)
-        {
-            // Vérifie si le mot de passe contient au moins 1 majuscule, 1 minuscule,
-            // 1 chiffre, 1 caractère spécial et a au moins 7 caractères de longueur
-            $pattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/";
-
-            // Utilisez la fonction preg_match() pour vérifier le motif
-            return preg_match($pattern, $mdp);
-        }
+        {return preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/', $mdp);}
 
         if (!verifierMotDePasse($mdp)) {
             $ok = false;
@@ -69,6 +62,24 @@
                 $stmt->execute();
 
                 echo "Votre mot de passe a été modifié avec succès";
+                $stmt = $dbh->prepare("SELECT id FROM user WHERE email = :email");
+                $stmt->bindParam(':email', $email);
+                $stmt->execute();
+                $ligne = $stmt->fetch(PDO::FETCH_OBJ);
+                $id = $ligne->id;
+
+                // TRACE
+                $action = "Modification mot de passe";
+                $ip = $_SERVER['REMOTE_ADDR'];
+                date_default_timezone_set('Europe/Paris');
+                $date = date('y-m-d H:i:s');
+                $stmt = $dbh->prepare("INSERT INTO trace (action, ip, date, user_id) VALUES (:action, :ip, :date, :id)");
+                var_dump($stmt);
+                $stmt->bindParam(':action', $action);
+                $stmt->bindParam(':ip', $ip);
+                $stmt->bindParam(':date', $date);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
             } catch (PDOException $e) {
                 echo "Erreur : " . $e->getMessage();
             }

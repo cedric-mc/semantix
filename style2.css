@@ -36,3 +36,13 @@ body {
     font-size: 36px;
     text-align: center;
 }
+
+table {
+    color: white;
+    margin: 0 auto;
+    border : 1px solid black;
+}
+
+tr, td{
+    border: 1px solid black;
+}

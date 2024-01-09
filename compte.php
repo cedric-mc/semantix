@@ -3,10 +3,12 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 include('menu.php');
-
 include('connexion.php');?>
-
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="style2.css">
+<head>
+    <title> Mon compte</title>
+</head>
 <div class="box">
     <h1> Mon compte </h1>
     <br>
@@ -14,6 +16,9 @@ include('connexion.php');?>
     <h2> Mes Informations </h2>
     <br>
         Pseudo : <?php echo htmlspecialchars($_SESSION['pseudo']); ?>
+    <a href ="modif_user.php">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg>
+    </a>
     <br>
     <br>
     <?php
@@ -24,6 +29,16 @@ include('connexion.php');?>
     $mail = $ligne->email;
     ?>
         Email : <?php echo $mail;?>
+    <a href ="modif_mail.php">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg>
+    </a>
+    <br>
+    <br>
+    Modifier mot de passe :
+    <a href="modif_password.php">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg>
+
+    </a>
     <br>
     <br>
     <?php
@@ -60,6 +75,7 @@ include('connexion.php');?>
     $moyenne = ($nb_partie > 0) ? ($sum / $nb_partie) : 0;
 
     echo "<h2>Statistiques de Parties</h2>
+<br>
     <table align='center'>
         <tr>
             <th>Moyenne</th>
@@ -78,6 +94,7 @@ include('connexion.php');?>
     <br>
     <br>
     <h2> Historique des parties : </h2>
+    <br>
     <table>
         <tr>
             <th> Score </th>
@@ -94,9 +111,35 @@ include('connexion.php');?>
         echo "<td> $ligne->score</td>";
         echo "<td>$ligne->date </td>";
         echo "</tr>";
-
     }
+
+
     ?>
         </tbody>
+    </table>
+    <br><br>
+    <h2> Hitorique des logs : </h2>
+    <table>
+        <tr>
+            <th> Id utilisateur </th>
+            <th> Action Réalisé </th>
+            <th> IP</th>
+            <th> Date et Heure</th>
+
+        </tr>
+    <?php
+    $stmt = $dbh->prepare("SELECT * FROM trace WHERE user_id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+        echo "<tr>";
+        echo "<td> $ligne->user_id</td>";
+        echo "<td>$ligne->action </td>";
+        echo "<td>$ligne->ip </td>";
+        echo "<td>$ligne->date </td>";
+        echo "</tr>";
+    }
+
+    ?>
     </table>
 </div>
