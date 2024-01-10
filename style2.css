@@ -31,46 +31,13 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,.2);
     border-radius: 10px;
     padding: 30px 40px;
+
 }
 .box h1{
     font-size: 36px;
     text-align: center;
 }
 
-table {
-    color: white;
-    margin: 0 auto;
-    border : 1px solid black;
-}
-
-tr, td{
-    border: 1px solid black;
-}
-.scoreboard {
-    width: 100%; /* Adjust the width as necessary */
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 20px;
-    box-sizing: border-box; /* This ensures padding is included in the width */
-    background: rgba(0, 0, 0, 0.5); /* Example semi-transparent black background */
-    color: #fff; /* White text color */
-    text-align: center; /* Center the text */
-    z-index: 100; /* Make sure it's above other elements */
-}
-.wrapper1 {
-    width: 100%; /* take the full width of the page */
-    color: #fff; /* white text color */
-    padding: 10px 0; /* some padding at the top and bottom */
-    top: 80px; /* specify the distance from the top of the viewport */
-    left: 0; /* align to the left of the viewport */
-    position: fixed; /* ensures the div stays in place when scrolling */
-    background : transparent;
-    backdrop-filter: blur(20px);
-    position: fixed; /* ensures the div stays in place when scrolling */
-    display: flex; /* use flexbox to align children */
-    justify-content: center; /* center children horizontally */
-}
 
 .wrapper {
     width: 420px;

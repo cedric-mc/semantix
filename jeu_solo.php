@@ -16,11 +16,9 @@ session_start();
 </head>
 <body>
 <main>
-    <br><br>
-    <div class="scoreboard">
+
+    <div class="wrapper" style="top:15%;">
         <p>Score actuel : <span id="scoreDisplay"><?php echo $score; ?></span></p>
-    </div>
-    <div class="wrapper" style="top:30%;">
         <form id="addNodeForm" method = "post">
             <div class="input-box">
             <input type="text" id="newNodeName" placeholder="Enter node">
@@ -30,11 +28,16 @@ session_start();
         <br>
         <form action ="jeu_solo.php" method = "post">
             <button class="btn" id="endGameButton" type="submit" name="submit" value="sub">Fin de la partie</button>
+            <br>
+            <div class="register-link">
+            <a href="jeu.php"> Retour </a>
+            </div>
         </form>
     </div>
 
-
-        <div id="networkGraph" style="width: 600px; height: 500px; top=10%;"></div>
+    <div style="position: relative; left: 40vh; top: 32vh;">
+        <div id="networkGraph" style="width: 1100px; height: 650px; "></div>
+        </div>
 </main>
 
 <?php
@@ -52,9 +55,8 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':date', $date);
     $stmt->execute();
-
-   // sleep(3);
-    //echo '<meta http-equiv="refresh" content="0;url=jeu.php">';
+    //sleep(3);
+    echo '<meta http-equiv="refresh" content="0;url=jeu.php">';
 }
 
 ?>
@@ -76,17 +78,42 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
         chart = Highcharts.chart('networkGraph', {
             chart: {
                 type: 'networkgraph',
-                height: '100%'
+                height: '100%',
+                events: {
+                    load: function () {
+                        var chart = this;
+                        // Vous pouvez essayer de déplacer les nœuds en ajustant leur position
+                        // Notez que cela peut interférer avec la simulation physique
+                        chart.series[0].nodes[0].plotX = chart.plotWidth / 2;
+                        chart.series[0].nodes[0].plotY = chart.plotHeight / 4;
+                        chart.series[0].nodes[1].plotX = chart.plotWidth / 2;
+                        chart.series[0].nodes[1].plotY = chart.plotHeight / 4 + 100; // un exemple de décalage
+                        chart.redraw();
+                    }
+                }
             },
             title: {
                 text: ''
             },
             series: [{
+                layoutAlgorithm: {
+                    gravitationalConstant: 0.1,
+                    centralGravity: 0.01,
+                    springLength: 20, // Cette option ajuste la longueur des liens
+                    springConstant: 0.1,
+                    maxIterations: 500,
+                    initialPositions: 'random', // Commence avec des positions aléatoires
+                    enableSimulation: true // Active la simulation dynamique
+                },
                 dataLabels: {
                     enabled: true,
                     linkFormat: '',
                     linkTextPath: {
                         enabled: false // Ensure that text is not displayed on links
+                    },
+                    style: {
+                        fontSize: '12px', // Définit la taille de la police des étiquettes de données
+                        color: '#FFFFFF' // Vous pouvez aussi définir la couleur de la police si nécessaire
                     }
                 },
                 nodes: [{

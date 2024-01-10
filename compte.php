@@ -2,13 +2,20 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-include('menu.php');
 include('connexion.php');?>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <script defer src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script defer src="bsTable.js"></script>
 <head>
     <title> Mon compte</title>
 </head>
+<main>
 <div class="box">
     <h1> Mon compte </h1>
     <br>
@@ -76,7 +83,7 @@ include('connexion.php');?>
 
     echo "<h2>Statistiques de Parties</h2>
 <br>
-    <table align='center'>
+    <table class='table table-striped' align='center'>
         <tr>
             <th>Moyenne</th>
             <th>Minimum</th>
@@ -95,7 +102,7 @@ include('connexion.php');?>
     <br>
     <h2> Historique des parties : </h2>
     <br>
-    <table>
+    <table id="" class='table table-striped'>
         <tr>
             <th> Score </th>
             <th> Date </th>
@@ -119,7 +126,7 @@ include('connexion.php');?>
     </table>
     <br><br>
     <h2> Hitorique des logs : </h2>
-    <table>
+    <table id='' class="table-striped table">
         <tr>
             <th> Id utilisateur </th>
             <th> Action Réalisé </th>
@@ -128,18 +135,32 @@ include('connexion.php');?>
 
         </tr>
     <?php
-    $stmt = $dbh->prepare("SELECT * FROM trace WHERE user_id = :id");
+    $stmt = $dbh->prepare("SELECT * FROM trace WHERE user_id = :id LIMIT 500");
     $stmt->bindParam(':id', $id);
     $stmt->execute();
     while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
-        echo "<tr>";
-        echo "<td> $ligne->user_id</td>";
-        echo "<td>$ligne->action </td>";
-        echo "<td>$ligne->ip </td>";
-        echo "<td>$ligne->date </td>";
+        if ($ligne->action == "Deconnexion" ) {
+            $color = 'red';
+        } elseif ($ligne->action == "Connexion" || $ligne->action == "Creation") {
+            $color = 'green';}
+        elseif ($ligne->action == "Modification Mail" || "Modification Pseudo" || "Modification mot de passe"){
+            $color = 'orange';
+        } else {
+            $color = '';
+        }
+        echo "<tr style='color:$color;'>";
+        echo "<td style='color:$color;' > $ligne->user_id</td>";
+        echo "<td style='color:$color;'>$ligne->action </td>";
+        echo "<td style='color:$color;'>$ligne->ip </td>";
+        echo "<td style='color:$color;'>$ligne->date </td>";
         echo "</tr>";
     }
 
     ?>
     </table>
+
 </div>
+
+</main>
+<?php     include('menu.php');
+?>

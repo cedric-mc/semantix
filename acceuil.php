@@ -16,10 +16,10 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])) {
     $ligne = $stmt->fetch(PDO::FETCH_OBJ);
     $id = $ligne->id;
     
-    echo "<main> <body>";
-    echo "Bonjour " . htmlspecialchars($_SESSION['pseudo']);
+    echo "<main> <body> <div class='wrapper'>";
+    echo "<h1> Bonjour " . htmlspecialchars($_SESSION['pseudo']);
 
-
+    echo"</h1> </div>";
 
 }
 ?>
