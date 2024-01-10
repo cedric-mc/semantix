@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <?php
+session_start();
 include('connexion.php');
-$score = 0;
+if (!isset($_SESSION['score'])) {
+    $_SESSION['score'] = 0; // Valeur par défaut
+}
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start();
 ?>
 <html>
 <head>
@@ -18,7 +20,6 @@ session_start();
 <main>
 
     <div class="wrapper" style="top:15%;">
-        <p>Score actuel : <span id="scoreDisplay"><?php echo $score; ?></span></p>
         <form id="addNodeForm" method = "post">
             <div class="input-box">
             <input type="text" id="newNodeName" placeholder="Enter node">
@@ -27,21 +28,25 @@ session_start();
         </form>
         <br>
         <form action ="jeu_solo.php" method = "post">
+            <input type="hidden" name="finalScore" id="finalScore" value="<?php echo $_SESSION['score']; ?>">
             <button class="btn" id="endGameButton" type="submit" name="submit" value="sub">Fin de la partie</button>
             <br>
             <div class="register-link">
             <a href="jeu.php"> Retour </a>
             </div>
         </form>
+        <p>Score actuel : <span id="scoreDisplay"><?php echo $_SESSION['score']; ?></span></p>
+
     </div>
 
-    <div style="position: relative; left: 40vh; top: 32vh;">
-        <div id="networkGraph" style="width: 1100px; height: 650px; "></div>
+    <div style="position: relative; left: 40vh; top: 40vh;">
+        <div id="networkGraph" style="width: 700px; height: 600px; "></div>
         </div>
 </main>
 
 <?php
 if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
+    $score = isset($_SESSION['score']) ? $_SESSION['score'] : 0;
     $stmt = $dbh->prepare("SELECT id FROM user WHERE pseudo = :pseudo");
     $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
     $stmt->execute();
@@ -51,15 +56,15 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
     date_default_timezone_set('Europe/Paris');
     $date = date('y-m-d');
     $stmt = $dbh->prepare("INSERT INTO score_game (score, user_id, date) VALUES (:score, :id, :date)");
-    $stmt->bindParam(':score', $score);
+    $stmt->bindParam(':score', $score );
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':date', $date);
     $stmt->execute();
-    //sleep(3);
+    sleep(3);
+    $_SESSION['score'] = 0;
     echo '<meta http-equiv="refresh" content="0;url=jeu.php">';
 }
-
-?>
+    ?>
 <script>
     var chart;
     var animalNames = ['Lion', 'Tiger', 'Bear', 'Elephant', 'Giraffe', 'Zebra', 'Panda', 'Kangaroo', 'Wolf', 'Fox'];
@@ -176,7 +181,6 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
                     }
                 };
                 xhr.send('newNodeName=' + encodeURIComponent(newNodeName) + '&currentScore=' + currentScore);
-
                 document.getElementById('newNodeName').value = ''; // Clear the input field
             }
         });
@@ -187,5 +191,9 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
 
 
 </script>
+
+
+
+?>
 </body>
 </html>
