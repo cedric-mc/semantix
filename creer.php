@@ -56,8 +56,9 @@
             $display = '';
         }
         // Fonction de vérification du mot de passe
-        function verifierMotDePasse($mdp)
-        {return preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/', $mdp);}
+        function verifierMotDePasse($mdp) {
+            return preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{12,}$/', $mdp);
+        }
 
         if (!verifierMotDePasse($mdp)) {
             $ok = false;

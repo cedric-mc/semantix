@@ -36,7 +36,6 @@ if ($row) {
             $stmt->execute();
 
             echo $pseudo . " votre compte a été activé avec succès!";
-            include('connexion.php');
             $stmt = $dbh->prepare("SELECT id FROM user WHERE pseudo = :pseudo");
             $stmt->bindParam(':pseudo', $pseudo);
             $stmt->execute();
