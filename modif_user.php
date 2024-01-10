@@ -38,11 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ok = false;
         echo "<br>Ce pseudo existe déjà, choisissez-en un autre.";
     } else {
-        $stmt = $dbh->prepare("SELECT id FROM user WHERE pseudo = :pseudo");
+        $stmt = $dbh->prepare("SELECT id,email FROM user WHERE pseudo = :pseudo");
         $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
         $stmt->execute();
         $ligne = $stmt->fetch(PDO::FETCH_OBJ);
         $id = $ligne->id;
+        $email = $ligne->email;
 
         $stmt = $dbh->prepare("UPDATE user SET pseudo = :pseudoNew WHERE id = :id");
         $stmt->bindParam(':pseudoNew', $pseudoNew); // Utiliser :pseudoNew au lieu de :pseudo
@@ -62,7 +63,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':date', $date);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
+
+        include('connexion_mail.php');
+        $pseudoNew = $_SESSION['pseudo'];
+        $mail->isHTML(true);
+        $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+        $mail->addAddress($email, $pseudoNew);
+        $mail->Subject = 'Changement de Pseudo';
+        $mail->Body = "Bonjour $pseudoNew,<br><br> Nous vous envoyons ce mail pour vous prévenir que votre pseudo à été modifiée.";
+        $mail->CharSet = 'utf-8';
+        $mail->send();
     }
+
 
 }
 ?>

@@ -67,6 +67,16 @@ include('connexion.php');
             $stmt->bindParam(':date', $date);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
+
+            include('connexion_mail.php');
+            $pseudo = $_SESSION['pseudo'];
+            $mail->isHTML(true);
+            $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+            $mail->addAddress($newEmail, $pseudo);
+            $mail->Subject = 'Changement Adresse mail';
+            $mail->Body = "Bonjour $pseudo,<br><br> Nous vous envoyons ce mail pour vous prévenir que votre adresse mail à été modifiée.";
+            $mail->CharSet = 'utf-8';
+            $mail->send();
         }
 
     }
