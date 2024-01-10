@@ -74,7 +74,6 @@
                 date_default_timezone_set('Europe/Paris');
                 $date = date('y-m-d H:i:s');
                 $stmt = $dbh->prepare("INSERT INTO trace (action, ip, date, user_id) VALUES (:action, :ip, :date, :id)");
-                var_dump($stmt);
                 $stmt->bindParam(':action', $action);
                 $stmt->bindParam(':ip', $ip);
                 $stmt->bindParam(':date', $date);

@@ -53,6 +53,7 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
     $ligne = $stmt->fetch(PDO::FETCH_OBJ);
     $id = $ligne->id;
 
+    if ($score > 0){
     date_default_timezone_set('Europe/Paris');
     $date = date('y-m-d');
     $stmt = $dbh->prepare("INSERT INTO score_game (score, user_id, date) VALUES (:score, :id, :date)");
@@ -62,7 +63,7 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
     $stmt->execute();
     sleep(3);
     $_SESSION['score'] = 0;
-    echo '<meta http-equiv="refresh" content="0;url=jeu.php">';
+    echo '<meta http-equiv="refresh" content="0;url=jeu.php">';}
 }
     ?>
 <script>

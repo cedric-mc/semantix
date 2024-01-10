@@ -15,18 +15,6 @@ body {
     padding: 0;
 }
 
-body::-webkit-scrollbar {
-    width: 0.25rem;
-}
-
-body::-webkit-scrollbar-track {
-    background: #1e1e24;
-}
-
-body::-webkit-scrollbar-thumb {
-    background: #6649b8;
-}
-
 main {
     margin-left: 5rem;
     padding: 1rem;
@@ -213,4 +201,15 @@ main {
 
 .solar #solarIcon {
     display: block;
+}
+
+/* Pour WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Pour IE, Edge, et Firefox */
+body {
+    -ms-overflow-style: none;  /* IE et Edge */
+    scrollbar-width: none;  /* Firefox */
 }

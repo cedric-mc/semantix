@@ -102,11 +102,13 @@ include('connexion.php');?>
     <br>
     <h2> Historique des parties : </h2>
     <br>
-    <table id="" class='table table-striped'>
+    <table id="example" class='table table-striped'>
+        <thead>
         <tr>
             <th> Score </th>
             <th> Date </th>
         </tr>
+        </thead>
         <tbody>
     <?php
     $stmt = $dbh->prepare("SELECT * FROM score_game WHERE user_id = :id");
@@ -125,15 +127,16 @@ include('connexion.php');?>
         </tbody>
     </table>
     <br><br>
-    <h2> Hitorique des logs : </h2>
-    <table id='' class="table-striped table">
+    <h2> Historique des logs : </h2>
+    <table id='example2' class="table-striped table">
+        <thead>
         <tr>
             <th> Id utilisateur </th>
             <th> Action Réalisé </th>
             <th> IP</th>
             <th> Date et Heure</th>
-
         </tr>
+        </thead> <tbody>
     <?php
     $stmt = $dbh->prepare("SELECT * FROM trace WHERE user_id = :id LIMIT 500");
     $stmt->bindParam(':id', $id);
@@ -157,6 +160,7 @@ include('connexion.php');?>
     }
 
     ?>
+        </tbody>
     </table>
 
 </div>
