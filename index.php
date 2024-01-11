@@ -43,7 +43,6 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
         <a href="creer.php"> Si vous n'avez pas de compte créez-en un</a><br>
     </div>
     </form>
-    </div>
 
 
     <?php
@@ -80,7 +79,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
                     $mail->isHTML(true);
                     $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
                     $mail->addAddress($email, $pseudo);
-                    $mail->Subject = 'Connection de votre compte';
+                    $mail->Subject = 'Connexion a votre compte';
                     $mail->Body = "Bonjour $pseudo, vous venez de vous connecter à votre compte. Si ce n'était pas vous, modifiez immédiatement votre mot de passe.";
                     $mail->CharSet = 'utf-8';
                     $mail->send();
@@ -117,6 +116,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
         $stmt->closeCursor();
     }
     ?>
+    </div>
 
 </body>
 
