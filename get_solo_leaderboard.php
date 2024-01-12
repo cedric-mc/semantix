@@ -10,7 +10,7 @@ include('connexion.php');
 <div class="leaderboard">
     <header>
         <h1>Leader Board</h1>
-        <img src="" alt="">
+        <img src="monkey.png" alt="">
         <nav class="ldb">
             <a href="" class="active">Solo</a>
         </nav>

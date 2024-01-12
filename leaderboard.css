@@ -1,3 +1,5 @@
+
+
 .leaderboard {
     max-width: 25rem;
     margin: 5rem auto;
@@ -12,7 +14,7 @@ a {
 }
 
 header {
-    background-color: #ff7500;
+    background-color: #35b3cc;
     color: white;
     text-transform: uppercase;
     border-top-left-radius: 1rem;
@@ -25,17 +27,13 @@ h1 {
     font-size: 3rem;
     line-height: 3rem;
     position: absolute;
-    margin-left: 3rem;
+    margin-left: 1rem;
     top: 4rem;
-}
-
-.valable{
-    font-size: 1rem;
-
+    align-text : left;
 }
 
 img {
-    height: 16rem;
+    height: 12rem;
     position: absolute;
     bottom: 0;
     right: 1rem;
@@ -62,7 +60,7 @@ img {
 }
 
 .ldb a.active {
-    border-bottom: 4px solid #f0a900;
+    border-bottom: 4px solid #35b3cc;
 }
 
 .ldb a:first-child {
