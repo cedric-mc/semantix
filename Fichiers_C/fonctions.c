@@ -1,38 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <limits.h>
-#include <math.h>
-#include <assert.h>
+#include "fonctions.h"
 
 const long long max_size = 2000;  // longueur maximale des chaînes
 const long long max_w = 50;       // longueur maximal des mots
 const long long N = 40;
-#define NONE -1 
 
-
-typedef char Element;
-
-typedef struct node {
-    Element elem;
-    int offset;
-    struct node* firstChild;
-    struct node* nextSibling;
-} Node;
-typedef Node* CSTree;
-
-typedef struct {
-    Element elem;
-    int offset;
-    unsigned int firstChild;
-    unsigned int nSiblings;
-    unsigned int nextSibling; 
-} ArrayCell;
-
-typedef struct {
-    ArrayCell* nodeArray;
-    unsigned int nNodes;
-} StaticTree;
+const int NONE = -1 ;
 
 CSTree newCSTree(Element elem, int offset, CSTree firstChild, CSTree nextSibling) {
     CSTree t = malloc(sizeof(Node));
@@ -279,14 +252,6 @@ int dictionary_lookup(const char* lexFileName, const char* word) {
     return offset;
 }
 
-// Structure pour stocker le modèle binaire
-typedef struct {
-  long long words;
-  long long size;
-  char *vocab;
-  float *M;
-} WordModel;
-
 // Fonction pour charger le modèle en mémoire
 WordModel* load_model(const char *file_name) {
   FILE *f;
@@ -377,13 +342,6 @@ void free_model(WordModel *model) {
   free(model);
 }
 
-//structure de tableau à deux dimensions, dédié à l'algorithme de Levenshtein
-typedef struct {
-    int lenS;
-    int lenT;
-    int * tab;
-}
-LevArray;
 
 //minimum de deux entiers
 int min(int a, int b) {
