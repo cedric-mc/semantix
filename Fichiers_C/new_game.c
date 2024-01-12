@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-#include "fonctions.c"
+#include "fonctions.h"
 
 int main(int argc, char *argv[]) {
     if (argc < 3) {

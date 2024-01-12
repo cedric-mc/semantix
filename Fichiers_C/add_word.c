@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "fonctions.c"
+#include "fonctions.h"
 
 int main(int argc, char *argv[]) {
     if (argc != 4) {
-        fprintf(stderr, "Usage: %s model_file index_file new_word\n", argv[0]);
+        fprintf(stderr, "Usage: %s model_file index_file game_file new_word\n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
