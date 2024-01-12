@@ -15,6 +15,8 @@ ini_set('display_errors', 1);
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+    <link rel="icon" href="monkeyapp.png">
+
 </head>
 <body>
 <main>

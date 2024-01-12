@@ -18,10 +18,23 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="monkeyapp.png">
     <title>Connexion</title>
 </head>
 
 <body>
+    <a href="indexadmin.php" id="lien-bas-droite">.</a>
+    <style>
+        #lien-bas-droite {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin: 20px;
+            color: #FFF;
+            text-decoration: none;
+            size:1px;
+        }
+    </style>
     <div class="wrapper">
     <form action="" method="post">
         <h1>Se connecter</h1>

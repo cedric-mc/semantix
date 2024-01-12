@@ -1,4 +1,7 @@
-<head><title> Acceuil </title></head>
+<head><title> Acceuil </title>
+    <link rel="icon" href="monkeyapp.png">
+
+</head>
 <link href='menu.css' rel='stylesheet'>
 <link href='style2.css' rel='stylesheet'>
 

@@ -10,6 +10,8 @@ include('connexion.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partie Multijoueur</title>
+    <link rel="icon" href="monkeyapp.png">
+
 </head>
 <main>
     <br><br>

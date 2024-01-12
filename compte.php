@@ -14,6 +14,8 @@ include('connexion.php');?>
     <script defer src="bsTable.js"></script>
 <head>
     <title> Mon compte</title>
+    <link rel="icon" href="monkeyapp.png">
+
 </head>
 <main>
 <div class="box">

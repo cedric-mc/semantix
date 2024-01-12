@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Créer un compte</title>
+    <link rel="icon" href="monkeyapp.png">
+
 </head>
 
 <div class="wrapper">

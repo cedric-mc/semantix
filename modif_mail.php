@@ -8,6 +8,13 @@ include('connexion.php');
 
 ?>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="monkeyapp.png">
+    <title>Modification Mail</title>
+</head>
+
 <div class="wrapper">
     <form action="modif_mail.php" method="post">
         <h1>Changer de mail</h1>
