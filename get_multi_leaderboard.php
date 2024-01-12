@@ -11,7 +11,7 @@ include('connexion.php');
 
 <div class="leaderboard">
     <header>
-        <h1 class="valable">Le classement multijoueur n'est pas disponible pour le moment</h1>
+        <h2 class="valable">Le classement multijoueur n'est pas disponible pour le moment</h2>
         <img src="" alt="">
         <nav class="ldb">
             <a href="" class="active">Multi</a>

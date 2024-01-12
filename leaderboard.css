@@ -27,16 +27,21 @@ h1 {
     font-size: 3rem;
     line-height: 3rem;
     position: absolute;
-    margin-left: 1rem;
+    margin-left: 9rem;
     top: 4rem;
-    align-text : left;
+}
+
+h2 {
+    line-height: 3rem;
+    position: absolute;
+    top: 0rem;
 }
 
 img {
-    height: 12rem;
+    height: 10rem;
     position: absolute;
     bottom: 0;
-    right: 1rem;
+    left: 1rem;
 }
 
 .ldb {
