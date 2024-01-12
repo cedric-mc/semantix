@@ -1,6 +1,6 @@
 Pour compiler le jeu : 
-gcc -o new_game new_game.c -lm
-gcc -o add_word add_word.c -lm
+gcc -o new_game new_game.c fonctions.c -lm
+gcc -o add_word add_word.c fonctions.c -lm
 
 Pour lancer nouvelle partie : 
 ./new_game words.bin arbre.lex mot1 mot2 mot3 .....
