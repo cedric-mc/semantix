@@ -470,7 +470,8 @@ void extractWordsAndOffsets(const char *inputFileName, const char *outputFileNam
 }
 
 // Fonction pour créer un nouveau fichier de partie
-void new_game(const char *modelFile, const char *indexFile, int numWords, char *words[]) {
+void new_game(const char *modelFile, int numWords, char *words[]) {
+    char *indexFile = "arbre.lex";
     // Charger le modèle word2vec
     WordModel *model = load_model(modelFile);
     if (model == NULL) {
@@ -540,7 +541,8 @@ void new_game(const char *modelFile, const char *indexFile, int numWords, char *
 }
 
 // Fonction principale pour ajouter un mot à un fichier de partie existant
-void add_word(const char *modelFile, const char *indexFile, const char *newWord) {
+void add_word(const char *modelFile, const char *newWord) {
+    char *indexFile = "arbre.lex";
     FILE *fichier = fopen("word_game.txt", "r");
     if (fichier == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -584,11 +586,23 @@ void add_word(const char *modelFile, const char *indexFile, const char *newWord)
         fprintf(stderr, "Trop de mots pour ajouter un mot supplémentaire\n");
         exit(EXIT_FAILURE);
     }
-    new_game(modelFile, indexFile, nombreMots, mots);
+    new_game(modelFile, nombreMots, mots);
 
     // Libérer la mémoire allouée dynamiquement
     for (int i = 0; i < max_size; i++) {
         free(mots[i]);
     }
     free(mots);
+}
+
+// Fonction pour afficher les auteurs
+void print_authors() {
+    printf("Auteurs : BA Mamadou - REKKAB Abdelnour - SOUSA Vincent - MALOUM Elyas\n");
+}
+
+// Fonction de test minimaliste
+void run_minimal_test() {
+    printf("\nSimilarité orthographique entre singe et singes : \n");
+    float distance = lev_similarity("singe", "singes");
+    printf("%.2f\n", distance);
 }

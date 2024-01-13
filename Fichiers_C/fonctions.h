@@ -92,8 +92,11 @@ double lev_similarity(char *S, char *T);
 
 void extractWordsAndOffsets(const char *inputFileName, const char *outputFileName);
 
-void new_game(const char *modelFile, const char *indexFile, int numWords, char *words[]);
+void new_game(const char *modelFile, int numWords, char *words[]);
 
-void add_word(const char *modelFile, const char *indexFile, const char *newWord);
+void add_word(const char *modelFile, const char *newWord);
 
+void print_authors();
+
+void run_minimal_test();
 #endif
