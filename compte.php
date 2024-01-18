@@ -2,7 +2,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-include('connexion.php');?>
+include('connexion.php');
+include('redirection.php');
+?>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
@@ -164,6 +166,7 @@ include('connexion.php');?>
     ?>
         </tbody>
     </table>
+
 
 </div>
 
