@@ -21,7 +21,7 @@ public class Tree {
 
     public ArrayList<Branch> detectAllCycles(){
         ArrayList<Branch> cycle = new ArrayList<Branch>();
-
+        return null;
     }
 
     public void deleteWeakestBranchFromCycle() {
