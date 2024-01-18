@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/projet/branch/Branch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/projet/branch/DocumentReaderForBranch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/projet/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projet/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +46,9 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -63,22 +68,11 @@
       <option name="presentableId" value="Default" />
       <updated>1705599080532</updated>
       <workItem from="1705599081525" duration="290000" />
-      <workItem from="1705600141110" duration="670000" />
+      <workItem from="1705600141110" duration="2085000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/projet/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

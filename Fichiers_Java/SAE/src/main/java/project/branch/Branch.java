@@ -1,4 +1,4 @@
-package projet.branch;
+package project.branch;
 
 public class Branch {
     private final String word1;

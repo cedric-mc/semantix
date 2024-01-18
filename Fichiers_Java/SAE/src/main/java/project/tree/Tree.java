@@ -1,6 +1,6 @@
-package projet.tree;
+package project.tree;
 
-import projet.branch.Branch;
+import project.branch.Branch;
 
 import java.util.ArrayList;
 
