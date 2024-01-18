@@ -5,6 +5,9 @@ Pour vincent :
 -------------------------------------------------------------------------------
 
 Ajouter une redirection sur toute les pages si la session n'est pas reconnu.
+
+
+
 Normalement une exception comme : 
 
 if (!isset($_SESSION['pseudo']) {

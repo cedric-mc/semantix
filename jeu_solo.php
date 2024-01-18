@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
 session_start();
+
 include('connexion.php');
+include('redirection.php');
 if (!isset($_SESSION['score'])) {
     $_SESSION['score'] = 0; // Valeur par défaut
 }
