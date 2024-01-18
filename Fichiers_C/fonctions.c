@@ -1,38 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <limits.h>
-#include <math.h>
-#include <assert.h>
+#include "fonctions.h"
 
 const long long max_size = 2000;  // longueur maximale des chaînes
 const long long max_w = 50;       // longueur maximal des mots
 const long long N = 40;
-#define NONE -1 
 
-
-typedef char Element;
-
-typedef struct node {
-    Element elem;
-    int offset;
-    struct node* firstChild;
-    struct node* nextSibling;
-} Node;
-typedef Node* CSTree;
-
-typedef struct {
-    Element elem;
-    int offset;
-    unsigned int firstChild;
-    unsigned int nSiblings;
-    unsigned int nextSibling; 
-} ArrayCell;
-
-typedef struct {
-    ArrayCell* nodeArray;
-    unsigned int nNodes;
-} StaticTree;
+const int NONE = -1 ;
 
 CSTree newCSTree(Element elem, int offset, CSTree firstChild, CSTree nextSibling) {
     CSTree t = malloc(sizeof(Node));
@@ -279,14 +252,6 @@ int dictionary_lookup(const char* lexFileName, const char* word) {
     return offset;
 }
 
-// Structure pour stocker le modèle binaire
-typedef struct {
-  long long words;
-  long long size;
-  char *vocab;
-  float *M;
-} WordModel;
-
 // Fonction pour charger le modèle en mémoire
 WordModel* load_model(const char *file_name) {
   FILE *f;
@@ -377,13 +342,6 @@ void free_model(WordModel *model) {
   free(model);
 }
 
-//structure de tableau à deux dimensions, dédié à l'algorithme de Levenshtein
-typedef struct {
-    int lenS;
-    int lenT;
-    int * tab;
-}
-LevArray;
 
 //minimum de deux entiers
 int min(int a, int b) {
@@ -512,7 +470,8 @@ void extractWordsAndOffsets(const char *inputFileName, const char *outputFileNam
 }
 
 // Fonction pour créer un nouveau fichier de partie
-void new_game(const char *modelFile, const char *indexFile, int numWords, char *words[]) {
+void new_game(const char *modelFile, int numWords, char *words[]) {
+    char *indexFile = "arbre.lex";
     // Charger le modèle word2vec
     WordModel *model = load_model(modelFile);
     if (model == NULL) {
@@ -582,7 +541,8 @@ void new_game(const char *modelFile, const char *indexFile, int numWords, char *
 }
 
 // Fonction principale pour ajouter un mot à un fichier de partie existant
-void add_word(const char *modelFile, const char *indexFile, const char *newWord) {
+void add_word(const char *modelFile, const char *newWord) {
+    char *indexFile = "arbre.lex";
     FILE *fichier = fopen("word_game.txt", "r");
     if (fichier == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
@@ -626,11 +586,23 @@ void add_word(const char *modelFile, const char *indexFile, const char *newWord)
         fprintf(stderr, "Trop de mots pour ajouter un mot supplémentaire\n");
         exit(EXIT_FAILURE);
     }
-    new_game(modelFile, indexFile, nombreMots, mots);
+    new_game(modelFile, nombreMots, mots);
 
     // Libérer la mémoire allouée dynamiquement
     for (int i = 0; i < max_size; i++) {
         free(mots[i]);
     }
     free(mots);
+}
+
+// Fonction pour afficher les auteurs
+void print_authors() {
+    printf("Auteurs : BA Mamadou - REKKAB Abdelnour - SOUSA Vincent - MALOUM Elyas\n");
+}
+
+// Fonction de test minimaliste
+void run_minimal_test() {
+    printf("\nSimilarité orthographique entre singe et singes : \n");
+    float distance = lev_similarity("singe", "singes");
+    printf("%.2f\n", distance);
 }
