@@ -54,6 +54,9 @@
 
                 $mail->send();
                 echo 'Un lien de récupération a été envoyé à ' . $email . ' si elle est dans notre base de données.';
+                $stmt = $dbh->prepare("INSERT INTO recuperation (email) VALUES (:email)");
+                $stmt->bindParam(':email', $email);
+                $stmt->execute();
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }

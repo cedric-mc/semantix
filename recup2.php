@@ -12,6 +12,12 @@
     <?php
     include('connexion.php');
     $email = isset($_GET['email']) ? $_GET['email'] : '';
+    $stmt = $dbh->prepare("SELECT email FROM recuperation WHERE email = :email");
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    if ($stmt->rowCount() == 0){
+        $email = "";
+    }
     ?>
 
 <div class ="wrapper">
@@ -26,7 +32,9 @@
         <div class="input-box">
                 <input placeholder="Confirmez votre mot de passe:" type="password" id="mdpConf" name="mdpConf" required />
         </div>
-                <button class="btn" type="submit">Réinitialiser le mot de passe</button>
+                <?php if ($email != "") {
+                    echo '<button class="btn" type="submit">Réinitialiser le mot de passe</button>';
+                }?>
         <div class="register-link">
             <a href="index.php"> Revenir à l'acceuil </a>
         </div>
@@ -61,6 +69,10 @@
                 $stmt->bindParam(':mdp', $mdpHash);
                 $stmt->bindParam(':email', $email);
                 $stmt->execute();
+
+                $deleteStmt = $dbh->prepare("DELETE FROM recuperation WHERE email = :email");
+                $deleteStmt->bindParam(':email', $email);
+                $deleteStmt->execute();
 
                 echo "Votre mot de passe a été modifié avec succès";
                 $stmt = $dbh->prepare("SELECT id FROM user WHERE email = :email");
