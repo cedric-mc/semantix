@@ -8,10 +8,15 @@
 
     </head>
 <?php
-include('menu.php');
+
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include('connexion.php');
+
+include('redirection.php');
+include('menu.php');
+
 
 if (isset($_POST['solo'])) {
     echo '<meta http-equiv="refresh" content="0;url=jeu_solo.php">';

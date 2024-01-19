@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             include('connexion_mail.php');
             $mail->isHTML(true);
-            $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+            $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Support');
             $mail->addAddress($email, $pseudo);
             $mail->Subject = 'Récupération de votre compte';
             $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour modifier votre mot de passe : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/recup2.php?email=$email'>Modifier le mot de passe</a>";
@@ -65,6 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $mail->send();
             echo 'Un mail a été envoyé à ' . $email . ' pour modifier votre mot de passe';
+            $stmt = $dbh->prepare("INSERT INTO recuperation (email) VALUES (:email)");
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }

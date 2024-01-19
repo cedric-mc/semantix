@@ -46,7 +46,7 @@
             try {
                 include('connexion_mail.php');
                 $mail->isHTML(true);
-                $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+                $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'MonkeyGame');
                 $mail->addAddress($email, $pseudo);
                 $mail->Subject = 'Récupération de votre compte';
                 $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour récupérer votre compte : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/recup2.php?email=$email'>Récupérer le compte</a>";
@@ -54,6 +54,9 @@
 
                 $mail->send();
                 echo 'Un lien de récupération a été envoyé à ' . $email . ' si elle est dans notre base de données.';
+                $stmt = $dbh->prepare("INSERT INTO recuperation (email) VALUES (:email)");
+                $stmt->bindParam(':email', $email);
+                $stmt->execute();
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
