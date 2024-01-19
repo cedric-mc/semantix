@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/projet/branch/DocumentReaderForBranch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/projet/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/projet/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/branch/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/branch/Branch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/branch/DocumentReaderForBranch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/tree/DocumentReaderForTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +38,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE",
@@ -68,11 +73,21 @@
       <option name="presentableId" value="Default" />
       <updated>1705599080532</updated>
       <workItem from="1705599081525" duration="290000" />
-      <workItem from="1705600141110" duration="2085000" />
+      <workItem from="1705600141110" duration="8700000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

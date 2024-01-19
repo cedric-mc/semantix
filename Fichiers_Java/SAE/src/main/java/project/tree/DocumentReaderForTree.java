@@ -1,14 +1,16 @@
-package project.branch;
+package project.tree;
 
-public class DocumentReaderForBranch {
+import project.branch.Branch;
+
+public class DocumentReaderForTree {
     private final String documentEntry;
-    private static final String WORDS_SECTION_HEADER = "Liste des mots  :";
-    private static final String OFFSETS_SECTION_HEADER = "Offsets dans le dictionnaire  :";
-    private static final String DISTANCES_SECTION_HEADER = "Distances entre les paires de mots  :";
+    private static final String WORDS_SECTION_HEADER = "Liste des mots :";
+    private static final String OFFSETS_SECTION_HEADER = "Offsets dans le dictionnaire :";
+    private static final String DISTANCES_SECTION_HEADER = "Distances entre les paires de mots :";
     private static final String WORD_OFFSET_PATTERN = "\\w+: \\d+";
     private static final String WORD_DISTANCE_PATTERN = "\\w+ - \\w+ : \\d+\\.\\d+";
 
-    public DocumentReaderForBranch(String documentEntry) {
+    public DocumentReaderForTree(String documentEntry) {
         validateDocument(documentEntry);
         this.documentEntry = documentEntry;
     }
@@ -40,7 +42,7 @@ public class DocumentReaderForBranch {
 
     private void validateSectionHeader(String[] lines, int index, String expectedHeader) {
         if (index >= lines.length || !lines[index].trim().equals(expectedHeader)) {
-            throw new IllegalArgumentException("Le contenu du document n'est pas valide.");
+            throw new IllegalArgumentException("Invalid document format: Missing or incorrect section header.");
         }
     }
 
@@ -60,7 +62,7 @@ public class DocumentReaderForBranch {
                 return i;
             }
         }
-        throw new IllegalArgumentException("Le contenu du document n'est pas valide.");
+        throw new IllegalArgumentException("Invalid document format: Missing section header - " + sectionHeader);
     }
 
     private void validateWordOffsets(String[] lines, int startIndex) {
@@ -70,7 +72,7 @@ public class DocumentReaderForBranch {
                 break; // Fin de la section "Offsets dans le dictionnaire :"
             }
             if (!line.matches(WORD_OFFSET_PATTERN)) {
-                throw new IllegalArgumentException("Le contenu du document n'est pas valide.");
+                throw new IllegalArgumentException("Invalid document format: Incorrect word offset format.");
             }
         }
     }
@@ -82,8 +84,31 @@ public class DocumentReaderForBranch {
                 break; // Fin de la section "Distances entre les paires de mots :"
             }
             if (!line.matches(WORD_DISTANCE_PATTERN)) {
-                throw new IllegalArgumentException("Le contenu du document n'est pas valide.");
+                throw new IllegalArgumentException("Invalid document format: Incorrect word distance format.");
             }
         }
+    }
+
+    public void addBranchesFromDocumentInTree(Tree tree) {
+        // Extract distances from the document and create branches
+        String[] lines = documentEntry.split("\\r?\\n");
+        int distancesSectionStartIndex = findSectionStartIndex(lines, DISTANCES_SECTION_HEADER);
+
+        for (int i = distancesSectionStartIndex + 1; i < lines.length; i++) {
+            String line = lines[i].trim();
+            if (line.isEmpty()) {
+                break; // Fin de la section "Distances entre les paires de mots :"
+            }
+            String[] parts = line.split(" - ");
+            String[] scoreParts = parts[1].split(" : ");
+            String word1 = parts[0].trim();
+            String word2 = scoreParts[0].trim();
+            float score = Float.parseFloat(scoreParts[1].trim());
+
+            // Créer une nouvelle branche et l'ajouter à l'arbre
+            Branch thisBranch = new Branch(word1, word2, score);
+            tree.addBranch(thisBranch);
+        }
+
     }
 }

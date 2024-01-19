@@ -35,4 +35,9 @@ public class Branch {
         }
         return word.equals(word2) ? word1 : word2;
     }
+
+    @Override
+    public String toString() {
+        return "Branch: " + word1 + ", " + word2 + ": " + score;
+    }
 }
