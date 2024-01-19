@@ -78,7 +78,7 @@ include('connexion.php');
             include('connexion_mail.php');
             $pseudo = $_SESSION['pseudo'];
             $mail->isHTML(true);
-            $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+            $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Support');
             $mail->addAddress($newEmail, $pseudo);
             $mail->Subject = 'Changement Adresse mail';
             $mail->Body = "Bonjour $pseudo,<br><br> Nous vous envoyons ce mail pour vous prévenir que votre adresse mail à été modifiée.";
