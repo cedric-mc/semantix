@@ -1,7 +1,7 @@
 # 🐒 Moteur de chaine de MonkeyGame
 
 ## Description
-_Une brève description de votre projet._
+_Voici le moteur de chaîne de MonkeyGame ! Vous retrouverez ici toutes informations sur la création et le fonctionnement de notre jeu._
 
 ## Fonctionnalités
 - [ ] Fonctionnalité 1 : Description de la fonctionnalité 1.
