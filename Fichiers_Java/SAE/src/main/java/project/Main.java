@@ -1,14 +1,13 @@
 package project;
 
 import project.branch.Branch;
-import project.tree.DocumentReaderForTree;
+import project.documents.DocumentHandler;
 import project.tree.Tree;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Set;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -20,11 +19,11 @@ public class Main {
         try {
             String documentContent = readDocument(filePath);
 
-            DocumentReaderForTree documentReader = new DocumentReaderForTree(documentContent);
+            DocumentHandler documentHandler = new DocumentHandler(documentContent, "", "");
             Tree tree = new Tree();
 
             // Ajoute les branches extraites du document à l'arbre
-            documentReader.addBranchesFromDocumentInTree(tree);
+            documentHandler.addBranchesFromDocumentInTree(tree);
 
             // Affiche l'arbre
             System.out.println(tree);
@@ -32,15 +31,21 @@ public class Main {
             // Détection des cycles
             Set<Set<Branch>> cycles = tree.detectAllCycles();
 
-            // Affichage des cycles détectés
-            if (cycles.isEmpty()) {
-                System.out.println("Aucun cycle détecté dans l'arbre.");
-            } else {
-                System.out.println("Cycles détectés dans l'arbre:");
-                for (Set<Branch> cycle : cycles) {
-                    System.out.println(cycle);
-                }
-            }
+//            // Affichage des cycles détectés
+//            if (cycles.isEmpty()) {
+//                System.out.println("Aucun cycle détecté dans l'arbre.");
+//            } else {
+//                System.out.println("Cycles détectés dans l'arbre:");
+//                for (Set<Branch> cycle : cycles) {
+//                    System.out.println(cycle);
+//                }
+//            }
+            tree.removeWeakestBranchUntilNoCycle(documentHandler);
+
+            System.out.println(tree);
+
+
+
 
         } catch (IOException e) {
             System.err.println("Erreur lors de la lecture du document : " + e.getMessage());

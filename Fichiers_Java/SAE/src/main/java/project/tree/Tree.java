@@ -1,8 +1,10 @@
 package project.tree;
 
 import project.branch.Branch;
+import project.documents.DocumentHandler;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,10 +35,11 @@ public class Tree {
             }
         }
 
+        // Filtrer les cycles pour exclure ceux qui ne contiennent qu'une branche
         allCycles.removeIf(cycle -> cycle.size() < 2);
         uniqueCycles.removeIf(cycle -> cycle.size() < 2);
 
-        return allCycles;
+        return uniqueCycles;
     }
 
     private void cycleDetectorDFS(Branch currentBranch, Set<Branch> visitedBranches, Set<Branch> currentCycle,
@@ -50,9 +53,8 @@ public class Tree {
                 if (currentCycle.contains(nextBranch)) {
                     // Cycle détecté
                     Set<Branch> cycleSet = new HashSet<>(currentCycle);
-                    if (uniqueCycles.add(cycleSet)) {
-                        allCycles.add(cycleSet);
-                    }
+                    allCycles.add(cycleSet);
+                    uniqueCycles.add(cycleSet);
                 } else if (!visitedBranches.contains(nextBranch)) {
                     cycleDetectorDFS(nextBranch, visitedBranches, currentCycle, allCycles, uniqueCycles);
                 }
@@ -61,6 +63,36 @@ public class Tree {
 
         currentCycle.remove(currentBranch);
         visitedBranches.remove(currentBranch);
+    }
+
+    public void removeWeakestBranchUntilNoCycle(DocumentHandler documentHandler) {
+        while (!detectAllCycles().isEmpty()) {
+            Set<Set<Branch>> allCycles = detectAllCycles();
+
+            // Rechercher le cycle le plus long
+            Set<Branch> longestCycle = Collections.emptySet();
+            for (Set<Branch> cycle : allCycles) {
+                if (cycle.size() > longestCycle.size()) {
+                    longestCycle = cycle;
+                }
+            }
+
+            // Trouver la branche la plus faible dans le cycle le plus long
+            Branch weakestBranch = null;
+            float minScore = Float.MAX_VALUE;
+            for (Branch branch : longestCycle) {
+                if (branch.getScore() < minScore) {
+                    minScore = branch.getScore();
+                    weakestBranch = branch;
+                }
+            }
+
+            // Supprimer la branche la plus faible du cycle le plus long
+            if (weakestBranch != null) {
+                branches.remove(weakestBranch);
+                documentHandler.writeDocumentToFile(null, weakestBranch);
+            }
+        }
     }
 
     @Override
