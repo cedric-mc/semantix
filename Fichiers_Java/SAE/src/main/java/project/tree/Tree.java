@@ -23,25 +23,6 @@ public class Tree {
         branches.add(branch);
     }
 
-    public Set<Set<Branch>> detectAllCycles() {
-        Set<Set<Branch>> allCycles = new HashSet<>();
-        Set<Branch> visitedBranches = new HashSet<>();
-        Set<Set<Branch>> uniqueCycles = new HashSet<>();
-
-        for (Branch branch : branches) {
-            if (!visitedBranches.contains(branch)) {
-                Set<Branch> currentCycle = new HashSet<>();
-                cycleDetectorDFS(branch, visitedBranches, currentCycle, allCycles, uniqueCycles);
-            }
-        }
-
-        // Filtrer les cycles pour exclure ceux qui ne contiennent qu'une branche
-        allCycles.removeIf(cycle -> cycle.size() < 2);
-        uniqueCycles.removeIf(cycle -> cycle.size() < 2);
-
-        return uniqueCycles;
-    }
-
     private void cycleDetectorDFS(Branch currentBranch, Set<Branch> visitedBranches, Set<Branch> currentCycle,
                                   Set<Set<Branch>> allCycles, Set<Set<Branch>> uniqueCycles) {
         visitedBranches.add(currentBranch);
@@ -63,6 +44,25 @@ public class Tree {
 
         currentCycle.remove(currentBranch);
         visitedBranches.remove(currentBranch);
+    }
+
+    public Set<Set<Branch>> detectAllCycles() {
+        Set<Set<Branch>> allCycles = new HashSet<>();
+        Set<Branch> visitedBranches = new HashSet<>();
+        Set<Set<Branch>> uniqueCycles = new HashSet<>();
+
+        for (Branch branch : branches) {
+            if (!visitedBranches.contains(branch)) {
+                Set<Branch> currentCycle = new HashSet<>();
+                cycleDetectorDFS(branch, visitedBranches, currentCycle, allCycles, uniqueCycles);
+            }
+        }
+
+        // Filtrer les cycles pour exclure ceux qui ne contiennent qu'une branche
+        allCycles.removeIf(cycle -> cycle.size() < 2);
+        uniqueCycles.removeIf(cycle -> cycle.size() < 2);
+
+        return uniqueCycles;
     }
 
     public void removeWeakestBranchUntilNoCycle(DocumentHandler documentHandler) {

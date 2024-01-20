@@ -22,8 +22,8 @@ public class DocumentHandler {
     public DocumentHandler(String documentEntryPath, String documentExitPath, String documentDeletedBranchesPath) {
         validateDocument(documentEntryPath);
         this.documentEntryPath = documentEntryPath;
-        this.documentExitPath = documentExitPath;
-        this.documentDeletedBranchesPath = documentDeletedBranchesPath;
+        this.documentExitPath = "path/to/file/for/exitdoc.txt";
+        this.documentDeletedBranchesPath = "path/to/file/for/deletedbranchesdoc.txt";
     }
 
     private void validateDocument(String document) {
@@ -125,7 +125,6 @@ public class DocumentHandler {
         }
 
     }
-
 
 
     private String writeAllBranchesInDocument(Tree tree) {

@@ -28,23 +28,9 @@ public class Main {
             // Affiche l'arbre
             System.out.println(tree);
 
-            // Détection des cycles
-            Set<Set<Branch>> cycles = tree.detectAllCycles();
-
-//            // Affichage des cycles détectés
-//            if (cycles.isEmpty()) {
-//                System.out.println("Aucun cycle détecté dans l'arbre.");
-//            } else {
-//                System.out.println("Cycles détectés dans l'arbre:");
-//                for (Set<Branch> cycle : cycles) {
-//                    System.out.println(cycle);
-//                }
-//            }
             tree.removeWeakestBranchUntilNoCycle(documentHandler);
 
             System.out.println(tree);
-
-
 
 
         } catch (IOException e) {

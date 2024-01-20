@@ -6,7 +6,7 @@ public class Branch {
     private final float score;
 
     public Branch(String word1, String word2, float score) {
-        if (word1.isEmpty() || word2.isEmpty() ) {
+        if (word1.isEmpty() || word2.isEmpty()) {
             throw new IllegalArgumentException("You need two words to build a new branch.");
         }
         if (score < 0) {
