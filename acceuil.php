@@ -24,6 +24,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])) {
     $stmt->execute();
     $ligne = $stmt->fetch(PDO::FETCH_OBJ);
     $id = $ligne->id;
+    $_SESSION['id'] = $id;
 
     $stmt = $dbh->prepare("SELECT admin FROM user WHERE id = :id");
     $stmt->bindParam(':id', $id);
