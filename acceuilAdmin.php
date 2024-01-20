@@ -38,7 +38,7 @@ include('redirection.php');
     <th> id utilisateur</th>
     <th> Pseudo</th>
     <th> Adresse Mail</th>
-    <th> Annéee de naissance</th>
+    <th> Date de naissance</th>
     <th> Droit d'accès</th>
     <th> Fonctionnalitées </th>
     </thead>

@@ -43,6 +43,29 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])) {
 
 }
 ?>
+
+<!-- Bouton pour copier le texte -->
+<!--
+<button onclick="copyText()">Copier le message</button>
+
+<script>
+    function copyText() {
+        // Le message prédéfini
+        var textToCopy = "Je viens de faire un score de 55 sur MonkeyGame vient me rejoindre ! https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/index.php";
+
+        // Utiliser l'API Clipboard pour copier le texte
+        navigator.clipboard.writeText(textToCopy).then(function() {
+            // Message de confirmation
+            alert("Message copié dans le presse-papiers !");
+        })
+            .catch(function(error) {
+                // Gestion des erreurs éventuelles
+                alert("Erreur lors de la copie : ", error);
+            });
+    }
+</script>
+-->
+
 <br>
 </main>
 </body>

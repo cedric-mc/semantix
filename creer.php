@@ -22,8 +22,11 @@
                 <div class="input-box">
                     <input placeholder="Confirmez votre e-mail" type="email" id="emailConf" name="emailConf" required />
                 </div>
+                <?php
+                $maxDate = date('Y-m-d'); // Génère la date du jour au format YYYY-MM-DD
+                ?>
                 <div class="input-box">
-                    <input placeholder="Année de naissance" type="number" id="annee" name="annee" required />
+                    <input placeholder="Année de naissance" type="date" id="annee" name="annee" required max="<?php echo $maxDate; ?>"/>
                 </div>
                 <div class="input-box">
                     <input placeholder="Mot de passe" type="password" id="mdp" name="mdp" required />
@@ -37,7 +40,6 @@
 
 
     </form>
-</div>
     <?php
     include('connexion.php');
     error_reporting(E_ALL);
@@ -115,7 +117,7 @@
     }
     ?>
 
-
+</div>
 </body>
 
 </html>
