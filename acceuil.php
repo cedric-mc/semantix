@@ -24,6 +24,17 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])) {
     $stmt->execute();
     $ligne = $stmt->fetch(PDO::FETCH_OBJ);
     $id = $ligne->id;
+
+    $stmt = $dbh->prepare("SELECT admin FROM user WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $admin = $stmt->fetch(PDO::FETCH_OBJ);
+    if ($admin->admin == 1) {
+        $_SESSION['admin'] = 1;
+    }
+    else{
+        $_SESSION['admin']= 0;
+    }
     
     echo "<main> <body> <div class='wrapper'>";
     echo "<h1> Bonjour " . htmlspecialchars($_SESSION['pseudo']);

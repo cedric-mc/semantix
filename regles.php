@@ -1,4 +1,3 @@
-<?php include('menu.php') ?>
 <link rel="stylesheet" href="style2.css">
 <head>
     <meta charset="UTF-8">
@@ -29,3 +28,5 @@
 </div>
 
 </body>
+
+<?php include('menu.php') ?>

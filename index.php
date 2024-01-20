@@ -23,18 +23,6 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
 </head>
 
 <body>
-    <a href="indexadmin.php" id="lien-bas-droite">.</a>
-    <style>
-        #lien-bas-droite {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            margin: 20px;
-            color: #FFF;
-            text-decoration: none;
-            size:1px;
-        }
-    </style>
     <div class="wrapper">
     <form action="" method="post">
         <h1>Se connecter</h1>

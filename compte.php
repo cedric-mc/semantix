@@ -33,6 +33,7 @@ include('redirection.php');
     </a>
     <br>
     <br>
+
     <?php
     $stmt = $dbh->prepare("SELECT email FROM user WHERE pseudo = :pseudo");
     $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
@@ -59,6 +60,25 @@ include('redirection.php');
     $stmt->execute();
     $ligne = $stmt->fetch(PDO::FETCH_OBJ);
     $id = $ligne->id;
+
+
+    $stmt = $dbh->prepare("SELECT admin FROM user WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $admin = $stmt->fetch(PDO::FETCH_OBJ);
+
+    if ($admin->admin == 1) {
+        $_SESSION['admin'] = 1;
+    }
+    else{
+        $_SESSION['admin']= 0;
+    }
+    $adm = $_SESSION['admin'];
+    if (isset($_SESSION['admin'])){
+        if ($adm == 1)
+        echo "<a href='acceuilAdmin.php'> Se rendre sur l'espace admin </a>";
+    }
+
 
     $stmt = $dbh->prepare("SELECT COUNT(score) as nb FROM score_game WHERE user_id=:id");
     $stmt->bindParam(':id', $id);
@@ -164,6 +184,9 @@ include('redirection.php');
         echo "</tr>";
     }
 
+
+
+
     ?>
         </tbody>
     </table>
@@ -174,3 +197,4 @@ include('redirection.php');
 </main>
 <?php     include('menu.php');
 ?>
+
