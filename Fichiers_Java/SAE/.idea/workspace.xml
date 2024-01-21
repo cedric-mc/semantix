@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="README rédigé, quelques modificatrions">
-      <change afterPath="$PROJECT_DIR$/deletedBranches.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exit.txt" afterDir="false" />
+    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry.txt" beforeDir="false" afterPath="$PROJECT_DIR$/entry.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/branch/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/branch/Branch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,27 +43,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;1-java&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "JUnit.TreeTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "1-java",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/elyas/Downloads/assertj-core-3.25.1-javadoc.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -81,7 +82,8 @@
       <updated>1705599080532</updated>
       <workItem from="1705599081525" duration="290000" />
       <workItem from="1705600141110" duration="19727000" />
-      <workItem from="1705775012325" duration="14341000" />
+      <workItem from="1705775012325" duration="14482000" />
+      <workItem from="1705871634946" duration="4114000" />
     </task>
     <task id="LOCAL-00001" summary="ajout readme">
       <option name="closed" value="true" />
@@ -107,7 +109,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705789464847</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre">
+      <option name="closed" value="true" />
+      <created>1705795964774</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705795964774</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,7 +138,8 @@
     <MESSAGE value="ajout readme" />
     <MESSAGE value="README rédigé" />
     <MESSAGE value="README rédigé, quelques modificatrions" />
-    <option name="LAST_COMMIT_MESSAGE" value="README rédigé, quelques modificatrions" />
+    <MESSAGE value="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
