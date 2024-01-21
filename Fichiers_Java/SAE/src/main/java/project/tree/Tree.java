@@ -90,6 +90,7 @@ public class Tree {
             // Supprimer la branche la plus faible du cycle le plus long
             if (weakestBranch != null) {
                 branches.remove(weakestBranch);
+                System.out.println(weakestBranch);
                 documentHandler.writeDocumentToFile(null, weakestBranch);
             }
         }

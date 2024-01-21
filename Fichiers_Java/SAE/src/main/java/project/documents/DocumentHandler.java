@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class DocumentHandler {
@@ -19,11 +20,11 @@ public class DocumentHandler {
     private static final String WORD_OFFSET_PATTERN = "\\w+: \\d+";
     private static final String WORD_DISTANCE_PATTERN = "\\w+ - \\w+ : \\d+\\.\\d+";
 
-    public DocumentHandler(String documentEntryPath, String documentExitPath, String documentDeletedBranchesPath) {
+    public DocumentHandler(String documentEntryPath) {
         validateDocument(documentEntryPath);
         this.documentEntryPath = documentEntryPath;
-        this.documentExitPath = "path/to/file/for/exitdoc.txt";
-        this.documentDeletedBranchesPath = "path/to/file/for/deletedbranchesdoc.txt";
+        this.documentExitPath = "exit.txt";
+        this.documentDeletedBranchesPath = "deletedbranches.txt";
     }
 
     private void validateDocument(String document) {
@@ -101,6 +102,7 @@ public class DocumentHandler {
     }
 
     public void addBranchesFromDocumentInTree(Tree tree) throws IOException {
+        Files.write(Paths.get(documentExitPath), "".getBytes());
         // Extract distances from the document and create branches
         String[] lines = documentEntryPath.split("\\r?\\n");
         int distancesSectionStartIndex = findSectionStartIndex(lines, DISTANCES_SECTION_HEADER);
@@ -118,10 +120,11 @@ public class DocumentHandler {
 
             // Créer une nouvelle branche et l'ajouter à l'arbre
             Branch thisBranch = new Branch(word1, word2, score);
-            if (!Files.readString(Paths.get(documentDeletedBranchesPath)).contains(thisBranch.toString())) {
-                // Ajouter la branche à l'arbre uniquement si elle n'est pas dans le fichier documentDeletedBranchesPath
+            String deletedBranchContent = Files.readString(Paths.get(documentDeletedBranchesPath));
+            if (!deletedBranchContent.contains(line)) {
                 tree.addBranch(thisBranch);
             }
+
         }
 
     }
@@ -145,18 +148,19 @@ public class DocumentHandler {
     }
 
     public void writeDocumentToFile(Tree tree, Branch branch) {
-        String documentContent, filePath;
+        String documentContent;
+        Path filePath;
         if (tree != null) {
             documentContent = writeAllBranchesInDocument(tree);
-            filePath = documentExitPath;
+            filePath = Paths.get(documentExitPath);
         } else if (branch != null) {
             documentContent = writeSingleBranchInDocument(branch);
-            filePath = documentDeletedBranchesPath;
+            filePath = Paths.get(documentDeletedBranchesPath);
         } else {
             throw new IllegalArgumentException("Both tree and branch cannot be null.");
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(filePath), true))) {
             writer.write(documentContent);
         } catch (IOException e) {
             e.printStackTrace(); // Gérer les exceptions d'écriture de fichier

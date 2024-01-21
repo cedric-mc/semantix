@@ -14,12 +14,12 @@ import java.util.Set;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\elyas\\OneDrive\\Documents\\coursinfo\\SAE-S2\\projet-sae\\Fichiers_C\\fichier_du_jeu.txt";
+        String filePath = String.valueOf(Paths.get("entry.txt"));
 
         try {
             String documentContent = readDocument(filePath);
 
-            DocumentHandler documentHandler = new DocumentHandler(documentContent, "", "");
+            DocumentHandler documentHandler = new DocumentHandler(documentContent);
             Tree tree = new Tree();
 
             // Ajoute les branches extraites du document à l'arbre
@@ -28,9 +28,14 @@ public class Main {
             // Affiche l'arbre
             System.out.println(tree);
 
+            // Supprime la branches les plus faibles
             tree.removeWeakestBranchUntilNoCycle(documentHandler);
 
+            // Affiche l'arbre
             System.out.println(tree);
+
+            // Ecrit l'arbre dans le document
+            documentHandler.writeDocumentToFile(tree, null);
 
 
         } catch (IOException e) {
