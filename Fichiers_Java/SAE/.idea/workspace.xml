@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry.txt" beforeDir="false" afterPath="$PROJECT_DIR$/entry.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/branch/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/branch/Branch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/branch/DocumentReaderForBranch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/tree/DocumentReaderForTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +28,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 2
@@ -39,21 +46,22 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.TreeTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "1-java",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE",
+    "last_opened_file_path": "C:/Users/elyas/Downloads/assertj-core-3.25.1-javadoc.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -73,12 +81,65 @@
       <option name="presentableId" value="Default" />
       <updated>1705599080532</updated>
       <workItem from="1705599081525" duration="290000" />
-      <workItem from="1705600141110" duration="8700000" />
+      <workItem from="1705600141110" duration="19727000" />
+      <workItem from="1705775012325" duration="14482000" />
+      <workItem from="1705871634946" duration="4114000" />
     </task>
+    <task id="LOCAL-00001" summary="ajout readme">
+      <option name="closed" value="true" />
+      <created>1705777453364</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705777453364</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ajout readme">
+      <option name="closed" value="true" />
+      <created>1705777595836</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705777595836</updated>
+    </task>
+    <task id="LOCAL-00003" summary="README rédigé, quelques modificatrions">
+      <option name="closed" value="true" />
+      <created>1705789464847</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705789464847</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre">
+      <option name="closed" value="true" />
+      <created>1705795964774</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705795964774</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ajout readme" />
+    <MESSAGE value="README rédigé" />
+    <MESSAGE value="README rédigé, quelques modificatrions" />
+    <MESSAGE value="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

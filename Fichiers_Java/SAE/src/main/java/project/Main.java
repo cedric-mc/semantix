@@ -1,46 +1,46 @@
 package project;
 
 import project.branch.Branch;
-import project.tree.DocumentReaderForTree;
+import project.documents.DocumentHandler;
 import project.tree.Tree;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Set;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\elyas\\OneDrive\\Documents\\coursinfo\\SAE-S2\\projet-sae\\Fichiers_C\\fichier_du_jeu.txt";
+        // Chemin du fichier d'entrée
+        String filePath = String.valueOf(Paths.get("entry.txt"));
 
         try {
+            // Lecture du contenu du document depuis le fichier
             String documentContent = readDocument(filePath);
 
-            DocumentReaderForTree documentReader = new DocumentReaderForTree(documentContent);
+            // Création d'un gestionnaire de document avec le contenu lu
+            DocumentHandler documentHandler = new DocumentHandler(documentContent);
+
+            // Création d'un arbre pour stocker les branches
             Tree tree = new Tree();
 
             // Ajoute les branches extraites du document à l'arbre
-            documentReader.addBranchesFromDocumentInTree(tree);
+            documentHandler.addBranchesFromDocumentInTree(tree);
 
             // Affiche l'arbre
+            System.out.println("Arbre avant la suppresion des branches :\n");
             System.out.println(tree);
 
-            // Détection des cycles
-            Set<Set<Branch>> cycles = tree.detectAllCycles();
+            // Supprime la branches les plus faibles
+            tree.removeWeakestBranchUntilNoCycle(documentHandler);
 
-            // Affichage des cycles détectés
-            if (cycles.isEmpty()) {
-                System.out.println("Aucun cycle détecté dans l'arbre.");
-            } else {
-                System.out.println("Cycles détectés dans l'arbre:");
-                for (Set<Branch> cycle : cycles) {
-                    System.out.println(cycle);
-                }
-            }
+            // Affiche l'arbre
+            System.out.println("Arbre après la suppresion des branches :\n");
+            System.out.println(tree);
+
+            // Ecrit l'arbre dans le document
+            documentHandler.writeDocumentToFile(tree, null);
+
 
         } catch (IOException e) {
             System.err.println("Erreur lors de la lecture du document : " + e.getMessage());
@@ -49,6 +49,7 @@ public class Main {
         }
     }
 
+    // Méthode pour lire le contenu d'un document à partir d'un fichier
     private static String readDocument(String filePath) throws IOException {
         Path path = Paths.get(filePath);
         byte[] encoded = Files.readAllBytes(path);
