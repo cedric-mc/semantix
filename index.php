@@ -32,7 +32,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
         </div>
         <div class="input-box">
             <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
-            <i class='bx bxs-lock-alt' ></i>
+            <i class='bx bxs-lock-alt'> </i>
         </div>
         <div class="register-link">
            <center> <a href="recup.php"> Mot de passe oublié ?</a></center>
@@ -122,3 +122,5 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
 </body>
 
 </html>
+
+

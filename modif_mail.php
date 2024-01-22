@@ -25,9 +25,9 @@ include('connexion.php');
         $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
         $stmt->execute();
         $ligne = $stmt->fetch(PDO::FETCH_OBJ);
-        $mail = $ligne->email;
+        $email = $ligne->email;
         ?>
-        <p align="center";>Mail actuel : <?php echo $mail;?> </p>
+        <p align="center";>Mail actuel : <?php echo $email;?> </p>
         <div class="input-box">
             <input placeholder="Nouveau Mail" type="email" id="mail" name="mail" required />
         </div>
@@ -42,8 +42,9 @@ include('connexion.php');
 
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+        
         $newEmail = $_POST['mail'];
+        $validation_token = md5(uniqid(rand(), true));
 
         $stmt = $dbh->prepare("SELECT email FROM user WHERE email = :newEmail");
         $stmt->bindParam(':newEmail', $newEmail); // Utiliser :pseudoNew au lieu de :pseudo
@@ -59,32 +60,26 @@ include('connexion.php');
             $ligne = $stmt->fetch(PDO::FETCH_OBJ);
             $id = $ligne->id;
 
-            $stmt = $dbh->prepare("UPDATE user SET email = :newEmail WHERE id = :id");
-            $stmt->bindParam(':newEmail', $newEmail); // Utiliser :pseudoNew au lieu de :pseudo
-            $stmt->bindParam(':id', $id);
+            $pseudo = $_SESSION['pseudo'];
+            $request = "UPDATE user SET email = '$newEmail' WHERE id = $id";
+            $stmt = $dbh->prepare("INSERT INTO validation_mail (pseudo, request, token) VALUES (:pseudo, :request, :validation_token)");
+            $stmt->bindParam(':pseudo', $pseudo);
+            $stmt->bindParam(':request', $request);
+            $stmt->bindParam(':validation_token', $validation_token);
             $stmt->execute();
 
-            echo "<p align='center'>Changement sauvegardé </p>";
-            $action = "Modification mail";
-            $ip = $_SERVER['REMOTE_ADDR'];
-            date_default_timezone_set('Europe/Paris');
-            $date = date('y-m-d H:i:s');
-            $stmt = $dbh->prepare("INSERT INTO trace (action, ip, date, user_id) VALUES (:action, :ip, :date, :id)");
-            $stmt->bindParam(':action', $action);
-            $stmt->bindParam(':ip', $ip);
-            $stmt->bindParam(':date', $date);
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
 
             include('connexion_mail.php');
-            $pseudo = $_SESSION['pseudo'];
             $mail->isHTML(true);
             $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Support');
-            $mail->addAddress($newEmail, $pseudo);
+            $mail->addAddress($email, $pseudo);
             $mail->Subject = 'Changement Adresse mail';
-            $mail->Body = "Bonjour $pseudo,<br><br> Nous vous envoyons ce mail pour vous prévenir que votre adresse mail à été modifiée.";
+            $mail->Body = "Bonjour $pseudo,<br><br> Nous vous envoyons ce mail pour confirmer la modification de votre adresse mail MonkeyGame vers $newEmail,
+            cliquez sur ce lien pour valider le changement : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/validation_mail.php?token=$validation_token'>Valider le mail</a>";
             $mail->CharSet = 'utf-8';
             $mail->send();
+
+            echo "<p align='center'>Mail de modification envoyé </p>";
         }
 
     }

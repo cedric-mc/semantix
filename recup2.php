@@ -11,13 +11,19 @@
 <body>
     <?php
     include('connexion.php');
-    $email = isset($_GET['email']) ? $_GET['email'] : '';
-    $stmt = $dbh->prepare("SELECT email FROM recuperation WHERE email = :email");
-    $stmt->bindParam(':email', $email);
+
+    $validation_token = $_GET['token'];
+    $stmt = $dbh->prepare("SELECT pseudo FROM validation_mail WHERE token = :validation_token");
+    $stmt->bindParam(':validation_token', $validation_token);
     $stmt->execute();
-    if ($stmt->rowCount() == 0){
-        $email = "";
-    }
+    $row = $stmt->fetch(PDO::FETCH_OBJ);
+    $pseudo = $row->pseudo;
+
+    $stmt = $dbh->prepare("SELECT email FROM user WHERE pseudo = :pseudo");
+    $stmt->bindParam(':pseudo', $pseudo);
+    $stmt->execute();
+    $ligne = $stmt->fetch(PDO::FETCH_OBJ);
+    $email = $ligne->email;
     ?>
 
 <div class ="wrapper">
@@ -27,14 +33,17 @@
                 <input placeholder = "Email" type="text" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly required>
         </div>
         <div class="input-box">
+            <input placeholder = "Pseudo" type="text" id="pseudo" name="pseudo" value="<?php echo htmlspecialchars($pseudo); ?>" readonly required>
+        </div>
+        <div class="input-box">
             <input placeholder ="Mot de passe" type="password" id="mdp" name="mdp" required />
         </div>
         <div class="input-box">
                 <input placeholder="Confirmez votre mot de passe:" type="password" id="mdpConf" name="mdpConf" required />
         </div>
-                <?php if ($email != "") {
-                    echo '<button class="btn" type="submit">Réinitialiser le mot de passe</button>';
-                }?>
+
+            <?php if ($row != 0){ echo'<button class="btn" type="submit">Réinitialiser le mot de passe</button>';}?>
+
         <div class="register-link">
             <a href="index.php"> Revenir à l'acceuil </a>
         </div>
@@ -43,6 +52,7 @@
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
+        $pseudo = $_POST['pseudo'];
         $mdp = $_POST['mdp'];
         $mdpConf = $_POST['mdpConf'];
         $ok = true;
@@ -69,10 +79,14 @@
                 $stmt->bindParam(':mdp', $mdpHash);
                 $stmt->bindParam(':email', $email);
                 $stmt->execute();
-
-                $deleteStmt = $dbh->prepare("DELETE FROM recuperation WHERE email = :email");
-                $deleteStmt->bindParam(':email', $email);
+                
+                $deleteStmt = $dbh->prepare("DELETE FROM validation_mail WHERE pseudo = :pseudo");
+                $deleteStmt->bindParam(':pseudo', $pseudo);
                 $deleteStmt->execute();
+
+                if (!$deleteStmt->execute()) {
+                    echo "Erreur lors de la suppression : " . $deleteStmt->errorInfo()[2];
+                }
 
                 echo "Votre mot de passe a été modifié avec succès";
                 $stmt = $dbh->prepare("SELECT id FROM user WHERE email = :email");

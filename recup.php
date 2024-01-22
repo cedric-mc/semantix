@@ -42,20 +42,21 @@
 
         if ($row) {
             $pseudo = $row->pseudo;
-
+            $validation_token = md5(uniqid(rand(), true));
             try {
                 include('connexion_mail.php');
                 $mail->isHTML(true);
                 $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'MonkeyGame');
                 $mail->addAddress($email, $pseudo);
                 $mail->Subject = 'Récupération de votre compte';
-                $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour récupérer votre compte : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/recup2.php?email=$email'>Récupérer le compte</a>";
+                $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour récupérer votre compte : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/recup2.php?token=$validation_token'>Récupérer le compte</a>";
                 $mail->CharSet = 'utf-8';
 
                 $mail->send();
                 echo 'Un lien de récupération a été envoyé à ' . $email . ' si elle est dans notre base de données.';
-                $stmt = $dbh->prepare("INSERT INTO recuperation (email) VALUES (:email)");
-                $stmt->bindParam(':email', $email);
+                $stmt = $dbh->prepare("INSERT INTO validation_mail (pseudo, token) VALUES (:pseudo, :validation_token)");
+                $stmt->bindParam(':pseudo', $pseudo);
+                $stmt->bindParam(':validation_token', $validation_token);
                 $stmt->execute();
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
