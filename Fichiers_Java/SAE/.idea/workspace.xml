@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre">
+    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="Ajout des tests, suppression des print de tests, branch classe to record (mieux), ajout de la doc, un peu plus de commentaires dans le code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entry.txt" beforeDir="false" afterPath="$PROJECT_DIR$/entry.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/branch/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/branch/Branch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" afterDir="false" />
@@ -47,6 +46,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "JUnit.TreeTest.executor": "Run",
+    "JUnit.TreeTest.should_return_score_of_the_weakest_branch_between_two_words.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -65,6 +65,43 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.Main" />
+      <module name="SAE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeTest.should_return_score_of_the_weakest_branch_between_two_words" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SAE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.tree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project.tree" />
+      <option name="MAIN_CLASS_NAME" value="project.tree.TreeTest" />
+      <option name="METHOD_NAME" value="should_return_score_of_the_weakest_branch_between_two_words" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TreeTest.should_return_score_of_the_weakest_branch_between_two_words" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -83,7 +120,9 @@
       <workItem from="1705599081525" duration="290000" />
       <workItem from="1705600141110" duration="19727000" />
       <workItem from="1705775012325" duration="14482000" />
-      <workItem from="1705871634946" duration="4114000" />
+      <workItem from="1705871634946" duration="4760000" />
+      <workItem from="1705909561832" duration="369000" />
+      <workItem from="1705955158737" duration="3007000" />
     </task>
     <task id="LOCAL-00001" summary="ajout readme">
       <option name="closed" value="true" />
@@ -117,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705795964774</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Ajout des tests, suppression des print de tests, branch classe to record (mieux), ajout de la doc, un peu plus de commentaires dans le code">
+      <option name="closed" value="true" />
+      <created>1705875850012</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705875850012</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,7 +186,8 @@
     <MESSAGE value="README rédigé" />
     <MESSAGE value="README rédigé, quelques modificatrions" />
     <MESSAGE value="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre" />
+    <MESSAGE value="Ajout des tests, suppression des print de tests, branch classe to record (mieux), ajout de la doc, un peu plus de commentaires dans le code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout des tests, suppression des print de tests, branch classe to record (mieux), ajout de la doc, un peu plus de commentaires dans le code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

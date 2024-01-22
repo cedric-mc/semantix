@@ -22,7 +22,7 @@ public class DocumentHandler {
 
     public DocumentHandler(String documentEntryPath) {
         validateDocument(documentEntryPath);
-        this.documentEntryPath = documentEntryPath;
+        this.documentEntryPath = String.valueOf(Paths.get(documentEntryPath));
         this.documentExitPath = "exit.txt";
         this.documentDeletedBranchesPath = "deletedbranches.txt";
     }
@@ -107,8 +107,6 @@ public class DocumentHandler {
 
     // Méthode pour ajouter des branches à l'arbre depuis un document
     public void addBranchesFromDocumentInTree(Tree tree) throws IOException {
-        // Crée le fichier "exit.txt" (vide) pour stocker les nouvelles branches
-        Files.write(Paths.get(documentExitPath), "".getBytes());
         // Extrait les distances du document et crée des branches
         String[] lines = documentEntryPath.split("\\r?\\n");
         int distancesSectionStartIndex = findSectionStartIndex(lines, DISTANCES_SECTION_HEADER);

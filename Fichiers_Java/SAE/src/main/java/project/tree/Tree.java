@@ -121,6 +121,53 @@ public class Tree {
         return trueFalser;
     }
 
+    // Méthode récursive pour obtenir le score le plus faible entre deux mots
+    private Branch getBranchWithLowerScoreBetweenWords(String currentWord, String targetWord, float currentScore, Set<Branch> visitedBranches) {
+        Branch resultBranch = null;
+
+        // Parcourir chaque branche de l'arbre
+        for (Branch branch : branches) {
+            // Vérifier si la branche n'a pas été visitée et connecte au mot actuel
+            if (!visitedBranches.contains(branch) &&
+                    (branch.word1().equals(currentWord) || branch.word2().equals(currentWord))) {
+
+                // Mettre à jour le score actuel en ajoutant le score de la branche
+                float updatedScore = currentScore + branch.score();
+
+                // Si le mot cible est atteint, comparer le score avec le minimum actuel
+                if (branch.word1().equals(targetWord) || branch.word2().equals(targetWord)) {
+                    if (resultBranch == null || updatedScore < resultBranch.score()) {
+                        resultBranch = branch;
+                    }
+                } else {
+                    // Sinon, explorer récursivement la branche suivante
+                    visitedBranches.add(branch);
+                    Branch nextBranch = getBranchWithLowerScoreBetweenWords(
+                            (branch.word1().equals(currentWord)) ? branch.word2() : branch.word1(),
+                            targetWord,
+                            updatedScore,
+                            visitedBranches
+                    );
+                    visitedBranches.remove(branch);
+
+                    // Mettre à jour le résultat si une branche avec un score inférieur est trouvée
+                    if (nextBranch != null && (resultBranch == null || updatedScore < resultBranch.score())) {
+                        resultBranch = nextBranch;
+                    }
+                }
+            }
+        }
+
+        return resultBranch;
+    }
+
+    // Méthode pour obtenir le score le plus faible entre deux mots
+    public float getTreeScore(String word1, String word2) {
+        Branch resultBranch = getBranchWithLowerScoreBetweenWords(word1, word2, 0, new HashSet<>());
+        // Renvoyer le score de la branche trouvée ou 0 si aucune branche n'est trouvée
+        return (resultBranch != null) ? resultBranch.score() : 0;
+    }
+
     // Redéfinition de la méthode toString pour obtenir une représentation textuelle de l'arbre
     @Override
     public String toString() {
