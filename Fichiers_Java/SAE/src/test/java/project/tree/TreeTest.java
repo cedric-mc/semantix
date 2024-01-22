@@ -27,4 +27,18 @@ public class TreeTest {
         Assertions.assertThat(testTree.isEqual(wishedTree)).isTrue();
     }
 
+    @Test
+    void should_return_score_of_the_weakest_branch_between_two_words() {
+        Tree treeTest = new Tree();
+        treeTest.addBranch(new Branch("A", "B", 68.22f));
+        treeTest.addBranch(new Branch("B", "C", 83.33f));
+        treeTest.addBranch(new Branch("A", "D", 67.38f));
+
+        float scoreTest = treeTest.getTreeScore("A","B");
+
+        float expectedScore = 68.22f;
+
+        Assertions.assertThat(scoreTest == expectedScore).isTrue();
+    }
+
 }
