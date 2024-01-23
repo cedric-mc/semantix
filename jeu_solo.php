@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php
 session_start();
+$chemin = "";
+$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin test animal");
+echo $output;
 
 include('connexion.php');
 
@@ -202,6 +205,6 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
 
 
 
-?>
+
 </body>
 </html>
