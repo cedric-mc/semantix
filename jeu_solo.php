@@ -5,9 +5,9 @@ $chemin = "";
 $output = exec("./Fichiers_C/new_game Fichiers_C/words.bin test animal");
 echo $output;
 
-include('connexion.php');
+include('include/connexion.php');
 
-include('redirection.php');
+include('include/redirection.php');
 
 
 if (!isset($_SESSION['score'])) {

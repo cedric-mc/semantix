@@ -10,7 +10,7 @@
 
 <body>
     <?php
-    include('connexion.php');
+    include('include/connexion.php');
 
     $validation_token = $_GET['token'];
     $stmt = $dbh->prepare("SELECT pseudo, date_expir FROM validation_mail WHERE token = :validation_token");

@@ -4,9 +4,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-include('redirection.php');
+include('include/redirection.php');
 
-include('connexion.php');
+include('include/connexion.php');
 
 ?>
 
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        include('connexion_mail.php');
+        include('include/connexion_mail.php');
         $pseudoNew = $_SESSION['pseudo'];
         $mail->isHTML(true);
         $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');

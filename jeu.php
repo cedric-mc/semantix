@@ -12,10 +12,10 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include('connexion.php');
+include('include/connexion.php');
 
-include('redirection.php');
-include('menu.php');
+include('include/redirection.php');
+include('include/menu.php');
 
 
 if (isset($_POST['solo'])) {

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('connexion.php');
+include('include/connexion.php');
 $stmt = $dbh->prepare("SELECT id FROM user WHERE pseudo = :pseudo");
 $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
 $stmt->execute();

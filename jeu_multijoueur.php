@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="style2.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <?php
-include('connexion.php');
+include('include/connexion.php');
 
-include('redirection.php');
+include('include/redirection.php');
 
-include('menu.php');
+include('include/menu.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 

@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include('connexion.php');
-include('redirection.php');
+include('include/connexion.php');
+include('include/redirection.php');
 $id = $_SESSION['id'];
 ?>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -210,5 +210,5 @@ $id = $_SESSION['id'];
     </style>
 
 <?php
-include('menu.php');
+include('include/menu.php');
 ?>

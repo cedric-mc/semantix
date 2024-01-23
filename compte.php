@@ -2,9 +2,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-include('connexion.php');
+include('include/connexion.php');
 
-include('redirection.php');
+include('include/redirection.php');
 ?>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="style2.css">
@@ -195,6 +195,6 @@ include('redirection.php');
 </div>
 
 </main>
-<?php     include('menu.php');
+<?php     include('include/menu.php');
 ?>
 

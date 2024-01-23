@@ -27,7 +27,7 @@
     </form>
 </div>
     <?php
-    include('connexion.php');
+    include('include/connexion.php');
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
@@ -44,7 +44,7 @@
             $pseudo = $row->pseudo;
             $validation_token = md5(uniqid(rand(), true));
             try {
-                include('connexion_mail.php');
+                include('include/connexion_mail.php');
                 $mail->isHTML(true);
                 $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'MonkeyGame');
                 $mail->addAddress($email, $pseudo);

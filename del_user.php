@@ -1,5 +1,5 @@
 <?php
-include('connexion.php');
+include('include/connexion.php');
 session_start();
 
 // Vérifier si la requête est une requête POST

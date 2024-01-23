@@ -2,7 +2,7 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <?php
-include('connexion.php');
+include('include/connexion.php');
 session_start();
 
 if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
@@ -76,7 +76,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
                 $email = $ligne->email;
 
                 try {
-                    include('connexion_mail.php');
+                    include('include/connexion_mail.php');
                     $mail->isHTML(true);
                     $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'MonkeyGame');
                     $mail->addAddress($email, $pseudo);

@@ -17,8 +17,8 @@
 </style>
 <?php
 session_start();
-include('menu.php');
-include('connexion.php');
+include('include/menu.php');
+include('include/connexion.php');
 ?>
 
 <div id="menuL">

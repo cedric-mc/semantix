@@ -7,7 +7,7 @@
 </head>
 
 <?php
-include('connexion.php');
+include('include/connexion.php');
 
 
 // Récupérez le jeton de validation depuis l'URL
@@ -46,7 +46,7 @@ if ($row) {
             $id = $ligne->id;
             $email = $ligne->email;
 
-            include('connexion_mail.php');
+            include('include/connexion_mail.php');
             $mail->isHTML(true);
             $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Support');
             $mail->addAddress($email, $pseudo);

@@ -1,5 +1,5 @@
 <?php
-include('connexion.php');
+include('include/connexion.php');
 
 session_start();
 if (isset($_SESSION['admin'])){
@@ -7,7 +7,7 @@ $admin = ($_SESSION['admin']);
 if ($admin == 0){
     header("Location: compte.php");
 }}
-include('redirection.php');
+include('include/redirection.php');
 
 
 
@@ -114,7 +114,7 @@ include('redirection.php');
 </div>
 
 <?php
-include('menu.php');
+include('include/menu.php');
 ?>
 
 <script>

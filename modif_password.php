@@ -4,8 +4,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-include('redirection.php');
-include('connexion.php');
+include('include/redirection.php');
+include('include/connexion.php');
 $stmt = $dbh->prepare("SELECT email FROM user WHERE pseudo = :pseudo");
 $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
 $stmt->execute();
@@ -39,7 +39,7 @@ $mail = $ligne->email;
     </form>
 
 <?php
-include('connexion.php');
+include('include/connexion.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pseudo = $row->pseudo;
 
         try {
-            include('connexion_mail.php');
+            include('include/connexion_mail.php');
             $mail->isHTML(true);
             $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Support');
             $mail->addAddress($email, $pseudo);

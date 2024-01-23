@@ -1,6 +1,6 @@
 images
-connexion.php
-connexion_mail.php
+include/connexion.php
+include/connexion_mail.php
 indexadmin.php
 arbre.lex
 fichier_du_jeu.txt

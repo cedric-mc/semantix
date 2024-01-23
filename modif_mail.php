@@ -4,8 +4,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-include('redirection.php');
-include('connexion.php');
+include('include/redirection.php');
+include('include/connexion.php');
 
 ?>
 
@@ -72,7 +72,7 @@ include('connexion.php');
             $stmt->execute();
 
 
-            include('connexion_mail.php');
+            include('include/connexion_mail.php');
             $mail->isHTML(true);
             $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Support');
             $mail->addAddress($email, $pseudo);
