@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="leaderboard.css">
+<link rel="stylesheet" href="style/leaderboard.css">
 <?php
 
 error_reporting(E_ALL);

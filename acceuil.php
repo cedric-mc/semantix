@@ -2,8 +2,8 @@
     <link rel="icon" href="monkeyapp.png">
 
 </head>
-<link href='menu.css' rel='stylesheet'>
-<link href='style2.css' rel='stylesheet'>
+<link href='style/menu.css' rel='stylesheet'>
+<link href='style/style2.css' rel='stylesheet'>
 
 <?php
 error_reporting(E_ALL);

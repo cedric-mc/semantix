@@ -19,7 +19,7 @@ ini_set('display_errors', 1);
 <html>
 <head>
     <title>Partie solo</title>
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style/style2.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
