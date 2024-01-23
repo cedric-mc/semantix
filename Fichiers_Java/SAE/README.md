@@ -35,6 +35,12 @@ _Pour la partie Java du jeu, voici les différentes fonctionnalités :_
     - Itération jusqu'à ce qu'il n'y ai plus aucun cycle.
 - [ ] Ecriture de l'arbre résultant des opération dans un fichier :
     - Ecriture de chaque branche de l'arbre dans un fichier identique à celui reçu.
+- [ ] Récupération du score de l'arbre :
+    - Parcours de tout l'arbre en partant du mot de départ jusqu'à arriver au mot d'arrivée.
+    - A chaque changement de branche, on compare le score avec le dernier obtenu et on l'enrengistre s'il est inférieur
+      au dernier.
+    - Enfin, quand on est arrivé au mot de départ, on se retrouve avec le score de l'arrête la plus faible liant le mot
+      de départ au mot d'arrivée.
 
 ## Comment Construire
 
@@ -47,10 +53,7 @@ _Pour la partie Java du jeu, voici les différentes fonctionnalités :_
 1. **Étape 1** : Dans le fichier .txt d'entrée, ajouter tous les mots que l'on veut mettre dans l'arbre ainsi que leurs
    offsets dans le documents en respectant le nom des catégories.
 2. **Étape 2** : Ecrire dans le fichier toutes les distances entre tous les mots en respectant la manière d'écrire.
-3. **Étape 3** : Dans le Main, créer un nouvel objet DocumentHandler avec comme paramètre le chemin du fichier créé
-   précedemment
-4. **Étape 4** : Initialiser un arbre et on le construit grâce à la méthode de DocmumentHandler
-   addBranchesFromDocumentInTree.
-5. **Étape 5** : Executer la méthode de Tree removeWeakestBranchUntilNoCycle pour supprimer les branches.
-6. **Étape 6** : Excécuter la méthode de DocumentHandler writeDocumentToFile avec le second paramètre null pour écrire
-   le fichier.
+3. **Étape 3** : Excécuter le Main.java en ligne de commande en mettant les arguments suivants (dans l'ordre) :
+   **Fonction entry.txt mot1 mot2**
+   Avec fonction étant soit "optimize" ou "score" selon ce que l'on veut récupérer, mot1 le mot de départ et mot2 celui
+   d'arrivée
