@@ -25,7 +25,7 @@ $id = $_SESSION['id'];
         <br><br>
         <h2> Vos amis </h2>
 
-        <table id="example" class='table table-striped'>
+        <table id="example" class='table table-striped table-dark'>
             <thead>
             <th> Pseudo </th>
             <th> Statut</th>
@@ -80,7 +80,7 @@ $id = $_SESSION['id'];
         <br><br>
         <h2> Ajouter un ami </h2>
 
-        <table id="example2" class='table table-striped'>
+        <table id="example2" class='table table-striped table-dark' >
         <thead>
         <th>
             Pseudo

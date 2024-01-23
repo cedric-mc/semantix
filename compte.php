@@ -108,7 +108,7 @@ include('redirection.php');
 
     echo "<h2>Statistiques de Parties</h2>
 <br>
-    <table class='table table-striped' align='center'>
+    <table class='table table-striped table-dark' align='center'>
         <tr>
             <th>Moyenne</th>
             <th>Minimum</th>
@@ -127,7 +127,7 @@ include('redirection.php');
     <br>
     <h2> Historique des parties : </h2>
     <br>
-    <table id="example" class='table table-striped'>
+    <table id="example" class='table table-striped table-dark' >
         <thead>
         <tr>
             <th> Score </th>
@@ -153,7 +153,7 @@ include('redirection.php');
     </table>
     <br><br>
     <h2> Historique des logs : </h2>
-    <table id='example2' class="table-striped table">
+    <table id='example2' class="table-striped table table-dark">
         <thead>
         <tr>
             <th> Id utilisateur </th>

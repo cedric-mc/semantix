@@ -33,7 +33,7 @@ include('redirection.php');
     <br><br>
 
     <h2> Tableau des utilisateurs </h2>
-    <table id='example' class="table-striped table">
+    <table id='example' class="table-striped table table-dark">
     <thead>
     <th> id utilisateur</th>
     <th> Pseudo</th>
@@ -76,7 +76,7 @@ include('redirection.php');
     </table>
     <br><br>
     <h2> Historique des logs : </h2>
-    <table id='example2' class="table-striped table">
+    <table id='example2' class="table-striped table table-dark">
         <thead>
         <tr>
             <th> Id utilisateur </th>
@@ -87,7 +87,7 @@ include('redirection.php');
         </tr>
         </thead> <tbody>
         <?php
-        $stmt = $dbh->prepare("SELECT * FROM trace  LIMIT 500");
+        $stmt = $dbh->prepare("SELECT * FROM trace,user where trace.user_id = user.id  LIMIT 500");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
@@ -102,7 +102,7 @@ include('redirection.php');
             }
             echo "<tr style='color:$color;'>";
             echo "<td style='color:$color;' > $ligne->user_id</td>";
-            echo "<td style='color:$color;' > pseudo </td>";
+            echo "<td style='color:$color;' > $ligne->pseudo </td>";
             echo "<td style='color:$color;'>$ligne->action </td>";
             echo "<td style='color:$color;'>$ligne->ip </td>";
             echo "<td style='color:$color;'>$ligne->date </td>";
