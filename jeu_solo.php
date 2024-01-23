@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <?php
 session_start();
+$motDepart = exec("./Fichiers_C/random_word Fichiers_C/words.bin");
+$motArrivee = exec("./Fichiers_C/random_word Fichiers_C/words.bin");
 $chemin = "";
-$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin test animal");
+$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin raleur test");
+echo $motDepart;
+echo"\n";
+echo $motArrivee;
 echo $output;
+
+
 
 include('include/connexion.php');
 

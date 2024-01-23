@@ -1,0 +1,10 @@
+Liste des mots :
+raleur
+test
+
+Offsets dans le dictionnaire :
+raleur: 54945222
+test: 1351435
+
+Distances entre les paires de mots :
+raleur - test : 50.00
