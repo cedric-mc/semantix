@@ -13,11 +13,19 @@
     include('connexion.php');
 
     $validation_token = $_GET['token'];
-    $stmt = $dbh->prepare("SELECT pseudo FROM validation_mail WHERE token = :validation_token");
+    $stmt = $dbh->prepare("SELECT pseudo, date_expir FROM validation_mail WHERE token = :validation_token");
     $stmt->bindParam(':validation_token', $validation_token);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_OBJ);
     $pseudo = $row->pseudo;
+    $date_expir = $row->date_expir;
+
+    date_default_timezone_set('Europe/Paris');
+    $date_actuelle = date('Y-m-d H:i:s');
+    if ($date_expir < $date_actuelle){
+        $row = 0;
+        echo "Le jeton a expiré, reformulez une nouvelle demande.\n";
+    }
 
     $stmt = $dbh->prepare("SELECT email FROM user WHERE pseudo = :pseudo");
     $stmt->bindParam(':pseudo', $pseudo);

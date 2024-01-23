@@ -54,9 +54,12 @@
 
                 $mail->send();
                 echo 'Un lien de récupération a été envoyé à ' . $email . ' si elle est dans notre base de données.';
-                $stmt = $dbh->prepare("INSERT INTO validation_mail (pseudo, token) VALUES (:pseudo, :validation_token)");
+                date_default_timezone_set('Europe/Paris');
+                $date = date('Y-m-d H:i:s', strtotime('+3 minutes'));
+                $stmt = $dbh->prepare("INSERT INTO validation_mail (pseudo, token, date_expir) VALUES (:pseudo, :validation_token, :date)");
                 $stmt->bindParam(':pseudo', $pseudo);
                 $stmt->bindParam(':validation_token', $validation_token);
+                $stmt->bindParam(':date', $date);
                 $stmt->execute();
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

@@ -17,10 +17,17 @@ $validation_token = $_GET['token'];
 // Si le jeton est valide, activez le compte correspondant
 
 $ok = false;
-$stmt = $dbh->prepare("SELECT pseudo, request FROM validation_mail WHERE token = :validation_token");
+$stmt = $dbh->prepare("SELECT pseudo, request, date_expir FROM validation_mail WHERE token = :validation_token");
 $stmt->bindParam(':validation_token', $validation_token);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_OBJ);
+$date_expir = $row->date_expir;
+
+date_default_timezone_set('Europe/Paris');
+$date_actuelle = date('Y-m-d H:i:s');
+if ($date_expir < $date_actuelle){
+    $row = 0;
+}
 
 if ($row) {
     $pseudo = $row->pseudo;
@@ -73,9 +80,9 @@ if ($row) {
             echo "Erreur lors de la modification : " . $e->getMessage();
         }
     } else {
-        echo "Erreur lors de la modification du compte.";
+        echo "Erreur lors de la modification du mail.";
     }
 } else {
-    echo "Erreur lors de la modification du compte. Jeton invalide.";
+    echo "Erreur lors de la modification du mail. Jeton invalide ou expiré.";
 }
 ?>

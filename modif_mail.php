@@ -62,10 +62,13 @@ include('connexion.php');
 
             $pseudo = $_SESSION['pseudo'];
             $request = "UPDATE user SET email = '$newEmail' WHERE id = $id";
-            $stmt = $dbh->prepare("INSERT INTO validation_mail (pseudo, request, token) VALUES (:pseudo, :request, :validation_token)");
+            date_default_timezone_set('Europe/Paris');
+            $date = date('Y-m-d H:i:s', strtotime('+3 minutes'));
+            $stmt = $dbh->prepare("INSERT INTO validation_mail (pseudo, request, token, date_expir) VALUES (:pseudo, :request, :validation_token, :date)");
             $stmt->bindParam(':pseudo', $pseudo);
             $stmt->bindParam(':request', $request);
             $stmt->bindParam(':validation_token', $validation_token);
+            $stmt->bindParam(':date', $date);
             $stmt->execute();
 
 
