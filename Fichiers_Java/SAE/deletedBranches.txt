@@ -1,0 +1,3 @@
+chat - chiens : 52.92
+chat - animal : 57.12
+chiens - animal : 58.05

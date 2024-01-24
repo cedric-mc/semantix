@@ -20,8 +20,9 @@ public class DocumentHandler {
     private static final String WORD_OFFSET_PATTERN = "\\w+: \\d+";
     private static final String WORD_DISTANCE_PATTERN = "\\w+ - \\w+ : \\d+\\.\\d+";
 
-    public DocumentHandler(String documentEntryPath) {
-        validateDocument(documentEntryPath);
+    public DocumentHandler(String documentEntryPath) throws IOException {
+        String documentContent = new String(Files.readAllBytes(Paths.get(documentEntryPath)));
+        validateDocument(documentContent);
         this.documentEntryPath = String.valueOf(Paths.get(documentEntryPath));
         this.documentExitPath = "exit.txt";
         this.documentDeletedBranchesPath = "deletedbranches.txt";
@@ -108,7 +109,8 @@ public class DocumentHandler {
     // Méthode pour ajouter des branches à l'arbre depuis un document
     public void addBranchesFromDocumentInTree(Tree tree) throws IOException {
         // Extrait les distances du document et crée des branches
-        String[] lines = documentEntryPath.split("\\r?\\n");
+        String content = new String(Files.readAllBytes(Paths.get(documentEntryPath)));
+        String[] lines = content.split("\\r?\\n");
         int distancesSectionStartIndex = findSectionStartIndex(lines, DISTANCES_SECTION_HEADER);
 
         for (int i = distancesSectionStartIndex + 1; i < lines.length; i++) {
