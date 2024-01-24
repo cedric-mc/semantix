@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             include('include/connexion_mail.php');
             $mail->isHTML(true);
-            $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Support');
+            $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Semonkey Support');
             $mail->addAddress($email, $pseudo);
             $mail->Subject = 'Récupération de votre compte';
             $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour modifier votre mot de passe : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/recup2.php?email=$email'>Modifier le mot de passe</a>";
