@@ -1,8 +1,0 @@
-Distances entre les paires de mots :
-chien - chat : 68.22
-chien - chiens : 83.33
-chien - animal : 67.38
-Distances entre les paires de mots :
-chien - chat : 68.22
-chien - chiens : 83.33
-chien - animal : 67.38
