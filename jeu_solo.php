@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <?php
 session_start();
-$motDepart = exec("/Fichiers_C/a.out");
-$motArrivee = exec("/Fichiers_C/a.out");
+$motDepart = exec("./Fichiers_C/random_word");
 $chemin = "";
 //$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin $motDepart $motArrivee");
+sleep(1);
+$motArrivee = exec("./Fichiers_C/random_word");
 //$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin test");
 //$output2 = exec("./Fichiers_C/add_word Fichiers_C/words.bin pomme");
 
@@ -89,18 +90,8 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
     ?>
 <script>
     var chart;
-    var animalNames = ['Lion', 'Tiger', 'Bear', 'Elephant', 'Giraffe', 'Zebra', 'Panda', 'Kangaroo', 'Wolf', 'Fox'];
     var isFirstAddition = true; // Global flag to check if it's the first node being added
-    function getRandomAnimals(animalArray) {
-        var randomAnimals = [];
-        while(randomAnimals.length < 2){
-            var r = Math.floor(Math.random() * animalArray.length);
-            if(randomAnimals.indexOf(animalArray[r]) === -1) randomAnimals.push(animalArray[r]);
-        }
-        return randomAnimals;
-    }
 
-    var selectedAnimals = getRandomAnimals(animalNames);
     document.addEventListener('DOMContentLoaded', function () {
         chart = Highcharts.chart('networkGraph', {
             chart: {
@@ -144,15 +135,15 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
                     }
                 },
                 nodes: [{
-                    id: selectedAnimals[0],
-                    name: selectedAnimals[0]
+                    id: '<?php echo $motDepart; ?>',
+                    name:'<?php echo $motDepart; ?>'
                 }, {
-                    id: selectedAnimals[1],
-                    name: selectedAnimals[1]
+                    id: '<?php echo $motArrivee; ?>',
+                    name: '<?php echo $motArrivee; ?>'
                 }],
                 data: [{
-                    from: selectedAnimals[0],
-                    to: selectedAnimals[1]
+                    from: '<?php echo $motDepart; ?>',
+                    to: '<?php echo $motArrivee; ?>'
                 }],
                 marker: {
                     radius: 30,
@@ -176,8 +167,8 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
 
                 if (isFirstAddition) {
                     // For the first addition, link the new node between the initial nodes
-                    chart.series[0].addPoint({ from: newNodeName, to: selectedAnimals[0] });
-                    chart.series[0].addPoint({ from: newNodeName, to: selectedAnimals[1] });
+                    chart.series[0].addPoint({ from: newNodeName, to: '<?php echo $motDepart; ?>'});
+                    chart.series[0].addPoint({ from: newNodeName, to: '<?php echo $motArrivee; ?>' });
                     isFirstAddition = false; // Update the flag
                 } else {
                     // For subsequent additions, link to a random existing node
