@@ -78,7 +78,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
                 try {
                     include('include/connexion_mail.php');
                     $mail->isHTML(true);
-                    $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'MonkeyGame');
+                    $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Semonkey');
                     $mail->addAddress($email, $pseudo);
                     $mail->Subject = 'Connexion a votre compte';
                     $mail->Body = "Bonjour $pseudo, vous venez de vous connecter à votre compte. Si ce n'était pas vous, modifiez immédiatement votre mot de passe.";
