@@ -4,7 +4,7 @@ session_start();
 $motDepart = exec("./Fichiers_C/random_word Fichiers_C/words.bin");
 $motArrivee = exec("./Fichiers_C/random_word Fichiers_C/words.bin");
 $chemin = "";
-$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin raleur test");
+$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin test oui");
 echo $motDepart;
 echo"\n";
 echo $motArrivee;

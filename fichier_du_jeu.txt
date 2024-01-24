@@ -1,0 +1,10 @@
+Liste des mots :
+test
+oui
+
+Offsets dans le dictionnaire :
+test: 1351435
+oui: 285783
+
+Distances entre les paires de mots :
+test - oui : 25.00
