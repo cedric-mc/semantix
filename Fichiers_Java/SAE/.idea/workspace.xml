@@ -9,7 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="test main" />
+    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="test main">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +87,7 @@
       <recent name="C:\Users\elyas\OneDrive\Documents\coursinfo\SAE-S2\projet-sae\Fichiers_Java\SAE" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TreeTest.should_return_optimize_tree_by_deleting">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.Main" />
       <module name="SAE" />
@@ -131,8 +135,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TreeTest.should_return_optimize_tree_by_deleting" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TreeTest.should_return_optimize_tree_by_deleting" />
         <item itemvalue="JUnit.TreeTest.should_return_score_of_the_weakest_branch_between_two_words" />
       </list>
     </recent_temporary>
@@ -248,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706137230881</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706137376867</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1706137376867</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
