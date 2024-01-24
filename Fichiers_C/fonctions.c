@@ -559,9 +559,18 @@ void new_game(const char *modelFile, int numWords, char *words[]) {
 // Fonction principale pour ajouter un mot à un fichier de partie existant
 void add_word(const char *modelFile, const char *newWord) {
     char *indexFile = "arbre.lex";
-    FILE *fichier = fopen("word_game.txt", "r");
+    mode_t old_umask = umask(000);
+    int fd = open("word_game.txt", O_RDWR | O_CREAT, 0666);
+    if (fd == -1) {
+        perror("Failed to open file for writing");
+        umask(old_umask);
+        exit(EXIT_FAILURE);
+    }
+
+    FILE *fichier = fdopen(fd,"r");
     if (fichier == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
+        close(fd);
         exit(EXIT_FAILURE);
     }
 
@@ -593,7 +602,7 @@ void add_word(const char *modelFile, const char *newWord) {
         }
     }
     fclose(fichier);
-
+    umask(old_umask);
     // Ajouter le mot supplémentaire à la fin du tableau
     if (nombreMots < max_size) {
         strcpy(mots[nombreMots], newWord);

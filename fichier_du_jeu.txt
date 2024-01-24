@@ -1,10 +1,10 @@
 Liste des mots :
-utiliseras
-anticancéreux
+test
+pomme
 
 Offsets dans le dictionnaire :
-utiliseras: 76794712
-anticancéreux: 41592685
+test: 1351435
+pomme: 4177114
 
 Distances entre les paires de mots :
-utiliseras - anticancéreux : 21.43
+test - pomme : 1.29
