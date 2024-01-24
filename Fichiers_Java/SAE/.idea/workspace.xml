@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SAE:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="Ajout des tests, suppression des print de tests, branch classe to record (mieux), ajout de la doc, un peu plus de commentaires dans le code">
+    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="Correction pour le respect de consigne et php">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,19 +52,24 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "1-java",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/elyas/Downloads/assertj-core-3.25.1-javadoc.jar",
+    "last_opened_file_path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\elyas\OneDrive\Documents\coursinfo\SAE-S2\projet-sae\Fichiers_Java\SAE" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.Main" />
@@ -122,7 +127,8 @@
       <workItem from="1705775012325" duration="14482000" />
       <workItem from="1705871634946" duration="4760000" />
       <workItem from="1705909561832" duration="369000" />
-      <workItem from="1705955158737" duration="3007000" />
+      <workItem from="1705955158737" duration="3881000" />
+      <workItem from="1706113160789" duration="303000" />
     </task>
     <task id="LOCAL-00001" summary="ajout readme">
       <option name="closed" value="true" />
@@ -164,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705875850012</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Correction pour le respect de consigne et php">
+      <option name="closed" value="true" />
+      <created>1705958441359</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705958441359</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +201,8 @@
     <MESSAGE value="README rédigé, quelques modificatrions" />
     <MESSAGE value="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre" />
     <MESSAGE value="Ajout des tests, suppression des print de tests, branch classe to record (mieux), ajout de la doc, un peu plus de commentaires dans le code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout des tests, suppression des print de tests, branch classe to record (mieux), ajout de la doc, un peu plus de commentaires dans le code" />
+    <MESSAGE value="Correction pour le respect de consigne et php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correction pour le respect de consigne et php" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
