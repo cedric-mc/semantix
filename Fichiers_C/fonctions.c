@@ -155,7 +155,7 @@ int findOffsetInStaticTree(StaticTree* st, const char* word) {
                 if ( st->nodeArray[childIndex].offset != -1) {
                     return st->nodeArray[childIndex].offset;
                 // Si on arrive à la fin du mot et qu'il est correct on va checher son offset parmi les
-                //frères de son enfant    
+                //frères de son enfant
                 }else if (i == strlen(word) - 1){
                     currentIndex = childIndex;
                     childIndex = st->nodeArray[currentIndex].firstChild;
@@ -361,7 +361,7 @@ LevArray init(int lenS, int lenT) {
     //allocation d'un tableau (1D) de lenS*lenT entiers
     a.tab = malloc(lenS * lenT * sizeof(int));
     //on vérifie que l'allocation s'est bien passée
-    assert(a.tab != NULL); 
+    assert(a.tab != NULL);
     return a;
 
 }
@@ -370,7 +370,7 @@ LevArray init(int lenS, int lenT) {
 void set(LevArray a, int indexS, int indexT, int val) {
     //vérification des indices
     assert(indexS >= 0 && indexS < a.lenS && indexT >= 0 && indexT < a.lenT);
-    assert(a.tab!=NULL); 
+    assert(a.tab!=NULL);
     a.tab[indexT * a.lenS + indexS] = val;
 }
 
@@ -474,21 +474,30 @@ void extractWordsAndOffsets(const char *inputFileName, const char *outputFileNam
 }
 
 // Fonction pour créer un nouveau fichier de partie
-void new_game(const char *modelFile, int numWords, char *words[]) {
+void new_game(const char *modelFile, int numWords, char *words[], int isFirstExecution) {
+    static WordModel *model = NULL;
+    static CSTree root = NULL;
+    static StaticTree root2 = {0};
+
     char *indexFile = "arbre.lex";
     // Charger le modèle word2vec
-    WordModel *model = load_model(modelFile);
+
+    model = load_model(modelFile);
     if (model == NULL) {
         exit(EXIT_FAILURE);
     }
 
     extractWordsAndOffsets(modelFile, "words.txt");
 
-    // Créer l'arbre lexicographique (index)
-    CSTree root = newCSTree('\0', -1, NULL, NULL);
-    root = build_lex_index("words.txt");
-    StaticTree root2 = exportStaticTree(root);
-    exportToFile(indexFile, &root2);
+    // Exécuter cette partie de code uniquement lors de la première exécution
+    if (isFirstExecution) {
+        root = newCSTree('\0', -1, NULL, NULL);
+        root = build_lex_index("words.txt");
+        root2 = exportStaticTree(root);
+        exportToFile(indexFile, &root2);
+    }else{
+        root = root = build_lex_index("words.txt");
+    }
 
     //Mettre les mots dans un fichier
     FILE *file_word = fopen("word_game.txt", "w");
@@ -550,8 +559,8 @@ void new_game(const char *modelFile, int numWords, char *words[]) {
         }
     }
 
-    free_model(model);
     // Fermer le fichier de partie
+    free_model(model);
     fclose(gameFile);
     umask(old_umask);
 }
@@ -611,7 +620,7 @@ void add_word(const char *modelFile, const char *newWord) {
         fprintf(stderr, "Trop de mots pour ajouter un mot supplémentaire\n");
         exit(EXIT_FAILURE);
     }
-    new_game(modelFile, nombreMots, mots);
+    new_game(modelFile, nombreMots, mots, 0);
 
     // Libérer la mémoire allouée dynamiquement
     for (int i = 0; i < max_size; i++) {

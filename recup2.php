@@ -56,7 +56,6 @@
             <a href="index.php"> Revenir à l'acceuil </a>
         </div>
     </form>
-</div>
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
@@ -123,5 +122,5 @@
     }
     ?>
 </body>
-
+</div>
 </html>

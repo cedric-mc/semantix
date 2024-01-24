@@ -1,7 +1,6 @@
 images
 include/connexion.php
 include/connexion_mail.php
-indexadmin.php
 arbre.lex
 Fichiers_C/new_game
 Fichiers_C/add_word
@@ -11,4 +10,4 @@ fichier_du_jeu.txt
 word_game.txt
 words.txt
 Fichiers_C/a.out
-
+depart.txt

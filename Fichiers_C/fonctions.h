@@ -8,7 +8,7 @@
 #include <math.h>
 #include <assert.h>
 
-extern const long long max_size;  // longueur maximale des chaînes
+extern const long long max_size;  // longueur maximale des chaÃ®nes
 extern const long long max_w;       // longueur maximal des mots
 extern const long long N;
 
@@ -29,7 +29,7 @@ typedef struct {
     int offset;
     unsigned int firstChild;
     unsigned int nSiblings;
-    unsigned int nextSibling; 
+    unsigned int nextSibling;
 } ArrayCell;
 
 typedef struct {
@@ -92,7 +92,7 @@ double lev_similarity(char *S, char *T);
 
 void extractWordsAndOffsets(const char *inputFileName, const char *outputFileName);
 
-void new_game(const char *modelFile, int numWords, char *words[]);
+void new_game(const char *modelFile, int numWords, char *words[], int isFirstExecution);
 
 void add_word(const char *modelFile, const char *newWord);
 

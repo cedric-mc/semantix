@@ -25,7 +25,6 @@
 
 
     </form>
-</div>
     <?php
     include('include/connexion.php');
     error_reporting(E_ALL);
@@ -72,3 +71,4 @@
 </body>
 
 </html>
+</div>

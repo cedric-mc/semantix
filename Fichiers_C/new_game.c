@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "fonctions.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char argv[]) {
     if (argc == 1) {
         // Si aucun paramètre n'est donné, imprimer le nom des auteurs
         print_authors();
@@ -14,11 +14,11 @@ int main(int argc, char *argv[]) {
             printf(" where word1, word2 are two strings in the model_file\n");
             exit(EXIT_FAILURE);
         }else{
-            const char *modelFile = argv[1];
+            const charmodelFile = argv[1];
             int numWords = argc - 2;
             char **words = argv + 2;
 
-            new_game(modelFile, numWords, words);
+            new_game(modelFile, numWords, words, 1);
         }
     }
 
