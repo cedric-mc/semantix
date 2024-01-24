@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="Correction pour le respect de consigne et php">
+    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="jar ajoutés">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/SAE_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +62,7 @@
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE/src/main/java/org/example/Main.java",
     "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
@@ -128,7 +130,7 @@
       <workItem from="1705871634946" duration="4760000" />
       <workItem from="1705909561832" duration="369000" />
       <workItem from="1705955158737" duration="3881000" />
-      <workItem from="1706113160789" duration="303000" />
+      <workItem from="1706113160789" duration="1694000" />
     </task>
     <task id="LOCAL-00001" summary="ajout readme">
       <option name="closed" value="true" />
@@ -178,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705958441359</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="jar ajoutés">
+      <option name="closed" value="true" />
+      <created>1706121189623</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706121189623</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,7 +212,8 @@
     <MESSAGE value="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre" />
     <MESSAGE value="Ajout des tests, suppression des print de tests, branch classe to record (mieux), ajout de la doc, un peu plus de commentaires dans le code" />
     <MESSAGE value="Correction pour le respect de consigne et php" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction pour le respect de consigne et php" />
+    <MESSAGE value="jar ajoutés" />
+    <option name="LAST_COMMIT_MESSAGE" value="jar ajoutés" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
