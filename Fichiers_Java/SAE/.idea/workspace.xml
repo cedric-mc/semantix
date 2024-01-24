@@ -58,6 +58,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "JUnit.TreeTest.executor": "Run",
+    "JUnit.TreeTest.should_return_optimize_tree_by_deleting.executor": "Run",
     "JUnit.TreeTest.should_return_score_of_the_weakest_branch_between_two_words.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -82,7 +83,7 @@
       <recent name="C:\Users\elyas\OneDrive\Documents\coursinfo\SAE-S2\projet-sae\Fichiers_Java\SAE" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.TreeTest.should_return_optimize_tree_by_deleting">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.Main" />
       <module name="SAE" />
@@ -92,6 +93,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeTest.should_return_optimize_tree_by_deleting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SAE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.tree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project.tree" />
+      <option name="MAIN_CLASS_NAME" value="project.tree.TreeTest" />
+      <option name="METHOD_NAME" value="should_return_optimize_tree_by_deleting" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -114,6 +131,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TreeTest.should_return_optimize_tree_by_deleting" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.TreeTest.should_return_score_of_the_weakest_branch_between_two_words" />
       </list>
@@ -206,7 +224,31 @@
       <option name="project" value="LOCAL" />
       <updated>1706136954773</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706137025142</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706137025142</updated>
+    </task>
+    <task id="LOCAL-00010" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706137188029</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706137188029</updated>
+    </task>
+    <task id="LOCAL-00011" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706137230881</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706137230881</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

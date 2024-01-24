@@ -21,7 +21,7 @@ public class DocumentHandler {
     private static final String WORD_DISTANCE_PATTERN = "\\w+ - \\w+ : \\d+\\.\\d+";
 
     public DocumentHandler(String documentEntryPath) {
-        //validateDocument(documentEntryPath);
+        validateDocument(documentEntryPath);
         this.documentEntryPath = String.valueOf(Paths.get(documentEntryPath));
         this.documentExitPath = "exit.txt";
         this.documentDeletedBranchesPath = "deletedbranches.txt";

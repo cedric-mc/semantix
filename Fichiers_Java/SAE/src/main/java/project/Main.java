@@ -13,6 +13,7 @@ public class Main {
             System.out.println("You need at least one argument.");
         } else if (args[0].equals("optimize")) {
             //initialise le fichier avec deux mots
+            System.out.println(args[1]);
             Tree tree = new Tree();
             DocumentHandler dh = new DocumentHandler(args[1]);
             dh.addBranchesFromDocumentInTree(tree);
