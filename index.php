@@ -20,11 +20,28 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/monkeyapp.png">
     <title>Connexion</title>
+    <style>
+
+        .img-container {
+            position: absolute;
+            top: 26%; /* Ajustez la valeur en fonction de votre mise en page */
+            right: 37%; /* Ajustez la valeur en fonction de votre mise en page */
+            width: 120px; /* Ajustez la largeur de votre image */
+            height: auto; /* Laissez la hauteur s'ajuster proportionnellement à la largeur */
+            z-index: 1;
+        }
+
+        /* Reste de votre CSS existant */
+        /* ... */
+
+
+    </style>
 </head>
 
 <body>
+<img alt='' src="img/monkey.png" class="img-container">
     <div class="wrapper">
-    <form action="" method="post">
+        <form action="" method="post">
         <h1>Se connecter</h1>
         <div class="input-box">
             <input type="text" id="pseudo" name="pseudo" placeholder = "Pseudo" required>

@@ -14,6 +14,7 @@
         <h1>Règles</h1>
         <br> <br>
         <p>
+            Dans le jeu Semonkey vous débutez avec deux mots, un mot d'arrivée et un mot de départ.
 
 
 
