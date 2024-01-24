@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style2.css">
-    <link rel="icon" href="monkeyapp.png">
+    <link rel="icon" href="img/monkeyapp.png">
     <title>Leaderboards</title>
 </head>
 <body>

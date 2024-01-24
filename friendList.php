@@ -13,10 +13,10 @@ $id = $_SESSION['id'];
 <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-<script defer src="bsTable.js"></script>
+<script defer src="js/bsTable.js"></script>
     <head>
         <title> Amis</title>
-        <link rel="icon" href="monkeyapp.png">
+        <link rel="icon" href="img/monkeyapp.png">
 
     </head>
     <main>

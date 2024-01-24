@@ -1,5 +1,5 @@
 <head><title> Acceuil </title>
-    <link rel="icon" href="monkeyapp.png">
+    <link rel="icon" href="img/monkeyapp.png">
 
 </head>
 <link href='style/menu.css' rel='stylesheet'>

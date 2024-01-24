@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include "fonctions.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 const long long max_size = 2000;  // longueur maximale des chaînes
 const long long max_w = 50;       // longueur maximal des mots
@@ -497,9 +501,20 @@ void new_game(const char *modelFile, int numWords, char *words[]) {
     }
 
     // Créer le fichier de partie
-    FILE *gameFile = fopen("fichier_du_jeu.txt", "w");
+    mode_t old_umask = umask(000);
+
+    int fd = open("fichier_du_jeu.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+
+    if (fd == -1) {
+        perror("Failed to open file for writing");
+        umask(old_umask);
+        exit(EXIT_FAILURE);
+    }
+
+    FILE *gameFile = fdopen(fd, "w");
     if (gameFile == NULL) {
         perror("Erreur lors de la création du fichier de partie");
+        close(fd);
         exit(EXIT_FAILURE);
     }
 
@@ -538,6 +553,7 @@ void new_game(const char *modelFile, int numWords, char *words[]) {
     free_model(model);
     // Fermer le fichier de partie
     fclose(gameFile);
+    umask(old_umask);
 }
 
 // Fonction principale pour ajouter un mot à un fichier de partie existant

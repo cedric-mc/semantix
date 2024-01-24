@@ -1,0 +1,10 @@
+Liste des mots :
+utiliseras
+anticancéreux
+
+Offsets dans le dictionnaire :
+utiliseras: 76794712
+anticancéreux: 41592685
+
+Distances entre les paires de mots :
+utiliseras - anticancéreux : 21.43

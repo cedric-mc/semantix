@@ -1,55 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "fonctions.h"
+#include <ctype.h>
 #include <time.h>
 
 #define MAX_WORD_LENGTH 50
-#define FILENAME "depart.txt"
+#define MIN_WORD_LENGTH 5
 
-// Fonction pour obtenir un mot aléatoire à partir du fichier
-char getRandomWord() {
-    FILEfile = fopen(FILENAME, "r");
+char* getRandomWord(const char* filename) {
+    FILE* file = fopen(filename, "r");
     if (file == NULL) {
         perror("Erreur lors de l'ouverture du fichier");
-        exit(EXIT_FAILURE);
+        return NULL;
     }
 
-    // Compter le nombre de mots dans le fichier
-    int wordCount = 0;
-    char word[MAX_WORD_LENGTH];
-    while (fgets(word, MAX_WORD_LENGTH, file) != NULL) {
-        wordCount++;
-    }
+    char line[MAX_WORD_LENGTH];
+    char* selectedWord = NULL;
+    int count = 0;
 
-    // Choisir un mot aléatoire
-    srand(time(NULL));
-    int randomIndex = rand() % wordCount;
-    rewind(file);
+    srand(time(NULL)); // Initialiser le générateur de nombres aléatoires
 
-    int currentIndex = 0;
-    while (fgets(word, MAX_WORD_LENGTH, file) != NULL) {
-        if (currentIndex == randomIndex) {
-            // Supprimer le caractère de saut de ligne à la fin du mot
-            size_t length = strlen(word);
-            if (length > 0 && word[length - 1] == '\n') {
-                word[length - 1] = '\0';
+    while (fgets(line, sizeof(line), file) != NULL) {
+        // Diviser la ligne en mots
+        char* token = strtok(line, " \t\n");
+        while (token != NULL) {
+            // Vérifier si le mot a plus de 5 caractères et ne contient que des lettres
+            if (strlen(token) > MIN_WORD_LENGTH && isalpha(*token)) {
+                count++;
+                // Choisir aléatoirement ce mot
+                if (rand() % count == 0) {
+                    if (selectedWord != NULL) {
+                        free(selectedWord);
+                    }
+                    selectedWord = strdup(token);
+                }
             }
-
-            // Fermer le fichier et retourner le mot sélectionné
-            fclose(file);
-            return strdup(word);
+            token = strtok(NULL, " \t\n");
         }
-        currentIndex++;
     }
 
-    // Fermer le fichier (ce cas ne devrait pas être atteint normalement)
     fclose(file);
-    return NULL;
+
+    return selectedWord;
 }
 
 
 int main(int argc, char *argv[]) {
-    printf("%s",getRandomWord());
+    const char *modelFile = argv[1];
+    extractWordsAndOffsets(modelFile, "words.txt");
+    printf("%s",getRandomWord("words.txt"));
 
     return 0;
 }

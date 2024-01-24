@@ -4,11 +4,11 @@ session_start();
 $motDepart = exec("./Fichiers_C/random_word Fichiers_C/words.bin");
 $motArrivee = exec("./Fichiers_C/random_word Fichiers_C/words.bin");
 $chemin = "";
-$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin test oui");
+$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin $motDepart $motArrivee");
 echo $motDepart;
 echo"\n";
 echo $motArrivee;
-echo $output;
+//echo $output;
 
 
 
@@ -30,7 +30,7 @@ ini_set('display_errors', 1);
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
-    <link rel="icon" href="monkeyapp.png">
+    <link rel="icon" href="img/monkeyapp.png">
 
 </head>
 <body>

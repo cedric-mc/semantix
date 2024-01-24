@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Jeu</title>
-        <link rel="icon" href="monkeyapp.png">
+        <link rel="icon" href="img/monkeyapp.png">
 
     </head>
 <?php
