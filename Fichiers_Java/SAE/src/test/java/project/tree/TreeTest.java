@@ -10,7 +10,6 @@ import java.io.IOException;
 public class TreeTest {
     @Test
     void should_return_optimize_tree_by_deleting() throws IOException {
-        DocumentHandler dh = new DocumentHandler("entry.txt");
         Tree testTree = new Tree();
         testTree.addBranch(new Branch("A", "B", 68.22f));
         testTree.addBranch(new Branch("A", "C", 83.33f));
@@ -19,14 +18,14 @@ public class TreeTest {
         testTree.addBranch(new Branch("B", "D", 57.12f));
         testTree.addBranch(new Branch("C", "D", 58.05f));
 
-        testTree.removeWeakestBranchesInLoops(dh);
+        Tree optitree = testTree.createMaxScoreTree();
 
         Tree wishedTree = new Tree();
         wishedTree.addBranch(new Branch("A", "B", 68.22f));
         wishedTree.addBranch(new Branch("A", "C", 83.33f));
         wishedTree.addBranch(new Branch("A", "D", 67.38f));
 
-        Assertions.assertThat(testTree.isEqual(wishedTree)).isTrue();
+        Assertions.assertThat(optitree.isEqual(wishedTree)).isTrue();
     }
 
     @Test

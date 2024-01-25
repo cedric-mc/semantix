@@ -16,16 +16,16 @@ public class Main {
             Tree tree = new Tree();
             DocumentHandler dh = new DocumentHandler(args[1]);
             dh.addBranchesFromDocumentInTree(tree);
-            tree.removeWeakestBranchesInLoops(dh);
-            dh.writeDocumentToFile(tree, null);
-            System.out.println(tree);
+            Tree optiTree = tree.createMaxScoreTree();
+            dh.writeDocumentToFile(optiTree, null);
+            System.out.println(optiTree);
         } else if (args[0].equals("score")) {
             //calcule le score du mst
             Tree tree = new Tree();
             DocumentHandler dh = new DocumentHandler(args[1]);
             dh.addBranchesFromDocumentInTree(tree);
-            tree.removeWeakestBranchesInLoops(dh);
-            float treeScore = tree.getTreeScore(args[2], args[3]);
+            Tree optiTree = tree.createMaxScoreTree();
+            float treeScore = optiTree.getTreeScore(args[2], args[3]);
             System.out.println(treeScore);
         } else {
             System.out.println("Cannot recognize command.");

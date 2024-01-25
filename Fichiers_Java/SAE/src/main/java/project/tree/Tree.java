@@ -1,13 +1,11 @@
 package project.tree;
 
 import project.branch.Branch;
-import project.documents.DocumentHandler;
 
 import java.util.*;
 
 public class Tree {
     private final ArrayList<Branch> branches;
-    private Set<String> writtenBranches = new HashSet<>();
 
     public Tree() {
         branches = new ArrayList<>();
@@ -23,56 +21,48 @@ public class Tree {
         branches.add(branch);
     }
 
-    public List<List<Branch>> detectLoops() {
-        List<List<Branch>> loops = new ArrayList<>();
-        Set<String> words = getAllWords();
-        Set<String> uniqueLoops = new HashSet<>();
+    public Tree createMaxScoreTree() {
+        // Trier les branches par score décroissant
+        branches.sort(Comparator.comparing(Branch::score).reversed());
 
-        for (String word : words) {
-            findLoops(word, word, new HashSet<>(), new ArrayList<>(), loops, uniqueLoops);
-        }
+        Set<String> visitedWords = new HashSet<>();
+        Tree maxScoreTree = new Tree();
 
-        return loops;
-    }
+        while (visitedWords.size() < getAllWords().size()) {
+            Branch maxBranch = null;
+            float maxScore = Float.MIN_VALUE;
 
-    private void findLoops(String startWord, String currentWord, Set<Branch> visitedBranches, List<Branch> currentPath, List<List<Branch>> loops, Set<String> uniqueLoops) {
-        for (Branch branch : branches) {
-            if (visitedBranches.contains(branch)) {
-                continue; // Éviter de répéter une branche
-            }
-
-            if ((branch.word1().equals(currentWord) || branch.word2().equals(currentWord)) && !branch.getOtherWord(currentWord).equals(startWord)) {
-                visitedBranches.add(branch);
-                currentPath.add(branch);
-                findLoops(startWord, branch.getOtherWord(currentWord), visitedBranches, currentPath, loops, uniqueLoops);
-                currentPath.remove(currentPath.size() - 1);
-                visitedBranches.remove(branch);
-            } else if (branch.getOtherWord(currentWord).equals(startWord) && currentPath.size() > 1) {
-                // Une boucle a été trouvée et elle a plus d'une branche
-                visitedBranches.add(branch);
-                List<Branch> loop = new ArrayList<>(currentPath);
-                loop.add(branch);
-
-                String loopSignature = getLoopSignature(loop);
-                if (uniqueLoops.add(loopSignature)) {
-                    loops.add(loop);
+            for (Branch branch : branches) {
+                System.out.println(branch);
+                // Vérifie si l'un des mots de la branche n'est pas encore visité
+                if (!visitedWords.contains(branch.word1()) || !visitedWords.contains(branch.word2())) {
+                    // Vérifie si le score est supérieur au score maximal actuel
+                    if (branch.score() > maxScore) {
+                        maxScore = branch.score();
+                        maxBranch = branch;
+                    }
                 }
-
-                visitedBranches.remove(branch);
             }
+
+            if (maxBranch == null) {
+                // Aucune branche supplémentaire à visiter, sortir de la boucle
+                break;
+            }
+
+            // Ajoute les mots de la branche maxBranch à la liste des mots visités
+            visitedWords.add(maxBranch.word1());
+            visitedWords.add(maxBranch.word2());
+            System.out.println(visitedWords);
+            // Ajoute maxBranch à l'arbre résultant
+            maxScoreTree.addBranch(maxBranch);
         }
+
+
+
+
+        return maxScoreTree;
     }
 
-    private String getLoopSignature(List<Branch> loop) {
-        // Créer une chaîne de caractères unique pour la boucle
-        List<String> words = new ArrayList<>();
-        for (Branch branch : loop) {
-            words.add(branch.word1());
-            words.add(branch.word2());
-        }
-        Collections.sort(words);
-        return String.join("-", words);
-    }
 
     private Set<String> getAllWords() {
         Set<String> words = new HashSet<>();
@@ -83,74 +73,7 @@ public class Tree {
         return words;
     }
 
-    public void removeWeakestBranchesInLoops(DocumentHandler dh) {
-        List<List<Branch>> loops = detectLoops();
-        if (!loops.isEmpty()) {
-            List<Branch> longestLoop = findLongestLoop(loops);
-            removeWeakestBranchInLoop(longestLoop, dh);
-        }
-    }
 
-    private List<Branch> findLongestLoop(List<List<Branch>> loops) {
-        List<Branch> longestLoop = loops.get(0);
-        for (List<Branch> loop : loops) {
-            if (loop.size() > longestLoop.size()) {
-                longestLoop = loop;
-            }
-        }
-        return longestLoop;
-    }
-
-    private void removeWeakestBranchInLoop(List<Branch> loop, DocumentHandler dh) {
-        Branch weakestBranch = loop.get(0);
-        float lowestScore = weakestBranch.score();
-
-        for (Branch branch : loop) {
-            if (branch.score() < lowestScore) {
-                weakestBranch = branch;
-                lowestScore = branch.score();
-            }
-        }
-
-        branches.remove(weakestBranch);
-        String branchString = dh.writeSingleBranchInDocument(weakestBranch);
-
-        if (!writtenBranches.contains(branchString)) {
-            dh.writeDocumentToFile(null, weakestBranch);
-            writtenBranches.add(branchString);
-        }
-    }
-
-//    // Méthode pour supprimer la branche la plus faible jusqu'à ce qu'aucun cycle ne soit détecté
-//    public void removeWeakestBranchUntilNoCycle(DocumentHandler documentHandler) {
-//        while (!detectAllCycles().isEmpty()) {
-//            Set<Set<Branch>> allCycles = detectAllCycles();
-//
-//            // Rechercher le cycle le plus long
-//            Set<Branch> longestCycle = Collections.emptySet();
-//            for (Set<Branch> cycle : allCycles) {
-//                if (cycle.size() > longestCycle.size()) {
-//                    longestCycle = cycle;
-//                }
-//            }
-//
-//            // Trouver la branche la plus faible dans le cycle le plus long
-//            Branch weakestBranch = null;
-//            float minScore = Float.MAX_VALUE;
-//            for (Branch branch : longestCycle) {
-//                if (branch.score() < minScore) {
-//                    minScore = branch.score();
-//                    weakestBranch = branch;
-//                }
-//            }
-//
-//            // Supprimer la branche la plus faible du cycle le plus long
-//            if (weakestBranch != null) {
-//                branches.remove(weakestBranch);
-//                documentHandler.writeDocumentToFile(null, weakestBranch);
-//            }
-//        }
-//    }
 
     // Méthode pour vérifier l'égalité de deux arbres
     public boolean isEqual(Tree tree) {
