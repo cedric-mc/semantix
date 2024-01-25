@@ -29,7 +29,11 @@ $motArrivee = $game['motArrivee'];
 
 
 //echo $output;
-
+function tree_branch(){
+    exec("./jdk-21/bin/java -jar ./Fichiers_Java/SAE/out/artifacts/SAE_jar/SAE.jar optimize fichier_du_jeu.txt 2>&1", $output);
+    $branch = json_encode($output);
+    return $branch;
+}
 
 
 if (!isset($_SESSION['score'])) {
@@ -52,8 +56,9 @@ ini_set('display_errors', 1);
 <main>
     <div class="wrapper" style="top:15%;">
         <form action ="jeu_solo.php" id="addNodeForm" method = "post">
+
             <div class="input-box">
-            <input type="text" id="newNodeName" name="newNodeName" placeholder="Enter node">            
+            <input type="text" id="newNodeName" name="newNodeName" placeholder="Enter node">
             </div>
             <button class="btn" type="submit">Add Node</button>
         </form>
@@ -67,7 +72,10 @@ ini_set('display_errors', 1);
             </div>
         </form>
         <p>Score actuel : <span id="scoreDisplay"><?php echo $_SESSION['score']; ?></span></p>
-
+        <?php
+        $branch = tree_branch();
+        echo $branch;
+        ?>
     </div>
 
     <div style="position: relative; left: 40vh; top: 40vh;">
@@ -97,7 +105,53 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
     echo '<meta http-equiv="refresh" content="0;url=jeu.php">';}
 }
     ?>
+
+
+
+
 <script>
+    function fetch_tree() {
+        return fetch(`exec_java_tree.php?timestamp=${new Date().getTime()}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('La requête a échoué.');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la requête:', error);
+                throw error;
+            });
+    }
+
+    function transformerDonneesEnListes(data) {
+        let listes = [];
+
+        data.forEach(element => {
+            // Vérifier si l'élément commence par "Branch:"
+            if (element.startsWith("Branch: ")) {
+                // Extraire la partie après "Branch: "
+                let contenuBranch = element.substring("Branch: ".length);
+
+                // Séparer les mots du score
+                let [mots, scoreStr] = contenuBranch.split(':');
+                if (mots && scoreStr) {
+                    let score = parseFloat(scoreStr.trim());
+                    let motsArray = mots.split(',').map(mot => mot.trim());
+
+                    // Ajouter [mot1, mot2, score] à la liste
+                    if (motsArray.length === 2) {
+                        listes.push([...motsArray, score]);
+                    }
+                }
+            }
+        });
+
+        return listes;
+    }
+
+
     var chart;
     var isFirstAddition = true; // Global flag to check if it's the first node being added
 
@@ -177,8 +231,12 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
                   })
                 .then(data => {
         // Vous pouvez traiter la réponse ici, data contient la réponse du serveur
-                  console.log("Réponse du serveur : " + data);
-                     })
+                    return fetch_tree();
+                })
+                .then(treeData => {
+                    let mots = transformerDonneesEnListes(treeData);
+                    console.log("Données de l'arbre : ", mots)
+                })
                  .catch(error => {
         // Gérer les erreurs ici, par exemple afficher un message d'erreur
                 console.error('Erreur lors de la requête:', error);
@@ -224,6 +282,8 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
             }
         });
     });
+
+
 
 
 
