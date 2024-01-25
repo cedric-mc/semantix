@@ -21,22 +21,20 @@ public class DocumentHandler {
     private static final String WORD_DISTANCE_PATTERN = "\\w+ - \\w+ : \\d+\\.\\d+";
 
     public DocumentHandler(String documentEntryPath) throws IOException {
-        String documentContent = new String(Files.readAllBytes(Paths.get(documentEntryPath)));
-        validateDocument(documentContent);
         this.documentEntryPath = String.valueOf(Paths.get(documentEntryPath));
         this.documentExitPath = "exit.txt";
-        this.documentDeletedBranchesPath = "deletedbranches.txt";
+        this.documentDeletedBranchesPath = "deletedBranches.txt";
+
+        // Lire le contenu du fichier
+        String documentContent = new String(Files.readAllBytes(Paths.get(documentEntryPath)));
+        validateDocument(documentContent);
     }
 
     // Méthode de validation d'un document
     private void validateDocument(String document) {
-        // Document non vide
-        if (document == null || document.trim().isEmpty()) {
-            throw new IllegalArgumentException("The document cannot be empty or null.");
-        }
-
-        // On le sépare en lignes
-        String[] lines = document.split("\\r?\\n");
+        // Normalisation des sauts de ligne et suppression des espaces superflus
+        document = document.replace("\r\n", "\n").trim();
+        String[] lines = document.split("\n");
 
         // On vérifie la première partie du document...
         validateSectionHeader(lines, 0, WORDS_SECTION_HEADER);
@@ -46,14 +44,15 @@ public class DocumentHandler {
         int offsetsSectionStartIndex = findSectionStartIndex(lines, OFFSETS_SECTION_HEADER);
         validateSectionHeader(lines, offsetsSectionStartIndex, OFFSETS_SECTION_HEADER);
         validateWordOffsets(lines, offsetsSectionStartIndex + 1);
+
         // Et la troisième !
         int distancesSectionStartIndex = findSectionStartIndex(lines, DISTANCES_SECTION_HEADER);
         validateSectionHeader(lines, distancesSectionStartIndex, DISTANCES_SECTION_HEADER);
         validateWordDistances(lines, distancesSectionStartIndex + 1);
     }
 
-    // Méthode de validation de l'en-tête d'une section du document
     private void validateSectionHeader(String[] lines, int index, String expectedHeader) {
+        // Ajout de journalisation pour le débogage
         if (index >= lines.length || !lines[index].trim().equals(expectedHeader)) {
             throw new IllegalArgumentException("Invalid document format: Missing or incorrect section header.");
         }
@@ -113,6 +112,9 @@ public class DocumentHandler {
         String[] lines = content.split("\\r?\\n");
         int distancesSectionStartIndex = findSectionStartIndex(lines, DISTANCES_SECTION_HEADER);
 
+        BufferedWriter writer = new BufferedWriter(new FileWriter(documentExitPath));
+        writer.close();
+
         for (int i = distancesSectionStartIndex + 1; i < lines.length; i++) {
             String line = lines[i].trim();
             if (line.isEmpty()) {
@@ -147,7 +149,7 @@ public class DocumentHandler {
     }
 
     // Méthode pour écrire une seule branche dans un document
-    private String writeSingleBranchInDocument(Branch branch) {
+    public String writeSingleBranchInDocument(Branch branch) {
         return branch.word1() + " - " + branch.word2() + " : " + branch.score() + "\n";
     }
 

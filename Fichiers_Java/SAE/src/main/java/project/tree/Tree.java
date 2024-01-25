@@ -1,12 +1,8 @@
 package project.tree;
 
 import project.branch.Branch;
-import project.documents.DocumentHandler;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Tree {
     private final ArrayList<Branch> branches;
@@ -25,87 +21,57 @@ public class Tree {
         branches.add(branch);
     }
 
-    // Méthode récursive pour détecter tous les cycles dans l'arbre
-    private void cycleDetectorDFS(Branch currentBranch, Set<Branch> visitedBranches, Set<Branch> currentCycle,
-                                  Set<Set<Branch>> allCycles, Set<Set<Branch>> uniqueCycles) {
-        // Marquer la branche actuelle comme visitée et l'ajouter au cycle actuel
-        visitedBranches.add(currentBranch);
-        currentCycle.add(currentBranch);
+    public Tree createMaxScoreTree() {
+        // Trier les branches par score décroissant
+        branches.sort(Comparator.comparing(Branch::score).reversed());
 
-        // Obtenir le mot suivant dans la branche actuelle
-        String nextWord = currentBranch.getOtherWord(currentBranch.word1());
+        Set<String> visitedWords = new HashSet<>();
+        Tree maxScoreTree = new Tree();
 
-        // Parcourir toutes les branches pour trouver des cycles
-        for (Branch nextBranch : branches) {
-            if (nextBranch.word1().equals(nextWord) || nextBranch.word2().equals(nextWord)) {
-                if (currentCycle.contains(nextBranch)) {
-                    // Cycle détecté, ajout au set de tous les cycles et au set de cycles uniques
-                    Set<Branch> cycleSet = new HashSet<>(currentCycle);
-                    allCycles.add(cycleSet);
-                    uniqueCycles.add(cycleSet);
-                } else if (!visitedBranches.contains(nextBranch)) {
-                    // Si la branche n'a pas été visitée, poursuivre la recherche de cycle
-                    cycleDetectorDFS(nextBranch, visitedBranches, currentCycle, allCycles, uniqueCycles);
+        while (visitedWords.size() < getAllWords().size()) {
+            Branch maxBranch = null;
+            float maxScore = Float.MIN_VALUE;
+
+            for (Branch branch : branches) {
+                // Vérifie si l'un des mots de la branche n'est pas encore visité
+                if (!visitedWords.contains(branch.word1()) || !visitedWords.contains(branch.word2())) {
+                    // Vérifie si le score est supérieur au score maximal actuel
+                    if (branch.score() > maxScore) {
+                        maxScore = branch.score();
+                        maxBranch = branch;
+                    }
                 }
             }
+
+            if (maxBranch == null) {
+                // Aucune branche supplémentaire à visiter, sortir de la boucle
+                break;
+            }
+
+            // Ajoute les mots de la branche maxBranch à la liste des mots visités
+            visitedWords.add(maxBranch.word1());
+            visitedWords.add(maxBranch.word2());
+            // Ajoute maxBranch à l'arbre résultant
+            maxScoreTree.addBranch(maxBranch);
         }
 
-        // Retirer la branche actuelle du cycle et la marquer comme non visitée
-        currentCycle.remove(currentBranch);
-        visitedBranches.remove(currentBranch);
+
+
+
+        return maxScoreTree;
     }
 
-    // Méthode pour détecter tous les cycles dans l'arbre
-    public Set<Set<Branch>> detectAllCycles() {
-        Set<Set<Branch>> allCycles = new HashSet<>();
-        Set<Branch> visitedBranches = new HashSet<>();
-        Set<Set<Branch>> uniqueCycles = new HashSet<>();
 
-        // Parcourir toutes les branches pour détecter les cycles
+    private Set<String> getAllWords() {
+        Set<String> words = new HashSet<>();
         for (Branch branch : branches) {
-            if (!visitedBranches.contains(branch)) {
-                Set<Branch> currentCycle = new HashSet<>();
-                cycleDetectorDFS(branch, visitedBranches, currentCycle, allCycles, uniqueCycles);
-            }
+            words.add(branch.word1());
+            words.add(branch.word2());
         }
-
-        // Filtrer les cycles pour exclure ceux qui ne contiennent qu'une branche
-        allCycles.removeIf(cycle -> cycle.size() < 2);
-        uniqueCycles.removeIf(cycle -> cycle.size() < 2);
-
-        return uniqueCycles;
+        return words;
     }
 
-    // Méthode pour supprimer la branche la plus faible jusqu'à ce qu'aucun cycle ne soit détecté
-    public void removeWeakestBranchUntilNoCycle(DocumentHandler documentHandler) {
-        while (!detectAllCycles().isEmpty()) {
-            Set<Set<Branch>> allCycles = detectAllCycles();
 
-            // Rechercher le cycle le plus long
-            Set<Branch> longestCycle = Collections.emptySet();
-            for (Set<Branch> cycle : allCycles) {
-                if (cycle.size() > longestCycle.size()) {
-                    longestCycle = cycle;
-                }
-            }
-
-            // Trouver la branche la plus faible dans le cycle le plus long
-            Branch weakestBranch = null;
-            float minScore = Float.MAX_VALUE;
-            for (Branch branch : longestCycle) {
-                if (branch.score() < minScore) {
-                    minScore = branch.score();
-                    weakestBranch = branch;
-                }
-            }
-
-            // Supprimer la branche la plus faible du cycle le plus long
-            if (weakestBranch != null) {
-                branches.remove(weakestBranch);
-                documentHandler.writeDocumentToFile(null, weakestBranch);
-            }
-        }
-    }
 
     // Méthode pour vérifier l'égalité de deux arbres
     public boolean isEqual(Tree tree) {
@@ -121,52 +87,45 @@ public class Tree {
         return trueFalser;
     }
 
-    // Méthode récursive pour obtenir le score le plus faible entre deux mots
-    private Branch getBranchWithLowerScoreBetweenWords(String currentWord, String targetWord, float currentScore, Set<Branch> visitedBranches) {
-        Branch resultBranch = null;
+    public float getTreeScore(String word1, String word2) {
+        // Trouver le chemin entre word1 et word2
+        List<Branch> path = findPath(word1, word2, new HashSet<>(), new ArrayList<>());
+        if (path == null) {
+            return -1; // Aucun chemin trouvé
+        }
 
-        // Parcourir chaque branche de l'arbre
-        for (Branch branch : branches) {
-            // Vérifier si la branche n'a pas été visitée et connecte au mot actuel
-            if (!visitedBranches.contains(branch) &&
-                    (branch.word1().equals(currentWord) || branch.word2().equals(currentWord))) {
-
-                // Mettre à jour le score actuel en ajoutant le score de la branche
-                float updatedScore = currentScore + branch.score();
-
-                // Si le mot cible est atteint, comparer le score avec le minimum actuel
-                if (branch.word1().equals(targetWord) || branch.word2().equals(targetWord)) {
-                    if (resultBranch == null || updatedScore < resultBranch.score()) {
-                        resultBranch = branch;
-                    }
-                } else {
-                    // Sinon, explorer récursivement la branche suivante
-                    visitedBranches.add(branch);
-                    Branch nextBranch = getBranchWithLowerScoreBetweenWords(
-                            (branch.word1().equals(currentWord)) ? branch.word2() : branch.word1(),
-                            targetWord,
-                            updatedScore,
-                            visitedBranches
-                    );
-                    visitedBranches.remove(branch);
-
-                    // Mettre à jour le résultat si une branche avec un score inférieur est trouvée
-                    if (nextBranch != null && (resultBranch == null || updatedScore < resultBranch.score())) {
-                        resultBranch = nextBranch;
-                    }
-                }
+        // Trouver la branche avec le score le plus faible sur ce chemin
+        float lowestScore = Float.MAX_VALUE;
+        for (Branch branch : path) {
+            if (branch.score() < lowestScore) {
+                lowestScore = branch.score();
             }
         }
 
-        return resultBranch;
+        return lowestScore;
     }
 
-    // Méthode pour obtenir le score le plus faible entre deux mots
-    public float getTreeScore(String word1, String word2) {
-        Branch resultBranch = getBranchWithLowerScoreBetweenWords(word1, word2, 0, new HashSet<>());
-        // Renvoyer le score de la branche trouvée ou 0 si aucune branche n'est trouvée
-        return (resultBranch != null) ? resultBranch.score() : 0;
+    private List<Branch> findPath(String currentWord, String targetWord, Set<String> visited, List<Branch> currentPath) {
+        visited.add(currentWord);
+
+        if (currentWord.equals(targetWord)) {
+            return new ArrayList<>(currentPath);
+        }
+
+        for (Branch branch : branches) {
+            if ((branch.word1().equals(currentWord) || branch.word2().equals(currentWord)) && !visited.contains(branch.getOtherWord(currentWord))) {
+                currentPath.add(branch);
+                List<Branch> resultPath = findPath(branch.getOtherWord(currentWord), targetWord, visited, currentPath);
+                if (resultPath != null) {
+                    return resultPath;
+                }
+                currentPath.remove(currentPath.size() - 1);
+            }
+        }
+
+        return null;
     }
+
 
     // Redéfinition de la méthode toString pour obtenir une représentation textuelle de l'arbre
     @Override
