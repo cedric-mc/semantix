@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import project.branch.Branch;
 import project.documents.DocumentHandler;
 
+import java.io.IOException;
+
 public class TreeTest {
     @Test
-    void should_return_optimize_tree_by_deleting() {
+    void should_return_optimize_tree_by_deleting() throws IOException {
         DocumentHandler dh = new DocumentHandler("entry.txt");
         Tree testTree = new Tree();
         testTree.addBranch(new Branch("A", "B", 68.22f));

@@ -74,7 +74,7 @@ include('include/connexion.php');
 
             include('include/connexion_mail.php');
             $mail->isHTML(true);
-            $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Support');
+            $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Semonkey Support');
             $mail->addAddress($email, $pseudo);
             $mail->Subject = 'Changement Adresse mail';
             $mail->Body = "Bonjour $pseudo,<br><br> Nous vous envoyons ce mail pour confirmer la modification de votre adresse mail MonkeyGame vers $newEmail,

@@ -25,7 +25,6 @@
 
 
     </form>
-</div>
     <?php
     include('include/connexion.php');
     error_reporting(E_ALL);
@@ -46,7 +45,7 @@
             try {
                 include('include/connexion_mail.php');
                 $mail->isHTML(true);
-                $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'MonkeyGame');
+                $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Semonkey Support');
                 $mail->addAddress($email, $pseudo);
                 $mail->Subject = 'Récupération de votre compte';
                 $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour récupérer votre compte : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/recup2.php?token=$validation_token'>Récupérer le compte</a>";
@@ -72,3 +71,4 @@
 </body>
 
 </html>
+</div>

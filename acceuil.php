@@ -1,4 +1,4 @@
-<head><title> Acceuil </title>
+<head><title> Accueil </title>
     <link rel="icon" href="img/monkeyapp.png">
 
 </head>

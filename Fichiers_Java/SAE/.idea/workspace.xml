@@ -9,8 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="Correction pour le respect de consigne et php">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="test main">
+      <change afterPath="$PROJECT_DIR$/../../javatest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +26,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "elyasmlm"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="ef2710ce-2f94-4541-a036-2ee82f082a87" />
+        <option name="url" value="https://github.com/mamadou186/projet-sae.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -46,11 +60,12 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "JUnit.TreeTest.executor": "Run",
+    "JUnit.TreeTest.should_return_optimize_tree_by_deleting.executor": "Run",
     "JUnit.TreeTest.should_return_score_of_the_weakest_branch_between_two_words.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "1-java",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE",
     "node.js.detected.package.eslint": "true",
@@ -60,7 +75,7 @@
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE/src/main/java/org/example/Main.java",
     "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
@@ -84,6 +99,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TreeTest.should_return_optimize_tree_by_deleting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SAE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.tree.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project.tree" />
+      <option name="MAIN_CLASS_NAME" value="project.tree.TreeTest" />
+      <option name="METHOD_NAME" value="should_return_optimize_tree_by_deleting" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TreeTest.should_return_score_of_the_weakest_branch_between_two_words" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SAE" />
       <extension name="coverage">
@@ -103,6 +134,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TreeTest.should_return_optimize_tree_by_deleting" />
         <item itemvalue="JUnit.TreeTest.should_return_score_of_the_weakest_branch_between_two_words" />
       </list>
     </recent_temporary>
@@ -128,7 +160,7 @@
       <workItem from="1705871634946" duration="4760000" />
       <workItem from="1705909561832" duration="369000" />
       <workItem from="1705955158737" duration="3881000" />
-      <workItem from="1706113160789" duration="303000" />
+      <workItem from="1706113160789" duration="1694000" />
     </task>
     <task id="LOCAL-00001" summary="ajout readme">
       <option name="closed" value="true" />
@@ -178,7 +210,79 @@
       <option name="project" value="LOCAL" />
       <updated>1705958441359</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="jar ajoutés">
+      <option name="closed" value="true" />
+      <created>1706121189623</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706121189623</updated>
+    </task>
+    <task id="LOCAL-00008" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706136954773</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706136954773</updated>
+    </task>
+    <task id="LOCAL-00009" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706137025142</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706137025142</updated>
+    </task>
+    <task id="LOCAL-00010" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706137188029</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706137188029</updated>
+    </task>
+    <task id="LOCAL-00011" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706137230881</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706137230881</updated>
+    </task>
+    <task id="LOCAL-00012" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706137376867</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1706137376867</updated>
+    </task>
+    <task id="LOCAL-00013" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706138175734</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706138175734</updated>
+    </task>
+    <task id="LOCAL-00014" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706138411245</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1706138411245</updated>
+    </task>
+    <task id="LOCAL-00015" summary="test main">
+      <option name="closed" value="true" />
+      <created>1706138478163</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1706138478163</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,7 +306,9 @@
     <MESSAGE value="Fonctions de gestion des documents fonctionnelles, tout est bon, code pas assez commenté par contre" />
     <MESSAGE value="Ajout des tests, suppression des print de tests, branch classe to record (mieux), ajout de la doc, un peu plus de commentaires dans le code" />
     <MESSAGE value="Correction pour le respect de consigne et php" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction pour le respect de consigne et php" />
+    <MESSAGE value="jar ajoutés" />
+    <MESSAGE value="test main" />
+    <option name="LAST_COMMIT_MESSAGE" value="test main" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

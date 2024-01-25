@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         include('include/connexion_mail.php');
         $pseudoNew = $_SESSION['pseudo'];
         $mail->isHTML(true);
-        $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+        $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Semonkey Support');
         $mail->addAddress($email, $pseudoNew);
         $mail->Subject = 'Changement de Pseudo';
         $mail->Body = "Bonjour $pseudoNew,<br><br> Nous vous envoyons ce mail pour vous prévenir que votre pseudo à été modifiée.";

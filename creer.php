@@ -92,7 +92,7 @@
                 include('include/connexion_mail.php');
 
                 $mail->isHTML(true);
-                $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Mamadou');
+                $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Semonkey');
                 $mail->addAddress($email, $pseudo);
                 $mail->Subject = 'Validation de votre compte';
                 $mail->Body = "Bonjour $pseudo,<br><br>Cliquez sur ce lien pour valider votre compte : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet/validation.php?token=$validation_token'>Valider le compte</a>";

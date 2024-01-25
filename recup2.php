@@ -11,6 +11,7 @@
 <body>
     <?php
     include('include/connexion.php');
+    
 
     $validation_token = $_GET['token'];
     $stmt = $dbh->prepare("SELECT pseudo, date_expir FROM validation_mail WHERE token = :validation_token");
@@ -24,7 +25,6 @@
     $date_actuelle = date('Y-m-d H:i:s');
     if ($date_expir < $date_actuelle){
         $row = 0;
-        echo "Le jeton a expiré, reformulez une nouvelle demande.\n";
     }
 
     $stmt = $dbh->prepare("SELECT email FROM user WHERE pseudo = :pseudo");
@@ -56,7 +56,6 @@
             <a href="index.php"> Revenir à l'acceuil </a>
         </div>
     </form>
-</div>
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
@@ -64,6 +63,10 @@
         $mdp = $_POST['mdp'];
         $mdpConf = $_POST['mdpConf'];
         $ok = true;
+
+        if ($row == 0){
+            echo "Le jeton a expiré, reformulez une nouvelle demande.\n";
+        }
 
         if ($mdp != $mdpConf) {
             $ok = false;
@@ -79,10 +82,22 @@
             echo "Mot de passe invalide. Le mot de passe doit contenir au moins 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial et avoir au moins 7 caractères de long.";
         }
 
+        $stmt = $dbh->prepare("SELECT mdp FROM user WHERE email = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_OBJ);
+
+        if (password_verify($mdp, $row->mdp)){
+            $ok = false;
+            echo "Le mot de passe ne peut pas être identique au précédent.\n";
+        }
+
+
         $mdpHash = password_hash($mdp, PASSWORD_BCRYPT);
 
         if ($ok) {
             try {
+                
                 $stmt = $dbh->prepare("UPDATE user SET mdp = :mdp WHERE email = :email");
                 $stmt->bindParam(':mdp', $mdpHash);
                 $stmt->bindParam(':email', $email);
@@ -123,5 +138,5 @@
     }
     ?>
 </body>
-
+</div>
 </html>

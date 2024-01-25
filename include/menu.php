@@ -5,7 +5,7 @@
     <ul class="navbar-nav">
         <li class="logo">
             <a href="#" class="nav-link">
-                <span class="link-text logo-text">Name</span>
+                <span class="link-text logo-text">Semonkey</span>
                 <svg
                         aria-hidden="true"
                         focusable="false"
@@ -35,7 +35,7 @@
         <li class="nav-item">
             <a href="./acceuil.php" class="nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M12.71 2.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42A1 1 0 0 0 3 13h1v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7h1a1 1 0 0 0 1-1 1 1 0 0 0-.29-.71zM6 20v-9.59l6-6 6 6V20z"></path></svg>
-                <span class="link-text">Acceuil</span>
+                <span class="link-text">Accueil</span>
             </a>
         </li>
 
@@ -75,7 +75,7 @@
 
         <li class="nav-item" id="themeButton">
             <a href="./deco.php" class="nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z"></path><path d="M11 2h2v10h-2z"></path></svg>                <span class="link-text">Disconnect</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z"></path><path d="M11 2h2v10h-2z"></path></svg>                <span class="link-text">Se déconnecter</span>
             </a>
         </li>
     </ul>
