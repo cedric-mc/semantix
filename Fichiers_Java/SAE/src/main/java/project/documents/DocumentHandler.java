@@ -17,8 +17,8 @@ public class DocumentHandler {
     private static final String WORDS_SECTION_HEADER = "Liste des mots :";
     private static final String OFFSETS_SECTION_HEADER = "Offsets dans le dictionnaire :";
     private static final String DISTANCES_SECTION_HEADER = "Distances entre les paires de mots :";
-    private static final String WORD_OFFSET_PATTERN = "\\w+: \\d+";
-    private static final String WORD_DISTANCE_PATTERN = "\\w+ - \\w+ : \\d+\\.\\d+";
+    private static final String WORD_OFFSET_PATTERN = "[\\w\\u00C0-\\u00FF]+: \\d+";
+    private static final String WORD_DISTANCE_PATTERN = "[\\w\\u00C0-\\u00FF]+ - [\\w\\u00C0-\\u00FF]+ : \\d+\\.\\d+";
 
     public DocumentHandler(String documentEntryPath) throws IOException {
         this.documentEntryPath = String.valueOf(Paths.get(documentEntryPath));
@@ -87,6 +87,7 @@ public class DocumentHandler {
                 break; // Fin de la section "Offsets dans le dictionnaire :"
             }
             if (!line.matches(WORD_OFFSET_PATTERN)) {
+                System.out.println("Erreur de format à la ligne : " + line); // Ajouter cette ligne pour le débogage
                 throw new IllegalArgumentException("Invalid document format: Incorrect word offset format.");
             }
         }
