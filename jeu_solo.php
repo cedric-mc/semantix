@@ -27,9 +27,7 @@ $game = new_game();
 $motDepart = $game['motDepart'];
 $motArrivee = $game['motArrivee'];
 
-echo $motDepart;
-echo"\n";
-echo $motArrivee;
+
 //echo $output;
 
 
