@@ -167,7 +167,24 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
         document.getElementById('addNodeForm').addEventListener('submit', function(e) {
             e.preventDefault();
             var newNodeName = document.getElementById('newNodeName').value;
-
+            fetch("exec.php?mot=" + newNodeName)
+                  .then(response => {
+                if (response.ok) {
+            // La requête s'est terminée avec succès
+             return response.text(); // Vous pouvez utiliser response.json() si vous attendez une réponse JSON
+             } else {
+            // La requête a échoué
+                throw new Error('La requête a échoué.');
+              }
+                  })
+                .then(data => {
+        // Vous pouvez traiter la réponse ici, data contient la réponse du serveur
+                  console.log("Réponse du serveur : " + data);
+                     })
+                 .catch(error => {
+        // Gérer les erreurs ici, par exemple afficher un message d'erreur
+                console.error('Erreur lors de la requête:', error);
+             });
             if(newNodeName && !chart.get(newNodeName)) { // Check if node doesn't already exist
                 chart.series[0].addPoint({ // Add the new node
                     id: newNodeName,
@@ -221,14 +238,3 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
 
 </body>
 </html>
-
-<?php 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newNodeName'])) {
-    $newNodeName = $_POST['newNodeName'];
-    echo $newNodeName;
-    add_word($newNodeName);
-    exec("./Fichiers_C/add_word Fichiers_C/words.bin $newNodeName");
-}
-
-
-?>
