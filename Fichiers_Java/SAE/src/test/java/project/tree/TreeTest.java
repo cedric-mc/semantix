@@ -19,7 +19,7 @@ public class TreeTest {
         testTree.addBranch(new Branch("B", "D", 57.12f));
         testTree.addBranch(new Branch("C", "D", 58.05f));
 
-        testTree.removeWeakestBranchUntilNoCycle(dh);
+        testTree.removeWeakestBranchesInLoops(dh);
 
         Tree wishedTree = new Tree();
         wishedTree.addBranch(new Branch("A", "B", 68.22f));

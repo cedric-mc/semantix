@@ -10,7 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="test main">
-      <change afterPath="$PROJECT_DIR$/../../javatest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deletedBranches.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exit.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SAE_jar/SAE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SAE_jar/SAE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/documents/DocumentHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,12 +36,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "elyasmlm"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;elyasmlm&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -67,7 +76,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/elyas/OneDrive/Documents/coursinfo/SAE-S2/projet-sae/Fichiers_Java/SAE",
+    "last_opened_file_path": "/home/3binf2/elyas.maloum/WWW/projet-sae/Fichiers_Java/SAE",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -77,12 +86,17 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\elyas\OneDrive\Documents\coursinfo\SAE-S2\projet-sae\Fichiers_Java\SAE" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="project.tree" />
+      <recent name="project" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -91,7 +105,7 @@
       <module name="SAE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="project.*" />
+          <option name="PATTERN" value="project.tree.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,7 +156,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-78a6f59c" />
       </set>
     </attachedChunks>
   </component>
