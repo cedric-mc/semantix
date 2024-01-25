@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <?php
 session_start();
-$motDepart = exec("/Fichiers_C/a.out");
-$motArrivee = exec("/Fichiers_C/a.out");
+$motDepart = exec("./Fichiers_C/random_word");
+$motArrivee = exec("./Fichiers_C/random_word");
+$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin $motDepart $motArrivee");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin $motArrivee");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin test");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin mot");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin oui");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin non");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin marre");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin malin");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin antithèse");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin malautru");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin matelot");
+$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin vilain");
+
 $chemin = "";
 //$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin $motDepart $motArrivee");
-//$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin test");
 //$output2 = exec("./Fichiers_C/add_word Fichiers_C/words.bin pomme");
 
 

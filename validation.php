@@ -17,10 +17,17 @@ $validation_token = $_GET['token'];
 // Si le jeton est valide, activez le compte correspondant
 
 $ok = false;
-$stmt = $dbh->prepare("SELECT pseudo, email, annee, mdp FROM validation WHERE token = :validation_token");
+$stmt = $dbh->prepare("SELECT pseudo, email, annee, mdp, date_expir FROM validation WHERE token = :validation_token");
 $stmt->bindParam(':validation_token', $validation_token);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_OBJ);
+$date_expir = $row->date_expir;
+
+date_default_timezone_set('Europe/Paris');
+$date_actuelle = date('Y-m-d H:i:s');
+if ($date_expir < $date_actuelle){
+    $row = 0;
+}
 
 if ($row) {
     $pseudo = $row->pseudo;
@@ -51,6 +58,10 @@ if ($row) {
             $ligne = $stmt->fetch(PDO::FETCH_OBJ);
             $id = $ligne->id;
 
+            $deleteStmt = $dbh->prepare("DELETE FROM validation WHERE pseudo = :pseudo");
+            $deleteStmt->bindParam(':pseudo', $pseudo);
+            $deleteStmt->execute();
+
             // TRACE
             $action = "Creation";
             $ip = $_SERVER['REMOTE_ADDR'];
@@ -75,6 +86,6 @@ if ($row) {
         echo "Erreur lors de l'activation du compte. Votre compte a déjà été activé.";
     }
 } else {
-    echo "Erreur lors de l'activation du compte. Jeton invalide.";
+    echo "Erreur lors de l'activation du compte. Jeton invalide ou expiré.";
 }
 ?>

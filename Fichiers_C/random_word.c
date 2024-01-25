@@ -50,12 +50,16 @@ char* getRandomWord() { // Retourne un pointeur char*
 }
 
 int main() {
-    char* randomWord = getRandomWord();
-    if (randomWord != NULL) {
-        printf("%s\n", randomWord);
-        free(randomWord); // Libérer la mémoire allouée
-    } else {
-        printf("Aucun mot trouvé.\n");
+    srand(time(NULL)); // Initialiser le générateur de nombres aléatoires une seule fois
+
+    for (int i = 0; i < 5; i++) { // Exemple de sélection de 5 mots aléatoires
+        char* randomWord = getRandomWord();
+        if (randomWord != NULL) {
+            printf("%s\n", randomWord);
+            free(randomWord); // Libérer la mémoire allouée
+        } else {
+            printf("Aucun mot trouvé.\n");
+        }
     }
 
     return 0;
