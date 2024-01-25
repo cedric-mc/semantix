@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <?php
 session_start();
-$motDepart = exec("./Fichiers_C/random_word");
-$chemin = "";
-//$output = exec("./Fichiers_C/new_game Fichiers_C/words.bin $motDepart $motArrivee");
-sleep(1);
-$motArrivee = exec("./Fichiers_C/random_word");
-//$output1 = exec("./Fichiers_C/add_word Fichiers_C/words.bin test");
-//$output2 = exec("./Fichiers_C/add_word Fichiers_C/words.bin pomme");
+include('include/connexion.php');
+include('include/redirection.php');
+// Function new game
+function new_game() {
+    $motDepart = exec("./Fichiers_C/random_word");
+    sleep(1);
+    $motArrivee = exec("./Fichiers_C/random_word");
+    exec("./Fichiers_C/new_game Fichiers_C/words.bin $motDepart $motArrivee", $output);
 
+    $result = [
+        'motDepart' => $motDepart,
+        'motArrivee' => $motArrivee
+    ];
+
+    return $result;
+}
+
+// Function add words
+function add_word($mot) {
+    return exec("./Fichiers_C/add_word Fichiers_C/words.bin $mot");
+}
+
+$game = new_game();
+$motDepart = $game['motDepart'];
+$motArrivee = $game['motArrivee'];
 
 echo $motDepart;
 echo"\n";
 echo $motArrivee;
 //echo $output;
 
-
-
-include('include/connexion.php');
-
-include('include/redirection.php');
 
 
 if (!isset($_SESSION['score'])) {
@@ -40,11 +52,10 @@ ini_set('display_errors', 1);
 </head>
 <body>
 <main>
-
     <div class="wrapper" style="top:15%;">
-        <form id="addNodeForm" method = "post">
+        <form action ="jeu_solo.php" id="addNodeForm" method = "post">
             <div class="input-box">
-            <input type="text" id="newNodeName" placeholder="Enter node">
+            <input type="text" id="newNodeName" name="newNodeName" placeholder="Enter node">            
             </div>
             <button class="btn" type="submit">Add Node</button>
         </form>
@@ -210,3 +221,14 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
 
 </body>
 </html>
+
+<?php 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['newNodeName'])) {
+    $newNodeName = $_POST['newNodeName'];
+    echo $newNodeName;
+    add_word($newNodeName);
+    exec("./Fichiers_C/add_word Fichiers_C/words.bin $newNodeName");
+}
+
+
+?>
