@@ -33,7 +33,6 @@ public class Tree {
             float maxScore = Float.MIN_VALUE;
 
             for (Branch branch : branches) {
-                System.out.println(branch);
                 // Vérifie si l'un des mots de la branche n'est pas encore visité
                 if (!visitedWords.contains(branch.word1()) || !visitedWords.contains(branch.word2())) {
                     // Vérifie si le score est supérieur au score maximal actuel
@@ -52,7 +51,6 @@ public class Tree {
             // Ajoute les mots de la branche maxBranch à la liste des mots visités
             visitedWords.add(maxBranch.word1());
             visitedWords.add(maxBranch.word2());
-            System.out.println(visitedWords);
             // Ajoute maxBranch à l'arbre résultant
             maxScoreTree.addBranch(maxBranch);
         }

@@ -9,12 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="test main">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SAE_jar/SAE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SAE_jar/SAE.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Main.java" afterDir="false" />
+    <list default="true" id="f67fed70-2105-4789-9817-e484ea7c0e46" name="Changes" comment="correction detection des cycles et suppression branches, ajout de l'excutable">
       <change beforePath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/tree/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/tree/TreeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +26,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -291,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706138478163</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="correction detection des cycles et suppression branches, ajout de l'excutable">
+      <option name="closed" value="true" />
+      <created>1706197406111</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1706197406111</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +322,8 @@
     <MESSAGE value="Correction pour le respect de consigne et php" />
     <MESSAGE value="jar ajoutés" />
     <MESSAGE value="test main" />
-    <option name="LAST_COMMIT_MESSAGE" value="test main" />
+    <MESSAGE value="correction detection des cycles et suppression branches, ajout de l'excutable" />
+    <option name="LAST_COMMIT_MESSAGE" value="correction detection des cycles et suppression branches, ajout de l'excutable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
