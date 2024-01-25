@@ -1,14 +1,7 @@
 Liste des mots :
-ouille
-oui
-mais
+test
 
 Offsets dans le dictionnaire :
-ouille: 39019506
-oui: 285783
-mais: 32196
+test: 1351435
 
 Distances entre les paires de mots :
-ouille - oui : 50.00
-ouille - mais : 33.33
-oui - mais : 43.14
