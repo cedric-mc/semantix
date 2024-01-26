@@ -153,6 +153,37 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
         return listes;
     }
 
+    function addNewData(chart, newData) {
+        newData.forEach(dataPoint => {
+            if (dataPoint.from && dataPoint.to) {
+                // Ajouter un lien
+                chart.series[0].addPoint({
+                    from: dataPoint.from,
+                    to: dataPoint.to
+                }, false);
+            } else if (dataPoint.id) {
+                // Ajouter un nœud
+                chart.series[0].addPoint({
+                    id: dataPoint.id,
+                    name: dataPoint.name
+                }, false);
+            }
+        });
+
+        chart.redraw();
+    }
+
+
+
+    function removeData(chart) {
+        // Supprimer tous les points (nœuds et liens) existants
+        while (chart.series[0].data.length > 0) {
+            chart.series[0].data[0].remove(false);
+        }
+
+        // Redessiner le graphique
+        chart.redraw();
+    }
 
     var chart;
     var isFirstAddition = true; // Global flag to check if it's the first node being added
@@ -161,67 +192,48 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
     document.addEventListener('DOMContentLoaded', function () {
         chart = Highcharts.chart('networkGraph', {
             chart: {
-                type: 'networkgraph',
-                height: '100%',
-                events: {
-                    load: function () {
-                        var chart = this;
-                        // Vous pouvez essayer de déplacer les nœuds en ajustant leur position
-                        // Notez que cela peut interférer avec la simulation physique
-                        chart.series[0].nodes[0].plotX = chart.plotWidth / 2;
-                        chart.series[0].nodes[0].plotY = chart.plotHeight / 4;
-                        chart.series[0].nodes[1].plotX = chart.plotWidth / 2;
-                        chart.series[0].nodes[1].plotY = chart.plotHeight / 4 + 100; // un exemple de décalage
-                        chart.redraw();
+                type: 'networkgraph'
+            },
+            plotOptions: {
+                networkgraph: {
+                    layoutAlgorithm: {
+                        enableSimulation: true
                     }
                 }
             },
-            title: {
-                text: ''
-            },
+
             series: [{
-                layoutAlgorithm: {
-                    gravitationalConstant: 0.1,
-                    centralGravity: 0.01,
-                    springLength: 20, // Cette option ajuste la longueur des liens
-                    springConstant: 0.1,
-                    maxIterations: 500,
-                    initialPositions: 'random', // Commence avec des positions aléatoires
-                    enableSimulation: true // Active la simulation dynamique
-                },
                 dataLabels: {
                     enabled: true,
-                    linkFormat: '',
                     linkTextPath: {
-                        enabled: false // Ensure that text is not displayed on links
+                        attributes: {
+                            dy: 12
+                        }
                     },
-                    style: {
-                        fontSize: '12px', // Définit la taille de la police des étiquettes de données
-                        color: '#FFFFFF' // Vous pouvez aussi définir la couleur de la police si nécessaire
-                    }
+                    linkFormat: '{point.fromNode.name} \u2192 {point.toNode.name}',
+                    textPath: {
+                        enabled: true,
+                        attributes: {
+                            dy: 14,
+                            startOffset: '45%',
+                            textLength: 80
+                        }
+                    },
+                    format: 'Node: {point.name}'
                 },
-                nodes: [{
-                    id: '<?php echo $motDepart; ?>',
-                    name: '<?php echo $motDepart; ?>'
-                }, {
-                    id: '<?php echo $motArrivee; ?>',
-                    name: '<?php echo $motArrivee; ?>'
-                }],
-                data: [{
-                    from: '<?php echo $motDepart; ?>',
-                    to: '<?php echo $motArrivee; ?>'
-                }],
                 marker: {
-                    radius: 30,
-                    symbol: 'circle'
-                }
+                    radius: 35
+                },
+                data: [{
+                    from: '<?php echo $motDepart?>',
+                    to:  '<?php echo $motArrivee?>'
+                },]
             }]
-
         });
 
         document.getElementById('addNodeForm').addEventListener('submit', function (e) {
             e.preventDefault();
-
+            removeData(chart);
             var newNodeName = document.getElementById('newNodeName').value;
             fetch("exec.php?mot=" + newNodeName)
                 .then(response => {
@@ -242,26 +254,21 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
                     console.log("Données de l'arbre : ", mots)
 
                     let ensembleDeMots = new Set();
+                    let newData = [];
 
                     mots.forEach(function (element) {
-                        console.log(element[0])
-                        console.log(element[1])
-                        ensembleDeMots.add(element[0]);
-                        ensembleDeMots.add(element[1]);
-                        if (element[0] && !chart.get(element[0])) {
-                            chart.series[0].addPoint({
-                                id: element[0],
-                                name: element[0]
-                            });
+                        if (!ensembleDeMots.has(element[0])) {
+                            newData.push({ id: element[0], name: element[0] });
+                            ensembleDeMots.add(element[0]);
                         }
-                        if (element[1] && !chart.get(element[1])) {
-                            chart.series[0].addPoint({
-                                id: element[1],
-                                name: element[1]
-                            });
+                        if (!ensembleDeMots.has(element[1])) {
+                            newData.push({ id: element[1], name: element[1] });
+                            ensembleDeMots.add(element[1]);
                         }
-                        chart.series[0].addPoint({from: element[0], to: element[1].id});
-                    })
+                        newData.push({ from: element[0], to: element[1] });
+                    });
+
+                    addNewData(chart, newData); // Ajouter les nouvelles données au graphique
 
 
 
