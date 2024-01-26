@@ -198,27 +198,27 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
         });
     }
 
-    function updateLinks(chart, newLinkData) {
-        // Supprimer les anciens liens
-        let existingPoints = chart.series[0].points;
-        for (let i = existingPoints.length - 1; i >= 0; i--) {
-            if (existingPoints[i].from && existingPoints[i].to) {
-                existingPoints[i].remove(false);
-            }
-        }
+    function updateLinks(chart, newLinks) {
+        // Retirer tous les liens existants
+        var series = chart.series[0];
+        var currentLinks = series.data.filter(point => !point.isNode);
+        currentLinks.forEach(function(link) {
+            link.remove(false); // Le paramètre 'false' empêche la redessin automatique
+        });
 
-        // Ajouter les nouveaux liens avec score
-        newLinkData.forEach(link => {
-            chart.series[0].addPoint({
+        // Ajouter les nouveaux liens
+        newLinks.forEach(function(link) {
+            series.addPoint({
                 from: link.from,
                 to: link.to,
-                name: link.score.toString() // Utiliser le score comme nom du lien
+                name: link.score // ou toute autre propriété que vous souhaitez utiliser comme étiquette
             }, false);
         });
 
-        // Redessiner le graphique
+        // Redessiner le graphique une seule fois après toutes les modifications
         chart.redraw();
     }
+
 
     var chart;
     var isFirstAddition = true; // Global flag to check if it's the first node being added
@@ -249,10 +249,15 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
                             textLength: 80
                         }
                     },
-                    format: 'Node: {point.name}'
+                    format: '{point.name}',
+                    style: {
+                        fontSize: '16px', // Modifiez cette valeur pour ajuster la taille de la police
+                        color: '#333333', // Vous pouvez également définir d'autres propriétés de style, comme la couleur
+                        textOutline: 'none' // Option pour supprimer le contour du texte, si nécessaire
+                    }
                 },
                 marker: {
-                    radius: 35
+                    radius: 45
                 },
                 data: [{
                     from: '<?php echo $motDepart?>',
