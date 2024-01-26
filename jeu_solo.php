@@ -4,7 +4,8 @@ session_start();
 include('include/connexion.php');
 include('include/redirection.php');
 // Function new game
-function new_game() {
+function new_game()
+{
     $motDepart = exec("./Fichiers_C/random_word");
     sleep(1);
     $motArrivee = exec("./Fichiers_C/random_word");
@@ -19,7 +20,8 @@ function new_game() {
 }
 
 // Function add words
-function add_word($mot) {
+function add_word($mot)
+{
     return exec("./Fichiers_C/add_word Fichiers_C/words.bin $mot");
 }
 
@@ -29,7 +31,8 @@ $motArrivee = $game['motArrivee'];
 
 
 //echo $output;
-function tree_branch(){
+function tree_branch()
+{
     exec("./jdk-21/bin/java -jar ./Fichiers_Java/SAE/out/artifacts/SAE_jar/SAE.jar optimize fichier_du_jeu.txt 2>&1", $output);
     $branch = json_encode($output);
     return $branch;
@@ -55,20 +58,20 @@ ini_set('display_errors', 1);
 <body>
 <main>
     <div class="wrapper" style="top:15%;">
-        <form action ="jeu_solo.php" id="addNodeForm" method = "post">
+        <form action="jeu_solo.php" id="addNodeForm" method="post">
 
             <div class="input-box">
-            <input type="text" id="newNodeName" name="newNodeName" placeholder="Enter node">
+                <input type="text" id="newNodeName" name="newNodeName" placeholder="Enter node">
             </div>
             <button class="btn" type="submit">Add Node</button>
         </form>
         <br>
-        <form action ="jeu_solo.php" method = "post">
+        <form action="jeu_solo.php" method="post">
             <input type="hidden" name="finalScore" id="finalScore" value="<?php echo $_SESSION['score']; ?>">
             <button class="btn" id="endGameButton" type="submit" name="submit" value="sub">Fin de la partie</button>
             <br>
             <div class="register-link">
-            <a href="jeu.php"> Retour </a>
+                <a href="jeu.php"> Retour </a>
             </div>
         </form>
         <p>Score actuel : <span id="scoreDisplay"><?php echo $_SESSION['score']; ?></span></p>
@@ -80,11 +83,11 @@ ini_set('display_errors', 1);
 
     <div style="position: relative; left: 40vh; top: 40vh;">
         <div id="networkGraph" style="width: 700px; height: 600px; "></div>
-        </div>
+    </div>
 </main>
 
 <?php
-if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
+if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
     $score = isset($_SESSION['score']) ? $_SESSION['score'] : 0;
     $stmt = $dbh->prepare("SELECT id FROM user WHERE pseudo = :pseudo");
     $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
@@ -92,21 +95,20 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
     $ligne = $stmt->fetch(PDO::FETCH_OBJ);
     $id = $ligne->id;
 
-    if ($score > 0){
-    date_default_timezone_set('Europe/Paris');
-    $date = date('y-m-d');
-    $stmt = $dbh->prepare("INSERT INTO score_game (score, user_id, date) VALUES (:score, :id, :date)");
-    $stmt->bindParam(':score', $score );
-    $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':date', $date);
-    $stmt->execute();
-    sleep(3);
-    $_SESSION['score'] = 0;
-    echo '<meta http-equiv="refresh" content="0;url=jeu.php">';}
+    if ($score > 0) {
+        date_default_timezone_set('Europe/Paris');
+        $date = date('y-m-d');
+        $stmt = $dbh->prepare("INSERT INTO score_game (score, user_id, date) VALUES (:score, :id, :date)");
+        $stmt->bindParam(':score', $score);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':date', $date);
+        $stmt->execute();
+        sleep(3);
+        $_SESSION['score'] = 0;
+        echo '<meta http-equiv="refresh" content="0;url=jeu.php">';
+    }
 }
-    ?>
-
-
+?>
 
 
 <script>
@@ -154,6 +156,7 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
 
     var chart;
     var isFirstAddition = true; // Global flag to check if it's the first node being added
+    var mots = null;
 
     document.addEventListener('DOMContentLoaded', function () {
         chart = Highcharts.chart('networkGraph', {
@@ -199,7 +202,7 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
                 },
                 nodes: [{
                     id: '<?php echo $motDepart; ?>',
-                    name:'<?php echo $motDepart; ?>'
+                    name: '<?php echo $motDepart; ?>'
                 }, {
                     id: '<?php echo $motArrivee; ?>',
                     name: '<?php echo $motArrivee; ?>'
@@ -216,82 +219,83 @@ if(isset($_POST['submit']) && $_POST['submit'] === 'sub'){
 
         });
 
-        document.getElementById('addNodeForm').addEventListener('submit', function(e) {
+        document.getElementById('addNodeForm').addEventListener('submit', function (e) {
             e.preventDefault();
+
             var newNodeName = document.getElementById('newNodeName').value;
             fetch("exec.php?mot=" + newNodeName)
-                  .then(response => {
-                if (response.ok) {
-            // La requête s'est terminée avec succès
-             return response.text(); // Vous pouvez utiliser response.json() si vous attendez une réponse JSON
-             } else {
-            // La requête a échoué
-                throw new Error('La requête a échoué.');
-              }
-                  })
+                .then(response => {
+                    if (response.ok) {
+                        // La requête s'est terminée avec succès
+                        return response.text(); // Vous pouvez utiliser response.json() si vous attendez une réponse JSON
+                    } else {
+                        // La requête a échoué
+                        throw new Error('La requête a échoué.');
+                    }
+                })
                 .then(data => {
-        // Vous pouvez traiter la réponse ici, data contient la réponse du serveur
+                    // Vous pouvez traiter la réponse ici, data contient la réponse du serveur
                     return fetch_tree();
                 })
                 .then(treeData => {
-                    let mots = transformerDonneesEnListes(treeData);
+                    mots = transformerDonneesEnListes(treeData);
                     console.log("Données de l'arbre : ", mots)
+
+                    let ensembleDeMots = new Set();
+
+                    mots.forEach(function (element) {
+                        console.log(element[0])
+                        console.log(element[1])
+                        ensembleDeMots.add(element[0]);
+                        ensembleDeMots.add(element[1]);
+                        if (element[0] && !chart.get(element[0])) {
+                            chart.series[0].addPoint({
+                                id: element[0],
+                                name: element[0]
+                            });
+                        }
+                        if (element[1] && !chart.get(element[1])) {
+                            chart.series[0].addPoint({
+                                id: element[1],
+                                name: element[1]
+                            });
+                        }
+                        chart.series[0].addPoint({from: element[0], to: element[1].id});
+                    })
+
+
+
+
+
+
+                        // Obtenez le score actuel côté client
+                        var currentScore = parseInt(document.getElementById('scoreDisplay').textContent);
+
+                        // Effectuez une requête AJAX pour mettre à jour le score
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'update_score.php', true);
+                        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                // Mettez à jour le score côté client
+                                var newScore = parseInt(xhr.responseText);
+                                document.getElementById('scoreDisplay').textContent = newScore;
+                            }
+                        }
+                        xhr.send('newNodeName=' + encodeURIComponent(newNodeName) + '&currentScore=' + currentScore);
+                        document.getElementById('newNodeName').value = ''; // Clear the input field
+
                 })
-                 .catch(error => {
-        // Gérer les erreurs ici, par exemple afficher un message d'erreur
-                console.error('Erreur lors de la requête:', error);
-             });
-            if(newNodeName && !chart.get(newNodeName)) { // Check if node doesn't already exist
-                chart.series[0].addPoint({ // Add the new node
-                    id: newNodeName,
-                    name: newNodeName
+                .catch(error => {
+                    // Gérer les erreurs ici, par exemple afficher un message d'erreur
+                    console.error('Erreur lors de la requête:', error);
                 });
 
-
-
-                if (isFirstAddition) {
-                    // For the first addition, link the new node between the initial nodes
-                    chart.series[0].addPoint({ from: newNodeName, to: '<?php echo $motDepart; ?>'});
-                    chart.series[0].addPoint({ from: newNodeName, to: '<?php echo $motArrivee; ?>' });
-                    isFirstAddition = false; // Update the flag
-                } else {
-                    // For subsequent additions, link to a random existing node
-                    var existingNodes = chart.series[0].nodes;
-                    var randomNode = existingNodes[Math.floor(Math.random() * existingNodes.length)];
-                    if (randomNode) {
-                        chart.series[0].addPoint({ from: newNodeName, to: randomNode.id });
-                    }
-                }
-
-                // Obtenez le score actuel côté client
-                var currentScore = parseInt(document.getElementById('scoreDisplay').textContent);
-
-                // Effectuez une requête AJAX pour mettre à jour le score
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'update_score.php', true);
-                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        // Mettez à jour le score côté client
-                        var newScore = parseInt(xhr.responseText);
-                        document.getElementById('scoreDisplay').textContent = newScore;
-                    }
-                };
-                xhr.send('newNodeName=' + encodeURIComponent(newNodeName) + '&currentScore=' + currentScore);
-                document.getElementById('newNodeName').value = ''; // Clear the input field
-            }
         });
     });
 
 
-
-
-
-
-
 </script>
-
-
 
 
 </body>
