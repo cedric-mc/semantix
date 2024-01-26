@@ -267,7 +267,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
                         }
                         newData.push({ from: element[0], to: element[1] });
                     });
-
+ 
                     addNewData(chart, newData); // Ajouter les nouvelles données au graphique
 
 
