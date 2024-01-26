@@ -112,6 +112,9 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
 
 
 <script>
+    var motDepart = '<?php echo $motDepart; ?>';
+    var motArrivee = '<?php echo $motArrivee; ?>';
+
     function fetch_tree() {
         return fetch(`exec_java_tree.php?timestamp=${new Date().getTime()}`)
             .then(response => {
@@ -185,6 +188,38 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
         chart.redraw();
     }
 
+    function transformerEnLiens(mots) {
+        return mots.map(element => {
+            return {
+                from: element[0],
+                to: element[1],
+                score: element[2] // Ajout du score
+            };
+        });
+    }
+
+    function updateLinks(chart, newLinkData) {
+        // Supprimer les anciens liens
+        let existingPoints = chart.series[0].points;
+        for (let i = existingPoints.length - 1; i >= 0; i--) {
+            if (existingPoints[i].from && existingPoints[i].to) {
+                existingPoints[i].remove(false);
+            }
+        }
+
+        // Ajouter les nouveaux liens avec score
+        newLinkData.forEach(link => {
+            chart.series[0].addPoint({
+                from: link.from,
+                to: link.to,
+                name: link.score.toString() // Utiliser le score comme nom du lien
+            }, false);
+        });
+
+        // Redessiner le graphique
+        chart.redraw();
+    }
+
     var chart;
     var isFirstAddition = true; // Global flag to check if it's the first node being added
     var mots = null;
@@ -205,12 +240,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
             series: [{
                 dataLabels: {
                     enabled: true,
-                    linkTextPath: {
-                        attributes: {
-                            dy: 12
-                        }
-                    },
-                    linkFormat: '{point.fromNode.name} \u2192 {point.toNode.name}',
+                    linkFormat: '{point.name}',
                     textPath: {
                         enabled: true,
                         attributes: {
@@ -255,6 +285,7 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
 
                     let ensembleDeMots = new Set();
                     let newData = [];
+                    let linkData = transformerEnLiens(mots);
 
                     mots.forEach(function (element) {
                         if (!ensembleDeMots.has(element[0])) {
@@ -267,15 +298,13 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
                         }
                         newData.push({ from: element[0], to: element[1] });
                     });
- 
                     addNewData(chart, newData); // Ajouter les nouvelles données au graphique
+                    updateLinks(chart, linkData);
 
 
 
 
-
-
-                        // Obtenez le score actuel côté client
+                    // Obtenez le score actuel côté client
                         var currentScore = parseInt(document.getElementById('scoreDisplay').textContent);
 
                         // Effectuez une requête AJAX pour mettre à jour le score
@@ -289,7 +318,9 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
                                 document.getElementById('scoreDisplay').textContent = newScore;
                             }
                         }
-                        xhr.send('newNodeName=' + encodeURIComponent(newNodeName) + '&currentScore=' + currentScore);
+                        xhr.send('newNodeName=' + encodeURIComponent(newNodeName) + '&motDepart=' + encodeURIComponent(motDepart) + '&motArrivee=' + encodeURIComponent(motArrivee));
+                        console.log(motDepart)
+                        console.log(motArrivee)
                         document.getElementById('newNodeName').value = ''; // Clear the input field
 
                 })
