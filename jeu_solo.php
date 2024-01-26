@@ -42,6 +42,9 @@ function tree_branch()
 if (!isset($_SESSION['score'])) {
     $_SESSION['score'] = 0; // Valeur par défaut
 }
+
+
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ?>
@@ -75,10 +78,7 @@ ini_set('display_errors', 1);
             </div>
         </form>
         <p>Score actuel : <span id="scoreDisplay"><?php echo $_SESSION['score']; ?></span></p>
-        <?php
-        $branch = tree_branch();
-        echo $branch;
-        ?>
+        <p></p>
     </div>
 
     <div style="position: relative; left: 40vh; top: 40vh;">
@@ -103,7 +103,6 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':date', $date);
         $stmt->execute();
-        sleep(3);
         $_SESSION['score'] = 0;
         echo '<meta http-equiv="refresh" content="0;url=jeu.php">';
     }
@@ -236,7 +235,13 @@ if (isset($_POST['submit']) && $_POST['submit'] === 'sub') {
                     }
                 }
             },
-
+            title: {
+                text: 'Semonkey', // Remplacez 'Votre Titre Ici' par le titre que vous souhaitez
+                style: {
+                    color: '#333333', // Couleur du texte du titre
+                    fontSize: '20px' // Taille de la police du titre
+                }
+            },
             series: [{
                 dataLabels: {
                     enabled: true,
