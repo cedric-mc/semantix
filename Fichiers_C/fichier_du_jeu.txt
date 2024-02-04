@@ -1,7 +1,0 @@
-Liste des mots :
-test
-
-Offsets dans le dictionnaire :
-test: 1351435
-
-Distances entre les paires de mots :

@@ -1,143 +1,82 @@
-<link rel="stylesheet" href="style/style.css">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 <?php
-include('include/connexion.php');
 session_start();
-
-if (isset($_SESSION['pseudo']) && isset($_SESSION['mdp'])){
-    header('Location: acceuil.php');
-    exit();
+// Utilisateur connecté ?
+if (isset($_SESSION['pseudo'])) {
+    header('Location: home.php');
+    exit;
 }
 
+// Messages d’erreurs possibles
+$messagesErreur = [
+    1 => ["L'utilisateur n'existe pas.", "alert-danger"],
+    2 => ["Le mot de passe est incorrect.", "alert-danger"],
+    3 => ["Le token a expiré, connectez-vous pour pouvoir en re-générer un.", "alert-danger"],
+    4 => ["Votre adresse email a bien été confirmé !\nVous pouvez désormais vous connecter.", "alert-success"],
+    5 => ["L'utilisateur a déjà été confirmé.", "alert-danger"],
+    6 => ["Déconnexion réussie !", "alert-success"],
+    7 => ["Votre inscription n’étant pas confirmé.\nVous allez recevoir un email afin de confirmer votre inscription.", "alert-warning"]
+];
+// Récupérer le code d’erreur depuis l'URL
+$codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/monkeyapp.png">
-    <title>Connexion</title>
-    <style>
-
-        .img-container {
-            position: absolute;
-            top: 26%; /* Ajustez la valeur en fonction de votre mise en page */
-            right: 37%; /* Ajustez la valeur en fonction de votre mise en page */
-            width: 120px; /* Ajustez la largeur de votre image */
-            height: auto; /* Laissez la hauteur s'ajuster proportionnellement à la largeur */
-            z-index: 1;
-        }
-
-        /* Reste de votre CSS existant */
-        /* ... */
-
-
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Connexion - Semantic Analogy Explorer</title>
+	<meta name="description" content="Venez Jouez à Semantic Analogy Explorer (SAE), un jeu en ligne à un ou plusieurs joueurs basé sur les similarités entre mots : « Semantic Analogy Explorer ». Chaque joueur reçoit un mot de départ et un mot cible et propose des mots proches afin de créer une chaîne de mots similaires pour relier le mot de départ au mot cible. ">
+	<meta name="keywords" content="Semantic Analogy Explorer, SAE, jeu, jeu en ligne, jeu de mots, jeu de lettres, jeu de lettres en ligne, jeu de mots en ligne, jeu de lettres multijoueur, jeu de mots multijoueur, jeu de lettres multijoueur en ligne, jeu de mots multijoueur en ligne, jeu de lettres multijoueur gratuit, jeu de mots multijoueur gratuit, jeu de lettres multijoueur gratuit en ligne, jeu de mots multijoueur gratuit en ligne, jeu de lettres multijoueur gratuit sans inscription, jeu de mots multijoueur gratuit sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription, jeu de mots multijoueur gratuit en ligne sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/form.css">
 </head>
 
-<body>
-<img alt='' src="img/monkey.png" class="img-container">
-    <div class="wrapper">
-        <form action="" method="post">
-        <h1>Se connecter</h1>
-        <div class="input-box">
-            <input type="text" id="pseudo" name="pseudo" placeholder = "Pseudo" required>
-            <i class='bx bx-user'></i>
-        </div>
-        <div class="input-box">
-            <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
-            <i class='bx bxs-lock-alt'> </i>
-        </div>
-        <div class="register-link">
-           <center> <a href="recup.php"> Mot de passe oublié ?</a></center>
-        </div>
-
-                <button class="btn" type="submit">Se connecter</button>
-
-    <div class="register-link">
-        <a href="creer.php"> Si vous n'avez pas de compte créez-en un</a><br>
-    </div>
-    </form>
-
-
-    <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $pseudo = $_POST['pseudo'];
-        $mdp = $_POST['mdp'];
-        $ok = false;
-
-        $stmt = $dbh->prepare("SELECT pseudo FROM user WHERE pseudo = :pseudo");
-        $stmt->bindParam(':pseudo', $pseudo);
-        $stmt->execute();
-
-        while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
-            $ok = true;
+<body class="black">
+<main class="position-absolute top-50 start-50 translate-middle">
+	<div class="glassmorphism">
+		<h1 class="title">Connexion</h1>
+		<form action="connexion/script-connexion.php" method="POST">
+			<div class="input-field">
+				<input name="pseudo" type="text" id="pseudo" required> <label for="pseudo">Pseudo</label>
+			</div>
+			<div class="input-field">
+				<input name="motdepasse" id="motdepasse" type="password" required> <label for="motdepasse">Mot de
+																										   passe</label>
+			</div>
+			<div class="forget">
+				<a href="forgotpassword/forgot_password.php">Mot de passe oublié ?</a>
+			</div>
+			<button id="formButton" type="submit" class="btn fw-semibold">Se connecter</button>
+			<div class="register">
+				<p>Pas encore de compte ? <a href="inscription/inscription.php">Inscrivez-vous.</a></p>
+			</div>
+		</form>
+        <?php
+        // Si le message d'erreur est différent de 0
+        if ($codeErreur > 0 && $codeErreur < 8) {
+            echo "<div id='msg-error' class='alert' role='alert'></div>";
         }
-
-        if ($ok) {
-            $stmt = $dbh->prepare("SELECT pseudo, mdp, email FROM user WHERE pseudo = :pseudo");
-            $stmt->bindParam(':pseudo', $pseudo);
-            $stmt->execute();
-
-            $ligne = $stmt->fetch(PDO::FETCH_OBJ);
-
-            if (password_verify($mdp, $ligne->mdp)) {
-                $_SESSION['pseudo'] = $pseudo;
-                $_SESSION['mdp'] = $mdp;
-                $email = $ligne->email;
-
-                try {
-                    include('include/connexion_mail.php');
-                    $mail->isHTML(true);
-                    $mail->setFrom('mamadou.ba2@edu.univ-eiffel.fr', 'Semonkey');
-                    $mail->addAddress($email, $pseudo);
-                    $mail->Subject = 'Connexion a votre compte';
-                    $mail->Body = "Bonjour $pseudo, vous venez de vous connecter à votre compte. Si ce n'était pas vous, modifiez immédiatement votre mot de passe.";
-                    $mail->CharSet = 'utf-8';
-                    $mail->send();
-                } catch (Exception $e) {
-                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                }
-                $stmt = $dbh->prepare("SELECT id FROM user WHERE pseudo = :pseudo");
-                $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
-                $stmt->execute();
-                $ligne = $stmt->fetch(PDO::FETCH_OBJ);
-                $id = $ligne->id;
-
-                // TRACE
-                $action = "Connexion";
-                $ip = $_SERVER['REMOTE_ADDR'];
-                date_default_timezone_set('Europe/Paris');
-                $date = date('y-m-d H:i:s');
-                $stmt = $dbh->prepare("INSERT INTO trace (action, ip, date, user_id) VALUES (:action, :ip, :date, :id)");
-                var_dump($stmt);
-                $stmt->bindParam(':action', $action);
-                $stmt->bindParam(':ip', $ip);
-                $stmt->bindParam(':date', $date);
-                $stmt->bindParam(':id', $id);
-                $stmt->execute();
-                header('Location: acceuil.php');
-                exit();
-            } else {
-                echo "<center>Authentification ratée</center>";
-            }
-        } else {
-            echo "<center>Pseudo inexistant</center>";
-        }
-
-        $stmt->closeCursor();
+        ?>
+	</div>
+</main>
+<script>
+    // Je récupère le message d’erreur
+    let msgCode = <?php echo json_encode($codeErreur); ?>;
+    let msgError = <?php echo json_encode($messagesErreur[$codeErreur][0]); ?>;
+    // Si le message d’erreur est différent de 0
+    if (msgCode > 0 && msgCode < 8) {
+        // J'affiche le message d'erreur
+        document.getElementById('msg-error').innerHTML = msgError;
+        // Je change la couleur du message d'erreur
+        document.getElementById('msg-error').classList.add(<?php echo json_encode($messagesErreur[$codeErreur][1]); ?>);
+        // Après l'expiration du cookie, on actualise la page pour le supprimer
+        setTimeout(function () {
+            window.location.href = './';
+        }, 10000);
     }
-    ?>
-    </div>
-
+</script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
-
 </html>
-
-
