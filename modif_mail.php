@@ -78,7 +78,7 @@ include('include/connexion.php');
             $mail->addAddress($email, $pseudo);
             $mail->Subject = 'Changement Adresse mail';
             $mail->Body = "Bonjour $pseudo,<br><br> Nous vous envoyons ce mail pour confirmer la modification de votre adresse mail MonkeyGame vers $newEmail,
-            cliquez sur ce lien pour valider le changement : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/projet-sae/validation_mail.php?token=$validation_token'>Valider le mail</a>";
+            cliquez sur ce lien pour valider le changement : <a href='https://perso-etudiant.u-pem.fr/~mamadou.ba2/semantix/validation_mail.php?token=$validation_token'>Valider le mail</a>";
             $mail->CharSet = 'utf-8';
             $mail->send();
 
