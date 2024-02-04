@@ -1,0 +1,6 @@
+conf.php
+.idea/
+java/.idea
+game/partie/*
+game/test.php
+game/C/frWac_non_lem_no_postag_no_phrase_200_cbow_cut100.bin
