@@ -24,7 +24,7 @@ while ($verif_mot2 == -1) {
 
 $commande_start_game = './C/bin/new_game C/fasttext-fr.bin ' . $mot1 . ' ' . $mot2 . ' ' . $_SESSION['pseudo'];
 exec($commande_start_game);
-$commandeJava = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -jar ChainMotor/out/artifacts/ChainMotor_jar/ChainMotor.jar partie/game_data_$_SESSION[pseudo].txt partie/mst_$_SESSION[pseudo].txt 2>&1";
+$commandeJava = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_$_SESSION[pseudo].txt partie/mst_$_SESSION[pseudo].txt partie/best_path_$_SESSION[pseudo].txt 2>&1";
 exec($commandeJava, $output);
 echo "<pre>";
 print_r($output);
