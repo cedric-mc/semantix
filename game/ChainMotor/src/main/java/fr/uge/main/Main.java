@@ -56,6 +56,6 @@ public class Main {
         // Récupérer un pseudo pour le nom du fichier
         String pseudo = fileNameJava.split("_")[1].split("\\.")[0];
         bestPath.printPathAndScore();
-        bestPath.writeBestPathToFile("best_path_" + pseudo + ".txt");
+        bestPath.writeBestPathToFile("partie/best_path_" + pseudo + ".txt");
     }
 }
