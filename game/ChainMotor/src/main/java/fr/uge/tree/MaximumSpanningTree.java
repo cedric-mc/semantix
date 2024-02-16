@@ -246,7 +246,7 @@ public class MaximumSpanningTree {
             bw.write("edgesMST :");
             bw.newLine();
             for (Edge edge : edgesMST) { // Parcourir chaque arête de l’arbre
-                bw.write(String.format("%s_%s,%f", edge.sourceWord().word(), edge.targetWord(), edge.similarity()));
+                bw.write(String.format("%s_%s,%.2f", edge.sourceWord().word(), edge.targetWord(), edge.similarity()));
                 bw.newLine();
             }
             bw.write("bannedWords :");
