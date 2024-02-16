@@ -2,6 +2,7 @@ package fr.uge.main;
 
 import fr.uge.tree.MaximumSpanningTree;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -49,6 +50,12 @@ public class Main {
         }
         // On exporte l’arbre recouvrant maximal dans un fichier
         maximumSpanningTree.exportMaximumSpanningTreeToFile(fileNameJava);
+        try (BufferedReader reader = Files.newBufferedReader(Path.of(fileNameJava))) {
+            String line;
+            while ((line = reader.readLine()) != "EOF") {
+                System.out.println(line);
+            }
+        }
         // Trouver le chemin entre deux mots
         BestPath bestPath = new BestPath(maximumSpanningTree);
 
