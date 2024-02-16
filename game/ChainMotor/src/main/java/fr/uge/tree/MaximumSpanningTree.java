@@ -237,11 +237,10 @@ public class MaximumSpanningTree {
         Files.createFile(path); // Créer le fichier
         // Créer un objet BufferedWriter pour écrire dans le fichier
         BufferedWriter bw = Files.newBufferedWriter(path);
-        bw.write("MaximumSpanningTree :");
+        bw.write("MaximumSpanningTree :\n");
+        bw.write("startWord : " + startWord);
         bw.newLine();
-        bw.write(String.format("startWord : %s", startWord));
-        bw.newLine();
-        bw.write(String.format("endWord : %s", endWord));
+        bw.write("endWord : " + endWord);
         bw.newLine();
         bw.write("edgesMST :");
         bw.newLine();
