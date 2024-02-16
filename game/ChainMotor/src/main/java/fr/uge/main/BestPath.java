@@ -72,9 +72,7 @@ public class BestPath {
     public void writeBestPathToFile(String file) throws IOException {
         // Si le fichier n'existe pas, le créer
         Path path = Path.of(file);
-        if (!Files.exists(path)) {
-            Files.createFile(path);
-        }
+        Files.createFile(path);
         BufferedWriter bw = Files.newBufferedWriter(path); // Créer un écrivain de fichier
         bw.write("BestPath :"); // Écrire l'Objet
         bw.newLine(); // Sauter une ligne
@@ -89,6 +87,7 @@ public class BestPath {
             bw.newLine();
         }
         bw.write("EOF"); // Marquer la fin du fichier
+        bw.close(); // Fermer l’écrivain de fichier
     }
 
     /**
