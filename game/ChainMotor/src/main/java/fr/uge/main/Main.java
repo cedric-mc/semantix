@@ -41,13 +41,13 @@ public class Main {
         String fileNameC = args[0]; // Nom du fichier C : game_data_[pseudo].txt
         String fileNameJava = args[1]; // Nom du fichier Java : mst_[pseudo].txt
         MaximumSpanningTree maximumSpanningTree;
-        if (!Files.exists(Path.of(fileNameJava))) { // On vérifie que les fichiers existent
+//        if (!Files.exists(Path.of(fileNameJava))) { // On vérifie que les fichiers existent
             // Création de l’arbre recouvrant maximal et exportation dans un fichier
             maximumSpanningTree = MaximumSpanningTree.createMaximumSpanningTree(fileNameC);
-        } else { // Sinon, on charge l’arbre recouvrant maximal
-            maximumSpanningTree = MaximumSpanningTree.loadMaximumSpanningTree(fileNameJava);
-            maximumSpanningTree.loadAddEdges(fileNameC); // On ajoute les arêtes du nouveau mot à l'arbre recouvrant maximal
-        }
+//        } else { // Sinon, on charge l’arbre recouvrant maximal
+//            maximumSpanningTree = MaximumSpanningTree.loadMaximumSpanningTree(fileNameJava);
+//            maximumSpanningTree.loadAddEdges(fileNameC); // On ajoute les arêtes du nouveau mot à l'arbre recouvrant maximal
+//        }
         // On exporte l’arbre recouvrant maximal dans un fichier
         maximumSpanningTree.exportMaximumSpanningTreeToFile(fileNameJava);
         // Trouver le chemin entre deux mots
