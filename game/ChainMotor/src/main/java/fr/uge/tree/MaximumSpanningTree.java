@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 /**
@@ -233,10 +235,9 @@ public class MaximumSpanningTree {
      * Méthode pour exporter l’arbre recouvrant maximal dans un fichier
      */
     public void exportMaximumSpanningTreeToFile(String file) throws IOException {
-        Path path = Path.of(file); // Créer un objet Path pour le fichier
-        Files.createFile(path); // Créer le fichier
-        // Créer un objet BufferedWriter pour écrire dans le fichier
-        BufferedWriter bw = Files.newBufferedWriter(path);
+        Path path = Paths.get(file); // Créer un objet Path pour le fichier
+        // Créer un objet BufferedWriter pour écrire dans le fichier avec les options de création et d’écriture
+        BufferedWriter bw = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
         bw.write("MaximumSpanningTree :\n");
         bw.write("startWord : " + startWord);
         bw.newLine();
