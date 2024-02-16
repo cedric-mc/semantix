@@ -234,27 +234,28 @@ public class MaximumSpanningTree {
      */
     public void exportMaximumSpanningTreeToFile(String fileNameJava) throws IOException {
         Path filePath = Path.of(fileNameJava); // Créer un objet Path pour le fichier
+        Files.createFile(filePath); // Créer le fichier
         // Créer un objet BufferedWriter pour écrire dans le fichier
-        BufferedWriter bufferedWriter = Files.newBufferedWriter(filePath);
-        bufferedWriter.write("MaximumSpanningTree :");
-        bufferedWriter.newLine();
-        bufferedWriter.write(String.format("startWord : %s", startWord));
-        bufferedWriter.newLine();
-        bufferedWriter.write(String.format("endWord : %s", endWord));
-        bufferedWriter.newLine();
-        bufferedWriter.write("edgesMST :");
-        bufferedWriter.newLine();
+        BufferedWriter bw = Files.newBufferedWriter(filePath);
+        bw.write("MaximumSpanningTree :");
+        bw.newLine();
+        bw.write(String.format("startWord : %s", startWord));
+        bw.newLine();
+        bw.write(String.format("endWord : %s", endWord));
+        bw.newLine();
+        bw.write("edgesMST :");
+        bw.newLine();
         for (Edge edge : edgesMST) { // Parcourir chaque arête de l’arbre
-            bufferedWriter.write(String.format("%s_%s,%f", edge.sourceWord().word(), edge.targetWord(), edge.similarity()));
-            bufferedWriter.newLine();
+            bw.write(String.format("%s_%s,%f", edge.sourceWord().word(), edge.targetWord(), edge.similarity()));
+            bw.newLine();
         }
-        bufferedWriter.write("bannedWords :");
-        bufferedWriter.newLine();
+        bw.write("bannedWords :");
+        bw.newLine();
         for (Word word : bannedWords) { // Parcourir chaque mot interdit
-            bufferedWriter.write(word.word());
-            bufferedWriter.newLine();
+            bw.write(word.word());
+            bw.newLine();
         }
-        bufferedWriter.write("EOF"); // Ajouter la fin du fichier
+        bw.write("EOF"); // Ajouter la fin du fichier
     }
 
     /**
