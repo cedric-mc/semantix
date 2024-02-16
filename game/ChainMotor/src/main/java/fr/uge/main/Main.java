@@ -23,23 +23,26 @@ public class Main {
      * @param args
      * args[0] : Nom du fichier C : game_data_[pseudo].txt
      * args[1] : Nom du fichier Java : mst_[pseudo].txt
+     * args[2] : Nom du fichier de sortie : best_path_[pseudo].txt
      * @throws IOException
      *
      * Récupèration ou création d’un arbre recouvrant maximal et recherche du meilleur chemin entre le mot de départ et de cible.
+     * Les fichiers doivent être dans le dossier `partie`.
      */
     public static void main(String[] args) throws IOException {
         if (args.length == 0) { // S'il n'y a pas d'arguments
             System.out.println("Auteurs :\nMamadou BA\nCédric MARIYA CONSTANTINE\nAbdelrahim RICHE\nVincent SOUSA\nYacine ZEMOUCHE");
             return;
         }
-        // Si le nombre d’arguments est différent de 2
-        if (args.length != 2) {
-            System.out.println("Utilisation : java -jar ChainMotor.jar <game_data_[pseudo].txt> <mst_[pseudo].txt>");
+        // Si le nombre d’arguments est différent de 3
+        if (args.length != 3) {
+            System.out.println("Utilisation : java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_[pseudo].txt partie/mst_[pseudo].txt partie/best_path_[pseudo].txt");
             return;
         }
 
         String fileNameC = args[0]; // Nom du fichier C : game_data_[pseudo].txt
         String fileNameJava = args[1]; // Nom du fichier Java : mst_[pseudo].txt
+        String fileNameOutput = args[2]; // Nom du fichier de sortie : best_path_[pseudo].txt
         MaximumSpanningTree maximumSpanningTree;
 //        if (!Files.exists(Path.of(fileNameJava))) { // On vérifie que les fichiers existent
             // Création de l’arbre recouvrant maximal et exportation dans un fichier
@@ -57,6 +60,6 @@ public class Main {
         // Récupérer un pseudo pour le nom du fichier
         String pseudo = fileNameJava.split("_")[1].split("\\.")[0];
         bestPath.printPathAndScore();
-        bestPath.writeBestPathToFile("partie/best_path_" + pseudo + ".txt");
+        bestPath.writeBestPathToFile(fileNameOutput);
     }
 }
