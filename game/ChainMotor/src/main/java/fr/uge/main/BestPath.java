@@ -70,7 +70,12 @@ public class BestPath {
      * Méthode pour écrire le chemin le plus court dans un fichier
      */
     public void writeBestPathToFile(String file) throws IOException {
-        BufferedWriter bw = Files.newBufferedWriter(Path.of(file)); // Créer un écrivain de fichier
+        // Si le fichier n'existe pas, le créer
+        Path path = Path.of(file);
+        if (!Files.exists(path)) {
+            Files.createFile(path);
+        }
+        BufferedWriter bw = Files.newBufferedWriter(path); // Créer un écrivain de fichier
         bw.write("BestPath :"); // Écrire l'Objet
         bw.newLine(); // Sauter une ligne
         bw.write("startWord : " + maximumSpanningTree.getStartWord()); // Écrire le mot de départ
