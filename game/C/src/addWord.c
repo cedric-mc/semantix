@@ -132,7 +132,7 @@ int main(int argc, char **argv) {
         int orthographicDistance = lev_similarity(existingWords[i].word, argv[2]);
         double averageDistance = (semanticDistance + orthographicDistance) / 2.0;
 
-        fprintf(file, "%s-%s, distance: %.2f\n", existingWords[i].word, argv[2], averageDistance);
+        fprintf(file, "%s_%s, distance: %.2f\n", existingWords[i].word, argv[2], averageDistance);
     }
 
     fclose(file);

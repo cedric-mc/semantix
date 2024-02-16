@@ -5,11 +5,6 @@ if (!isset($_SESSION['pseudo'])) {
     exit;
 }
 $pseudo = $_SESSION['pseudo'];
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["executeButton"])) {
-    exec("echo 1", $output, $return_var);
-    echo $output[0];
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">

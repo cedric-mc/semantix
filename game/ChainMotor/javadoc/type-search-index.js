@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"fr.uge.main","l":"BestPath"},{"p":"fr.uge.tree","l":"Edge"},{"p":"fr.uge.main","l":"Main"},{"p":"fr.uge.tree","l":"MaximumSpanningTree"},{"p":"fr.uge.main","l":"Test"},{"p":"fr.uge.tree","l":"Word"}];updateSearchResults();

@@ -7,13 +7,6 @@ if (!isset($_SESSION['pseudo'])) {
     exit();
 }
 include("game_fonctions.php");
-if (!isset($_SESSION['paires'])) {
-    startGame();
-}
-$paires = $_SESSION['paires'];
-$words = $_SESSION['words'];
-$firstWord = $words[0];
-$lastWord = $words[1];
 
 $messagesErreur = [
     1 => "Le mot n'est pas dans le dictionnaire.",
@@ -22,6 +15,9 @@ $messagesErreur = [
 ];
 // Si un message d’erreur est passé dans l'URL, sinon message vide erreur = 0
 $erreur = $_GET['erreur'] ?? 0;
+
+$paires = [];
+
 
 // Utilisation d’un tableau associatif pour stocker les relations entre les mots
 $relations = [];
@@ -267,6 +263,11 @@ $scoreRequest->closeCursor();
 
 
 </script>
+    <?php
+    echo "<pre>";
+    print_r($_SESSION['output']);
+    echo "</pre>";
+    ?>
 </body>
 
 </html>

@@ -33,7 +33,7 @@ unset($_SESSION['words']);
 $nomFichier = "partie/game_data_" . $_SESSION['pseudo'] . ".txt";
 unlink($nomFichier);
 // Supprimer le fichier partie associé à l'utilisateur (Java)
-$javaFile = "partie/resultjava_" . $_SESSION['pseudo'] . ".txt";
+$javaFile = "partie/mst_" . $_SESSION['pseudo'] . ".txt";
 unlink($javaFile);
 
 header("Location: ../");

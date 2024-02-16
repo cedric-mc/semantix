@@ -97,7 +97,7 @@ int main(int argc, char **argv) {
     for (int i = 0; i < wordCount; i++) {
         for (int j = i + 1; j < wordCount; j++) {
             double averageDistance = (words[i].semanticDistance + words[j].orthographicDistance) / 2.0;
-            fprintf(file, "%s-%s, distance: %.2f\n", words[i].word, words[j].word, averageDistance);
+            fprintf(file, "%s_%s, distance: %.2f\n", words[i].word, words[j].word, averageDistance);
         }
     }
 

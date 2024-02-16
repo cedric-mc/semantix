@@ -46,7 +46,7 @@ function startGame()
         $verif_mot2 = shell_exec($commande_verif_mot2);
     }
 
-    $commande_start_game = './C/bin/new_game C/frWac_non_lem_no_postag_no_phrase_200_cbow_cut100.bin ' . $mot1 . ' ' . $mot2 . ' ' . $_SESSION['pseudo'];
+    $commande_start_game = './C/bin/new_game C/fasttext-fr.bin ' . $mot1 . ' ' . $mot2 . ' ' . $_SESSION['pseudo'];
     exec($commande_start_game);
 
     $_SESSION['words'][0] = $mot1;
