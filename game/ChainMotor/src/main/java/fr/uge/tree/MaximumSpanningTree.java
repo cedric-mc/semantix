@@ -234,28 +234,31 @@ public class MaximumSpanningTree {
      *
      * Méthode pour exporter l’arbre recouvrant maximal dans un fichier
      */
-    public void exportMaximumSpanningTreeToFile(String file) throws IOException {
+    public void exportMaximumSpanningTreeToFile(String file) {
         Path path = Paths.get(file); // Créer un objet Path pour le fichier
         // Créer un objet BufferedWriter pour écrire dans le fichier avec les options de création et d’écriture
-        BufferedWriter bw = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-        bw.write("MaximumSpanningTree :\n");
-        bw.write("startWord : " + startWord);
-        bw.newLine();
-        bw.write("endWord : " + endWord);
-        bw.newLine();
-        bw.write("edgesMST :");
-        bw.newLine();
-        for (Edge edge : edgesMST) { // Parcourir chaque arête de l’arbre
-            bw.write(String.format("%s_%s,%f", edge.sourceWord().word(), edge.targetWord(), edge.similarity()));
+        try (BufferedWriter bw = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.WRITE)) {
+            bw.write("MaximumSpanningTree :\n");
+            bw.write("startWord : " + startWord);
             bw.newLine();
-        }
-        bw.write("bannedWords :");
-        bw.newLine();
-        for (Word word : bannedWords) { // Parcourir chaque mot interdit
-            bw.write(word.word());
+            bw.write("endWord : " + endWord);
             bw.newLine();
+            bw.write("edgesMST :");
+            bw.newLine();
+            for (Edge edge : edgesMST) { // Parcourir chaque arête de l’arbre
+                bw.write(String.format("%s_%s,%f", edge.sourceWord().word(), edge.targetWord(), edge.similarity()));
+                bw.newLine();
+            }
+            bw.write("bannedWords :");
+            bw.newLine();
+            for (Word word : bannedWords) { // Parcourir chaque mot interdit
+                bw.write(word.word());
+                bw.newLine();
+            }
+            bw.write("EOF"); // Ajouter la fin du fichier
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        bw.write("EOF"); // Ajouter la fin du fichier
     }
 
     /**
