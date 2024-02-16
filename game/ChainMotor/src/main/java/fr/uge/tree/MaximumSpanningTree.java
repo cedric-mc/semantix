@@ -256,7 +256,6 @@ public class MaximumSpanningTree {
             bw.newLine();
         }
         bw.write("EOF"); // Ajouter la fin du fichier
-        bw.close(); // Fermer le fichier
     }
 
     /**
