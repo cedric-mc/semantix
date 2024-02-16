@@ -227,16 +227,16 @@ public class MaximumSpanningTree {
     }
 
     /**
-     * @param fileNameJava Nom du fichier
+     * @param file Nom du fichier
      * @throws IOException Exporte l’arbre recouvrant maximal dans un fichier
      *
      * Méthode pour exporter l’arbre recouvrant maximal dans un fichier
      */
-    public void exportMaximumSpanningTreeToFile(String fileNameJava) throws IOException {
-        Path filePath = Path.of(fileNameJava); // Créer un objet Path pour le fichier
-        Files.createFile(filePath); // Créer le fichier
+    public void exportMaximumSpanningTreeToFile(String file) throws IOException {
+        Path path = Path.of(file); // Créer un objet Path pour le fichier
+        Files.createFile(path); // Créer le fichier
         // Créer un objet BufferedWriter pour écrire dans le fichier
-        BufferedWriter bw = Files.newBufferedWriter(filePath);
+        BufferedWriter bw = Files.newBufferedWriter(path);
         bw.write("MaximumSpanningTree :");
         bw.newLine();
         bw.write(String.format("startWord : %s", startWord));
@@ -256,6 +256,7 @@ public class MaximumSpanningTree {
             bw.newLine();
         }
         bw.write("EOF"); // Ajouter la fin du fichier
+        bw.close(); // Fermer le fichier
     }
 
     /**
