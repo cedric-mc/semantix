@@ -85,7 +85,7 @@ public class MaximumSpanningTree {
      * Divise une ligne en parties et ajoute les arêtes à la liste
      */
     public static void divideParts(List<Edge> edgesMST, String line) {
-        String[] parts = line.split(",");
+        String[] parts = line.split(", distance:");
         splitWordsAndSimilarity(edgesMST, parts);
     }
 
@@ -185,7 +185,7 @@ public class MaximumSpanningTree {
         br.readLine(); // Ligne 5 : "voiture, offset: 561464"
         br.readLine(); // Ligne 6 : "bus, offset: 1715044"
         br.readLine(); // Ligne 7 : "Distance entre les mots :"
-        String[] parts = br.readLine().split(","); // Ligne 8 : "voiture_bus,0.5"
+        String[] parts = br.readLine().split(", distance:"); // Ligne 8 : "voiture_bus,0.5"
         splitWordsAndSimilarity(edges, parts); // Ajouter l’arête à la liste
         return new MaximumSpanningTree(startWord, endWord, edges, new HashSet<>()); // Retourner un nouvel objet MaximumSpanningTree
     }
