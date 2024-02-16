@@ -28,12 +28,12 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         if (args.length == 0) { // S'il n'y a pas d'arguments
-            System.out.println("Auteurs :\nMamadou BA\nCédric MARIYA CONSTANTINE\nAbdelrahim RICHE\nVincent SOUSA\nYacine ZEMOUCHE\n");
+            System.out.println("Auteurs :\nMamadou BA\nCédric MARIYA CONSTANTINE\nAbdelrahim RICHE\nVincent SOUSA\nYacine ZEMOUCHE");
             return;
         }
         // Si le nombre d’arguments est différent de 2
-        if (args.length != 2 || !args[0].startsWith("game_data_") || !args[1].startsWith("mst_")) {
-            System.out.println("Utilisation : java -jar chain-motor.jar <game_data_[pseudo].txt> <mst_[pseudo].txt>");
+        if (args.length != 2) {
+            System.out.println("Utilisation : java -jar ChainMotor.jar <game_data_[pseudo].txt> <mst_[pseudo].txt>");
             return;
         }
 
