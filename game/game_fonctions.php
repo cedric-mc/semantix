@@ -115,6 +115,8 @@ function calculateScore()
 
 function createDataForGraph($paires) {
     // Utilisation d’un tableau associatif pour stocker les relations entre les mots
+    fopen("partie/best_path_$_SESSION[pseudo].txt", 'r');
+    
     $relations = [];
 
     foreach ($paires as $paire) {
