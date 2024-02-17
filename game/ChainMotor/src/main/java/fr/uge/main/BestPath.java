@@ -71,23 +71,26 @@ public class BestPath {
      * Méthode pour écrire le chemin le plus court dans un fichier
      */
     public void writeBestPathToFile(String file) throws IOException {
-        // Si le fichier n'existe pas, le créer
+        // Si le fichier n’existe pas, le créer
         Path path = Path.of(file);
-        BufferedWriter bw = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.WRITE); // Créer un écrivain de fichier
-        bw.write("BestPath :"); // Écrire l'Objet
-        bw.newLine(); // Sauter une ligne
-        bw.write("startWord : " + maximumSpanningTree.getStartWord()); // Écrire le mot de départ
-        bw.newLine();
-        bw.write("endWord : " + maximumSpanningTree.getEndWord()); // Écrire le mot de fin
-        bw.newLine();
-        bw.write("bestPathEdges :"); // Écrire les arêtes du chemin
-        bw.newLine();
-        for (Edge edge : bestPathEdges) { // Parcourir chaque arête du chemin
-            bw.write(edge.sourceWord() + "_" + edge.targetWord() + "," + edge.similarity());
+        try (BufferedWriter bw = Files.newBufferedWriter(path, StandardOpenOption.CREATE, StandardOpenOption.WRITE)) {
+            // Créer un écrivain de fichier
+            bw.write("BestPath :"); // Écrire l’Objet
+            bw.newLine(); // Sauter une ligne
+            bw.write("startWord : " + maximumSpanningTree.getStartWord()); // Écrire le mot de départ
             bw.newLine();
+            bw.write("endWord : " + maximumSpanningTree.getEndWord()); // Écrire le mot de fin
+            bw.newLine();
+            bw.write("bestPathEdges :"); // Écrire les arêtes du chemin
+            bw.newLine();
+            for (Edge edge : bestPathEdges) { // Parcourir chaque arête du chemin
+                bw.write(edge.sourceWord() + "_" + edge.targetWord() + "," + edge.similarity());
+                bw.newLine();
+            }
+            bw.write("EOF"); // Marquer la fin du fichier
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        bw.write("EOF"); // Marquer la fin du fichier
-        bw.close(); // Fermer l’écrivain de fichier
     }
 
     /**
