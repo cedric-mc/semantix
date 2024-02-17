@@ -115,8 +115,19 @@ function calculateScore()
 
 function createDataForGraph($paires) {
     // Utilisation d’un tableau associatif pour stocker les relations entre les mots
-    fopen("partie/best_path_$_SESSION[pseudo].txt", 'r');
-    
+    /*
+    BestPath :
+    startWord : mot1
+    endWord : mot2
+    bestPathEdges : 
+    mot1_mot2,15.63
+    mot2_mot3,12.34
+    */
+    foreach (file("partie/best_path_$_SESSION[pseudo].txt") as $line) {
+        if (strpos($line, "bestPathEdges") !== false) {
+            $ligne = $line;
+        }
+    }
     $relations = [];
 
     foreach ($paires as $paire) {
