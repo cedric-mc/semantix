@@ -42,10 +42,7 @@ $commande_start_game = './C/bin/new_game C/fasttext-fr.bin ' . $mot1 . ' ' . $mo
 exec($commande_start_game);
 
 $commandeJava = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_$_SESSION[pseudo].txt partie/mst_$_SESSION[pseudo].txt partie/best_path_$_SESSION[pseudo].txt 2>&1";
-exec($commandeJava, $output);
-
-exit;
-
+exec($commandeJava);
 
 header('Location: game.php');
 ?>
