@@ -5,11 +5,12 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 $_SESSION['pseudo'] = "cedric-mc";
 $verif_mot = -1;
-do { // Tant que les mots de départ et de cible n'ont pas une similarité inférieure à 10.
+$distance = 100;
+while ($distance > 10) { // Tant que les mots de départ et de cible n'ont pas une similarité inférieure à 10.
     while ($verif_mot == -1) {
         $mot1 = randomWord('Liste_mots.txt');
-        $commande_verif_mot1 = './C/bin/dictionary_lookup C/arbre_lexicographique.lex ' . $mot1;
-        $verif_mot1 = shell_exec($commande_verif_mot1);
+        $commande_verif = "./C/bin/dictionary_lookup C/arbre_lexicographique.lex $mot1";
+        $verif_mot = shell_exec($commande_verif);
     }
     $verif_mot = -1;
 
@@ -18,10 +19,10 @@ do { // Tant que les mots de départ et de cible n'ont pas une similarité infé
         while ($mot1 == $mot2) {
             $mot2 = randomWord('Liste_mots.txt');
         }
-        $commande_verif_mot2 = './C/bin/dictionary_lookup C/arbre_lexicographique.lex ' . $mot2;
-        $verif_mot2 = shell_exec($commande_verif_mot2);
+        $commande_verif = "./C/bin/dictionary_lookup C/arbre_lexicographique.lex $mot2";
+        $verif_mot = shell_exec($commande_verif);
     }
-    $verif_mot = -1;
+
     $distance = 100;
     $fichier = fopen("partie/game_data_$_SESSION[pseudo].txt", "r");
     // Lire le fichier jusqu’à la 8ème ligne et stocker ce qui se trouve après "distance: " dans $distance
@@ -36,7 +37,8 @@ do { // Tant que les mots de départ et de cible n'ont pas une similarité infé
             $distance = substr($ligne, strpos($ligne, ", distance: ") + 12);
         }
     }
-} while ($distance > 10);
+    $verif_mot = -1;
+}
 
 $commande_start_game = './C/bin/new_game C/fasttext-fr.bin ' . $mot1 . ' ' . $mot2 . ' ' . $_SESSION['pseudo'];
 exec($commande_start_game);
