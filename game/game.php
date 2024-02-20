@@ -6,7 +6,7 @@
         header('Location: ../');
         exit();
     }
-    include("Game.php");
+    include("../class/Game.php");
     include("game_fonctions.php");
 
     $messagesErreur = [
