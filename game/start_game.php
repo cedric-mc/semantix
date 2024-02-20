@@ -27,6 +27,9 @@ for ($essai = 0; $essai < 10; $essai++) {
         $verif_mot = shell_exec($commande_verif);
     }
 
+    $commande_start_game = "./C/bin/new_game C/fasttext-fr.bin $mot1 $mot2 $_SESSION[pseudo]";
+    exec($commande_start_game);
+
     $distance = 100;
     $fichier = fopen("partie/game_data_$_SESSION[pseudo].txt", "r");
     // Lire le fichier jusqu’à la 8ème ligne et stocker ce qui se trouve après "distance: " dans $distance
@@ -48,11 +51,12 @@ for ($essai = 0; $essai < 10; $essai++) {
     }
 }
 
-$commande_start_game = "./C/bin/new_game C/fasttext-fr.bin $mot1 $mot2 $_SESSION[pseudo]";
-exec($commande_start_game);
-
-$commandeJava = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main $_SESSION[pseudo] 0 2>&1";
-exec($commandeJava);
+$commandeJava = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/ $_SESSION[pseudo] 0 2>&1";
+exec($commandeJava, $output, $return_var);
+echo "<pre>";
+print_r($output);
+echo "</pre>";
+exit();
 
 $game = new Game(1);
 

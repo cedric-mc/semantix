@@ -36,6 +36,8 @@ foreach ($files as $file) {
         unlink($file);
     }
 }
+// Supprimer l'instance de la classe Game 
+unset($_SESSION['game']);
 
 header("Location: ../");
 exit();
