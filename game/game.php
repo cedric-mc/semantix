@@ -1,67 +1,69 @@
 <?php
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-if (!isset($_SESSION['pseudo'])) {
-    header('Location: ./');
-    exit();
-}
-include("game_fonctions.php");
-
-$messagesErreur = [
-    1 => "Le mot n'est pas dans le dictionnaire.",
-    2 => "Le mot est déjà dans la chaîne.",
-    3 => "Le mot n'est pas assez proche du dernier mot de la chaîne."
-];
-// Si un message d’erreur est passé dans l'URL, sinon message vide erreur = 0
-$erreur = $_GET['erreur'] ?? 0;
-
-$paires = [];
-
-
-// Utilisation d’un tableau associatif pour stocker les relations entre les mots
-$relations = [];
-
-foreach ($paires as $paire) {
-    $mot1 = $paire["mot1"];
-    $mot2 = $paire["mot2"];
-    $nombre = $paire["nombre"];
-
-    // Si la relation entre mot1 et mot2 n'existe pas encore
-    if (!isset($relations[$mot1][$mot2])) {
-        $relations[$mot1][$mot2] = $nombre;
-    } else {
-        // Si la relation existe déjà, additionner le nombre
-        $relations[$mot1][$mot2] += $nombre;
+    session_start();
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    if (!isset($_SESSION['pseudo'])) {
+        header('Location: ../');
+        exit();
     }
-}
+    include("Game.php");
+    include("game_fonctions.php");
 
-$nodes = [];
-$links = [];
+    $messagesErreur = [
+        1 => "Le mot n'est pas dans le dictionnaire.",
+        2 => "Le mot est déjà dans la chaîne.",
+        3 => "Le mot n'est pas assez proche du dernier mot de la chaîne."
+    ];
+    // Si un message d’erreur est passé dans l'URL, sinon message vide erreur = 0
+    $erreur = $_GET['erreur'] ?? 0;
 
-// Création des nodes et des links à partir des relations
-foreach ($relations as $mot1 => $rel) {
-    $mot1 = ucfirst($mot1);
-    $nodes[] = ["id" => $mot1];
+    $game = unserialize($_SESSION['game']);
+    $paires = array();
+    $paires = fileToArray($paires);
 
-    foreach ($rel as $mot2 => $nombre) {
-        $mot2 = ucfirst($mot2);
-        $nodes[] = ["id" => $mot2];
-        $links[] = [
-            "source" => $mot1,
-            "target" => $mot2,
-            "linkTextPath" => $nombre
-        ];
+    // Utilisation d’un tableau associatif pour stocker les relations entre les mots
+    $relations = [];
+
+    foreach ($paires as $paire) {
+        $mot1 = $paire["mot1"];
+        $mot2 = $paire["mot2"];
+        $nombre = $paire["nombre"];
+
+        // Si la relation entre mot1 et mot2 n'existe pas encore
+        if (!isset($relations[$mot1][$mot2])) {
+            $relations[$mot1][$mot2] = $nombre;
+        } else {
+            // Si la relation existe déjà, additionner le nombre
+            $relations[$mot1][$mot2] += $nombre;
+        }
     }
-}
-$highchartsData = createDataForGraph($paires);
 
-include("../conf.bkp.php");
-$scoreRequest = $cnx->prepare("SELECT MAX(score) AS maxS FROM SAE_SCORES s, SAE_USERS u WHERE u.num_user = s.num_user AND u.pseudo = :pseudo");
-$scoreRequest->bindParam(':pseudo', $_SESSION['pseudo']);
-$scoreRequest->execute();
-$scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
-$scoreRequest->closeCursor();
+    $nodes = [];
+    $links = [];
+
+    // Création des nodes et des links à partir des relations
+    foreach ($relations as $mot1 => $rel) {
+        $mot1 = ucfirst($mot1);
+        $nodes[] = ["id" => $mot1];
+
+        foreach ($rel as $mot2 => $nombre) {
+            $mot2 = ucfirst($mot2);
+            $nodes[] = ["id" => $mot2];
+            $links[] = [
+                "source" => $mot1,
+                "target" => $mot2,
+                "linkTextPath" => $nombre
+            ];
+        }
+    }
+    $highchartsData = createDataForGraph($paires);
+
+    include("../conf.bkp.php");
+    $scoreRequest = $cnx->prepare("SELECT MAX(score) AS maxS FROM SAE_SCORES s, SAE_USERS u WHERE u.num_user = s.num_user AND u.pseudo = :pseudo");
+    $scoreRequest->bindParam(':pseudo', $_SESSION['pseudo']);
+    $scoreRequest->execute();
+    $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
+    $scoreRequest->closeCursor();
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,7 +71,7 @@ $scoreRequest->closeCursor();
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Classement - Semantic Analogy Explorer</title>
+	<title>Game - Semantic Analogy Explorer</title>
 	<meta name="description" content="Venez Jouez à Semantic Analogy Explorer (SAE), un jeu en ligne à un ou plusieurs joueurs basé sur les similarités entre mots : « Semantic Analogy Explorer ». Chaque joueur reçoit un mot de départ et un mot cible et propose des mots proches afin de créer une chaîne de mots similaires pour relier le mot de départ au mot cible. ">
 	<meta name="keywords" content="Semantic Analogy Explorer, SAE, jeu, jeu en ligne, jeu de mots, jeu de lettres, jeu de lettres en ligne, jeu de mots en ligne, jeu de lettres multijoueur, jeu de mots multijoueur, jeu de lettres multijoueur en ligne, jeu de mots multijoueur en ligne, jeu de lettres multijoueur gratuit, jeu de mots multijoueur gratuit, jeu de lettres multijoueur gratuit en ligne, jeu de mots multijoueur gratuit en ligne, jeu de lettres multijoueur gratuit sans inscription, jeu de mots multijoueur gratuit sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription, jeu de mots multijoueur gratuit en ligne sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement">
 	<link rel="stylesheet" href="../css/style.css">
@@ -111,11 +113,11 @@ $scoreRequest->closeCursor();
             </div>
         </div>
             <div class="div3">
-            <p>Score actuel : <?php echo calculateScore(); ?></p>
-            <p>Nombre de mots : <?php echo count($words); ?></p>
-            <p>Dernier mot : <?php if (count($_SESSION['words']) > 2) echo ucfirst($_SESSION['words'][count($_SESSION['words']) - 1]); else echo "Aucun mot entré"; ?>
+            <p>Score actuel : <?php //echo calculateScore(); ?></p>
+            <p>Nombre de mots : <?php //echo count($words); ?></p>
+            <p>Dernier mot : <?php //if (count($_SESSION['words']) > 2) echo ucfirst($_SESSION['words'][count($_SESSION['words']) - 1]); else echo "Aucun mot entré"; ?>
             </p>
-            <p>Nombre de mots restants : <?php echo 7 - count($words) ?></p>
+            <p>Nombre de mots restants : <?php //echo 7 - count($words) ?></p>
         </div>
         <div class="modal fade" id="endGameModal" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
@@ -258,16 +260,7 @@ $scoreRequest->closeCursor();
             window.location.href = "end_game.php";
         });
     });
-
-
-
-
 </script>
-    <?php
-    echo "<pre>";
-    print_r($_SESSION['output']);
-    echo "</pre>";
-    ?>
 </body>
 
 </html>

@@ -8,10 +8,10 @@ if (!isset($_SESSION['pseudo'])) {
     exit();
 }
 
-if (!isset($_SESSION['paires'])) {
+/*if (!isset($_SESSION['paires'])) {
     header("Location: game.php");
     exit();
-}
+}*/
 
 // Ajout du score final dans la base de données
 include("../conf.bkp.php");
@@ -29,12 +29,13 @@ trace($_SESSION['num_user'], "A Joué une partie", $cnx);
 unset($_SESSION['paires']);
 unset($_SESSION['words']);
 
-//Supprimer le fichier partie associé à l'utilisateur (C)
-$nomFichier = "partie/game_data_" . $_SESSION['pseudo'] . ".txt";
-unlink($nomFichier);
-// Supprimer le fichier partie associé à l'utilisateur (Java)
-$javaFile = "partie/mst_" . $_SESSION['pseudo'] . ".txt";
-unlink($javaFile);
+// Supprimer tous les fichiers associés à l'utilisateur qui sont dans le dossier partie
+$files = glob('partie/*' . $_SESSION['pseudo'] . '*');
+foreach ($files as $file) {
+    if (is_file($file)) {
+        unlink($file);
+    }
+}
 
 header("Location: ../");
 exit();

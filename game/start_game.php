@@ -1,5 +1,6 @@
 <?php
 include("game_fonctions.php");
+include("Game.php");
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -8,7 +9,7 @@ $_SESSION['pseudo'] = "cedric-mc";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-do {
+for ($essai = 0; $essai < 10; $essai++) {
     $verif_mot = -1;
     while ($verif_mot == -1) {
         $mot1 = randomWord('Liste_mots.txt');
@@ -40,14 +41,22 @@ do {
             $distance = substr($ligne, strpos($ligne, ", distance: ") + 12);
         }
     }
-    $verif_mot = -1;
-} while (1 == 0);
+    fclose($fichier);
+
+    if ($distance <= 10) {
+        break;
+    }
+}
 
 $commande_start_game = "./C/bin/new_game C/fasttext-fr.bin $mot1 $mot2 $_SESSION[pseudo]";
 exec($commande_start_game);
 
-$commandeJava = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_$_SESSION[pseudo].txt partie/mst_$_SESSION[pseudo].txt partie/best_path_$_SESSION[pseudo].txt 2>&1";
+$commandeJava = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main $_SESSION[pseudo] 0 2>&1";
 exec($commandeJava);
+
+$game = new Game(1);
+
+$_SESSION['game'] = serialize($game);
 
 header('Location: game.php');
 ?>
