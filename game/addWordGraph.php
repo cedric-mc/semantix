@@ -10,26 +10,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
     $pseudo = $_SESSION['pseudo'];
-    if (!isset($_POST['paires']) && in_array($_POST['word'], $_SESSION['words'])) {
-        header('Location: game.php?erreur=2');
-        exit();
-    }
+    $game = unserialize($_SESSION['game']);
     include("game_fonctions.php");
     $newWord = strtolower($_POST['word']);
 
-    if (in_array($newWord, $_SESSION['words'])) {
-        header('Location: game.php');
-        exit();
-    }
-
-    $commande_verif_mot = './C/bin/dictionary_lookup C/arbre_lexicographique.lex ' . $newWord;
+    $commande_verif_mot = "./C/bin/dictionary_lookup C/arbre_lexicographique.lex $newWord";
     $verif_mot = shell_exec($commande_verif_mot);
 
     if ($verif_mot == -1) {
         header('Location: game.php?erreur=1');
         exit();
     }
-    $_SESSION['words'][] = $newWord;
     unset($_POST['word']);
 
     $commande_add_word = './C/bin/add_word C/fasttext-fr.bin ' . $newWord . ' ' . $_SESSION['pseudo'];
@@ -71,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Gestion d'erreur si le fichier ne peut pas être ouvert
         echo "Impossible d'ouvrir le fichier.";
     }
+    $_SESSION['game'] = serialize($game);
     header('Location: game.php');
     exit();
 }

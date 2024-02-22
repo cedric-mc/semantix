@@ -126,8 +126,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Bravo ! Votre score final est de <?php echo calculateScore(); ?> point(s).<br> Relèverez-vous le défi à nouveau ? </p>
-                            <p>Votre meilleur score est de <?php echo $scoreResult->maxS; ?> point(s).</p>
+                            <p>Bravo ! Votre score final est de <?php //echo calculateScore(); ?> point(s).<br> Relèverez-vous le défi à nouveau ? </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" id="closeModalButton" data-bs-dismiss="modal">Fermer</button>
