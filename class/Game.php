@@ -21,7 +21,13 @@
         }
 
         public function addWord($word) {
-            $this->wordsArray[] = $word;
+            if (!in_array($word, $this->wordsArray)) {
+                array_push($this->wordsArray, $word);
+            }
+        }
+
+        public function isWordInArray($word) {
+            return in_array($word, $this->wordsArray);
         }
     }
 ?>

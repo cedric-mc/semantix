@@ -11,30 +11,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $pseudo = $_SESSION['pseudo'];
     $game = unserialize($_SESSION['game']);
+    $newWord = $_POST['word'];
     include("game_fonctions.php");
-    $newWord = strtolower($_POST['word']);
+
+    if ($game->isWordInArray($newWord)) {
+        $_SESSION['game'] = serialize($game);
+        header('Location: game.php?erreur=2');
+        exit();
+    }
+
+    $game->addWord($newWord); // Ajout du mot dans le tableau
 
     $commande_verif_mot = "./C/bin/dictionary_lookup C/arbre_lexicographique.lex $newWord";
     $verif_mot = shell_exec($commande_verif_mot);
 
     if ($verif_mot == -1) {
+        $_SESSION['game'] = serialize($game);
         header('Location: game.php?erreur=1');
         exit();
     }
     unset($_POST['word']);
 
-    $commande_add_word = './C/bin/add_word C/fasttext-fr.bin ' . $newWord . ' ' . $_SESSION['pseudo'];
-    exec($commande_add_word);
+    exec("./C/bin/add_word C/fasttext-fr.bin $newWord $_SESSION[pseudo]");
     // Java : trier les paires
-    $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -jar ./java/out/artifacts/java_jar/java.jar partie/game_data_$pseudo.txt partie/resultjava_$pseudo.txt 2>&1";
+    $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main $pseudo 1 2>&1";
     exec($commandeJar);
-    if (!ifLastWordAdd()) {
-        header("Location: game.php?erreur=3");
-        exit();
-    }
 
-    $_SESSION['paires'] = [];
-    $cheminFichier = "partie/resultjava_$pseudo.txt";
+    $cheminFichier = "partie/best_path_$pseudo.txt";
     $fichier = fopen($cheminFichier, "r"); // Ouvre le fichier en lecture
     // Vérifie si le fichier est ouvert avec succès
     if ($fichier) {

@@ -93,23 +93,6 @@
         fclose($fichier_resultat);
     }
     
-    function ifLastWordAdd() {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        $fichier_resultat = fopen("partie/resultjava_$_SESSION[pseudo].txt", 'r');
-        // 'Dernier mot ajouté: true' ou 'Dernier mot ajouté: false'
-        // On itère sur les lignes du fichier jusqu'à trouver la ligne contenant 'Dernier mot ajouté'
-        while (($ligne = fgets($fichier_resultat)) !== false) {
-            if (strpos($ligne, "Dernier mot ajouté") !== false) {
-                // On convertit la ligne en booléen
-                $dernierMotAjoute = filter_var(trim(str_replace("Dernier mot ajouté: ", "", $ligne)), FILTER_VALIDATE_BOOLEAN);
-            }
-        }
-        fclose($fichier_resultat);
-        return $dernierMotAjoute;
-    }
-    
     function ajouterPaire($tableau, $mot1, $mot2)
     { // Ajoute une paire de mots au tableau
         $distance = null;
