@@ -37,36 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exec("./C/bin/add_word C/fasttext-fr.bin $newWord $_SESSION[pseudo]");
     // Java : trier les paires
     $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main $pseudo 1 2>&1";
-    exec($commandeJar);
-
-    $cheminFichier = "partie/best_path_$pseudo.txt";
-    $fichier = fopen($cheminFichier, "r"); // Ouvre le fichier en lecture
-    // Vérifie si le fichier est ouvert avec succès
-    if ($fichier) {
-        // Lit la première ligne de type "Score minimal: 0.5" et récupère le score minimal
-        $ligne = fgets($fichier);
-        $ligne = explode("Score minimal: ", $ligne);
-        if ($_SESSION['scores'] < trim($ligne[1])) {
-            $_SESSION['scores'] = trim($ligne[1]);
-        }
-
-        fgets($fichier);
-        // Lit et traite chaque ligne à partir de la troisième ligne
-        while (($ligne = fgets($fichier)) !== false) {
-            // Traitement de la ligne, par exemple, l'affichage
-            // Exemple ligne : menthe-mentir, 55
-            $ligne = explode(",", $ligne);
-            $addingWords = trim($ligne[0]);
-            $addingWords = explode("-", $addingWords);
-            $_SESSION['paires'][] = ["mot1" => trim($addingWords[0]), "mot2" => trim($addingWords[1]), "nombre" => trim($ligne[1])];
-        }
-
-        // Ferme le fichier
-        fclose($fichier);
-    } else {
-        // Gestion d'erreur si le fichier ne peut pas être ouvert
-        echo "Impossible d'ouvrir le fichier.";
-    }
+    exec($commandeJar, $output);
+    echo "<pre>";
+    print_r($output);
+    echo "</pre>";
     $_SESSION['game'] = serialize($game);
     header('Location: game.php');
     exit();
