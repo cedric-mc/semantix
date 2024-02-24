@@ -9,6 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: ../home.php');
         exit();
     }
+    if (isset($_SESSION['output'])) {
+        unset($_SESSION['output']);
+    }
     require_once("../class/User.php");
     require_once("../class/Game.php");
     $pseudo = $_SESSION['pseudo'];
