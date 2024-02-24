@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 // erreur php
 ini_set('display_errors', 1);
@@ -11,6 +12,7 @@ if (isset($_SESSION['pseudo'])) {
 }
 
 include '../conf.bkp.php';
+require_once("../class/User.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pseudo = $_POST["pseudo"];
@@ -38,8 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Comparer les hachages
             if ($hashed_input_motdepasse === $stored_motdepasse) {
                 // Mot de passe correct
+                $user = new User($pseudo, $user['num_user'], $user['email']);
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['num_user'] = $user['num_user'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['user'] = serialize($user);
 
                 include '../mail/mailer.php';
 
