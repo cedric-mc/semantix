@@ -259,5 +259,11 @@
                 });
             });
         </script>
+
+        <?php
+            echo "<pre>";
+            print_r($_SESSION['output']);
+            echo "</pre>";
+        ?>
     </body>
 </html>

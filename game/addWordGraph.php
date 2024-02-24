@@ -38,10 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Java : trier les paires
     $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main $pseudo 1 2>&1";
     exec($commandeJar, $output);
-    echo "<pre>";
-    print_r($output);
-    echo "</pre>";
-    exit();
+    $_SESSION['output'] = $output;
     $_SESSION['game'] = serialize($game);
     header('Location: game.php');
     exit();
