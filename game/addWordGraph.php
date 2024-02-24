@@ -9,6 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: ../home.php');
         exit();
     }
+    require_once("../class/User.php");
+    require_once("../class/Game.php");
     $pseudo = $_SESSION['pseudo'];
     $game = unserialize($_SESSION['game']);
     $newWord = $_POST['word'];
