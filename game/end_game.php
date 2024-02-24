@@ -8,11 +8,6 @@ if (!isset($_SESSION['pseudo'])) {
     exit();
 }
 
-/*if (!isset($_SESSION['paires'])) {
-    header("Location: game.php");
-    exit();
-}*/
-
 // Ajout du score final dans la base de données
 include("../conf.bkp.php");
 include("../includes/fonctions.php");
@@ -26,16 +21,12 @@ $requestAddFinalScore->bindParam(':score', $finalScore);
 $requestAddFinalScore->execute();
 $requestAddFinalScore->closeCursor();
 trace($_SESSION['num_user'], "A Joué une partie", $cnx);
-unset($_SESSION['paires']);
 unset($_SESSION['words']);
 
 // Supprimer tous les fichiers associés à l'utilisateur qui sont dans le dossier partie
-$files = glob('partie/*' . $_SESSION['pseudo'] . '*');
-foreach ($files as $file) {
-    if (is_file($file)) {
-        unlink($file);
-    }
-}
+unlink("partie/game_data_$_SESSION[pseudo].txt");
+unlink("partie/mst_$_SESSION[pseudo].txt");
+unlink("partie/best_path_$_SESSION[pseudo].txt");
 // Supprimer l'instance de la classe Game 
 unset($_SESSION['game']);
 
