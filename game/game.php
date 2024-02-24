@@ -112,7 +112,7 @@
                 </div>
             </div>
                 <div class="div3">
-                <p>Score actuel : <?php //echo calculateScore(); ?></p>
+                <p>Score actuel : <?php echo calculateScore(); ?></p>
                 <p>Nombre de mots : <?php //echo count($words); ?></p>
                 <p>Dernier mot : <?php //if (count($_SESSION['words']) > 2) echo ucfirst($_SESSION['words'][count($_SESSION['words']) - 1]); else echo "Aucun mot entré"; ?>
                 </p>

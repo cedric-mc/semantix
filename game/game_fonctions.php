@@ -2,6 +2,8 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+    require_once("../class/User.php");
+    $user = unserialize($_SESSION['user']);
 
     function fileToArray($array) {
         $paires = [];
@@ -119,12 +121,8 @@
         return $tableau;
     }
     
-    function calculateScore()
-    {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        return $_SESSION['scores'];
+    function calculateScore() {
+        fopen("partie/best_path_$user->pseudo.txt", 'r');
     }
     
     function createDataForGraph($paires) {
