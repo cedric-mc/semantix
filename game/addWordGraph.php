@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<pre>";
     print_r($output);
     echo "</pre>";
+    exit();
     $_SESSION['game'] = serialize($game);
     header('Location: game.php');
     exit();
