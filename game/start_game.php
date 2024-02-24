@@ -53,7 +53,7 @@ while (true) {
     }
     fclose($fichier);
 
-    if ($distance <= 30) {
+    if ($distance <= 40) {
         break;
     }
 }
