@@ -40,11 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Comparer les hachages
             if ($hashed_input_motdepasse === $stored_motdepasse) {
                 // Mot de passe correct
-                $user = new User($pseudo, $user['num_user'], $user['email']);
                 $_SESSION['pseudo'] = $pseudo;
                 $_SESSION['num_user'] = $user['num_user'];
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['user'] = serialize($user);
+                $_SESSION['user'] = serialize(new User($pseudo, $user['num_user'], $user['email']));
 
                 include '../mail/mailer.php';
 
