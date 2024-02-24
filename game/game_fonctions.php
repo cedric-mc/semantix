@@ -3,7 +3,6 @@
         session_start();
     }
     require_once("../class/User.php");
-    $user = unserialize($_SESSION['user']);
 
     function fileToArray($array) {
         $paires = [];
@@ -122,6 +121,7 @@
     }
     
     function calculateScore() {
+        $user = unserialize($_SESSION['user']);
         fopen("partie/best_path_$user->pseudo.txt", 'r');
     }
     
