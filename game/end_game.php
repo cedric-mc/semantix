@@ -7,7 +7,9 @@ if (!isset($_SESSION['pseudo'])) {
     header("Location: ./");
     exit();
 }
-
+if (isset($_SESSION['output'])) {
+    unset($_SESSION['output']);
+}
 // Ajout du score final dans la base de données
 include("../conf.bkp.php");
 include("../includes/fonctions.php");
