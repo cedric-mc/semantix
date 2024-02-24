@@ -1,8 +1,8 @@
 <?php
     class User {
-        public $pseudo;
-        public $idUser;
-        public $email;
+        public string $pseudo;
+        public int $idUser;
+        public string $email;
 
         public function __construct($pseudo, $idUser, $email) {
             $this->pseudo = $pseudo;
