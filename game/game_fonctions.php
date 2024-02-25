@@ -4,7 +4,7 @@
     }
     require_once("../class/User.php");
 
-    function fileToArray($array) {
+    function fileToArray() {
         $paires = [];
         // Parcourir chaque ligne du fichier
         foreach (file("partie/best_path_$_SESSION[pseudo].txt") as $ligne) {
@@ -34,8 +34,7 @@
         return $paires;
     }
 
-    function randomWord($filename)
-    {
+    function randomWord($filename) {
         // Lire le contenu du fichier dans une chaîne
         $content = file_get_contents($filename);
     
@@ -54,75 +53,6 @@
         return $mot;
     }
     
-    function startGame()
-    {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        $_SESSION['paires'] = [];
-        $_SESSION['words'] = [];
-        $_SESSION['scores'] = 0;
-    
-        $verif_mot1 = -1;
-        $verif_mot2 = -1;
-    
-        while ($verif_mot1 == -1) {
-            $mot1 = randomWord('Liste_mots.txt');
-            $commande_verif_mot1 = './C/bin/dictionary_lookup C/arbre_lexicographique.lex ' . $mot1;
-            $verif_mot1 = shell_exec($commande_verif_mot1);
-        }
-    
-        while ($verif_mot2 == -1) {
-            $mot2 = randomWord('Liste_mots.txt');
-            while ($mot1 == $mot2) {
-                $mot2 = randomWord('Liste_mots.txt');
-            }
-            $commande_verif_mot2 = './C/bin/dictionary_lookup C/arbre_lexicographique.lex ' . $mot2;
-            $verif_mot2 = shell_exec($commande_verif_mot2);
-        }
-    
-        $commande_start_game = './C/bin/new_game C/fasttext-fr.bin ' . $mot1 . ' ' . $mot2 . ' ' . $_SESSION['pseudo'];
-        exec($commande_start_game);
-    
-        $_SESSION['words'][0] = $mot1;
-        $_SESSION['words'][1] = $mot2;
-        $_SESSION['paires'] = ajouterPaire($_SESSION['paires'], $_SESSION['words'][0], $_SESSION['words'][1]);
-    
-        // Création du fichier de résultat java le 'resultjava_pseudo.txt' avec les droits rw-rw-rw-
-        $fichier_resultat = fopen("partie/resultjava_$_SESSION[pseudo].txt", 'w');
-        // On écrit les 3 premières lignes du fichier
-        fwrite($fichier_resultat, "Score minimal: " . $_SESSION['paires'][0]['nombre'] . "\n");
-        fwrite($fichier_resultat, "Dernier mot ajouté: true\n");
-        fwrite($fichier_resultat, $_SESSION['paires'][0]['mot1'] . "-" . $_SESSION['paires'][0]['mot2'] . ", " . $_SESSION['paires'][0]['nombre'] . "\n");
-        fclose($fichier_resultat);
-    }
-    
-    function ajouterPaire($tableau, $mot1, $mot2)
-    { // Ajoute une paire de mots au tableau
-        $distance = null;
-        $recherche = $mot1 . "-" . $mot2;
-        $recherche2 = $mot2 . "-" . $mot1;
-        $fichier_partie = fopen("partie/game_data_$_SESSION[pseudo].txt", 'r');
-        while (($ligne = fgets($fichier_partie)) !== false) {
-            if (((strpos($ligne, $recherche) !== false) || (strpos($ligne, $recherche2) !== false)) && strpos($ligne, "distance: ") !== false) {
-                // Extrait la valeur de la distance de la ligne
-                if ((strpos($ligne, $recherche) !== false)) {
-                    $distanceTexte = trim(str_replace("$mot1-$mot2, distance: ", "", $ligne));
-                }
-                if (strpos($ligne, $recherche2) !== false) {
-                    $distanceTexte = trim(str_replace("$mot2-$mot1, distance: ", "", $ligne));
-                }
-                $distance = floatval($distanceTexte);
-                break;
-            }
-        }
-        fclose($fichier_partie);
-    
-        $nouvellePaire = ["mot1" => $mot1, "mot2" => $mot2, "nombre" => $distance];
-        $tableau[] = $nouvellePaire;
-        return $tableau;
-    }
-    
     function calculateScore() {
         $user = unserialize($_SESSION['user']);
         $fichier = fopen("partie/best_path_$user->pseudo.txt", 'r');
@@ -139,15 +69,6 @@
     }
     
     function createDataForGraph($paires) {
-        // Utilisation d’un tableau associatif pour stocker les relations entre les mots
-        /*
-        BestPath :
-        startWord : mot1
-        endWord : mot2
-        bestPathEdges : 
-        mot1_mot2,15.63
-        mot2_mot3,12.34
-        */
         foreach (file("partie/best_path_$_SESSION[pseudo].txt") as $line) {
             if (strpos($line, "bestPathEdges") !== false) {
                 $ligne = $line;

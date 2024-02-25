@@ -19,51 +19,8 @@
 
     $game = unserialize($_SESSION['game']);
     $paires = array();
-    $paires = fileToArray($paires);
-
-    // Utilisation d’un tableau associatif pour stocker les relations entre les mots
-    $relations = [];
-
-    foreach ($paires as $paire) {
-        $mot1 = $paire["mot1"];
-        $mot2 = $paire["mot2"];
-        $nombre = $paire["nombre"];
-
-        // Si la relation entre mot1 et mot2 n'existe pas encore
-        if (!isset($relations[$mot1][$mot2])) {
-            $relations[$mot1][$mot2] = $nombre;
-        } else {
-            // Si la relation existe déjà, additionner le nombre
-            $relations[$mot1][$mot2] += $nombre;
-        }
-    }
-
-    $nodes = [];
-    $links = [];
-
-    // Création des nodes et des links à partir des relations
-    foreach ($relations as $mot1 => $rel) {
-        $mot1 = ucfirst($mot1);
-        $nodes[] = ["id" => $mot1];
-
-        foreach ($rel as $mot2 => $nombre) {
-            $mot2 = ucfirst($mot2);
-            $nodes[] = ["id" => $mot2];
-            $links[] = [
-                "source" => $mot1,
-                "target" => $mot2,
-                "linkTextPath" => $nombre
-            ];
-        }
-    }
+    $paires = fileToArray();
     $highchartsData = createDataForGraph($paires);
-
-    include("../conf.bkp.php");
-    $scoreRequest = $cnx->prepare("SELECT MAX(score) AS maxS FROM SAE_SCORES s, SAE_USERS u WHERE u.num_user = s.num_user AND u.pseudo = :pseudo");
-    $scoreRequest->bindParam(':pseudo', $_SESSION['pseudo']);
-    $scoreRequest->execute();
-    $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
-    $scoreRequest->closeCursor();
 ?>
 <!DOCTYPE html>
 <html>
