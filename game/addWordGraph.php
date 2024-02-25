@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<pre>";
     print_r($output);
     echo "</pre>";
+    echo "<a href='game.php'>Retour</a>";
     exit();
     header('Location: game.php');
     exit();
