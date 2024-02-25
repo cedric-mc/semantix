@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     require_once("../class/User.php");
     require_once("../class/Game.php");
-    $pseudo = $_SESSION['pseudo'];
     $game = unserialize($_SESSION['game']);
+    $user = unserialize($_SESSION['user']);
     $newWord = $_POST['word'];
     include("game_fonctions.php");
 
@@ -37,17 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     unset($_POST['word']);
 
-    exec("./C/bin/add_word C/fasttext-fr.bin $newWord $_SESSION[pseudo]");
+    exec("./C/bin/add_word C/fasttext-fr.bin $newWord $user->pseudo");
     // Java : trier les paires
-    $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main $pseudo 1 2>&1";
+    $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main $user->pseudo 1 2>&1";
     exec($commandeJar, $output);
     $_SESSION['output'] = $output;
     $_SESSION['game'] = serialize($game);
-    echo "<pre>";
-    print_r($output);
-    echo "</pre>";
-    echo "<a href='game.php'>Retour</a>";
-    exit();
+    // echo "<pre>";
+    // print_r($output);
+    // echo "</pre>";
+    // echo "<a href='game.php'>Retour</a>";
+    // exit();
     header('Location: game.php');
     exit();
 }

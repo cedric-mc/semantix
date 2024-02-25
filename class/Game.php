@@ -6,23 +6,13 @@
         public $user;
         public $tour;
         public $wordsArray;
+        public $lastWord;
 
         public function __construct($user, $tour) {
             $this->user = $user;
             $this->tour = $tour;
             $this->wordsArray = array();
-        }
-
-            public function getUser(): string {
-            return $this->user;
-        }
-
-        public function getTour(): int {
-            return $this->tour;
-        }
-
-        public function getWordsArray(): array {
-            return $this->wordsArray;
+            $this->lastWord = "";
         }
 
         public function addTour() {
@@ -37,6 +27,10 @@
 
         public function isWordInArray($word) {
             return in_array($word, $this->wordsArray);
+        }
+
+        public function setLastWord($word) {
+            $this->lastWord = $word;
         }
     }
 ?>
