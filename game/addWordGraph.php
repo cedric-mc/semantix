@@ -43,11 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exec($commandeJar, $output);
     $_SESSION['output'] = $output;
     $_SESSION['game'] = serialize($game);
-    // echo "<pre>";
-    // print_r($output);
-    // echo "</pre>";
-    // echo "<a href='game.php'>Retour</a>";
-    // exit();
     header('Location: game.php');
     exit();
 }
