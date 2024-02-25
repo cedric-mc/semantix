@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $game = unserialize($_SESSION['game']);
     $user = unserialize($_SESSION['user']);
     $newWord = $_POST['word'];
+    $game->setLastWord($newWord);
     include("game_fonctions.php");
 
     if ($game->isWordInArray($newWord)) {
@@ -26,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $game->addWord($newWord); // Ajout du mot dans le tableau
+    unset($_POST['word']);
 
     $commande_verif_mot = "./C/bin/dictionary_lookup C/arbre_lexicographique.lex $newWord";
     $verif_mot = shell_exec($commande_verif_mot);
@@ -35,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: game.php?erreur=1');
         exit();
     }
-    unset($_POST['word']);
 
     exec("./C/bin/add_word C/fasttext-fr.bin $newWord $user->pseudo");
     // Java : trier les paires

@@ -59,6 +59,8 @@ while (true) {
 }
 
 $game = new Game($user, 1);
+$game->addWord($mot1);
+$game->addWord($mot2);
 
 $_SESSION['game'] = serialize($game);
 
