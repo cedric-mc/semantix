@@ -70,10 +70,10 @@
             </div>
                 <div class="div3">
                 <p>Score actuel : <?php echo calculateScore(); ?></p>
-                <p>Nombre de mots : <?php //echo count($words); ?></p>
-                <p>Dernier mot : <?php //if (count($_SESSION['words']) > 2) echo ucfirst($_SESSION['words'][count($_SESSION['words']) - 1]); else echo "Aucun mot entré"; ?>
+                <p>Nombre de mots : <?php echo count($game->wordsArray); ?></p>
+                <p>Dernier mot : <?php if (count($game->wordsArray) > 2) echo ucfirst($game->lastWord); else echo "Aucun mot entré"; ?>
                 </p>
-                <p>Nombre de mots restants : <?php //echo 7 - count($words) ?></p>
+                <p>Nombre de mots restants : <?php echo 7 - count($game->wordsArray) ?></p>
             </div>
             <div class="modal fade" id="endGameModal" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
