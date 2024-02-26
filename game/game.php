@@ -14,10 +14,6 @@
         2 => "Le mot est déjà dans la chaîne.",
         3 => "Le mot n'est pas assez proche du dernier mot de la chaîne."
     ];
-    if (isset($_GET['erreur'])) { // Si un message d’erreur est passé dans l'URL, sinon message vide erreur = 0
-        echo "<script>window.alert('Erreur : " . $messagesErreur[$_GET['erreur']] . "');</script>";
-    }
-    $erreur = $_GET['erreur'] ?? 0;
 
     $game = unserialize($_SESSION['game']);
     $paires = array();
@@ -95,7 +91,7 @@
             </div>
         </div>
         <div class="div5">
-            <h1 class="title"><?php if ($erreur != 0) echo "Erreur : " . $messagesErreur[$erreur]; ?></h1>
+            <h1 class="title"><?php //if ($erreur != 0) echo "Erreur : " . $messagesErreur[$erreur]; ?></h1>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
