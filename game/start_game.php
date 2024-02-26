@@ -34,8 +34,9 @@ while (true) {
     $commande_start_game = "./C/bin/new_game C/fasttext-fr.bin $mot1 $mot2 $user->pseudo";
     exec($commande_start_game);
 
-    $commandeJava = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main $user->pseudo 0 2>&1";
-    exec($commandeJava);
+    $commandeJava = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main game_data_$_SESSION[pseudo].txt 2>&1";
+    exec($commandeJava, $output);
+    $_SESSION['output'] = $output;
 
     $distance = 100;
     $fichier = fopen("partie/game_data_$user->pseudo.txt", "r");

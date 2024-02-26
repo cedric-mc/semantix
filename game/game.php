@@ -218,11 +218,11 @@
         </script>
 
         <?php
-            // if (isset($_SESSION['output'])) {
-            //     echo "<pre>";
-            //     print_r($_SESSION['output']);
-            //     echo "</pre>";
-            // }
+            if (isset($_SESSION['output'])) {
+                echo "<pre>";
+                print_r($_SESSION['output']);
+                echo "</pre>";
+            }
         ?>
     </body>
 </html>
