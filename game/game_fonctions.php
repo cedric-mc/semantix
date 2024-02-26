@@ -56,7 +56,6 @@
         echo "<pre>";
         print_r($paires);
         echo "</pre>";
-        exit();
         return $paires;
     }
 
