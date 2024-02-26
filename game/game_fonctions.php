@@ -11,7 +11,7 @@
         for ($i = 0; $i < 4; $i++) {
             fgets($fichier);
         }
-        $format = "/^(\w+) -> (\w+) : (\d+)$/";
+        $format = '/^(\w+) -> (\w+) : (\d+)$/';
         // Lire le fichier jusqu'à la fin
         while (($ligne = fgets($fichier)) !== false) {
             if (strpos($ligne, "EOF") !== false) {
