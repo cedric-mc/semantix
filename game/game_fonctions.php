@@ -21,8 +21,7 @@
             if (preg_match($format, $ligne, $matches)) {
                 $mot1 = $matches[1]; // Récupérer le premier mot
                 $mot2 = $matches[2]; // Récupérer le deuxième mot
-                // Récupérer le nombre et le convertir en double
-                $nombre = floatval($matches[3]);
+                $nombre = floatval($matches[3]); // Récupérer le nombre et le convertir en double
                 $paires[] = ["mot1" => $mot1, "mot2" => $mot2, "nombre" => $nombre];
             }
         }
