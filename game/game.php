@@ -102,7 +102,7 @@
                 "",
                 "Le mot n'est pas dans le dictionnaire.",
                 "Le mot est déjà dans la chaîne.",
-                "Le mot n'est pas assez proche du dernier mot de la chaîne."
+                "Le mot n'est pas assez proche des mots précédents."
             ]
             document.addEventListener('DOMContentLoaded', function() {
                 if (error != 0) {
