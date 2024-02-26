@@ -26,9 +26,6 @@
             }
         }
         fclose($fichier);
-        echo "<pre>";
-        print_r($paires);
-        echo "</pre>";
         foreach (file("partie/best_path_$_SESSION[pseudo].txt") as $ligne) {
             // Ignorer les lignes vides et les lignes commençant par "BestPath", "startWord", "endWord" ou "bestPathEdges"
             if (!empty($ligne) && !preg_match('/^(BestPath|startWord|endWord|bestPathEdges)/', $ligne)) {
@@ -53,9 +50,6 @@
                 }
             }
         }
-        echo "<pre>";
-        print_r($paires);
-        echo "</pre>";
         return $paires;
     }
 
