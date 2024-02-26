@@ -14,6 +14,7 @@
         2 => "Le mot est déjà dans la chaîne.",
         3 => "Le mot n'est pas assez proche du dernier mot de la chaîne."
     ];
+    $erreur = (isset($_GET['erreur'])) ? $_GET['erreur'] : 0;
 
     $game = unserialize($_SESSION['game']);
     $paires = array();
@@ -96,10 +97,17 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            var error = <?php echo json_encode($erreur); ?>;
+            var messagesErreur = [
+                "",
+                "Le mot n'est pas dans le dictionnaire.",
+                "Le mot est déjà dans la chaîne.",
+                "Le mot n'est pas assez proche du dernier mot de la chaîne."
+            ]
             document.addEventListener('DOMContentLoaded', function() {
-                <?php if (isset($_GET['erreur'])): ?>
-                    window.alert('Erreur : <?php echo $messagesErreur[$_GET['erreur']]; ?>');
-                <?php endif; ?>
+                if (error != 0) {
+                    alert("Erreur : " + messagesErreur[error]);
+                }
             });
         </script>
         <script>
