@@ -14,7 +14,9 @@
         2 => "Le mot est déjà dans la chaîne.",
         3 => "Le mot n'est pas assez proche du dernier mot de la chaîne."
     ];
-    // Si un message d’erreur est passé dans l'URL, sinon message vide erreur = 0
+    if (isset($_GET['erreur'])) { // Si un message d’erreur est passé dans l'URL, sinon message vide erreur = 0
+        echo "<script>window.alert('Erreur : " . $messagesErreur[$_GET['erreur']] . "');</script>";
+    }
     $erreur = $_GET['erreur'] ?? 0;
 
     $game = unserialize($_SESSION['game']);
