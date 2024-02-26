@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     exec("./C/bin/add_word C/fasttext-fr.bin $newWord $user->pseudo");
     // Java : trier les paires
-    $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main game_data_$_SESSION[pseudo].txt mst_$_SESSION[pseudo].txt 2>&1";
+    $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_$_SESSION[pseudo].txt partie/mst_$_SESSION[pseudo].txt 2>&1";
     exec($commandeJar, $output);
     $_SESSION['output'] = $output;
     $_SESSION['game'] = serialize($game);
