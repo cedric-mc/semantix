@@ -25,30 +25,38 @@
                 $paires[] = ["mot1" => $mot1, "mot2" => $mot2, "nombre" => $nombre];
             }
         }
-        // foreach (file("partie/best_path_$_SESSION[pseudo].txt") as $ligne) {
-        //     // Ignorer les lignes vides et les lignes commençant par "BestPath", "startWord", "endWord" ou "bestPathEdges"
-        //     if (!empty($ligne) && !preg_match('/^(BestPath|startWord|endWord|bestPathEdges)/', $ligne)) {
-        //         if (strpos("EOF", $ligne) === true) {
-        //             break;
-        //         }
-        //         // Diviser la ligne en utilisant la virgule comme délimiteur
-        //         $informations = explode(",", $ligne);
+        fclose($fichier);
+        echo "<pre>";
+        print_r($paires);
+        echo "</pre>";
+        foreach (file("partie/best_path_$_SESSION[pseudo].txt") as $ligne) {
+            // Ignorer les lignes vides et les lignes commençant par "BestPath", "startWord", "endWord" ou "bestPathEdges"
+            if (!empty($ligne) && !preg_match('/^(BestPath|startWord|endWord|bestPathEdges)/', $ligne)) {
+                if (strpos("EOF", $ligne) === true) {
+                    break;
+                }
+                // Diviser la ligne en utilisant la virgule comme délimiteur
+                $informations = explode(",", $ligne);
 
-        //         // Si le tableau a exactement deux éléments
-        //         if (count($informations) === 2) {
-        //             // Diviser la première information (la paire de mots) en utilisant le caractère underscore comme délimiteur
-        //             $mots = explode("_", trim($informations[0]));
+                // Si le tableau a exactement deux éléments
+                if (count($informations) === 2) {
+                    // Diviser la première information (la paire de mots) en utilisant le caractère underscore comme délimiteur
+                    $mots = explode("_", trim($informations[0]));
 
-        //             // Récupérer les mots individuels
-        //             $mot1 = $mots[0];
-        //             $mot2 = $mots[1];
-        //             $distance = floatval(trim($informations[1])); // Convertir la quantité en nombre
+                    // Récupérer les mots individuels
+                    $mot1 = $mots[0];
+                    $mot2 = $mots[1];
+                    $distance = floatval(trim($informations[1])); // Convertir la quantité en nombre
 
-        //             // Ajouter les informations au tableau
-        //             $paires[] = ["mot1" => $mot1, "mot2" => $mot2, "nombre" => $distance];
-        //         }
-        //     }
-        // }
+                    // Ajouter les informations au tableau
+                    $paires[] = ["mot1" => $mot1, "mot2" => $mot2, "nombre" => $distance];
+                }
+            }
+        }
+        echo "<pre>";
+        print_r($paires);
+        echo "</pre>";
+        exit();
         return $paires;
     }
 
