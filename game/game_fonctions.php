@@ -11,7 +11,7 @@
         for ($i = 0; $i < 4; $i++) {
             fgets($fichier);
         }
-        $format = '/^(\w+) -> (\w+) : (\d+)$/';
+        $format = "/^(\w+) -> (\w+) : (\d+)$/";
         // Lire le fichier jusqu'à la fin
         while (($ligne = fgets($fichier)) !== false) {
             if (strpos($ligne, "EOF") !== false) {
@@ -19,9 +19,10 @@
             }
             // Si la ligne est sous la forme "mot1 -> mot2 : nombre"
             if (preg_match($format, $ligne, $matches)) {
-                $mot1 = $matches[1];
-                $mot2 = $matches[2];
-                $nombre = intval($matches[3]);
+                $mot1 = $matches[1]; // Récupérer le premier mot
+                $mot2 = $matches[2]; // Récupérer le deuxième mot
+                // Récupérer le nombre et le convertir en double
+                $nombre = floatval($matches[3]);
                 $paires[] = ["mot1" => $mot1, "mot2" => $mot2, "nombre" => $nombre];
             }
         }
