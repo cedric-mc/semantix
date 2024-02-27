@@ -61,7 +61,7 @@
                         <input type="text" class="form-control" id="word" name="word" placeholder="Nouveau mot" required>
                         <label for="word">Nouveau mot</label>
                     </div>
-                    <input type="submit" value="Insérer un nouveau mot" class="btn btn-success <?php if (count($game->wordsArray) >= 7) { echo 'disabled'; } ?>">
+                    <input type="submit" value="Insérer un nouveau mot" class="btn btn-success <?php if (count($game->wordsArray) >= 7) echo 'disabled'; ?>">
                 </form>
                 <div id="end">
                     <a href="#" class="btn btn-primary" id="endGameButton">Finir la partie</a>
@@ -231,11 +231,11 @@
         </script>
 
         <?php
-            if (isset($_SESSION['output'])) {
-                echo "<pre>";
-                print_r($_SESSION['output']);
-                echo "</pre>";
-            }
+//            if (isset($_SESSION['output'])) {
+//                echo "<pre>";
+//                print_r($_SESSION['output']);
+//                echo "</pre>";
+//            }
         ?>
     </body>
 </html>
