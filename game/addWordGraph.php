@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($game->isWordInArray($newWord)) {
         $_SESSION['game'] = serialize($game);
-        header('Location: game.php?erreur=2');
+        header('Location: ./?erreur=2');
         exit();
     }
     $game->addWord($newWord); // Ajout du mot dans le tableau
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $verif_mot = shell_exec($commande_verif_mot);
     if ($verif_mot == -1) {
         $_SESSION['game'] = serialize($game);
-        header('Location: game.php?erreur=1');
+        header('Location: ./?erreur=1');
         exit();
     }
     exec("./C/bin/add_word C/fasttext-fr.bin $newWord $user->pseudo");
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exec($commandeJar, $output);
     $_SESSION['output'] = $output;
     $_SESSION['game'] = serialize($game);
-    header('Location: game.php');
+    header('Location: ./');
     exit();
 }
 ?>

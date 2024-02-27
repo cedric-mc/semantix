@@ -65,5 +65,5 @@ $game->addWord($mot2);
 
 $_SESSION['game'] = serialize($game);
 
-header('Location: game.php');
+header('Location: ./');
 ?>
