@@ -1,18 +1,39 @@
+.glassmorphism {
+    width: 75%;
+    height: auto;
+    border-radius: 8px;
+    padding: 1.875rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    margin: 0 auto; /* haut-bas gauche-droite */
+}
+
 .rules p, .rules h2, .rules h3 {
     color: white;
 }
 
+.rules {
+    width: fit-content !important;
+    margin: 0 auto;
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+}
+
 h1 {
-    font-size: 2.25rem;
+    width: fit-content;
+    text-align: center;
+    font-size: 2rem;
     color: #FFFFFF !important;
-    margin-bottom: 1.25rem;
+    margin: 0 auto 1.25rem;
     padding-bottom: 0.625rem;
     border-bottom: 0.125rem solid #FFFFFF;
     text-transform: uppercase;
 }
 
 .rules h2 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: #FFFFFF;
     margin-bottom: 1.25rem;
     padding-bottom: 0.625rem;
@@ -21,12 +42,12 @@ h1 {
 }
 
 .rules h3 {
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: #CCCCCC;
     margin-top: 1.25rem;
     margin-bottom: 0.625rem;
 }
 
-main h1::last-child {
+main h1:last-child {
     margin-top: 2rem;
 }

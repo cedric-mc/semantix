@@ -1,5 +1,5 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<link href='./css/menu.css' rel='stylesheet'>
+<link href="./css/menu.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/3f3ecfc27b.js"></script>
 <nav class="navbar">
     <ul class="navbar-nav">
