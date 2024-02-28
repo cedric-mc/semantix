@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pseudo_exists = $stmt_pseudo_exists->fetchColumn();
 
     if ($pseudo_exists) { // Si le pseudo existe déjà
-        header('Location: inscription.php?erreur=1');
+        header('Location: index.php?erreur=1');
         exit;
     }
 
@@ -30,18 +30,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_exists = $stmt_email_exists->fetchColumn();
 
     if ($email_exists) {
-        header('Location: inscription.php?erreur=2');
+        header('Location: index.php?erreur=2');
         exit;
     }
 
     //Les mots de passe sont-ils identiques ?
     if ($motdepasse1 != $motdepasse2) {
-        header('Location: inscription.php?erreur=3');
+        header('Location: index.php?erreur=3');
         exit;
     }
     // Vérifier si le nouveau mot de passe respecte les règles de la CNIL
     if (strlen($motdepasse1) < 12 && !preg_match('/[0-9]/', $motdepasse1) && !preg_match('/[A-Z]/', $motdepasse1) && !preg_match('/[a-z]/', $motdepasse1) && !preg_match('/[^a-zA-Z0-9]/', $motdepasse1)) {
-        header("Location: inscription.php?erreur=4");
+        header("Location: index.php?erreur=4");
         exit;
     }
 
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier si l'année de naissance est valide
     if ($annee_naissance < 1930 || $annee_naissance > 2017) {
-        header('Location: inscription.php?erreur=6');
+        header('Location: index.php?erreur=6');
         exit;
     }
 
@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Envoi du mail
     $mail->send();
 
-    header('Location: inscription.php?erreur=5');
+    header('Location: index.php?erreur=5');
     exit;
 }
 ?>

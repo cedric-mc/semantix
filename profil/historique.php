@@ -37,7 +37,7 @@ $historicRequest->closeCursor();
     </head>
 
     <body class="black">
-        <a class="btn btn-light" href="profil.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
+        <a class="btn btn-light" href="index.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
         <main class="glassmorphism">
             <h1 class="title">Votre Historique</h1>
             <div class="table-responsive">

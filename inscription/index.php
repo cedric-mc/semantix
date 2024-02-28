@@ -2,7 +2,7 @@
 session_start();
 // Utilisateur connecté ?
 if (isset($_SESSION['pseudo'])) {
-    header('Location: ../home.php');
+    header('Location: ../index.php');
     exit;
 }
 
@@ -84,7 +84,7 @@ $codeErreur = isset($_GET['erreur']) ? intval($_GET['erreur']) : 0;
                 document.getElementById('msg-error').classList.add('visible');
                 // Je rafraîchis la page au bout de 10s pour supprimer la variable get erreur
                 setTimeout(function () {
-                    window.location.href = '../inscription/inscription.php';
+                    window.location.href = 'index.php';
                 }, 10000);
             }
         </script>

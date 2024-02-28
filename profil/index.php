@@ -70,7 +70,7 @@ $top3Request->closeCursor();
 
     <body class="black">
         <main>
-            <a class="btn btn-light mb-3" href="../home.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
+            <a class="btn btn-light mb-3" href="../index.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
             <div class="parent glassmorphism">
                 <div class="photo-pseudo-buttons glassmorphism-section">
                     <div class="photo-pseudo">

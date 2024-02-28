@@ -7,11 +7,11 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 // Utilisateur déjà connecté ?
 if (isset($_SESSION['pseudo'])) {
-    header('Location: ../home.php');
+    header("Location: ../");
     exit;
 }
 
-include '../conf.bkp.php';
+include '../includes/conf.bkp.php';
 require_once("../class/User.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 include '../includes/fonctions.php';
                 trace($num_user, 'Connexion au Site', $cnx);
                 
-                header('Location: ../home.php');
+                header('Location: ../');
                 exit;
             } else {
                 // Mot de passe incorrect

@@ -39,7 +39,7 @@ $top10Request->closeCursor();
 	</head>
 
 	<body class="black">
-		<a class="btn btn-light mb-3" href="home.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
+		<a class="btn btn-light mb-3" href="index.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
 		<main class="glassmorphism">
 			<h1 class="title">Classement des 10 meilleurs joueurs</h1>
 			<div class="table-responsive">

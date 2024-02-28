@@ -2,7 +2,7 @@
 session_start();
 // Utilisateur déjà connecté ?
 if (isset($_SESSION['pseudo'])) {
-    header('Location: ../home.php');
+    header('Location: ../index.php');
     exit;
 }
 

@@ -1,19 +1,22 @@
-html {
-    padding: 1rem;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    /* background-image: url("../img/background.jpg");
+    min-height: 100vh;
+    background-image: url("../img/background.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    background-color: #f0f0f0 !important; */
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
+}
+
+main {
+    padding: 1rem;
 }
 
 h1.title {

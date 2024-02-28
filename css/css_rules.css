@@ -1,0 +1,32 @@
+.rules p, .rules h2, .rules h3 {
+    color: white;
+}
+
+h1 {
+    font-size: 2.25rem;
+    color: #FFFFFF !important;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 0.125rem solid #FFFFFF;
+    text-transform: uppercase;
+}
+
+.rules h2 {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 0.125rem solid #FFFFFF;
+    text-transform: uppercase;
+}
+
+.rules h3 {
+    font-size: 1.125rem;
+    color: #CCCCCC;
+    margin-top: 1.25rem;
+    margin-bottom: 0.625rem;
+}
+
+main h1::last-child {
+    margin-top: 2rem;
+}

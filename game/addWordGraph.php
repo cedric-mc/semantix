@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     if (!isset($_SESSION['pseudo'])) {
-        header('Location: ../home.php');
+        header('Location: ../index.php');
         exit();
     }
     if (isset($_SESSION['output'])) {

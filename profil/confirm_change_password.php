@@ -29,7 +29,7 @@ if (!isset($_SESSION['verification_code'])) {
     <script src="https://kit.fontawesome.com/3f3ecfc27b.js"></script>
 </head>
 <body class="black">
-<a class="btn btn-light mb-3" href="profil.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
+<a class="btn btn-light mb-3" href="index.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
 <main class="position-absolute top-50 start-50 translate-middle">
     <div class="glassmorphism">
         <h1 class="title">Code de confirmation</h1>
