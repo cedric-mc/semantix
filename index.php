@@ -22,10 +22,9 @@ $pseudo = $_SESSION['pseudo'];
             include("includes/menu.php");
         ?>
         <figure class="text-end">
-            <a class="btn btn-light" href="rules.php">Règles&emsp;<i class="fa-solid fa-scale-balanced"></i></a>
             <a class="btn btn-light" href="classement.php">Classement&emsp;<i class="fa-solid fa-trophy"></i></a>
             <a class='btn btn-light' href="traces.php">Traces&emsp;<i class="fa-solid fa-clipboard-list"></i></a>
-            <a class="btn btn-light" href="profil/index.php">Mon Profil&emsp;<i class="fa-solid fa-user"></i></a>
+            <a class="btn btn-light" href="profil/">Mon Profil&emsp;<i class="fa-solid fa-user"></i></a>
         </figure>
         <main class="position-absolute top-50 start-50 translate-middle glassmorphism">
             <h1 class="title">Semantic Analogy Explorer</h1>

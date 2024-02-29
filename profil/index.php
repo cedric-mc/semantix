@@ -6,7 +6,7 @@ if (!isset($_SESSION['pseudo'])) {
 }
 $pseudo = $_SESSION['pseudo'];
 
-include("../conf.bkp.php");
+include("../includes/conf.bkp.php");
 include("../includes/fonctions.php");
 // Requête pour récupérer les informations de l'utilisateur
 $profilRequest = $cnx->prepare("
