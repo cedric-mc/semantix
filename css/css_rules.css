@@ -1,13 +1,13 @@
 .glassmorphism {
-    width: 75%;
-    height: auto;
-    border-radius: 8px;
-    padding: 1.875rem;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(9px);
-    -webkit-backdrop-filter: blur(9px);
-    margin: 0 auto; /* haut-bas gauche-droite */
+    margin: 0 auto;
+    width: min-content;
+    background: transparent;
+    border: 2px solid rgba(8, 6, 6, 0.2);
+    color: #fff;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    padding: 30px 40px;
 }
 
 .rules p, .rules h2, .rules h3 {
@@ -15,14 +15,15 @@
 }
 
 .rules {
-    width: fit-content !important;
-    margin: 0 auto;
+    width: auto;
+    margin: 1rem 0 1rem 0; /* top right bottom left */
     padding: 1.25rem;
     border-radius: 0.625rem;
+    text-align: center;
 }
 
 h1 {
-    width: fit-content;
+    width: 100%;
     text-align: center;
     font-size: 2rem;
     color: #FFFFFF !important;
@@ -30,6 +31,7 @@ h1 {
     padding-bottom: 0.625rem;
     border-bottom: 0.125rem solid #FFFFFF;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .rules h2 {
@@ -46,6 +48,12 @@ h1 {
     color: #CCCCCC;
     margin-top: 1.25rem;
     margin-bottom: 0.625rem;
+}
+
+.rules p {
+    font-size: 1rem;
+    color: #FFFFFF;
+    margin-bottom: 1.25rem;
 }
 
 main h1:last-child {

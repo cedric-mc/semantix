@@ -22,7 +22,7 @@ if (!isset($_SESSION['pseudo'])) {
     </head>
 
     <body>
-        <?php include("includes/menu.php"); ?>
+        <?php include("includes/menu.php"); ?> <!-- Inclusion du menu -->
         <main class="glassmorphism">
             <h1>Règles du Jeu Semonkey - Mode Solo</h1>
             <section class="rules">
