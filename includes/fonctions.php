@@ -68,16 +68,4 @@ function addStyleTableRow($action): string
     }
 }
 
-function podiumClass(int $position) {
-    if ($position == 1) {
-        return "gold";
-    } else if ($position == 2) {
-        return "silver";
-    } else if ($position == 3) {
-        return "bronze";
-    } else {
-        return "";
-    }
-}
-
 ?>
