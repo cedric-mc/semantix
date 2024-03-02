@@ -16,9 +16,10 @@ include("../includes/fonctions.php");
 include("game_fonctions.php");
 
 // Score final
+$calculateScore = calculateScore();
 $requestAddFinalScore = $cnx->prepare("INSERT INTO SAE_SCORES (num_user, score) VALUES (:num_user, :score)");
 $requestAddFinalScore->bindParam(':num_user', $_SESSION['num_user']);
-$requestAddFinalScore->bindParam(':score', calculateScore());
+$requestAddFinalScore->bindParam(':score', $calculateScore);
 $requestAddFinalScore->execute();
 $requestAddFinalScore->closeCursor();
 trace($_SESSION['num_user'], "A Joué une partie", $cnx);
@@ -30,7 +31,10 @@ unlink("partie/mst_$_SESSION[pseudo].txt");
 unlink("partie/best_path_$_SESSION[pseudo].txt");
 // Supprimer l'instance de la classe Game 
 unset($_SESSION['game']);
-
+if (isset($_GET['again'])) {
+    header("Location: start_game.php");
+    exit();
+}
 header("Location: ../");
 exit();
 ?>

@@ -73,7 +73,7 @@ $top3Request->closeCursor();
     <body>
         <?php include("../includes/menu.php"); ?>
         <main class="glassmorphism">
-            <h1 class="title">Profil</h1>
+            <h1 class="title">Mon Profil</h1>
             <div class="parent">
                 <div class="photo-pseudo-buttons glassmorphism-section">
                     <div class="photo-pseudo">

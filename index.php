@@ -29,7 +29,7 @@ $pseudo = $_SESSION['pseudo'];
                 </header>
                 <h2 class="subtitle">Bienvenue, joueur <?php echo $pseudo; ?></h2>
                 <button class="executeButton" onclick="window.location.href='game/start_game.php'">Solo&emsp;<i class="fa-solid fa-user"></i></button>
-                <button class="executeButton disabled" onclick="window.location.href='game/start_game.php'">Multijoueur&emsp;<i class="fa-solid fa-users"></i></button>
+                <button class="executeButton disabled" disabled>Multijoueur&emsp;<i class="fa-solid fa-users"></i></button>
                 <!--<form method="post" action="game/start_game.php">
                     <h3 class="subtitle2"><i class="fa-solid fa-gamepad"></i>&emsp;Choisissez un mode de jeu&emsp;<i class="fa-solid fa-dice"></i></h3>
                     <button id="executeButton" class="btn btn-primary btn-lg" type="submit">Solo&emsp;<i class="fa-solid fa-user"></i></button>

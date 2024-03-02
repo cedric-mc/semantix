@@ -43,3 +43,21 @@ header img {
     margin-top: 2rem;
     white-space: nowrap;
 }
+
+*.disabled {
+    background: #ccc;
+    color: #000;
+    cursor: not-allowed;
+}
+
+*.disabled:disabled {
+    background: #ccc;
+    color: #000;
+    cursor: not-allowed;
+}
+
+/* les deux boutons s'étendent sur toute la largeur et sont de la même taille sur la même ligne */
+button {
+    width: 100%;
+    margin: 0;
+}
