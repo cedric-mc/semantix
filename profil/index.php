@@ -72,8 +72,9 @@ $top3Request->closeCursor();
 
     <body>
         <?php include("../includes/menu.php"); ?>
-        <main>
-            <div class="parent glassmorphism">
+        <main class="glassmorphism">
+            <h1 class="title">Profil</h1>
+            <div class="parent">
                 <div class="photo-pseudo-buttons glassmorphism-section">
                     <div class="photo-pseudo">
                         <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $pseudo;?>">
