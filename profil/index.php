@@ -55,7 +55,7 @@ $top3Request->closeCursor();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-sacle=1.0">
@@ -172,13 +172,13 @@ $top3Request->closeCursor();
 
             $(document).ready(function() {
                 function updateElapsedTime() {
-                    var now = Math.floor(new Date().getTime() / 1000); // Temps actuel en secondes
-                    var lastConnexionTimestamp = <?php echo strtotime($profilResult->lastConnexion); ?>;
-                    var elapsedSeconds = now - lastConnexionTimestamp;
+                    const now = Math.floor(new Date().getTime() / 1000); // Temps actuel en secondes
+                    const lastConnexionTimestamp = <?php echo strtotime($profilResult->lastConnexion); ?>;
+                    const elapsedSeconds = now - lastConnexionTimestamp;
 
-                    var hours = Math.floor(elapsedSeconds / 3600);
-                    var minutes = Math.floor((elapsedSeconds % 3600) / 60);
-                    var seconds = elapsedSeconds % 60;
+                    const hours = Math.floor(elapsedSeconds / 3600);
+                    const minutes = Math.floor((elapsedSeconds % 3600) / 60);
+                    const seconds = elapsedSeconds % 60;
 
                     // Créez une chaîne de caractères pour afficher le temps écoulé
                     let elapsedTimeString = "";
