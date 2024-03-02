@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION['user'])) {
-    header('Location: ../index.php');
+    header("Location: ../");
     exit();
 }
 $user = unserialize($_SESSION['user']);
@@ -16,16 +16,16 @@ error_reporting(E_ALL);
 while (true) {
     $verif_mot = -1;
     while ($verif_mot == -1) {
-        $mot1 = randomWord('Liste_mots.txt');
+        $mot1 = randomWord("Liste_mots.txt");
         $commande_verif = "./C/bin/dictionary_lookup C/arbre_lexicographique.lex $mot1";
         $verif_mot = shell_exec($commande_verif);
     }
     $verif_mot = -1;
 
     while ($verif_mot == -1) {
-        $mot2 = randomWord('Liste_mots.txt');
+        $mot2 = randomWord("Liste_mots.txt");
         while ($mot1 == $mot2) {
-            $mot2 = randomWord('Liste_mots.txt');
+            $mot2 = randomWord("Liste_mots.txt");
         }
         $commande_verif = "./C/bin/dictionary_lookup C/arbre_lexicographique.lex $mot2";
         $verif_mot = shell_exec($commande_verif);

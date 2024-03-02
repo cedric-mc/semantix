@@ -18,6 +18,7 @@ if (!isset($_SESSION['pseudo'])) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="style/style.css">
         <link rel="stylesheet" href="style/css_rules.css">
+        <link rel="shortcut icon" href="./img/monkeyapp.png">
         <?php include("includes/head.php"); ?>
     </head>
 

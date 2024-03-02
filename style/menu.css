@@ -39,6 +39,11 @@ main {
     height: 100%;
 }
 
+.scrollable-nav-items {
+    width: 100%;
+    overflow-y: auto;
+}
+
 .nav-item {
     width: 100%;
 }

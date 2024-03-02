@@ -11,7 +11,7 @@ if (isset($_SESSION['output'])) {
     unset($_SESSION['output']);
 }
 // Ajout du score final dans la base de données
-include("../conf.bkp.php");
+include("../includes/conf.bkp.php");
 include("../includes/fonctions.php");
 include("game_fonctions.php");
 
