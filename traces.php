@@ -6,7 +6,7 @@ if (!isset($_SESSION['pseudo'])) {
 }
 $pseudo = $_SESSION['pseudo'];
 include("includes/fonctions.php");
-include("conf.bkp.php");
+include("includes/conf.bkp.php");
 // Récupération les traces de tous les utilisateurs
 $tracesEveryoneRequest = $cnx->prepare("SELECT timestamp, ip_adress, utilisateur_id, action FROM SAE_TRACES ORDER BY id DESC LIMIT 500;");
 $tracesEveryoneRequest->execute();
@@ -29,8 +29,8 @@ $tracesOnlyMeRequest->closeCursor();
 	<meta name="keywords" content="Semantic Analogy Explorer, SAE, jeu, jeu en ligne, jeu de mots, jeu de lettres, jeu de lettres en ligne, jeu de mots en ligne, jeu de lettres multijoueur, jeu de mots multijoueur, jeu de lettres multijoueur en ligne, jeu de mots multijoueur en ligne, jeu de lettres multijoueur gratuit, jeu de mots multijoueur gratuit, jeu de lettres multijoueur gratuit en ligne, jeu de mots multijoueur gratuit en ligne, jeu de lettres multijoueur gratuit sans inscription, jeu de mots multijoueur gratuit sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription, jeu de mots multijoueur gratuit en ligne sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3f3ecfc27b.js"></script>
-	<link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/table.css">
+	<link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/table.css">
     <style>
         .nav-tabs {
             justify-content: center;

@@ -1,15 +1,3 @@
-.glassmorphism {
-    margin: 0 auto;
-    width: min-content;
-    background: transparent;
-    border: 2px solid rgba(8, 6, 6, 0.2);
-    color: #fff;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    border-radius: 10px;
-    padding: 30px 40px;
-}
-
 .rules p, .rules h2, .rules h3 {
     color: white;
 }

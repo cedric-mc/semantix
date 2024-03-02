@@ -68,7 +68,7 @@ $top3Request->closeCursor();
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     </head>
 
-    <body class="black">
+    <body>
         <main>
             <a class="btn btn-light mb-3" href="../index.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
             <div class="parent glassmorphism">

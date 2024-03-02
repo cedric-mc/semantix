@@ -28,8 +28,8 @@ $codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
 	<meta name="description" content="Venez Jouez à Semantic Analogy Explorer (SAE), un jeu en ligne à un ou plusieurs joueurs basé sur les similarités entre mots : « Semantic Analogy Explorer ». Chaque joueur reçoit un mot de départ et un mot cible et propose des mots proches afin de créer une chaîne de mots similaires pour relier le mot de départ au mot cible. ">
 	<meta name="keywords" content="Semantic Analogy Explorer, SAE, jeu, jeu en ligne, jeu de mots, jeu de lettres, jeu de lettres en ligne, jeu de mots en ligne, jeu de lettres multijoueur, jeu de mots multijoueur, jeu de lettres multijoueur en ligne, jeu de mots multijoueur en ligne, jeu de lettres multijoueur gratuit, jeu de mots multijoueur gratuit, jeu de lettres multijoueur gratuit en ligne, jeu de mots multijoueur gratuit en ligne, jeu de lettres multijoueur gratuit sans inscription, jeu de mots multijoueur gratuit sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription, jeu de mots multijoueur gratuit en ligne sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/form.css">
+	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" href="../style/form.css">
 </head>
 
 <body class="black">
@@ -41,15 +41,16 @@ $codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
 				<input name="pseudo" type="text" id="pseudo" required> <label for="pseudo">Pseudo</label>
 			</div>
 			<div class="input-field">
-				<input name="motdepasse" id="motdepasse" type="password" required> <label for="motdepasse">Mot de
-																										   passe</label>
+				<input name="motdepasse" id="motdepasse" type="password" required> <label for="motdepasse">Mot de passe</label>
 			</div>
 			<div class="forget">
 				<a href="../forgotpassword/forgot_password.php">Mot de passe oublié ?</a>
 			</div>
 			<button id="formButton" type="submit" class="btn fw-semibold">Se connecter</button>
 			<div class="register">
-				<p>Pas encore de compte ? <a href="../inscription/index.php">Inscrivez-vous.</a></p>
+				<p>
+                    Pas encore de compte ? <a href="../inscription/index.php">Inscrivez-vous.</a>
+                </p>
 			</div>
 		</form>
         <?php

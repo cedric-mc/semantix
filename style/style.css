@@ -24,24 +24,25 @@ h1.title {
     color: #fff;
     margin-bottom: 1.25rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
-.black {
-    background: linear-gradient(-45deg, #000000, #434343, #000000) no-repeat fixed center center;
-    background-size: cover;
-    animation: Gradient 15s ease infinite;
+.glassmorphism {
+    margin: 5rem auto;
+    width: min-content;
+    background: transparent;
+    border: 2px solid rgba(8, 6, 6, 0.2);
+    color: #fff;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    padding: 30px 40px;
 }
 
-@keyframes Gradient {
-    0% {
-        background-position: 0 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0 50%
-    }
+/* Class no-glassmorphism pour désactiver l'effet de verre */
+.no-glassmorphism {
+    backdrop-filter: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
 }

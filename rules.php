@@ -16,15 +16,15 @@ if (!isset($_SESSION['pseudo'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Règles - Semantic Analogy Explorer</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/css_rules.css">
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/css_rules.css">
         <?php include("includes/head.php"); ?>
     </head>
 
     <body>
         <?php include("includes/menu.php"); ?> <!-- Inclusion du menu -->
         <main class="glassmorphism">
-            <h1>Règles du Jeu Semonkey - Mode Solo</h1>
+            <h1 class="title">Règles du Jeu Semonkey - Mode Solo</h1>
             <section class="rules">
                 <h2>Objectif :</h2>
                 <p>L'objectif du jeu est de former une chaîne de mots connectés entre eux par leur similarités sémantiques et orthographiques. En partant de deux mots donnés au début, vous devez créer une suite de mots où chaque nouveau mot est similaire, soit dans son sens, soit dans sa forme, au mot précédent. L'objectif est d'obtenir le score de ressemblance le plus élevé possible entre les mots.</p>
@@ -55,7 +55,7 @@ if (!isset($_SESSION['pseudo'])) {
                 <h3>Score final :</h3>
                 <p>Le score final est déterminé en prenant en compte à la fois la ressemblance visuelle et la ressemblance de sens. La paire de mots consécutifs qui se ressemble le moins détermine votre score final. Le but est donc de choisir des mots qui non seulement se suivent bien, mais qui maintiennent également une forte ressemblance tout au long de la chaîne.</p>
             </section>
-            <h1>Règles du Jeu Semonkey - Mode Multijoueur</h1>
+            <h1 class="title">Règles du Jeu Semonkey - Mode Multijoueur</h1>
             <section class="rules">
 
             </section>
