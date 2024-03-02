@@ -1,7 +1,6 @@
 <?php
 //Journalisation
-function trace($userId, $action, $cnx)
-{
+function trace($userId, $action, $cnx) {
     $query = "INSERT INTO SAE_TRACES (utilisateur_id, action, ip_adress) VALUES (:utilisateur_id, :action, :ip_adress)";
     $stmt = $cnx->prepare($query);
     $stmt->bindParam(":utilisateur_id", $userId, PDO::PARAM_INT);
@@ -12,29 +11,25 @@ function trace($userId, $action, $cnx)
 }
 
 // Formatage des dates
-function makeDate($date)
-{
+function makeDate($date) {
     $date = date_create($date);
     return date_format($date, 'd/m/Y');
 }
 
 // Formatage des heures
-function makeHour($date)
-{
+function makeHour($date) {
     $date = date_create($date);
     return date_format($date, 'H:i:s');
 }
 
 // Formatage des dates et heures
-function makeDateTime($date)
-{
+function makeDateTime($date) {
     $date = date_create($date);
     return date_format($date, 'd/m/Y à H:i:s');
 }
 
 // Calcul le temps écoulé entre maintenant et une date donnée (date en format datetime)
-function passedTime($dateHeure)
-{
+function passedTime($dateHeure) {
     $dateHeure = date_create($dateHeure);
     $now = date_create(date("Y-m-d H:i:s"));
     $diff = date_diff($dateHeure, $now);
