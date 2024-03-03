@@ -1,6 +1,6 @@
 <?php
-$param = isset($param) ? $param : 0;
-if ($param == 1) {
+$menu = !isset($menu) ? 0 : $menu;
+if ($menu == 1) {
     $before = "../";
 } else {
     $before = "";

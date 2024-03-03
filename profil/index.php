@@ -5,7 +5,7 @@ if (!isset($_SESSION['pseudo'])) {
     exit;
 }
 $pseudo = $_SESSION['pseudo'];
-$param = 1;
+$menu = 1;
 
 include("../includes/conf.bkp.php");
 include("../includes/fonctions.php");

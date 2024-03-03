@@ -9,6 +9,8 @@ if (!isset($_SESSION['pseudo'])) {
     exit;
 }
 $pseudo = $_SESSION['pseudo'];
+$menu = 1;
+
 include("../includes/conf.bkp.php");
 include("../includes/fonctions.php");
 require("../includes/requetes.php");
@@ -23,8 +25,6 @@ $top10UsersRequest = $cnx->prepare($top10Users);
 $top10UsersRequest->execute();
 $top10UsersResult = $top10UsersRequest->fetchAll(PDO::FETCH_OBJ);
 $top10UsersRequest->closeCursor();
-
-$param = 1;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
