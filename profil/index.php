@@ -134,34 +134,11 @@
         <?php include("../includes/menu.php"); ?>
         <main class="glassmorphism">
             <h1 class="title">Mon Profil</h1>
-            <div class="profil">
-                <ul class="profil-section">
-                    <li class="picture-info">
-                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $user->getPseudo(); ?>">
-                        <ul>
-                            <li>Pseudo : <?php echo $user->getPseudo(); ?></li>
-                            <li>Email : <?php echo $user->getEmail(); ?></li>
-                            <li>Année de Naissance : <?php echo $user->getYear(); ?></li>
-                            <li><span id="tempsEcoule"></span></li>
-                        </ul>
-                    </li>
-                    <li class="change">
-                        <h2 class="title-section">Changer</h2>
-                        <ul>
-                            <li><a href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a></li>
-                            <li><a href="change_email.php" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></a></li>
-                            <li><a href="change_password.php" class="btn btn-warning text-nowrap">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></li>
-                            <li><a href="change_profil-photo.php" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!--<h1 class="title">Mon Profil</h1>
             <div class="parent">
                 <div class="photo-pseudo-buttons glassmorphism-section">
                     <div class="photo-pseudo">
-                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php /*echo $user->getPseudo(); */?>">
-                        <h1 class="title-section h1"><?php /*echo $user->getPseudo(); */?></h1>
+                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $user->getPseudo(); ?>">
+                        <h1 class="title-section h1"><?php echo $user->getPseudo(); ?></h1>
                     </div>
                     <div class="buttons">
                         <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
@@ -177,25 +154,25 @@
                         <li>
                             <ul>
                                 <li>Score Minimum</li>
-                                <li><button class="btn btn-dark"><?php /*echo $scoreResult->minS == null ? 0 : $scoreResult->minS; */?> <i class="fa-solid fa-arrow-down"></i></button></li>
+                                <li><button class="btn btn-dark"><?php echo $scoreResult->minS == null ? 0 : $scoreResult->minS; ?> <i class="fa-solid fa-arrow-down"></i></button></li>
                             </ul>
                         </li>
                         <li>
                             <ul>
                                 <li>Score Maximum</li>
-                                <li><button class="btn btn-dark"><?php /*echo $scoreResult->maxS == null ? 0 : $scoreResult->maxS; */?> <i class="fa-solid fa-arrow-up"></i></button></li>
+                                <li><button class="btn btn-dark"><?php echo $scoreResult->maxS == null ? 0 : $scoreResult->maxS; ?> <i class="fa-solid fa-arrow-up"></i></button></li>
                             </ul>
                         </li>
                         <li>
                             <ul>
                                 <li>Score Moyen</li>
-                                <li><button class="btn btn-dark"><?php /*echo round($scoreResult->avgS) == null ? 0 : round($scoreResult->avgS); */?> <i class="fa-solid fa-arrows-left-right"></i></button></li>
+                                <li><button class="btn btn-dark"><?php echo round($scoreResult->avgS) == null ? 0 : round($scoreResult->avgS); ?> <i class="fa-solid fa-arrows-left-right"></i></button></li>
                             </ul>
                         </li>
                         <li>
                             <ul>
                                 <li>Nombre de Parties</li>
-                                <li><button class="btn btn-dark"><?php /*echo $scoreResult->nbParties == null ? "<span style='color: red'>Essayez de jouer !</span>" : $scoreResult->nbParties; */?> <i class="fa-solid fa-hashtag"></i></button></li>
+                                <li><button class="btn btn-dark"><?php echo $scoreResult->nbParties == null ? "<span style='color: red'>Essayez de jouer !</span>" : $scoreResult->nbParties; ?> <i class="fa-solid fa-hashtag"></i></button></li>
                             </ul>
                         </li>
                     </ul>
@@ -204,19 +181,19 @@
                     <h2 class="title-section">Meilleurs Scores</h2>
                     <div class="score-list">
                         <div id="first" class="btn gold">
-                            <span class="pseudo"><?php /*echo $top3Result[0]->pseudo;*/?></span>
-                            <span class="score"><?php /*echo $top3Result[0]->score;*/?></span>
+                            <span class="pseudo"><?php echo $top3Result[0]->pseudo;?></span>
+                            <span class="score"><?php echo $top3Result[0]->score;?></span>
                         </div>
                         <div id="second" class="btn silver">
-                            <span class="pseudo"><?php /*echo $top3Result[1]->pseudo;*/?></span>
-                            <span class="score"><?php /*echo $top3Result[1]->score;*/?></span>
+                            <span class="pseudo"><?php echo $top3Result[1]->pseudo;?></span>
+                            <span class="score"><?php echo $top3Result[1]->score;?></span>
                         </div>
                         <div id="third" class="btn bronze">
-                            <span class="pseudo"><?php /*echo $top3Result[2]->pseudo;*/?></span>
-                            <span class="score"><?php /*echo $top3Result[2]->score;*/?></span>
+                            <span class="pseudo"><?php echo $top3Result[2]->pseudo;?></span>
+                            <span class="score"><?php echo $top3Result[2]->score;?></span>
                         </div>
                         <?php
-/*                        if ($top3Result[0]->pseudo != $pseudo && $top3Result[1]->pseudo != $pseudo && $top3Result[2]->pseudo != $pseudo) {
+                        if ($top3Result[0]->pseudo != $pseudo && $top3Result[1]->pseudo != $pseudo && $top3Result[2]->pseudo != $pseudo) {
                             echo "<div id='myScore' class='btn btn-dark'>";
                         } else {
                             echo "<div id='myScore' class='btn " . ($top3Result[0]->pseudo == $pseudo ? "gold" : ($top3Result[1]->pseudo == $pseudo ? "silver" : "bronze")) . "'>";
@@ -224,22 +201,22 @@
                         echo "<span class='pseudo'>$pseudo</span>";
                         echo "<span class='score'>" . ($scoreResult->maxS == null ? 0 : $scoreResult->maxS) . "</span>";
                         echo "</div>";
-                        */?>
+                        ?>
                     </div>
                 </div>
                 <div class="mesinformations glassmorphism-section">
                     <h2 class="title-section">Mes Informations</h2>
                     <div>
-                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php /*echo $profilResult->email;*/?>">
-                            Email : <?php /*echo $user->getEmail();*/?>
+                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $profilResult->email;?>">
+                            Email : <?php echo $user->getEmail();?>
                         </button>
-                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php /*echo $profilResult->annee_naissance;*/?>">
-                            Année de Naissance : <?php /*echo $user->getYear();*/?>
+                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $profilResult->annee_naissance;?>">
+                            Année de Naissance : <?php echo $user->getYear();?>
                         </button>
-                        <button id="tempsEcoule" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php /*echo makeDateTime($profilResult->lastConnexion);*/?>"></button>
+                        <button id="tempsEcoule" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo makeDateTime($profilResult->lastConnexion);?>"></button>
                     </div>
                 </div>
-            </div>-->
+            </div>
         </main>
         <script>
             $(document).ready(function(){
