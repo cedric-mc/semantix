@@ -1,19 +1,19 @@
 <?php
+include_once("../class/User.php");
+include_once("../includes/conf.bkp.php");
+include_once("../includes/fonctions.php");
+include_once("../includes/requetes.php");
 session_start();
 // Erreurs PHP
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-if (!isset($_SESSION['pseudo'])) {
+if (!isset($_SESSION['user'])) {
     header('Location: ../');
     exit;
 }
-$pseudo = $_SESSION['pseudo'];
+$user = unserialize($_SESSION['user']);
 $menu = 1;
-
-include("../includes/conf.bkp.php");
-include("../includes/fonctions.php");
-require("../includes/requetes.php");
 // Requête pour récupérer le score des 10 premiers utilisateurs
 $top10ScoresRequest = $cnx->prepare($top10Scores);
 $top10ScoresRequest->execute();

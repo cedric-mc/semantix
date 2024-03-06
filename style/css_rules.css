@@ -14,12 +14,10 @@ h1 {
     width: 100%;
     text-align: center;
     font-size: 2rem;
-    color: #FFFFFF !important;
     margin: 0 auto 1.25rem;
     padding-bottom: 0.625rem;
     border-bottom: 0.125rem solid #FFFFFF;
     text-transform: uppercase;
-    white-space: nowrap;
 }
 
 .rules h2 {

@@ -171,21 +171,23 @@ h2 {
     margin-top: 1rem;
 }
 
-@media (min-width: 600px) {
+/* Adapte le nombre de colonnes en fonction de la largeur de l'écran */
+@media (min-width: 800px) {
     .parent {
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
-        padding: 1rem;
-        margin: 0 auto;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .parent {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 1rem;
-        margin: 0 auto;
     }
+}
+
+.profil {
+    
 }

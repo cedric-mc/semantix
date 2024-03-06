@@ -52,112 +52,12 @@
 	    <meta name="keywords" content="Semantic Analogy Explorer, SAE, jeu, jeu en ligne, jeu de mots, jeu de lettres, jeu de lettres en ligne, jeu de mots en ligne, jeu de lettres multijoueur, jeu de mots multijoueur, jeu de lettres multijoueur en ligne, jeu de mots multijoueur en ligne, jeu de lettres multijoueur gratuit, jeu de mots multijoueur gratuit, jeu de lettres multijoueur gratuit en ligne, jeu de mots multijoueur gratuit en ligne, jeu de lettres multijoueur gratuit sans inscription, jeu de mots multijoueur gratuit sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription, jeu de mots multijoueur gratuit en ligne sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement">
         <title>Profil - Semantic Analogy Explorer</title>
         <link rel="stylesheet" href="../style/style.css">
-        <link rel="stylesheet" href="../style/css_profil.css">
+<!--        <link rel="stylesheet" href="../style/css_profil.css">-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <link rel="icon" href="../img/monkeyapp.png">
         <?php include("../includes/head.php"); ?>
-    </head>
-
-    <body>
-        <?php include("../includes/menu.php"); ?>
-        <main class="glassmorphism">
-            <h1 class="title">Mon Profil</h1>
-            <div class="parent">
-                <div class="photo-pseudo-buttons glassmorphism-section">
-                    <div class="photo-pseudo">
-                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $user->getPseudo(); ?>">
-                        <h1 class="title-section h1"><?php echo $user->getPseudo(); ?></h1>
-                    </div>
-                    <div class="buttons">
-                        <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
-                        <a id="btn-email" href="change_email.php" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></a>
-                        <a id="btn-mdp" href="change_password.php" class="btn btn-warning text-nowrap">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></a>
-                        <a id="btn-photo" href="change_profil-photo.php" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></a>
-                        <button id="disconnect-btn" class="btn btn-danger g-col-6 text-nowrap">Se déconnecter&emsp;<i class="fa-solid fa-right-from-bracket"></i></button>
-                    </div>
-                </div>
-                <div class="stats glassmorphism-section">
-                    <h2 class="title-section h2">Mes Statistiques</h2>
-                    <ul>
-                        <li>
-                            <ul>
-                                <li>Score Minimum</li>
-                                <li><button class="btn btn-dark"><?php echo $scoreResult->minS == null ? 0 : $scoreResult->minS; ?> <i class="fa-solid fa-arrow-down"></i></button></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <li>Score Maximum</li>
-                                <li><button class="btn btn-dark"><?php echo $scoreResult->maxS == null ? 0 : $scoreResult->maxS; ?> <i class="fa-solid fa-arrow-up"></i></button></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <li>Score Moyen</li>
-                                <li><button class="btn btn-dark"><?php echo round($scoreResult->avgS) == null ? 0 : round($scoreResult->avgS); ?> <i class="fa-solid fa-arrows-left-right"></i></button></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul>
-                                <li>Nombre de Parties</li>
-                                <li><button class="btn btn-dark"><?php echo $scoreResult->nbParties == null ? "<span style='color: red'>Essayez de jouer !</span>" : $scoreResult->nbParties; ?> <i class="fa-solid fa-hashtag"></i></button></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="scores glassmorphism-section">
-                    <h2 class="title-section">Meilleurs Scores</h2>
-                    <div class="score-list">
-                        <div id="first" class="btn gold">
-                            <span class="pseudo"><?php echo $top3Result[0]->pseudo;?></span>
-                            <span class="score"><?php echo $top3Result[0]->score;?></span>
-                        </div>
-                        <div id="second" class="btn silver">
-                            <span class="pseudo"><?php echo $top3Result[1]->pseudo;?></span>
-                            <span class="score"><?php echo $top3Result[1]->score;?></span>
-                        </div>
-                        <div id="third" class="btn bronze">
-                            <span class="pseudo"><?php echo $top3Result[2]->pseudo;?></span>
-                            <span class="score"><?php echo $top3Result[2]->score;?></span>
-                        </div>
-                        <?php
-                        if ($top3Result[0]->pseudo != $pseudo && $top3Result[1]->pseudo != $pseudo && $top3Result[2]->pseudo != $pseudo) {
-                            echo "<div id='myScore' class='btn btn-dark'>";
-                        } else {
-                            echo "<div id='myScore' class='btn " . ($top3Result[0]->pseudo == $pseudo ? "gold" : ($top3Result[1]->pseudo == $pseudo ? "silver" : "bronze")) . "'>";
-                        }
-                        echo "<span class='pseudo'>$pseudo</span>";
-                        echo "<span class='score'>" . ($scoreResult->maxS == null ? 0 : $scoreResult->maxS) . "</span>";
-                        echo "</div>";
-                        ?>
-                    </div>
-                </div>
-                <div class="mesinformations glassmorphism-section">
-                    <h2 class="title-section">Mes Informations</h2>
-                    <div>
-                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $profilResult->email;?>">
-                            Email : <?php echo $user->getEmail();?>
-                        </button>
-                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $profilResult->annee_naissance;?>">
-                            Année de Naissance : <?php echo $user->getYear();?>
-                        </button>
-                        <button id="tempsEcoule" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo makeDateTime($profilResult->lastConnexion);?>"></button>
-                    </div>
-                </div>
-            </div>
-        </main>
         <script>
-            $(document).ready(function(){
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-
-            document.getElementById('disconnect-btn').addEventListener('click', function() {
-                if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
-                    window.location.href = '../connexion/script-logout.php'; // Redirigez vers la page de déconnexion
-                }
-            });
-
             $(document).ready(function() {
                 function updateElapsedTime() {
                     const now = Math.floor(new Date().getTime() / 1000); // Temps actuel en secondes
@@ -185,6 +85,171 @@
 
                 // Appelez la fonction une fois au chargement de la page
                 updateElapsedTime();
+            });
+        </script>
+        <style>
+            .profil {
+                width: auto;
+                height: auto;
+                display: flex;
+            }
+
+            .profil .profil-section {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .picture-info {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .picture-info img {
+                width: 12.5rem;
+                height: 12.5rem;
+                border-radius: 50%;
+            }
+
+            .picture-info ul {
+                list-style: none;
+                margin-left: 1rem;
+            }
+
+            .change {
+                margin-top: 2rem;
+            }
+
+            .change ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <?php include("../includes/menu.php"); ?>
+        <main class="glassmorphism">
+            <h1 class="title">Mon Profil</h1>
+            <div class="profil">
+                <ul class="profil-section">
+                    <li class="picture-info">
+                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $user->getPseudo(); ?>">
+                        <ul>
+                            <li>Pseudo : <?php echo $user->getPseudo(); ?></li>
+                            <li>Email : <?php echo $user->getEmail(); ?></li>
+                            <li>Année de Naissance : <?php echo $user->getYear(); ?></li>
+                            <li><span id="tempsEcoule"></span></li>
+                        </ul>
+                    </li>
+                    <li class="change">
+                        <h2 class="title-section">Changer</h2>
+                        <ul>
+                            <li><a href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a></li>
+                            <li><a href="change_email.php" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></a></li>
+                            <li><a href="change_password.php" class="btn btn-warning text-nowrap">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></li>
+                            <li><a href="change_profil-photo.php" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--<h1 class="title">Mon Profil</h1>
+            <div class="parent">
+                <div class="photo-pseudo-buttons glassmorphism-section">
+                    <div class="photo-pseudo">
+                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php /*echo $user->getPseudo(); */?>">
+                        <h1 class="title-section h1"><?php /*echo $user->getPseudo(); */?></h1>
+                    </div>
+                    <div class="buttons">
+                        <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
+                        <a id="btn-email" href="change_email.php" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></a>
+                        <a id="btn-mdp" href="change_password.php" class="btn btn-warning text-nowrap">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></a>
+                        <a id="btn-photo" href="change_profil-photo.php" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></a>
+                        <button id="disconnect-btn" class="btn btn-danger g-col-6 text-nowrap">Se déconnecter&emsp;<i class="fa-solid fa-right-from-bracket"></i></button>
+                    </div>
+                </div>
+                <div class="stats glassmorphism-section">
+                    <h2 class="title-section h2">Mes Statistiques</h2>
+                    <ul>
+                        <li>
+                            <ul>
+                                <li>Score Minimum</li>
+                                <li><button class="btn btn-dark"><?php /*echo $scoreResult->minS == null ? 0 : $scoreResult->minS; */?> <i class="fa-solid fa-arrow-down"></i></button></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li>Score Maximum</li>
+                                <li><button class="btn btn-dark"><?php /*echo $scoreResult->maxS == null ? 0 : $scoreResult->maxS; */?> <i class="fa-solid fa-arrow-up"></i></button></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li>Score Moyen</li>
+                                <li><button class="btn btn-dark"><?php /*echo round($scoreResult->avgS) == null ? 0 : round($scoreResult->avgS); */?> <i class="fa-solid fa-arrows-left-right"></i></button></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul>
+                                <li>Nombre de Parties</li>
+                                <li><button class="btn btn-dark"><?php /*echo $scoreResult->nbParties == null ? "<span style='color: red'>Essayez de jouer !</span>" : $scoreResult->nbParties; */?> <i class="fa-solid fa-hashtag"></i></button></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="scores glassmorphism-section">
+                    <h2 class="title-section">Meilleurs Scores</h2>
+                    <div class="score-list">
+                        <div id="first" class="btn gold">
+                            <span class="pseudo"><?php /*echo $top3Result[0]->pseudo;*/?></span>
+                            <span class="score"><?php /*echo $top3Result[0]->score;*/?></span>
+                        </div>
+                        <div id="second" class="btn silver">
+                            <span class="pseudo"><?php /*echo $top3Result[1]->pseudo;*/?></span>
+                            <span class="score"><?php /*echo $top3Result[1]->score;*/?></span>
+                        </div>
+                        <div id="third" class="btn bronze">
+                            <span class="pseudo"><?php /*echo $top3Result[2]->pseudo;*/?></span>
+                            <span class="score"><?php /*echo $top3Result[2]->score;*/?></span>
+                        </div>
+                        <?php
+/*                        if ($top3Result[0]->pseudo != $pseudo && $top3Result[1]->pseudo != $pseudo && $top3Result[2]->pseudo != $pseudo) {
+                            echo "<div id='myScore' class='btn btn-dark'>";
+                        } else {
+                            echo "<div id='myScore' class='btn " . ($top3Result[0]->pseudo == $pseudo ? "gold" : ($top3Result[1]->pseudo == $pseudo ? "silver" : "bronze")) . "'>";
+                        }
+                        echo "<span class='pseudo'>$pseudo</span>";
+                        echo "<span class='score'>" . ($scoreResult->maxS == null ? 0 : $scoreResult->maxS) . "</span>";
+                        echo "</div>";
+                        */?>
+                    </div>
+                </div>
+                <div class="mesinformations glassmorphism-section">
+                    <h2 class="title-section">Mes Informations</h2>
+                    <div>
+                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php /*echo $profilResult->email;*/?>">
+                            Email : <?php /*echo $user->getEmail();*/?>
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php /*echo $profilResult->annee_naissance;*/?>">
+                            Année de Naissance : <?php /*echo $user->getYear();*/?>
+                        </button>
+                        <button id="tempsEcoule" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php /*echo makeDateTime($profilResult->lastConnexion);*/?>"></button>
+                    </div>
+                </div>
+            </div>-->
+        </main>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+
+            document.getElementById('disconnect-btn').addEventListener('click', function() {
+                if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                    window.location.href = '../connexion/script-logout.php'; // Redirigez vers la page de déconnexion
+                }
             });
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
