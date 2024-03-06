@@ -1,59 +1,48 @@
 <?php
-session_start();
-if (!isset($_SESSION['pseudo'])) {
-    header('Location: ../');
-    exit;
-}
-$pseudo = $_SESSION['pseudo'];
-$menu = 1;
-
-include("../includes/conf.bkp.php");
-include("../includes/fonctions.php");
-// Requête pour récupérer les informations de l'utilisateur
-$profilRequest = $cnx->prepare("
-SELECT email, 
-       annee_naissance,
-        (SELECT MAX(timestamp) 
-         FROM SAE_TRACES 
-         WHERE utilisateur_id = u.num_user 
-           AND action = 'Connexion au Site') AS lastConnexion
-FROM SAE_USERS u,
-     SAE_TRACES t
-WHERE u.num_user = t.utilisateur_id
-  AND action = 'Connexion au Site'
-  AND pseudo = :pseudo");
-$profilRequest->bindParam(':pseudo', $pseudo);
-$profilRequest->execute();
-$profilResult = $profilRequest->fetch(PDO::FETCH_OBJ);
-$profilRequest->closeCursor();
-// Requête pour récupérer les statistiques de l'utilisateur
-$scoreRequest = $cnx->prepare("
-SELECT MIN(score) AS minS,
-       MAX(score) AS maxS,
-       AVG(score) AS avgS,
-       COUNT(score) AS nbParties
-FROM SAE_SCORES s,
-     SAE_USERS u
-WHERE u.num_user = s.num_user 
-  AND u.pseudo = :pseudo");
-$scoreRequest->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-$scoreRequest->execute();
-$scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
-$scoreRequest->closeCursor();
-// Requête pour récupérer le top 3 des meilleurs scores (max), le pseudo n'apparaît qu'une seule fois
-$top3Request = $cnx->prepare("
-SELECT pseudo, MAX(score) AS score
-FROM SAE_SCORES s,
-     SAE_USERS u
-WHERE u.num_user = s.num_user
-GROUP BY pseudo
-ORDER BY score DESC
-LIMIT 3");
-$top3Request->execute();
-$top3Result = $top3Request->fetchAll(PDO::FETCH_OBJ);
-$top3Request->closeCursor();
+    include_once("../class/User.php");
+    include("../includes/conf.bkp.php");
+    include("../includes/fonctions.php");
+    include("../includes/requetes.php");
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header("Location: ../connexion/");
+        exit;
+    }
+    $user = unserialize($_SESSION['user']);
+    // Requête pour récupérer les informations de l'utilisateur
+    $profilRequest = $cnx->prepare($profil);
+    $profilRequest->bindParam(":pseudo", $user->getPseudo(), PDO::PARAM_STR);
+    $profilRequest->execute();
+    $profilResult = $profilRequest->fetch(PDO::FETCH_OBJ);
+    $profilRequest->closeCursor();
+    // Requête pour récupérer les statistiques de l'utilisateur
+    $scoreRequest = $cnx->prepare("
+    SELECT MIN(score) AS minS,
+           MAX(score) AS maxS,
+           AVG(score) AS avgS,
+           COUNT(score) AS nbParties
+    FROM SAE_SCORES s,
+         SAE_USERS u
+    WHERE u.num_user = s.num_user 
+      AND u.pseudo = :pseudo");
+    $scoreRequest->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+    $scoreRequest->execute();
+    $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
+    $scoreRequest->closeCursor();
+    // Requête pour récupérer le top 3 des meilleurs scores (max), le pseudo n'apparaît qu'une seule fois
+    $top3Request = $cnx->prepare("
+    SELECT pseudo, MAX(score) AS score
+    FROM SAE_SCORES s,
+         SAE_USERS u
+    WHERE u.num_user = s.num_user
+    GROUP BY pseudo
+    ORDER BY score DESC
+    LIMIT 3");
+    $top3Request->execute();
+    $top3Result = $top3Request->fetchAll(PDO::FETCH_OBJ);
+    $top3Request->closeCursor();
+    $menu = 1;
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -77,8 +66,8 @@ $top3Request->closeCursor();
             <div class="parent">
                 <div class="photo-pseudo-buttons glassmorphism-section">
                     <div class="photo-pseudo">
-                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $pseudo;?>">
-                        <h1 class="title-section h1"><?php echo $pseudo;?></h1>
+                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $user->getPseudo(); ?>">
+                        <h1 class="title-section h1"><?php echo $user->getPseudo(); ?></h1>
                     </div>
                     <div class="buttons">
                         <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
@@ -148,13 +137,12 @@ $top3Request->closeCursor();
                     <h2 class="title-section">Mes Informations</h2>
                     <div>
                         <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $profilResult->email;?>">
-                            Email : <?php echo $profilResult->email;?>
+                            Email : <?php echo $user->getEmail();?>
                         </button>
                         <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $profilResult->annee_naissance;?>">
-                            Année de Naissance : <?php echo $profilResult->annee_naissance;?>
+                            Année de Naissance : <?php echo $user->getYear();?>
                         </button>
-                        <button id="tempsEcoule" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo makeDateTime($profilResult->lastConnexion);?>">
-                        </button>
+                        <button id="tempsEcoule" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo makeDateTime($profilResult->lastConnexion);?>"></button>
                     </div>
                 </div>
             </div>

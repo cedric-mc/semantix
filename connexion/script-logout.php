@@ -4,7 +4,7 @@ if (!isset($_SESSION['pseudo'])) {
     header('Location: ../');
 }
 
-include '../conf.bkp.php';
+include '../includes/conf.bkp.php';
 include '../includes/fonctions.php';
 
 //Récuperer le num_user pour la journalisation
@@ -19,6 +19,7 @@ $num_user = $resultat['num_user'];
 trace($num_user, 'Déconnexion du Site', $cnx);
 
 session_start();
+session_unset();
 session_destroy();
 header('Location: ../index.php?erreur=6');
 ?>

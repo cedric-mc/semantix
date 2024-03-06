@@ -1,10 +1,11 @@
 <?php
+include_once("class/User.php");
 session_start();
-if (!isset($_SESSION['pseudo'])) {
+if (!isset($_SESSION['user'])) {
     header('Location: connexion/');
     exit;
 }
-$pseudo = $_SESSION['pseudo'];
+$user = unserialize($_SESSION['user']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -27,7 +28,7 @@ $pseudo = $_SESSION['pseudo'];
                     <h1 class="title">Semonkey</h1>
                     <img src="img/monkeyapp.png" alt="Semantic Analogy Explorer">
                 </header>
-                <h2 class="subtitle">Bienvenue, joueur <?php echo $pseudo; ?></h2>
+                <h2 class="subtitle">Bienvenue, joueur <?php echo $user->getPseudo(); ?></h2>
                 <button class="executeButton" onclick="window.location.href='game/start_game.php'">Solo&emsp;<i class="fa-solid fa-user"></i></button>
                 <button class="executeButton disabled" disabled>Multijoueur&emsp;<i class="fa-solid fa-users"></i></button>
                 <!--<form method="post" action="game/start_game.php">
