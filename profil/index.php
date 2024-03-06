@@ -1,4 +1,7 @@
 <?php
+    // Erreur php
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
     include_once("../class/User.php");
     include("../includes/conf.bkp.php");
     include("../includes/fonctions.php");
@@ -10,21 +13,13 @@
     }
     $user = unserialize($_SESSION['user']);
     // Requête pour récupérer les informations de l'utilisateur
-    $profilRequest = $cnx->prepare($profil);
+    $profilRequest = $cnx->prepare($lastConnexionProfil);
     $profilRequest->bindParam(":pseudo", $user->getPseudo(), PDO::PARAM_STR);
     $profilRequest->execute();
     $profilResult = $profilRequest->fetch(PDO::FETCH_OBJ);
     $profilRequest->closeCursor();
     // Requête pour récupérer les statistiques de l'utilisateur
-    $scoreRequest = $cnx->prepare("
-    SELECT MIN(score) AS minS,
-           MAX(score) AS maxS,
-           AVG(score) AS avgS,
-           COUNT(score) AS nbParties
-    FROM SAE_SCORES s,
-         SAE_USERS u
-    WHERE u.num_user = s.num_user 
-      AND u.pseudo = :pseudo");
+    $scoreRequest = $cnx->prepare($scoreProfil);
     $scoreRequest->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
     $scoreRequest->execute();
     $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
@@ -52,82 +47,11 @@
 	    <meta name="keywords" content="Semantic Analogy Explorer, SAE, jeu, jeu en ligne, jeu de mots, jeu de lettres, jeu de lettres en ligne, jeu de mots en ligne, jeu de lettres multijoueur, jeu de mots multijoueur, jeu de lettres multijoueur en ligne, jeu de mots multijoueur en ligne, jeu de lettres multijoueur gratuit, jeu de mots multijoueur gratuit, jeu de lettres multijoueur gratuit en ligne, jeu de mots multijoueur gratuit en ligne, jeu de lettres multijoueur gratuit sans inscription, jeu de mots multijoueur gratuit sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription, jeu de mots multijoueur gratuit en ligne sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement">
         <title>Profil - Semantic Analogy Explorer</title>
         <link rel="stylesheet" href="../style/style.css">
-<!--        <link rel="stylesheet" href="../style/css_profil.css">-->
+        <link rel="stylesheet" href="../style/css_profil.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <link rel="icon" href="../img/monkeyapp.png">
         <?php include("../includes/head.php"); ?>
-        <script>
-            $(document).ready(function() {
-                function updateElapsedTime() {
-                    const now = Math.floor(new Date().getTime() / 1000); // Temps actuel en secondes
-                    const lastConnexionTimestamp = <?php echo strtotime($profilResult->lastConnexion); ?>;
-                    const elapsedSeconds = now - lastConnexionTimestamp;
-
-                    const hours = Math.floor(elapsedSeconds / 3600);
-                    const minutes = Math.floor((elapsedSeconds % 3600) / 60);
-                    const seconds = elapsedSeconds % 60;
-
-                    // Créez une chaîne de caractères pour afficher le temps écoulé
-                    let elapsedTimeString = "";
-                    if (hours > 0) {
-                        elapsedTimeString += hours + "h ";
-                    }
-                    if (minutes > 0) {
-                        elapsedTimeString += minutes + "m ";
-                    }
-                    elapsedTimeString += seconds + "s";
-                    $("#tempsEcoule").text("Dernière connexion : " + elapsedTimeString);
-                }
-
-                // Mettez à jour le temps écoulé toutes les secondes
-                setInterval(updateElapsedTime, 1000);
-
-                // Appelez la fonction une fois au chargement de la page
-                updateElapsedTime();
-            });
-        </script>
-        <style>
-            .profil {
-                width: auto;
-                height: auto;
-                display: flex;
-            }
-
-            .profil .profil-section {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            .picture-info {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 20px;
-            }
-
-            .picture-info img {
-                width: 12.5rem;
-                height: 12.5rem;
-                border-radius: 50%;
-            }
-
-            .picture-info ul {
-                list-style: none;
-                margin-left: 1rem;
-            }
-
-            .change {
-                margin-top: 2rem;
-            }
-
-            .change ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-        </style>
     </head>
 
     <body>
@@ -227,6 +151,35 @@
                 if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
                     window.location.href = '../connexion/script-logout.php'; // Redirigez vers la page de déconnexion
                 }
+            });
+
+            $(document).ready(function() {
+                function updateElapsedTime() {
+                    const now = Math.floor(new Date().getTime() / 1000); // Temps actuel en secondes
+                    const lastConnexionTimestamp = <?php echo strtotime($profilResult->lastConnexion); ?>;
+                    const elapsedSeconds = now - lastConnexionTimestamp;
+
+                    const hours = Math.floor(elapsedSeconds / 3600);
+                    const minutes = Math.floor((elapsedSeconds % 3600) / 60);
+                    const seconds = elapsedSeconds % 60;
+
+                    // Créez une chaîne de caractères pour afficher le temps écoulé
+                    let elapsedTimeString = "";
+                    if (hours > 0) {
+                        elapsedTimeString += hours + "h ";
+                    }
+                    if (minutes > 0) {
+                        elapsedTimeString += minutes + "m ";
+                    }
+                    elapsedTimeString += seconds + "s";
+                    $("#tempsEcoule").text("Dernière connexion : " + elapsedTimeString);
+                }
+
+                // Mettez à jour le temps écoulé toutes les secondes
+                setInterval(updateElapsedTime, 1000);
+
+                // Appelez la fonction une fois au chargement de la page
+                updateElapsedTime();
             });
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
