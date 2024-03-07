@@ -6,7 +6,6 @@
             p {
                 font-size: 20px;
                 text-align: center;
-                margin-top: 20%;
             }
         </style>
     </head>
