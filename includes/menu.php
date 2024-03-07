@@ -12,7 +12,9 @@ if ($menu == 1) {
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link href="<?php echo $before; ?>style/menu.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/3f3ecfc27b.js"></script>
+        <title>Menu - Semonkey</title>
     </head>
+
     <body>
         <nav class="navbar">
             <ul class="navbar-nav">
@@ -75,7 +77,7 @@ if ($menu == 1) {
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?php echo $before; ?>./friendList.php" class="nav-link">
+                        <a href="<?php echo $before; ?>./amis/" class="nav-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
                                 <path d="M15 11h7v2h-7zm1 4h6v2h-6zm-2-8h8v2h-8zM4 19h10v-1c0-2.757-2.243-5-5-5H7c-2.757 0-5 2.243-5 5v1h2zm4-7c1.995 0 3.5-1.505 3.5-3.5S9.995 5 8 5 4.5 6.505 4.5 8.5 6.005 12 8 12z"></path>
                             </svg> <span class="link-text">Amis</span>
