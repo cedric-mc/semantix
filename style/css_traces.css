@@ -3,3 +3,8 @@
     border-radius: 1rem;
     overflow: hidden;
 }
+
+.table-responsive {
+    border-collapse: collapse;
+    border-radius: 1rem;
+}
