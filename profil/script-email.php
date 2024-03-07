@@ -1,14 +1,19 @@
 <?php
-session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $oldEmail = $_POST['email1'];
     $newEmail = $_POST['email2'];
+
+    include_once("../class/User.php");
+    include_once("../includes/conf.bkp.php"); // Connexion à la base de données
+    session_start();
 
     // Vérifier si l'utilisateur est connecté
     if (!isset($_SESSION['user'])) {
         header('Location: ../');
         exit;
     }
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
+    $pseudo = $user->getPseudo();
 
     // Vérifier si les deux emails sont identiques
     if ($oldEmail == $newEmail) {
@@ -16,16 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    include("../conf.bkp.php"); // Connexion à la base de données
     // Vérifier si l'ancien email est correct
     $sql = "SELECT email FROM SAE_USERS WHERE pseudo = :pseudo";
     $stmt = $cnx->prepare($sql);
-    $stmt->execute(['pseudo' => $_SESSION['pseudo']]);
+    $stmt->execute(['pseudo' => $pseudo]);
     $user = $stmt->fetch();
     $stmt->closeCursor();
 
     // Vérifier si l'ancien email est correct
-    if ($user['email'] != $oldEmail) {
+    if ($user->getEmail() != $oldEmail) {
         header('Location: change_email.php?emailErreur=2');
         exit;
     }
@@ -51,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $stmt->closeCursor();
 
-    //Mail
+    // Mail
     include '../mail/mailer.php';
 
     $mail->addAddress($newEmail);
