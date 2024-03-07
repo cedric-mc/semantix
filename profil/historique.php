@@ -39,7 +39,7 @@
     <body>
         <?php include("../includes/menu.php"); ?>
         <main class="glassmorphism">
-            <h1 class="title">Historique sur Semonkey</h1>
+            <h1 class="title">Historique du jeu Semonkey</h1>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
