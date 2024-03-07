@@ -46,10 +46,17 @@
                     $_SESSION['user'] = serialize($user);
 
                     include("../mail/mailer.php");
+
+                    // Capture de la sortie de la page PHP dans une variable
+                    ob_start();
+                    include("../mail/connexion.php");
+                    $content = ob_get_clean();
+
                     //Contenu du mail
                     $mail->isHTML(true);
                     $mail->Subject = 'Connexion';
-                    $mail->Body = "Bonjour ". $user->getPseudo() . ", Vous venez de vous connecter sur notre site ! <br><br> Si vous n'êtes pas à l'origine de cette connexion, veuillez changer immédiatement votre mot de passe !";
+                    $email->AddEmbeddedImage("../img/monkey.png", "logo");
+                    $mail->Body = $content;
 
                     $mail->addAddress($user->getEmail(), $user->getPseudo());
                     $mail->Content = 'UTF-8';

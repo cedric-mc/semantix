@@ -1,3 +1,7 @@
+.glassmorphism {
+    min-width: 25rem;
+}
+
 form {
     display: flex;
     flex-direction: column;
