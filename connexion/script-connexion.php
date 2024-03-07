@@ -55,8 +55,8 @@
                     //Contenu du mail
                     $mail->isHTML(true);
                     $mail->Subject = 'Connexion';
-                    $email->AddEmbeddedImage("../img/monkey.png", "logo");
                     $mail->Body = $content;
+                    $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
 
                     $mail->addAddress($user->getEmail(), $user->getPseudo());
                     $mail->Content = 'UTF-8';

@@ -14,7 +14,7 @@
     <body>
         <header>
             <h1>Alerte de Connexion</h1>
-            <img src="cid:logo" alt="Semonkey" width="100px" height="100px">
+            <img src="cid:mylogo" alt="Semonkey" width="100px" height="100px">
         </header>
         <p>
             Bonjour <?php echo $pseudo; ?>, Vous venez de vous connecter sur notre site !
