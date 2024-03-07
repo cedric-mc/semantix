@@ -18,6 +18,8 @@
 
     // Récupérer le code d’erreur depuis l'URL
     $codeErreur = isset($_GET['emailErreur']) ? (int)$_GET['emailErreur'] : 0;
+
+    $menu = 1;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,29 +33,27 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <?php include("../includes/head.php"); ?>
     </head>
-    <body class="black">
-        <a class="btn btn-light mb-3" href="index.php">Retour&emsp;<i class="fa-solid fa-left-long"></i></a>
-        <main class="position-absolute top-50 start-50 translate-middle">
-            <div class="glassmorphism">
-                <h1 class="title">Changer l'adresse email</h1>
-                <form action="script-email.php" method="POST">
-                    <div class="input-field">
-                        <input type="email" name="email1" id="email1" required>
-                        <label for="email1">Ancienne adresse email :</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="email" name="email2" id="email2" required>
-                        <label for="email2">Nouvelle adresse email :</label>
-                    </div>
-                    <button id="formButton" type="submit" class="btn fw-semibold">Valider</button>
-                </form>
-                <?php
+    <body>
+        <?php include("../includes/menu.php"); ?>
+        <main class="glassmorphism">
+            <h1 class="title">Changer l'adresse email</h1>
+            <form action="script-email.php" method="POST">
+                <div class="input-field">
+                    <input type="email" name="email1" id="email1" required>
+                    <label for="email1">Ancienne adresse email :</label>
+                </div>
+                <div class="input-field">
+                    <input type="email" name="email2" id="email2" required>
+                    <label for="email2">Nouvelle adresse email :</label>
+                </div>
+                <button id="formButton" type="submit" class="btn fw-semibold">Valider</button>
+            </form>
+            <?php
                 // Si le message d'erreur est différent de 0
                 if ($codeErreur > 0 && $codeErreur < 6) {
                     echo "<br><div id='msg-error' class='alert' role='alert'></div>";
                 }
-                ?>
-            </div>
+            ?>
         </main>
         <script>
             // Je récupère le message d’erreur
