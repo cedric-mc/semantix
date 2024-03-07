@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
     $pseudo = $user->getPseudo();
+    $email = $user->getEmail();
 
     // Vérifier si les deux emails sont identiques
     if ($oldEmail == $newEmail) {
@@ -29,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->closeCursor();
 
     // Vérifier si l'ancien email est correct
-    if ($user->getEmail() != $oldEmail) {
+    if ($email != $oldEmail) {
         header('Location: change_email.php?emailErreur=2');
         exit;
     }
@@ -37,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérifier si le nouvel email est déjà utilisé
     $sql = "SELECT email FROM SAE_USERS WHERE email = :email";
     $stmt = $cnx->prepare($sql);
-    $stmt->bindParam(':email', $newEmail);
+    $stmt->bindParam(":email", $newEmail);
     $stmt->execute();
     $user = $stmt->fetch();
     $stmt->closeCursor();
@@ -51,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "UPDATE SAE_USERS SET email = :email WHERE pseudo = :pseudo";
     $stmt = $cnx->prepare($sql);
     $stmt->bindParam(':email', $newEmail);
-    $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
+    $stmt->bindParam(':pseudo', $pseudo);
     $stmt->execute();
     $stmt->closeCursor();
 
