@@ -7,7 +7,7 @@
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     if (!isset($_SESSION['user'])) {
-        header('Location: ../');
+        header('Location: ./');
         exit();
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
