@@ -11,28 +11,25 @@
         header("Location: ../connexion/");
         exit;
     }
-    $user = unserialize($_SESSION['user']);
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
+    $pseudo = $user->getPseudo();
+
     // Requête pour récupérer les informations de l'utilisateur
     $profilRequest = $cnx->prepare($lastConnexionProfil);
-    $profilRequest->bindParam(":pseudo", $user->getPseudo(), PDO::PARAM_STR);
+    $profilRequest->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
     $profilRequest->execute();
     $profilResult = $profilRequest->fetch(PDO::FETCH_OBJ);
     $profilRequest->closeCursor();
+
     // Requête pour récupérer les statistiques de l'utilisateur
     $scoreRequest = $cnx->prepare($scoreProfil);
     $scoreRequest->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
     $scoreRequest->execute();
     $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
     $scoreRequest->closeCursor();
+
     // Requête pour récupérer le top 3 des meilleurs scores (max), le pseudo n'apparaît qu'une seule fois
-    $top3Request = $cnx->prepare("
-    SELECT pseudo, MAX(score) AS score
-    FROM SAE_SCORES s,
-         SAE_USERS u
-    WHERE u.num_user = s.num_user
-    GROUP BY pseudo
-    ORDER BY score DESC
-    LIMIT 3");
+    $top3Request = $cnx->prepare($top3ScoresProfil);
     $top3Request->execute();
     $top3Result = $top3Request->fetchAll(PDO::FETCH_OBJ);
     $top3Request->closeCursor();
@@ -61,8 +58,8 @@
             <div class="parent">
                 <div class="photo-pseudo-buttons glassmorphism-section">
                     <div class="photo-pseudo">
-                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $user->getPseudo(); ?>">
-                        <h1 class="title-section h1"><?php echo $user->getPseudo(); ?></h1>
+                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $pseudo; ?>">
+                        <h1 class="title-section h1"><?php echo $pseudo; ?></h1>
                     </div>
                     <div class="buttons">
                         <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
@@ -117,12 +114,12 @@
                             <span class="score"><?php echo $top3Result[2]->score;?></span>
                         </div>
                         <?php
-                        if ($top3Result[0]->pseudo != $pseudo && $top3Result[1]->pseudo != $pseudo && $top3Result[2]->pseudo != $pseudo) {
+                        if (!in_array($pseudo, array($top3Result[0]->pseudo, $top3Result[1]->pseudo, $top3Result[2]->pseudo))) {
                             echo "<div id='myScore' class='btn btn-dark'>";
                         } else {
                             echo "<div id='myScore' class='btn " . ($top3Result[0]->pseudo == $pseudo ? "gold" : ($top3Result[1]->pseudo == $pseudo ? "silver" : "bronze")) . "'>";
                         }
-                        echo "<span class='pseudo'>$pseudo</span>";
+                        echo "<span class='pseudo'>" . $pseudo . "</span>";
                         echo "<span class='score'>" . ($scoreResult->maxS == null ? 0 : $scoreResult->maxS) . "</span>";
                         echo "</div>";
                         ?>
@@ -131,10 +128,10 @@
                 <div class="mesinformations glassmorphism-section">
                     <h2 class="title-section">Mes Informations</h2>
                     <div>
-                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $profilResult->email;?>">
+                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $user->getEmail();?>">
                             Email : <?php echo $user->getEmail();?>
                         </button>
-                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $profilResult->annee_naissance;?>">
+                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $user->getYear();?>">
                             Année de Naissance : <?php echo $user->getYear();?>
                         </button>
                         <button id="tempsEcoule" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo makeDateTime($profilResult->lastConnexion);?>"></button>

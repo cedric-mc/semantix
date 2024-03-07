@@ -1,7 +1,15 @@
+.table {
+    border-collapse: collapse;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
 .table-responsive {
     min-height: fit-content;
     max-height: 100vh;
     overflow: auto;
+    border-collapse: collapse;
+    border-radius: 1rem;
 }
 
 .table thead th {

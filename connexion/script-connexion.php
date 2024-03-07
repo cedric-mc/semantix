@@ -49,15 +49,15 @@
                     //Contenu du mail
                     $mail->isHTML(true);
                     $mail->Subject = 'Connexion';
-                    $mail->Body = "Bonjour ". $user->pseudo . ", Vous venez de vous connecter sur notre site ! <br><br> Si vous n'êtes pas à l'origine de cette connexion, veuillez changer immédiatement votre mot de passe !";
+                    $mail->Body = "Bonjour ". $user->getPseudo() . ", Vous venez de vous connecter sur notre site ! <br><br> Si vous n'êtes pas à l'origine de cette connexion, veuillez changer immédiatement votre mot de passe !";
 
-                    $mail->addAddress($user->email, $user->pseudo);
+                    $mail->addAddress($user->getEmail(), $user->getPseudo());
                     $mail->Content = 'UTF-8';
                     //Envoi du mail
                     $mail->send();
 
                     // Journalisation
-                    trace($user->idUser, 'Connexion au Site', $cnx);
+                    trace($user->getIdUser(), 'Connexion au Site', $cnx);
 
                     header('Location: ../');
                     exit;

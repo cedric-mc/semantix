@@ -1,30 +1,34 @@
 <?php
     class User {
-        public int $idUser;
-        public string $pseudo;
-        public string $email;
-        public int $year;
+        private int $idUser;
+        private string $pseudo;
+        private string $email;
+        private int $year;
 
-        public function __construct($idUser, $pseudo, $email, $year) {
+        public function __construct(int $idUser, string $pseudo, string $email, int $year) {
             $this->idUser = $idUser;
             $this->pseudo = $pseudo;
             $this->email = $email;
             $this->year = $year;
         }
 
-        public function getIdUser() {
+        public static function createUserFromUser(User $user) {
+            return new self($user->getIdUser(), $user->getPseudo(), $user->getEmail(), $user->getYear());
+        }
+
+        public function getIdUser(): int {
             return $this->idUser;
         }
 
-        public function getPseudo() {
+        public function getPseudo(): string {
             return $this->pseudo;
         }
 
-        public function getEmail() {
+        public function getEmail(): string {
             return $this->email;
         }
 
-        public function getYear() {
+        public function getYear(): int {
             return $this->year;
         }
 

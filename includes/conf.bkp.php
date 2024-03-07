@@ -1,5 +1,5 @@
 <?php
-include 'conf.php';
+include("conf.php");
 
 try {
     $cnx = new PDO("mysql:host=sqletud.u-pem.fr;dbname=$dbname;charset=utf8mb4", $user, $pass);
