@@ -1,12 +1,12 @@
 <?php
+    include_once("../class/User.php");
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    require_once("../class/User.php");
 
-    function fileToArray() {
+    function fileToArray($user) {
         $paires = [];
-        $fichier = fopen("partie/best_path_$_SESSION[pseudo].txt", "r");
+        $fichier = fopen("partie/best_path_" . $user->getPseudo() . ".txt", "r");
         // Ignorer les 4 premières lignes
         for ($i = 0; $i < 4; $i++) {
             fgets($fichier);
@@ -26,7 +26,7 @@
             }
         }
         fclose($fichier);
-        foreach (file("partie/best_path_$_SESSION[pseudo].txt") as $ligne) {
+        foreach (file("partie/best_path_" . $user->getPseudo() . ".txt") as $ligne) {
             // Ignorer les lignes vides et les lignes commençant par "BestPath", "startWord", "endWord" ou "bestPathEdges"
             if (!empty($ligne) && !preg_match('/^(BestPath|startWord|endWord|bestPathEdges)/', $ligne)) {
                 if (strpos("EOF", $ligne) === true) {
@@ -87,8 +87,8 @@
         return $score;
     }
     
-    function createDataForGraph($paires) {
-        foreach (file("partie/best_path_$_SESSION[pseudo].txt") as $line) {
+    function createDataForGraph($user, $paires) {
+        foreach (file("partie/best_path_" . $user->getPseudo() . ".txt") as $line) {
             if (strpos($line, "bestPathEdges") !== false) {
                 $ligne = $line;
             }

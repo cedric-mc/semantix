@@ -1,13 +1,14 @@
 <?php
+    include("../class/Game.php");
+    include("game_fonctions.php");
     session_start();
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    if (!isset($_SESSION['pseudo'])) {
+    if (!isset($_SESSION['user'])) {
         header('Location: ../');
         exit();
     }
-    include("../class/Game.php");
-    include("game_fonctions.php");
+    $user = unserialize($_SESSION['user']);
 
     $messagesErreur = [
         1 => "Le mot n'est pas dans le dictionnaire.",
@@ -18,8 +19,8 @@
 
     $game = unserialize($_SESSION['game']);
     $paires = array();
-    $paires = fileToArray();
-    $highchartsData = createDataForGraph($paires);
+    $paires = fileToArray($user);
+    $highchartsData = createDataForGraph($user, $paires);
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,18 +37,18 @@
         <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <?php include("../includes/head.php"); ?>
         <style>
             * {
                 color: white;
             }
-
             label {
                 color: black;
             }
         </style>
     </head>
 
-    <body class="black">
+    <body>
         <div class="parent">
             <div class="div4">
                 <h1 class="title">Semantic Analogy Explorer</h1>
@@ -91,7 +92,7 @@
             </div>
         </div>
         <div class="div5">
-            <h1 class="title"><?php //if ($erreur != 0) echo "Erreur : " . $messagesErreur[$erreur]; ?></h1>
+            <h1 class="title"><?php if ($erreur != 0) echo "Erreur : " . $messagesErreur[$erreur]; ?></h1>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -102,7 +103,7 @@
                 "Le mot n'est pas dans le dictionnaire.",
                 "Le mot est déjà dans la chaîne.",
                 "Le mot n'est pas assez proche des mots précédents."
-            ]
+            ];
             document.addEventListener('DOMContentLoaded', function() {
                 if (error != 0) {
                     alert("Erreur : " + messagesErreur[error]);

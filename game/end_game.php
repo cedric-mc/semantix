@@ -1,12 +1,16 @@
 <?php
+include_once("../class/User.php");
+include_once("../class/Game.php");
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if (!isset($_SESSION['pseudo'])) {
+if (!isset($_SESSION['user'])) {
     header("Location: ./");
     exit();
 }
+$user = unserialize($_SESSION['user']);
+$game = unserialize($_SESSION['game']);
 if (isset($_SESSION['output'])) {
     unset($_SESSION['output']);
 }

@@ -12,28 +12,135 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Amis - Semonkey</title>
-        <meta name="description" content="Venez Jouez à Semantic Analogy Explorer (SAE), un jeu en ligne à un ou plusieurs joueurs basé sur les similarités entre mots : « Semantic Analogy Explorer ». Chaque joueur reçoit un mot de départ et un mot cible et propose des mots proches afin de créer une chaîne de mots similaires pour relier le mot de départ au mot cible. ">
-        <meta name="keywords" content="Semantic Analogy Explorer, SAE, jeu, jeu en ligne, jeu de mots, jeu de lettres, jeu de lettres en ligne, jeu de mots en ligne, jeu de lettres multijoueur, jeu de mots multijoueur, jeu de lettres multijoueur en ligne, jeu de mots multijoueur en ligne, jeu de lettres multijoueur gratuit, jeu de mots multijoueur gratuit, jeu de lettres multijoueur gratuit en ligne, jeu de mots multijoueur gratuit en ligne, jeu de lettres multijoueur gratuit sans inscription, jeu de mots multijoueur gratuit sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription, jeu de mots multijoueur gratuit en ligne sans inscription, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de lettres multijoueur gratuit en ligne sans inscription et sans téléchargement, jeu de mots multijoueur gratuit en ligne sans inscription et sans téléchargement">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/3f3ecfc27b.js"></script>
         <link rel="shortcut icon" href="../img/monkeyapp.png">
         <link rel="stylesheet" href="../style/style.css">
-        <link rel="stylesheet" href="../style/css_friends.css">
+        <link rel="stylesheet" href="../style/css_amis.css">
+        <?php include("../includes/head.php"); ?>
+        <style>
+            .friends h2 {
+                text-align: center;
+            }
+
+            .recherche {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 1.25rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .recherche input {
+                width: 100%;
+                height: auto;
+                border: none;
+                border-radius: 0.625rem;
+                padding: 0.313rem 0.625rem;
+                margin-right: 0.625rem;
+            }
+
+            .recherche button {
+                width: auto;
+                height: auto;
+                border: none;
+                border-radius: 5px;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                padding: 0.313rem 0.625rem;
+            }
+
+            .users {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .user {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 10px;
+                padding: 10px;
+                border: 1px solid #4CAF50;
+                border-radius: 5px;
+            }
+
+            .user img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                margin-bottom: 10px;
+            }
+
+            .user p {
+                margin-bottom: 10px;
+            }
+
+            .user button {
+                width: 100px;
+                height: 30px;
+                border: none;
+                border-radius: 5px;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+            }
+        </style>
     </head>
 
     <body>
         <?php include("../includes/menu.php"); ?>
         <main class="glassmorphism friends">
-            <h1 class="title">
-                Amis</h1>
+            <h1 class="title">Amis</h1>
             <br>
+            <h2 class="select">Liste des Amis</h2>
             <!-- Afficher la liste des amis (avec le statut : en attente, accepté, refusé ; statut : en ligne, hors ligne) -->
-            <!-- Je propose d'afficher la liste avec des carrés pour chaque ami avec le nom, le statut (en ligne, hors ligne) et le bouton pour supprimer l'ami, un utilisateur = un carré -->
-
-            <h2>Ajouter un Ami</h2>
+            <!-- Je propose d'afficher la liste avec des carrés pour chaque ami avec le nom, le statut (en ligne, hors ligne) et le bouton pour supprimer l'ami, un utilisateur = un carré
+            Lorsque l'on clique sur un carré, on affiche un modal avec les informations de l'ami (pseudo, date de naissance, statut, date de dernière connexion, (discuté avec Fressin pour l'email) -->
+            <div class="container">
+                <div class="recherche">
+                    <input type="text" id="search" placeholder="Rechercher un ami">
+                    <button id="searchButton">Rechercher</button>
+                </div>
+                <div class="users row row-cols-auto">
+                    <div class="user">
+                        <img src="../img/profil.webp" alt="Photo de profil">
+                        <p>Nom de l'ami</p>
+                        <p>Statut : En ligne</p>
+                        <button>Supprimer</button>
+                    </div>
+                    <div class="user">
+                        <img src="../img/profil.webp" alt="Photo de profil">
+                        <p>Nom de l'ami</p>
+                        <p>Statut : Hors ligne</p>
+                        <button>Supprimer</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h2 class="add">Ajouter un Ami</h2>
             <!-- Afficher la liste des utilisateurs pour ajouter un ami (sauf soi-même et les amis déjà ajoutés) -->
+            <!-- Je propose d'afficher la liste avec des carrés pour chaque utilisateur avec le nom et le bouton pour ajouter l'ami, un utilisateur = un carré -->
+            <div class="container">
+                <div class="recherche">
+                    <input type="text" id="search" placeholder="Rechercher un ami">
+                    <button id="searchButton">Rechercher</button>
+                </div>
+                <div class="users row row-cols-auto">
+                    <div class="user">
+                        <img src="../img/profil.webp" alt="Photo de profil">
+                        <p>Nom de l'utilisateur</p>
+                        <button>Ajouter</button>
+                    </div>
+                    <div class="user">
+                        <img src="../img/profil.webp" alt="Photo de profil">
+                        <p>Nom de l'utilisateur</p>
+                        <button>Ajouter</button>
+                    </div>
+                </div>
+            </div>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.js"></script>

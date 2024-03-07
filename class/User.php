@@ -24,12 +24,12 @@
             return $this->email;
         }
 
-        public function setEmail($email) {
-            $this->email = $email;
-        }
-
         public function getYear() {
             return $this->year;
+        }
+
+        public function setEmail($email) {
+            $this->email = $email;
         }
     }
 ?>

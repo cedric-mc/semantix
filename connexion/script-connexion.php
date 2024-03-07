@@ -1,5 +1,7 @@
 <?php
     include_once("../class/User.php");
+    include_once("../includes/conf.bkp.php");
+    include_once("../includes/fonctions.php");
     session_start();
     // erreur php
     ini_set('display_errors', 1);
@@ -10,7 +12,6 @@
         header("Location: ../");
         exit;
     }
-    include("../includes/conf.bkp.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pseudo = $_POST["pseudo"];
@@ -44,8 +45,7 @@
                     $user = new User($idUser, $pseudo, $email, $year);
                     $_SESSION['user'] = serialize($user);
 
-                    include '../mail/mailer.php';
-
+                    include("../mail/mailer.php");
                     //Contenu du mail
                     $mail->isHTML(true);
                     $mail->Subject = 'Connexion';
@@ -57,7 +57,6 @@
                     $mail->send();
 
                     // Journalisation
-                    include '../includes/fonctions.php';
                     trace($user->idUser, 'Connexion au Site', $cnx);
 
                     header('Location: ../');
