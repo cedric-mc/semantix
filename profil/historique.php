@@ -27,7 +27,7 @@
 ?>
 <html lang="fr">
     <head>
-        <title>Historique - Semantic Analogy Explorer</title>
+        <title>Historique - Semonkey</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style/style.css">
         <link rel="stylesheet" href="../style/table.css">

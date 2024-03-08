@@ -1,10 +1,5 @@
 <?php
 session_start();
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['pseudo'])) {
-    header('Location: ../');
-    exit;
-}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $oldPassword = $_SESSION['password1'];
     $newPassword = $_SESSION['password2'];

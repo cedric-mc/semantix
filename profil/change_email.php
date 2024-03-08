@@ -17,7 +17,7 @@
     ];
 
     // Récupérer le code d’erreur depuis l'URL
-    $codeErreur = isset($_GET['emailErreur']) ? (int)$_GET['emailErreur'] : 0;
+    $codeEmail = isset($_GET['emailErreur']) ? (int)$_GET['emailErreur'] : 0;
 
     $menu = 1;
 ?>
@@ -51,21 +51,21 @@
             </form>
             <?php
                 // Si le message d'erreur est différent de 0
-                if ($codeErreur > 0 && $codeErreur < 6) {
+                if ($codeEmail > 0 && $codeEmail < 6) {
                     echo "<br><div id='msg-error' class='alert' role='alert'></div>";
                 }
             ?>
         </main>
         <script>
             // Je récupère le message d’erreur
-            let msgCode = <?php echo json_encode($codeErreur); ?>;
-            let msgError = <?php echo json_encode($erreursEmail[$codeErreur][0]); ?>;
+            let msgCode = <?php echo json_encode($codeEmail); ?>;
+            let msgError = <?php echo json_encode($erreursEmail[$codeEmail][0]); ?>;
             // Si le message d’erreur est différent de 0
             if (msgCode > 0 && msgCode < 6) {
                 // J'affiche le message d'erreur
                 document.getElementById('msg-error').innerHTML = msgError;
                 // Je change la couleur du message d'erreur
-                document.getElementById('msg-error').classList.add(<?php echo json_encode($erreursEmail[$codeErreur][1]); ?>);
+                document.getElementById('msg-error').classList.add(<?php echo json_encode($erreursEmail[$codeEmail][1]); ?>);
                 document.getElementById('msg-error').classList.add('visible');
                 // Après l'expiration du cookie, on actualise la page pour le supprimer
                 setTimeout(function () {

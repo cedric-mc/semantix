@@ -11,7 +11,7 @@ $user = unserialize($_SESSION['user']);
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>Home - Semantic Analogy Explorer</title>
+        <title>Semonkey</title>
 	    <link href="style/style.css" rel="stylesheet">
         <link href="style/css_home.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
