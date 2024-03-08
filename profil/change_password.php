@@ -7,6 +7,21 @@
         <meta charset="UTF-8">
         <title>Changer Mot de passe - Semonkey</title>
         <link rel="stylesheet" href="../style/form.css">
+        <style>
+            h1.title, label {
+                color: black;
+            }
+
+            button {
+                background: #000;
+                color: #fff;
+            }
+
+            button:hover {
+                background: #000;
+                color: #000;
+            }
+        </style>
     </head>
 
     <body>
