@@ -64,6 +64,7 @@
                 width: fit-content;
                 max-width: 100%;
                 overflow-x: auto;
+                background-color: #000000;
             }
         </style>
     </head>
