@@ -213,20 +213,20 @@
             </div>
         </div>
         <!-- Modal pour la photo de profil -->
-        <div id="modal-photo" class="modal">
+        <!-- <div id="modal-photo" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p>Contenu de votre modal pour la photo de profil...</p>
             </div>
-        </div>
+        </div> -->
 
         <!-- Modal pour le changement d'email -->
-        <div id="modal-email" class="modal">
+        <!-- <div id="modal-email" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p>Contenu de votre modal pour le changement d'email...</p>
             </div>
-        </div>
+        </div> -->
         <script>
             var modalMdp = document.getElementById("modal-mdp");
             var btnMdp = document.getElementById("btn-mdp");
