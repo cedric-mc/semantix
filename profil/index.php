@@ -61,11 +61,8 @@
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <link rel="icon" href="../img/monkeyapp.png">
         <?php include("../includes/head.php"); ?>
-        <style>
-        </style>
     </head>
     <body>
-<!--        <button class="btn btn-primary" data-bs-target="#emailModal" data-bs-toggle="modal">Open first modal</button>-->
         <?php include("../includes/menu.php"); ?>
         <main class="glassmorphism">
             <h1 class="title">Mon Profil</h1>
@@ -78,9 +75,8 @@
                     <div class="buttons">
                         <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
                         <button id="btn-email" type="button" class="btn btn-warning text-nowrap" data-bs-target="#emailModal" data-bs-toggle="modal">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button>
-                        <button id="btn-mdp" type="button" class="btn btn-warning text-nowrap" data-bs-target="#modal-mdp">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
-                        <button id="btn-photo" type="button" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></button>
-                        <button id="disconnect-btn" class="btn btn-danger g-col-6 text-nowrap">Se déconnecter&emsp;<i class="fa-solid fa-right-from-bracket"></i></button>
+                        <button id="btn-mdp" type="button" class="btn btn-warning text-nowrap" data-bs-target="#emailModal" data-bs-toggle="modal">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
+                        <button id="btn-photo" type="button" class="btn btn-warning text-nowrap disabled" data-bs-target="#emailModal" data-bs-toggle="modal">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></button>
                     </div>
                 </div>
                 <div class="stats glassmorphism-section">
@@ -187,12 +183,6 @@
             </div>
         </div>
         <script>
-            document.getElementById('disconnect-btn').addEventListener('click', function() {
-                if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
-                    window.location.href = '../connexion/script-logout.php'; // Redirigez vers la page de déconnexion
-                }
-            });
-
             $(document).ready(function() {
                 function updateElapsedTime() {
                     const now = Math.floor(new Date().getTime() / 1000); // Temps actuel en secondes
