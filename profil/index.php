@@ -3,7 +3,7 @@
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
     include_once("../class/User.php");
-    include("../includes/conf.bkp.php");
+    include("../includes/conf.php");
     include("../includes/fonctions.php");
     include("../includes/requetes.php");
     session_start();
