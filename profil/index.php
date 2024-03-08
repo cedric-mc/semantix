@@ -215,9 +215,6 @@
                 </form>
             </div>
         </div>
-        <!-- Bouton pour déclencher le modal de la photo de profil -->
-        <button id="btn-photo">Changer la photo de profil</button>
-
         <!-- Modal pour la photo de profil -->
         <div id="modal-photo" class="modal">
             <div class="modal-content">
