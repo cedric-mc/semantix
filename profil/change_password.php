@@ -1,17 +1,4 @@
 <?php
-    // Messages d'erreurs possibles
-    $erreursMdp = [
-        1 => ["Le mot de passe a bien été changé.", "alert-success"],
-        2 => ["L'ancien mot de passe est incorrect.", "alert-danger"],
-        3 => ["Les nouveaux mots de passe ne correspondent pas.", "alert-danger"],
-        4 => ["Le nouveau mot de passe est identique à l'ancien.", "alert-danger"],
-        5 => ["Le mot de passe doit faire minimum 12 caractères et doit contenir au minimum 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spécial.", "alert-danger"],
-        6 => ["Code incorrect ou expiré !", "alert-danger"]
-    ];
-
-    // Récupérer le code d’erreur depuis l'URL
-    $codeMdp = isset($_GET["erreurMdp"]) ? (int)$_GET["erreurMdp"] : 0;
-
     $menu = 1;
 ?>
 <!DOCTYPE html>
