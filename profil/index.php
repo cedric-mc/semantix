@@ -107,7 +107,6 @@
 
             #exampleModalToggle {
                 z-index: 1050;
-                position: fixed;
             }
         </style>
     </head>
