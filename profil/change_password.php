@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Changer Mot de passe - Semonkey</title>
-        <!-- <link rel="stylesheet" href="../style/form.css"> -->
+        <link rel="stylesheet" href="../style/form.css">
         <style>
             h1.title, label {
                 color: black;
