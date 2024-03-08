@@ -232,7 +232,7 @@
             var btnMdp = document.getElementById("btn-mdp");
 
             btnMdp.onclick = function() {
-                modal.style.display = "block";
+                modalMdp.style.display = "block";
             }
 
             window.onclick = function(event) {
