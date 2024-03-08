@@ -160,7 +160,7 @@
             </div>
         </main>
         <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="modalPasswordLabel">Changer le mot de passe</h1>
