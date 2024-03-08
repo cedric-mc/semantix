@@ -198,22 +198,22 @@
         <div class="modal fade" id="modal-mdp" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Hide this modal and show the first with the button below.
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
-                </div>
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Hide this modal and show the first with the button below.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- <div id="modal-mdp" class="modal fade">
             <div class="modal-content">
-                <span class="close">&times;</span>
+                <span class="btn-close">&times;</span>
                 <form action="script-password.php" method="POST">
                     <div class="input-field">
                         <input type="password" id="password1" name="password1" required>
@@ -234,7 +234,7 @@
         <!-- Modal pour la photo de profil -->
         <div id="modal-photo" class="modal fade">
             <div class="modal-content">
-                <span class="close">&times;</span>
+                <span class="btn-close">&times;</span>
                 <p>Contenu de votre modal pour la photo de profil...</p>
             </div>
         </div>
@@ -242,7 +242,7 @@
         <!-- Modal pour le changement d'email -->
         <div id="modal-email" class="modal fade">
             <div class="modal-content">
-                <span class="close">&times;</span>
+                <span class="btn-close">&times;</span>
                 <p>Contenu de votre modal pour le changement d'email...</p>
             </div>
         </div>
@@ -253,7 +253,7 @@
             var modalEmail = document.getElementById("modal-email");
             var btnPhoto = document.getElementById("btn-photo");
             var btnEmail = document.getElementById("btn-email");
-            var spans = document.getElementsByClassName("close");
+            var spans = document.getElementsByClassName("btn-close");
 
             btnMdp.onclick = function() {
                 modalMdp.style.display = "block";
