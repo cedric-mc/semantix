@@ -154,10 +154,9 @@
             </div>
         <script>
             const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
-            document.changePasswordModal.addEventListener("click", function(event) {
-                if (event.target === document.changePasswordModal) {
-                    changePasswordModal.hide();
-                }
+            document.getElementById('changePasswordModal').addEventListener("click", function(event) {
+                const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+                changePasswordModal.show();
             });
 
             document.getElementById('disconnect-btn').addEventListener('click', function() {
