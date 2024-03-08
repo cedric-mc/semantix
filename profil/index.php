@@ -230,6 +230,11 @@
         <script>
             var modalMdp = document.getElementById("modal-mdp");
             var btnMdp = document.getElementById("btn-mdp");
+            // var modalPhoto = document.getElementById("modal-photo");
+            // var modalEmail = document.getElementById("modal-email");
+            // var btnPhoto = document.getElementById("btn-photo");
+            // var btnEmail = document.getElementById("btn-email");
+            var spans = document.getElementsByClassName("close");
 
             btnMdp.onclick = function() {
                 modalMdp.style.display = "block";
@@ -240,12 +245,6 @@
                     modalMdp.style.display = "none";
                 }
             }
-
-            var modalPhoto = document.getElementById("modal-photo");
-            var modalEmail = document.getElementById("modal-email");
-            var btnPhoto = document.getElementById("btn-photo");
-            var btnEmail = document.getElementById("btn-email");
-            var spans = document.getElementsByClassName("close");
 
             btnPhoto.onclick = function() {
                 modalPhoto.style.display = "block";
