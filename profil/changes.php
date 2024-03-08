@@ -22,7 +22,7 @@
                                 <label for="email2">Nouvelle adresse email :</label>
                                 <input type="email" name="email2" id="email2" required>
                             </div>
-                            <button id="formButton" type="submit" class="btn fw-semibold">Valider</button>
+                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                                 <label for="password3">Confirmer le nouveau mot de passe :</label>
                                 <input type="password" id="password3" name="password3" required>
                             </div>
-                            <button id="formButton" type="submit" class="btn fw-semibold">Valider</button>
+                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
                     </div>
                 </div>
