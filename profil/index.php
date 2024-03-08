@@ -187,7 +187,7 @@
                 </div>
             </div>
         </main>
-        <div id="myModal" class="modal">
+        <div id="modal-mdp" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <form action="script-password.php" method="POST">
@@ -208,7 +208,7 @@
             </div>
         </div>
         <script>
-            var modal = document.getElementById("myModal");
+            var modal = document.getElementById("modal-mdp");
             var btn = document.getElementById("btn-mdp");
             var span = document.getElementsByClassName("close")[0];
 
