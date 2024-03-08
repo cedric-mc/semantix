@@ -223,9 +223,6 @@
             </div>
         </div>
 
-        <!-- Bouton pour déclencher le modal du changement d'email -->
-        <button id="btn-email">Changer l'email</button>
-
         <!-- Modal pour le changement d'email -->
         <div id="modal-email" class="modal">
             <div class="modal-content">
