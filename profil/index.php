@@ -24,7 +24,7 @@
 
     // Requête pour récupérer les statistiques de l'utilisateur
     $scoreRequest = $cnx->prepare($scoreProfil);
-    $scoreRequest->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+    $scoreRequest->bindParam(':pseudo', $pseudo);
     $scoreRequest->execute();
     $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
     $scoreRequest->closeCursor();
@@ -62,6 +62,7 @@
         <link rel="icon" href="../img/monkeyapp.png">
         <?php include("../includes/head.php"); ?>
     </head>
+
     <body>
         <?php include("../includes/menu.php"); ?>
         <main class="glassmorphism">
