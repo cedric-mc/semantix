@@ -116,9 +116,9 @@
                     </div>
                     <div class="buttons">
                         <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
-                        <button id="btn-email" type="button" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button>
+                        <!-- <button id="btn-email" type="button" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button> -->
                         <button id="btn-mdp" type="button" class="btn btn-warning text-nowrap">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
-                        <button id="btn-photo" type="button" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></button>
+                        <!-- <button id="btn-photo" type="button" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></button> -->
                         <button id="disconnect-btn" class="btn btn-danger g-col-6 text-nowrap">Se déconnecter&emsp;<i class="fa-solid fa-right-from-bracket"></i></button>
                     </div>
                 </div>
@@ -212,6 +212,9 @@
                 </form>
             </div>
         </div>
+        <!-- Bouton pour déclencher le modal de la photo de profil -->
+        <button id="btn-photo">Changer la photo de profil</button>
+
         <!-- Modal pour la photo de profil -->
         <div id="modal-photo" class="modal">
             <div class="modal-content">
@@ -219,6 +222,9 @@
                 <p>Contenu de votre modal pour la photo de profil...</p>
             </div>
         </div>
+
+        <!-- Bouton pour déclencher le modal du changement d'email -->
+        <button id="btn-email">Changer l'email</button>
 
         <!-- Modal pour le changement d'email -->
         <div id="modal-email" class="modal">
