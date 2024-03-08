@@ -15,12 +15,12 @@
                     <div class="modal-body">
                         <form action="script-email.php" method="POST">
                             <div class="input-field">
-                                <input type="email" name="email1" id="email1" required>
                                 <label for="email1">Ancienne adresse email :</label>
+                                <input type="email" name="email1" id="email1" required>
                             </div>
                             <div class="input-field">
-                                <input type="email" name="email2" id="email2" required>
                                 <label for="email2">Nouvelle adresse email :</label>
+                                <input type="email" name="email2" id="email2" required>
                             </div>
                             <button id="formButton" type="submit" class="btn fw-semibold">Valider</button>
                         </form>
