@@ -213,22 +213,61 @@
                 </form>
             </div>
         </div>
+        <!-- Modal pour la photo de profil -->
+        <div id="modal-photo" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Contenu de votre modal pour la photo de profil...</p>
+            </div>
+        </div>
+
+        <!-- Modal pour le changement d'email -->
+        <div id="modal-email" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Contenu de votre modal pour le changement d'email...</p>
+            </div>
+        </div>
         <script>
-            var modal = document.getElementById("modal-mdp");
-            var btn = document.getElementById("btn-mdp");
-            var span = document.getElementsByClassName("close")[0];
+            var modalMdp = document.getElementById("modal-mdp");
+            var btnMdp = document.getElementById("btn-mdp");
 
-            btn.onclick = function() {
+            btnMdp.onclick = function() {
                 modal.style.display = "block";
-            }
-
-            span.onclick = function() {
-                modal.style.display = "none";
             }
 
             window.onclick = function(event) {
                 if (event.target == modal) {
-                    modal.style.display = "none";
+                    modalMdp.style.display = "none";
+                }
+            }
+
+            var modalPhoto = document.getElementById("modal-photo");
+            var modalEmail = document.getElementById("modal-email");
+            var btnPhoto = document.getElementById("btn-photo");
+            var btnEmail = document.getElementById("btn-email");
+            var spans = document.getElementsByClassName("close");
+
+            btnPhoto.onclick = function() {
+                modalPhoto.style.display = "block";
+            }
+
+            btnEmail.onclick = function() {
+                modalEmail.style.display = "block";
+            }
+
+            for (var i = 0; i < spans.length; i++) {
+                spans[i].onclick = function() {
+                    this.parentElement.parentElement.style.display = "none";
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modalPhoto) {
+                    modalPhoto.style.display = "none";
+                }
+                if (event.target == modalEmail) {
+                    modalEmail.style.display = "none";
                 }
             }
 
