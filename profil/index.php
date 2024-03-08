@@ -142,24 +142,9 @@
                 ...
             </div>
         <script>
-            const exampleModal = document.getElementById('changePasswordModal')
-            if (exampleModal) {
-                exampleModal.addEventListener('show.bs.modal', event => {
-                    // Button that triggered the modal
-                    const button = event.relatedTarget
-                    // Extract info from data-bs-* attributes
-                    const recipient = button.getAttribute('data-bs-whatever')
-                    // If necessary, you could initiate an Ajax request here
-                    // and then do the updating in a callback.
-
-                    // Update the modal's content.
-                    const modalTitle = exampleModal.querySelector('.modal-title')
-                    const modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-                    modalTitle.textContent = `New message to ${recipient}`
-                    modalBodyInput.value = recipient
-                })
-            }
+            const modal = document.getElementById('changePasswordModal')
+            const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+            changePasswordModal.show();
 
             document.getElementById('disconnect-btn').addEventListener('click', function() {
                 if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
@@ -195,9 +180,6 @@
                 // Appelez la fonction une fois au chargement de la page
                 updateElapsedTime();
             });
-
-            const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
-            changePasswordModal.show();
         </script>
     </body>
 </html>
