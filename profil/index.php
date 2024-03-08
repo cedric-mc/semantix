@@ -165,22 +165,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <?php //include("change_password.php"); ?>
-                        <form action="script-password.php" method="POST">
-                <div class="input-field">
-                    <input type="password" id="password1" name="password1" required>
-                    <label for="password1">Ancien mot de passe :</label>
-                </div>
-                <div class="input-field">
-                    <input type="password" id="password2" name="password2" required>
-                    <label for="password2">Nouveau mot de passe :</label>
-                </div>
-                <div class="input-field">
-                    <input type="password" id="password3" name="password3" required>
-                    <label for="password3">Confirmer le nouveau mot de passe :</label>
-                </div>
-                <button id="formButton" type="submit" class="btn fw-semibold">Valider</button>
-            </form>
+                        <?php include("change_password.php"); ?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
