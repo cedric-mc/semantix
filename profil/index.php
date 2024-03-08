@@ -256,46 +256,6 @@
             </div>
         </div>
         <script>
-            // var modalMdp = document.getElementById("modal-mdp");
-            // var btnMdp = document.getElementById("btn-mdp");
-            // var modalPhoto = document.getElementById("modal-photo");
-            // var modalEmail = document.getElementById("modal-email");
-            // var btnPhoto = document.getElementById("btn-photo");
-            // var btnEmail = document.getElementById("btn-email");
-            // var spans = document.getElementsByClassName("btn-close");
-
-            // btnMdp.onclick = function() {
-            //     modalMdp.style.display = "block";
-            //     modalMdp.classList.add('show'); // Ajoutez la classe 'show'
-            // }
-
-            // btnPhoto.onclick = function() {
-            //     modalPhoto.style.display = "block";
-            //     modalPhoto.classList.add('show'); // Ajoutez la classe 'show'
-            // }
-
-            // btnEmail.onclick = function() {
-            //     modalEmail.style.display = "block";
-            //     modalEmail.classList.add('show'); // Ajoutez la classe 'show'
-            // }
-
-            // for (var i = 0; i < spans.length; i++) {
-            //     spans[i].onclick = function() {
-            //         this.parentElement.parentElement.style.display = "none";
-            //         this.parentElement.parentElement.classList.remove('show'); // Retirez la classe 'show'
-            //     }
-            // }
-
-            // window.onclick = function(event) {
-            //     if (event.target == modalMdp) {
-            //         modalMdp.style.display = "none";
-            //     } else if (event.target == modalPhoto) {
-            //         modalPhoto.style.display = "none";
-            //     } else if (event.target == modalEmail) {
-            //         modalEmail.style.display = "none";
-            //     }
-            // }
-
             document.getElementById('disconnect-btn').addEventListener('click', function() {
                 if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
                     window.location.href = '../connexion/script-logout.php'; // Redirigez vers la page de déconnexion
