@@ -20,6 +20,11 @@
             <br>
             <br>
             Si vous n'êtes pas à l'origine de cette connexion, veuillez changer immédiatement votre mot de passe !
+            <br><br>
+            Cordialement, L'Équipe de Semonkey
         </p>
+        <footer>
+            <p>© 2024 Semonkey. Tous droits réservés.</p>
+        </footer>
     </body>
 </html>

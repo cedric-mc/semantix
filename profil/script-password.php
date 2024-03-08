@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $code_time = $_SESSION['verification_time'];
 
      if ($user_input_code != $stored_code || (time() - $code_time) > 600) { // 600 secondes = 10 minutes
-        header('Location: change_password.php?erreur=6'); // Code incorrect ou expiré
+        header('Location: change_password.php?confirmMdpError=6'); // Code incorrect ou expiré
         exit;
     }
 
@@ -40,38 +40,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($hashed_input_motdepasse === $stored_motdepasse) {
         // Vérifier si le nouveau mot de passe est différent de l'ancien
         if ($oldPassword === $newPassword) {
-            header('Location: change_password.php?erreur=4');
+            header('Location: change_password.php?confirmMdpError=4');
             exit;
         }
         // Vérifier si les nouveaux mots de passe correspondent entre eux
         if ($newPassword !== $confirmPassword) {
-            header('Location: change_password.php?erreur=3');
+            header('Location: change_password.php?confirmMdpError=3');
             exit;
         }
         // Vérifier si le nouveau mot de passe respecte les règles de la CNIL
         $passwordError = "";
         if (strlen($newPassword) < 12) {
-            header("Location: change_password.php?erreur=5");
+            header("Location: change_password.php?confirmMdpError=5");
             exit;
         }
         if (!preg_match('/[0-9]/', $newPassword)) {
-            header("Location: change_password.php?erreur=5");
+            header("Location: change_password.php?confirmMdpError=5");
             exit;
         }
         if (!preg_match('/[A-Z]/', $newPassword)) {
-            header("Location: change_password.php?erreur=5");
+            header("Location: change_password.php?confirmMdpError=5");
             exit;
         }
         if (!preg_match('/[a-z]/', $newPassword)) {
-            header("Location: change_password.php?erreur=5");
+            header("Location: change_password.php?confirmMdpError=5");
             exit;
         }
         if (!preg_match('/[^a-zA-Z0-9]/', $newPassword)) {
-            header("Location: change_password.php?erreur=5");
+            header("Location: change_password.php?confirmMdpError=5");
             exit;
         }
         if (strlen($newPassword) < 12 && !preg_match('/[0-9]/', $newPassword) && !preg_match('/[A-Z]/', $newPassword) && !preg_match('/[a-z]/', $newPassword) && !preg_match('/[^a-zA-Z0-9]/', $newPassword)) {
-            header("Location: change_password.php?erreur=5");
+            header("Location: change_password.php?confirmMdpError=5");
             exit;
         }
 
@@ -109,10 +109,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         trace($num_user, 'Changement de mot de passe', $cnx);
 
         // Rediriger vers la page de connexion avec un message
-        header('Location: change_password.php?erreur=1');
+        header('Location: change_password.php?confirmMdpError=1');
     } else {
         // L'ancien mot de passe est incorrect
-        header('Location: change_password.php?erreur=2');
+        header('Location: change_password.php?confirmMdpError=2');
     }
     exit;
 } else {

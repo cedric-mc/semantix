@@ -1,9 +1,23 @@
 <?php
+    include_once("../class/User.php");
     session_start();
+    // Utilisateur connecté ?
+    if (!isset($_SESSION['user'])) {
+        header('Location: ./');
+        exit;
+    }
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
+
     if (!isset($_SESSION['verification_code'])) {
         header('Location: ./');
         exit;
     }
+
+    $erreursConfirmMdp = [
+        1 => ["Le "]
+    ];
+
+    $codeConfirmMdp = ($_GET['confirmMdpError']) ? $_GET['confirmMdpError'] : 0;
 ?>
 
 <!DOCTYPE html>
@@ -31,21 +45,21 @@
             </form>
             <?php
                 // Si le message d'erreur est différent de 0
-                if ($codeEmail > 0 && $codeEmail < 6) {
+                if ($codeConfirmMdp > 0 && $codeConfirmMdp < 6) {
                     echo "<br><div id='msg-error' class='alert' role='alert'></div>";
                 }
             ?>
         </main>
         <script>
             // Je récupère le message d’erreur
-            let msgCode = <?php echo json_encode($codeEmail); ?>;
-            let msgError = <?php echo json_encode($erreursEmail[$codeEmail][0]); ?>;
+            let msgCode = <?php echo json_encode($codeConfirmMdp); ?>;
+            let msgError = <?php echo json_encode($erreursConfirmMdp[$codeConfirmMdp][0]); ?>;
             // Si le message d’erreur est différent de 0
             if (msgCode > 0 && msgCode < 6) {
                 // J'affiche le message d'erreur
                 document.getElementById('msg-error').innerHTML = msgError;
                 // Je change la couleur du message d'erreur
-                document.getElementById('msg-error').classList.add(<?php echo json_encode($erreursEmail[$codeEmail][1]); ?>);
+                document.getElementById('msg-error').classList.add(<?php echo json_encode($erreursConfirmMdp[$codeConfirmMdp][1]); ?>);
                 document.getElementById('msg-error').classList.add('visible');
                 // Après l'expiration du cookie, on actualise la page pour le supprimer
                 setTimeout(function () {
