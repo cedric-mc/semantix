@@ -154,7 +154,11 @@
             </div>
         <script>
             const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
-            changePasswordModal.show();
+            document.changePasswordModal.addEventListener("click", function(event) {
+                if (event.target === document.changePasswordModal) {
+                    changePasswordModal.hide();
+                }
+            });
 
             // Si quelqu'un clique sur le bouton de #changePasswordModal, affichez la fenêtre modale
             document.getElementById('btn-mdp').addEventListener('click', function() {
