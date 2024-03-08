@@ -2,7 +2,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
     //Connexion à la BDD
-    include '../conf.bkp.php';
+    include '../includes/conf.php';
 
     $pseudo = $_POST["pseudo"];
     $email = $_POST["email"];

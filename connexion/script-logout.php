@@ -4,7 +4,7 @@ if (!isset($_SESSION['pseudo'])) {
     header('Location: ../');
 }
 
-include '../includes/conf.bkp.php';
+include '../includes/conf.php';
 include '../includes/fonctions.php';
 
 //Récuperer le num_user pour la journalisation

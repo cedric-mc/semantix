@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newEmail = $_POST['email2'];
 
     include_once("../class/User.php");
-    include_once("../includes/conf.bkp.php"); // Connexion à la base de données
+    include_once("../includes/conf.php"); // Connexion à la base de données
     session_start();
 
     // Vérifier si l'utilisateur est connecté

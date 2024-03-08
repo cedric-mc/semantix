@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passeword1 = $_POST['password1'];
     $passeword2 = $_POST['password2'];
     $passeword3 = $_POST['password3'];
-    include("../includes/conf.bkp.php");
+    include("../includes/conf.php");
     session_start();
     if (!isset($_SESSION['user'])) {
         header("Location: ./");

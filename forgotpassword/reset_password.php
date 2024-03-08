@@ -12,7 +12,7 @@ $codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
 
 if ($_GET['code']) {
 
-    include '../conf.bkp.php';
+    include '../includes/conf.php';
 
     $code_reinitialisation = $_GET['code'];
 

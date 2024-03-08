@@ -6,7 +6,7 @@ if (!isset($_SESSION['pseudo_temp'])) {
     exit;
 }
 
-include 'conf.bkp.php';
+include 'includes/conf.php';
 
 $pseudo = $_SESSION['pseudo_temp'];
 

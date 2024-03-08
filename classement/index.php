@@ -1,6 +1,6 @@
 <?php
 include_once("../class/User.php");
-include_once("../includes/conf.bkp.php");
+include_once("../includes/conf.php");
 include_once("../includes/fonctions.php");
 include_once("../includes/requetes.php");
 session_start();

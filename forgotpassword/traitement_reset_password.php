@@ -6,7 +6,7 @@ if (isset($_SESSION['pseudo'])) {
     exit;
 }
 
-include '../conf.bkp.php';
+include '../includes/conf.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_user = $_POST['num_user'];

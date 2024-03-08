@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include '../conf.bkp.php';
+    include '../includes/conf.php';
 
     if (isset($_GET['code'])) {
         $code_confirmation = $_GET['code'];

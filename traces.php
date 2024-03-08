@@ -2,7 +2,7 @@
     include_once("class/User.php");
     include_once("includes/fonctions.php");
     include_once("includes/requetes.php");
-    include_once("includes/conf.bkp.php");
+    include_once("includes/conf.php");
     session_start();
     if (!isset($_SESSION['user'])) {
         header('Location: ./');

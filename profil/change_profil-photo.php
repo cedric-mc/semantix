@@ -4,7 +4,7 @@
             $imageData = file_get_contents($_FILES["image"]["tmp_name"]);
             $imageType = $_FILES["image"]["type"];
 
-            include("../conf.bkp.php");
+            include("../includes/conf.php");
             $stmt = $cnx->prepare("UPDATE SAE_USERS SET image_data = :image_data, image_type = :image_type WHERE num_user = :num_user");
 
             if ($stmt->execute()) {

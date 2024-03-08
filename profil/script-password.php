@@ -4,7 +4,7 @@
         $newPassword = $_SESSION['password2'];
         $confirmPassword = $_SESSION['password3'];
 
-        include("../conf.bkp.php");
+        include("../includes/conf.php");
         session_start();
 
         // Vérifier si le code correspond et n'a pas expiré
