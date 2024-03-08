@@ -116,9 +116,9 @@
                     </div>
                     <div class="buttons">
                         <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
-                        <!-- <button id="btn-email" type="button" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button> -->
+                        <button id="btn-email" type="button" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button>
                         <button id="btn-mdp" type="button" class="btn btn-warning text-nowrap">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
-                        <!-- <button id="btn-photo" type="button" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></button> -->
+                        <button id="btn-photo" type="button" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></button>
                         <button id="disconnect-btn" class="btn btn-danger g-col-6 text-nowrap">Se déconnecter&emsp;<i class="fa-solid fa-right-from-bracket"></i></button>
                     </div>
                 </div>
@@ -213,37 +213,31 @@
             </div>
         </div>
         <!-- Modal pour la photo de profil -->
-        <!-- <div id="modal-photo" class="modal">
+        <div id="modal-photo" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p>Contenu de votre modal pour la photo de profil...</p>
             </div>
-        </div> -->
+        </div>
 
         <!-- Modal pour le changement d'email -->
-        <!-- <div id="modal-email" class="modal">
+        <div id="modal-email" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p>Contenu de votre modal pour le changement d'email...</p>
             </div>
-        </div> -->
+        </div>
         <script>
             var modalMdp = document.getElementById("modal-mdp");
             var btnMdp = document.getElementById("btn-mdp");
-            // var modalPhoto = document.getElementById("modal-photo");
-            // var modalEmail = document.getElementById("modal-email");
-            // var btnPhoto = document.getElementById("btn-photo");
-            // var btnEmail = document.getElementById("btn-email");
+            var modalPhoto = document.getElementById("modal-photo");
+            var modalEmail = document.getElementById("modal-email");
+            var btnPhoto = document.getElementById("btn-photo");
+            var btnEmail = document.getElementById("btn-email");
             var spans = document.getElementsByClassName("close");
 
             btnMdp.onclick = function() {
                 modalMdp.style.display = "block";
-            }
-
-            window.onclick = function(event) {
-                if (event.target == modalMdp) {
-                    modalMdp.style.display = "none";
-                }
             }
 
             btnPhoto.onclick = function() {
@@ -261,10 +255,11 @@
             }
 
             window.onclick = function(event) {
-                if (event.target == modalPhoto) {
+                if (event.target == modalMdp) {
+                    modalMdp.style.display = "none";
+                } else if (event.target == modalPhoto) {
                     modalPhoto.style.display = "none";
-                }
-                if (event.target == modalEmail) {
+                } else if (event.target == modalEmail) {
                     modalEmail.style.display = "none";
                 }
             }
