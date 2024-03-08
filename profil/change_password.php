@@ -1,13 +1,4 @@
 <?php
-    include_once("../class/User.php");
-    session_start();
-    // Utilisateur connecté ?
-    if (!isset($_SESSION['user'])) {
-        header('Location: ./');
-        exit;
-    }
-    $user = User::createUserFromUser(unserialize($_SESSION['user']));
-
     // Messages d'erreurs possibles
     $erreursMdp = [
         1 => ["Le mot de passe a bien été changé.", "alert-success"],
