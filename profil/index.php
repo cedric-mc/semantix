@@ -75,12 +75,12 @@
             }
 
             .modal-content {
-                transition: opacity 0.5s ease;
-                opacity: 0; /* Par défaut, le modal est transparent */
+                transition: transform 0.5s ease;
+                transform: translateY(-100%); /* Par défaut, le modal est hors de l'écran */
             }
 
             .modal.show .modal-content {
-                opacity: 1; /* Quand le modal est affiché, il devient opaque */
+                transform: translateY(0); /* Quand le modal est affiché, il glisse vers le bas */
             }
 
             .modal-content {
