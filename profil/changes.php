@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
@@ -24,6 +25,12 @@
                             </div>
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
+                        <?php
+                            // Si le message d'erreur est différent de 0
+                            if ($codeEmail > 0 && $codeEmail < 6) {
+                                echo "<br><div id='msg-error' class='alert' role='alert'></div>";
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
