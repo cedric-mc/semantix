@@ -38,16 +38,16 @@
                     <div class="modal-body">
                         <form action="script-password.php" method="POST">
                             <div class="input-field">
-                                <input type="password" id="password1" name="password1" required>
                                 <label for="password1">Ancien mot de passe :</label>
+                                <input type="password" id="password1" name="password1" required>
                             </div>
                             <div class="input-field">
-                                <input type="password" id="password2" name="password2" required>
                                 <label for="password2">Nouveau mot de passe :</label>
+                                <input type="password" id="password2" name="password2" required>
                             </div>
                             <div class="input-field">
-                                <input type="password" id="password3" name="password3" required>
                                 <label for="password3">Confirmer le nouveau mot de passe :</label>
+                                <input type="password" id="password3" name="password3" required>
                             </div>
                             <button id="formButton" type="submit" class="btn fw-semibold">Valider</button>
                         </form>
