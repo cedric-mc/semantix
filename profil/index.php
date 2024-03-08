@@ -195,7 +195,7 @@
         </div>
         <script>
             var modal = document.getElementById("myModal");
-            var btn = document.getElementById("myBtn");
+            var btn = document.getElementById("btn-mdp");
             var span = document.getElementsByClassName("close")[0];
 
             btn.onclick = function() {
