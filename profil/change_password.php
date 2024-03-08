@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <main class="glassmorphism">
+        <main class="glassmorphism no-glassmorphism">
             <h1 class="title">Changer le mot de passe</h1>
             <form action="script-password.php" method="POST">
                 <div class="input-field">
