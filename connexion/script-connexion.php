@@ -1,6 +1,6 @@
 <?php
     include_once("../class/User.php");
-    include_once("../includes/conf.bkp.php");
+    include_once("../includes/conf.php");
     include_once("../includes/fonctions.php");
     session_start();
     // erreur php
@@ -59,7 +59,6 @@
                     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
 
                     $mail->addAddress($user->getEmail(), $user->getPseudo());
-                    $mail->Content = 'UTF-8';
                     //Envoi du mail
                     $mail->send();
 

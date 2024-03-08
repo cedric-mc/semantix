@@ -20,5 +20,5 @@ $mail->Username = $username;
 $mail->Password = $password;
 $mail->CharSet = 'UTF-8';
 
-$mail->setFrom($username, $name);
+$mail->setFrom("support@semonkey.fr", $name);
 ?>
