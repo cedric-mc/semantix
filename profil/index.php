@@ -60,8 +60,8 @@
         <link rel="icon" href="../img/monkeyapp.png">
         <?php include("../includes/head.php"); ?>
         <style>
-            .modal {
-                background: transparent;
+            .modal-content {
+                background: black;
             }
         </style>
     </head>
