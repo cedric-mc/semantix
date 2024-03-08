@@ -74,6 +74,7 @@
             }
 
             .modal-content {
+                z-index: 1050;
                 transition: transform 0.5s ease;
                 transform: translateY(-100%); /* Par défaut, le modal est hors de l'écran */
             }
