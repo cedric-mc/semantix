@@ -1,5 +1,5 @@
 <?php
-    global $lastConnexionProfil;
+    global $lastConnexionProfil, $cnx, $scoreProfil, $top3ScoresProfil;
     // Erreur php
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
@@ -17,7 +17,7 @@
 
     // Requête pour récupérer les informations de l'utilisateur
     $profilRequest = $cnx->prepare($lastConnexionProfil);
-    $profilRequest->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
+    $profilRequest->bindParam(":pseudo", $pseudo);
     $profilRequest->execute();
     $profilResult = $profilRequest->fetch(PDO::FETCH_OBJ);
     $profilRequest->closeCursor();
@@ -53,6 +53,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
+        <title>Profil - Semonkey</title>
         <link rel="stylesheet" href="../style/style.css">
         <link rel="stylesheet" href="../style/css_profil.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
