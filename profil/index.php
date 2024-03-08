@@ -104,6 +104,11 @@
                 text-decoration: none;
                 cursor: pointer;
             }
+
+            #exampleModalToggle {
+                z-index: 1050;
+                position: fixed;
+            }
         </style>
     </head>
 
