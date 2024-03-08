@@ -195,7 +195,7 @@
                 </div>
             </div>
         </main>
-        <div id="modal-mdp" class="modal">
+        <div id="modal-mdp" class="modal fade">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <form action="script-password.php" method="POST">
@@ -216,7 +216,7 @@
             </div>
         </div>
         <!-- Modal pour la photo de profil -->
-        <div id="modal-photo" class="modal">
+        <div id="modal-photo" class="modal fade">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p>Contenu de votre modal pour la photo de profil...</p>
