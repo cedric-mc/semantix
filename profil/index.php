@@ -74,7 +74,6 @@
             }
 
             .modal-content {
-                z-index: 1051;
                 transition: transform 0.5s ease;
                 transform: translateY(-100%); /* Par défaut, le modal est hors de l'écran */
             }
@@ -103,10 +102,6 @@
                 color: #000;
                 text-decoration: none;
                 cursor: pointer;
-            }
-
-            #exampleModalToggle {
-                z-index: 1050;
             }
         </style>
     </head>
