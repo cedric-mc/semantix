@@ -194,10 +194,23 @@
             </div>
         </div>
         <script>
-            const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
-            document.getElementById('btn-mdp').addEventListener("click", function(event) {
-                changePasswordModal.show();
-            });
+            var modal = document.getElementById("myModal");
+            var btn = document.getElementById("myBtn");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
 
             document.getElementById('disconnect-btn').addEventListener('click', function() {
                 if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
