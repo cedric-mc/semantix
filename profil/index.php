@@ -36,7 +36,16 @@
     $top3Request->closeCursor();
     $menu = 1;
 
-    // Messages d'erreurs possibles
+    // Messages d’erreurs possibles pour le changement d'email
+    $erreursEmail = [
+        1 => ["L'adresse e-mail a bien été modifiée.", "alert-success"],
+        2 => ["L'ancienne adresse e-mail est incorrecte.", "alert-danger"],
+        3 => ["La nouvelle adresse e-mail est incorrecte.", "alert-danger"],
+        4 => ["Les deux adresses e-mail sont identiques.", "alert-danger"],
+        5 => ["La nouvelle adresse e-mail est déjà utilisée par un autre utilisateur.", "alert-danger"]
+    ];
+
+    // Messages d'erreurs possibles pour le changement de mot de passe
     $erreursMdp = [
         1 => ["Le mot de passe a bien été changé.", "alert-success"],
         2 => ["L'ancien mot de passe est incorrect.", "alert-danger"],
