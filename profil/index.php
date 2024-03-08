@@ -160,11 +160,6 @@
                 }
             });
 
-            // Si quelqu'un clique sur le bouton de #changePasswordModal, affichez la fenêtre modale
-            document.getElementById('btn-mdp').addEventListener('click', function() {
-                changePasswordModal.show();
-            });
-
             document.getElementById('disconnect-btn').addEventListener('click', function() {
                 if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
                     window.location.href = '../connexion/script-logout.php'; // Redirigez vers la page de déconnexion
