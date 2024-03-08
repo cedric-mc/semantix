@@ -72,13 +72,13 @@
                 overflow: auto; /* Enable scroll if needed */
                 background-color: rgb(0,0,0); /* Fallback color */
                 background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                opacity: 0; /* Le modal est initialement invisible */
-                transition: opacity 0.5s ease-in-out; /* Animation sur l'opacité */
+                /* opacity: 0;
+                transition: opacity 0.5s ease-in-out; */
             }
 
-            .modal.show {
-                opacity: 1; /* Le modal est visible lorsque la classe .show est ajoutée */
-            }
+            /* .modal.show {
+                opacity: 1;
+            } */
 
             .modal-content {
                 background-color: #fefefe;
