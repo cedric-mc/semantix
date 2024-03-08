@@ -62,7 +62,7 @@
                         <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
                         <a id="btn-email" href="change_email.php" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></a>
 <!--                        <a id="btn-mdp" href="change_password.php" class="btn btn-warning text-nowrap">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></a>-->
-                        <button type="button" class="btn btn-warning text-nowrap" data-toggle="modal" data-target="#changePasswordModal">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
+                        <button id="btn-mdp" type="button" class="btn btn-warning text-nowrap" data-toggle="modal" data-target="#changePasswordModal">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
                         <a id="btn-photo" href="change_profil-photo.php" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></a>
                         <button id="disconnect-btn" class="btn btn-danger g-col-6 text-nowrap">Se déconnecter&emsp;<i class="fa-solid fa-right-from-bracket"></i></button>
                     </div>
@@ -153,9 +153,13 @@
                 </div>
             </div>
         <script>
-            const modal = document.getElementById('changePasswordModal')
             const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
             changePasswordModal.show();
+
+            // Si quelqu'un clique sur le bouton de #changePasswordModal, affichez la fenêtre modale
+            document.getElementById('btn-mdp').addEventListener('click', function() {
+                changePasswordModal.show();
+            });
 
             document.getElementById('disconnect-btn').addEventListener('click', function() {
                 if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
