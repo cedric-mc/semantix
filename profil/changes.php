@@ -67,7 +67,7 @@
                             <div class="input-field">
                                 <input type="file" id="photo" name="photo" required>
                             </div>
-                            <button id="formButton" type="submit" class="btn fw-semibold">Valider</button>
+                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
                     </div>
                 </div>
