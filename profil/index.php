@@ -42,6 +42,7 @@
         <link rel="stylesheet" href="../style/style.css">
         <link rel="stylesheet" href="../style/css_profil.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <link rel="icon" href="../img/monkeyapp.png">
         <?php include("../includes/head.php"); ?>
@@ -60,7 +61,8 @@
                     <div class="buttons">
                         <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
                         <a id="btn-email" href="change_email.php" class="btn btn-warning text-nowrap">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></a>
-                        <a id="btn-mdp" href="change_password.php" class="btn btn-warning text-nowrap">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></a>
+<!--                        <a id="btn-mdp" href="change_password.php" class="btn btn-warning text-nowrap">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></a>-->
+                        <button type="button" class="btn btn-warning text-nowrap" data-toggle="modal" data-target="#changePasswordModal">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
                         <a id="btn-photo" href="change_profil-photo.php" class="btn btn-warning text-nowrap disabled">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></a>
                         <button id="disconnect-btn" class="btn btn-danger g-col-6 text-nowrap">Se déconnecter&emsp;<i class="fa-solid fa-right-from-bracket"></i></button>
                     </div>
@@ -135,10 +137,29 @@
                 </div>
             </div>
         </main>
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                ...
+            </div>
         <script>
-            $(document).ready(function(){
-                $('[data-toggle="tooltip"]').tooltip();
-            });
+            const exampleModal = document.getElementById('changePasswordModal')
+            if (exampleModal) {
+                exampleModal.addEventListener('show.bs.modal', event => {
+                    // Button that triggered the modal
+                    const button = event.relatedTarget
+                    // Extract info from data-bs-* attributes
+                    const recipient = button.getAttribute('data-bs-whatever')
+                    // If necessary, you could initiate an Ajax request here
+                    // and then do the updating in a callback.
+
+                    // Update the modal's content.
+                    const modalTitle = exampleModal.querySelector('.modal-title')
+                    const modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+                    modalTitle.textContent = `New message to ${recipient}`
+                    modalBodyInput.value = recipient
+                })
+            }
 
             document.getElementById('disconnect-btn').addEventListener('click', function() {
                 if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
@@ -175,6 +196,5 @@
                 updateElapsedTime();
             });
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

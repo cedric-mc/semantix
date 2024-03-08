@@ -14,10 +14,11 @@
     }
 
     $erreursConfirmMdp = [
-        1 => ["Le "]
+        1 => ["Le code de confirmation est correct. Mot de passe modifié avec succès.", "alert-success"],
+        2 => []
     ];
 
-    $codeConfirmMdp = ($_GET['confirmMdpError']) ? $_GET['confirmMdpError'] : 0;
+    $codeConfirmMdp = isset($_GET['confirmMdpError']) ? (int)$_GET['confirmMdpError'] : 0;
 ?>
 
 <!DOCTYPE html>

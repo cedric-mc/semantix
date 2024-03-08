@@ -1,17 +1,18 @@
 <?php
-session_start();
-
-// Utilisateur connecté ?
-if (!isset($_SESSION['pseudo'])) {
-    header('Location: ../');
-    exit;
-}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include("../conf.bkp.php");
-
-    $_SESSION['password1'] = $_POST['password1'];
-    $_SESSION['password2'] = $_POST['password2'];
-    $_SESSION['password3'] = $_POST['password3'];
+    $passeword1 = $_POST['password1'];
+    $passeword2 = $_POST['password2'];
+    $passeword3 = $_POST['password3'];
+    include("../includes/conf.bkp.php");
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header("Location: ./");
+        exit;
+    }
+    // Vérifier si les mots de passe sont identiques
+    if ($passeword2 != $passeword3) {
+        header("Location: change_password.php?"
+    }
 
     if (isset($_SESSION['pseudo'])) {
         $pseudo = $_SESSION['pseudo'];
