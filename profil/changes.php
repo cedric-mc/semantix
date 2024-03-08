@@ -2,23 +2,6 @@
     <head>
         <meta charset="UTF-8">
         <title>Changer - Semonkey</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <style>
-            h1.title, label {
-                color: black;
-            }
-
-            button {
-                background: #000;
-                color: #fff;
-            }
-
-            button:hover {
-                background: #000;
-                color: #000;
-            }
-        </style>
     </head>
 
     <body>
