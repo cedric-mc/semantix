@@ -61,6 +61,7 @@
         <?php include("../includes/head.php"); ?>
         <style>
             .modal-content {
+                width: fit-content;
                 background: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
                 backdrop-filter: blur(10px); /* Flou derrière le modal */
             }
