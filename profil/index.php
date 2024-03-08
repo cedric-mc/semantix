@@ -247,19 +247,23 @@
 
             btnMdp.onclick = function() {
                 modalMdp.style.display = "block";
+                modalMdp.classList.add('show'); // Ajoutez la classe 'show'
             }
 
             btnPhoto.onclick = function() {
                 modalPhoto.style.display = "block";
+                modalPhoto.classList.add('show'); // Ajoutez la classe 'show'
             }
 
             btnEmail.onclick = function() {
                 modalEmail.style.display = "block";
+                modalEmail.classList.add('show'); // Ajoutez la classe 'show'
             }
 
             for (var i = 0; i < spans.length; i++) {
                 spans[i].onclick = function() {
                     this.parentElement.parentElement.style.display = "none";
+                    this.parentElement.parentElement.classList.remove('show'); // Retirez la classe 'show'
                 }
             }
 
