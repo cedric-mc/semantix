@@ -74,8 +74,8 @@
                     </div>
                     <div class="buttons">
                         <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
-                        <button id="btn-email" type="button" class="btn btn-warning text-nowrap" data-bs-target="#emailModal" data-bs-toggle="modal">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button>
-                        <button id="btn-mdp" type="button" class="btn btn-warning text-nowrap" data-bs-target="#emailModal" data-bs-toggle="modal">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
+                        <button id="btn-email" type="button" class="btn btn-warning text-nowrap" data-bs-target="#mdpModal" data-bs-toggle="modal">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button>
+                        <button id="btn-mdp" type="button" class="btn btn-warning text-nowrap" data-bs-target="#photoModal" data-bs-toggle="modal">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
                         <button id="btn-photo" type="button" class="btn btn-warning text-nowrap disabled" data-bs-target="#emailModal" data-bs-toggle="modal">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></button>
                     </div>
                 </div>
@@ -178,6 +178,19 @@
                     </div>
                     <div class="modal-body">
                         Show a second modal and hide this one with the button below.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="mdpModal" aria-labelledby="mdpModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="mdpModalLabel">Changer le mot de passe</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        rgthj,k;lokjhg
                     </div>
                 </div>
             </div>
