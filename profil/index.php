@@ -55,6 +55,14 @@
         6 => ["Code incorrect ou expiré !", "alert-danger"]
     ];
 
+    // Messages d'erreurs possibles pour le changement de photo de profil
+    $erreursPhoto = [
+        1 => ["La photo de profil a bien été modifiée.", "alert-success"],
+        2 => ["Le fichier n'est pas une image.", "alert-danger"],
+        3 => ["Le fichier est trop volumineux.", "alert-danger"],
+        4 => ["Erreur lors de l'envoi du fichier.", "alert-danger"]
+    ];
+
     // Récupérer le code d’erreur depuis l'URL
     $codeMdp = isset($_GET["erreurMdp"]) ? (int)$_GET["erreurMdp"] : 0;
 ?>
