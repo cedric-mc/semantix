@@ -11,7 +11,7 @@
 
     <body>
         <main class="glassmorphism no-glassmorphism">
-            <h1 class="title">Changer le mot de passe</h1>
+            <h1 class="title">Changer le mot de passedfgf</h1>
             <form action="script-password.php" method="POST">
                 <div class="input-field">
                     <input type="password" id="password1" name="password1" required>
