@@ -195,6 +195,9 @@
                 // Appelez la fonction une fois au chargement de la page
                 updateElapsedTime();
             });
+
+            const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+            changePasswordModal.show();
         </script>
     </body>
 </html>
