@@ -34,7 +34,6 @@
     $top3Request->execute();
     $top3Result = $top3Request->fetchAll(PDO::FETCH_OBJ);
     $top3Request->closeCursor();
-    $menu = 1;
 
     // Messages d’erreurs possibles pour le changement d'email
     $erreursEmail = [
@@ -63,8 +62,10 @@
         4 => ["Erreur lors de l'envoi du fichier.", "alert-danger"]
     ];
 
-    // Récupérer le code d’erreur depuis l'URL
+    // Récupérer les codes d'erreur depuis l'URL
+    $codeEmail = isset($_GET['emailErreur']) ? (int)$_GET['emailErreur'] : 0;
     $codeMdp = isset($_GET["erreurMdp"]) ? (int)$_GET["erreurMdp"] : 0;
+    $codePhoto = isset($_GET["erreurPhoto"]) ? (int)$_GET["erreurPhoto"] : 0;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -81,7 +82,7 @@
     </head>
 
     <body>
-        <?php include("../includes/menu.php"); ?>
+        <?php $menu = 1; include("../includes/menu.php"); ?>
         <main class="glassmorphism">
             <h1 class="title">Mon Profil</h1>
             <div class="parent">
