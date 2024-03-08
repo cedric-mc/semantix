@@ -237,7 +237,7 @@
             }
 
             window.onclick = function(event) {
-                if (event.target == modal) {
+                if (event.target == modalMdp) {
                     modalMdp.style.display = "none";
                 }
             }
