@@ -152,6 +152,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         <script>
             const changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
             document.getElementById('btn-mdp').addEventListener("click", function(event) {
