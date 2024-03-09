@@ -18,13 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier si les deux emails sont identiques
     if ($oldEmail == $newEmail) {
-        header('Location: change_email.php?emailErreur=4');
+        header('Location: ./?emailErreur=4');
         exit;
     }
 
     // Vérifier si l'ancien email est correct
     if ($email != $oldEmail) {
-        header('Location: change_email.php?emailErreur=2');
+        header('Location: ./?emailErreur=2');
         exit;
     }
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->closeCursor();
 
     if ($user) {
-        header('Location: change_email.php?emailErreur=5');
+        header('Location: ./?emailErreur=5');
         exit;
     }
 
@@ -86,6 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include '../includes/fonctions.php';
     trace($num_user, "Changement d'adresse email", $cnx);
 
-    header('Location: change_email.php?emailErreur=1');
+    header('Location: ./?emailErreur=1');
     exit;
 }
