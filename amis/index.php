@@ -1,5 +1,4 @@
 <?php
-    global $cnx, $listUsers;
     include_once("../class/User.php");
     include_once("../includes/conf.php");
     include_once("../includes/requetes.php");
