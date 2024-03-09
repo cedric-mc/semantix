@@ -15,7 +15,14 @@
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
     $idUser = $user->getIdUser();
 
-    //
+    // Requête SQL pour obtenr la liste des amis
+    $allFriendsRequest = $cnx->prepare($allFriends);
+    $allFriendsRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
+    $allFriendsRequest->execute();
+    $allFriendsResult = $allFriendsRequest->fetchAll(PDO::FETCH_OBJ);
+    $allFriendsRequest->closeCursor();
+
+    // Requête SQL pour obtenir la liste des pseudos qui peuvent être ajoutés en amis
     $listPseudosRequest = $cnx->prepare($listUsersPseudo);
     $listPseudosRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
     $listPseudosRequest->bindParam(":idUser", $idUser, PDO::PARAM_INT);
@@ -131,15 +138,22 @@
                     <div class="user">
                         <img src="../img/profil.webp" alt="Photo de profil">
                         <p>Nom de l'ami</p>
-                        <p>Statut : En ligne</p>
                         <button>Supprimer</button>
                     </div>
                     <div class="user">
                         <img src="../img/profil.webp" alt="Photo de profil">
                         <p>Nom de l'ami</p>
-                        <p>Statut : Hors ligne</p>
                         <button>Supprimer</button>
                     </div>
+                    <?php
+                        foreach ($allFriendsResult as $ligne) {
+                            echo "<div class='user'>";
+                            echo "<img src='../img/profil.webp' alt='Photo de profil'>";
+                            echo "<p>$ligne->pseudo</p>";
+                            echo "<button>Supprimer</button>";
+                            echo "</div>";
+                        }
+                    ?>
                 </div>
             </div>
             <br>
