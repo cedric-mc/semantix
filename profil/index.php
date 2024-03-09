@@ -83,7 +83,7 @@
 
     <body>
         <?php $menu = 1; include("../includes/menu.php"); ?>
-        <main class="glassmorphism">
+        <main class="glassmorphism overflow-x-auto">
             <h1 class="title">Mon Profil</h1>
             <div class="parent">
                 <div class="photo-pseudo-buttons glassmorphism-section">
