@@ -146,7 +146,7 @@
                         }
 
                         if ($nbAmis == 0) {
-                            echo "<div class='user'>";
+                            echo "<div class='user text-center'>";
                             echo "<p>Aucun ami pour le moment, tu es seul(e) au monde !</p>";
                             echo "</div>";
                         }
