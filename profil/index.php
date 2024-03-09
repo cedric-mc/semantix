@@ -223,9 +223,14 @@
 
                 // Après les 10 secondes, on actualise la page pour supprimer le code d'erreur de l'URL et le message d'erreur mais on ouvre la modal correspondante
                 setTimeout(function () {
-                    window.location.href = './';
-                    let url = new URL(window.location.href);
-                    let modal = url.searchParams.get('modal');
+                    // Supprimer la variable GET de l'URL
+                    let url = window.location.href.split('?')[0];
+                    history.replaceState(null, null, url);
+
+                    // Récupérer le modal qui était ouvert avant le rechargement de la page
+                    let modal = localStorage.getItem('modal');
+
+                    // Réafficher le modal
                     if (modal === 'email') {
                         $('#emailModal').modal('show');
                     } else if (modal === 'mdp') {
@@ -233,6 +238,9 @@
                     } else if (modal === 'photo') {
                         $('#photoModal').modal('show');
                     }
+
+                    // Supprimer le modal du localStorage
+                    localStorage.removeItem('modal');
                 }, 1000);
             }, 10000);
         </script>
