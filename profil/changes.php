@@ -1,3 +1,6 @@
+<?php
+global $erreursEmail, $codeEmail;
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -60,6 +63,13 @@
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
                     </div>
+                    <div class="modal-footer text-center">
+                        <?php if ($codeMdp > 0 && $codeMdp < 6) { ?>
+                            <div id="msgMdp" class="alert <?php echo $erreursMdp[$codeMdp][1]; ?>" role="alert">
+                                <?php echo $erreursMdp[$codeMdp][0]; ?>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,6 +87,13 @@
                             </div>
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <?php if ($codePhoto > 0 && $codePhoto < 6) { ?>
+                            <div id="msgPhoto" class="alert <?php echo $erreursPhoto[$codePhoto][1]; ?>" role="alert">
+                                <?php echo $erreursPhoto[$codePhoto][0]; ?>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
