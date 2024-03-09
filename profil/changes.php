@@ -20,7 +20,7 @@
                         <form action="script-email.php" method="POST">
                             <div class="input-field">
                                 <label for="email1">Ancienne adresse email :</label>
-                                <input type="email" name="email1" id="email1" required>
+                                <input type="email" class="form-control" name="email1" id="email1" required>
                             </div>
                             <div class="input-field">
                                 <label for="email2">Nouvelle adresse email :</label>
@@ -30,7 +30,7 @@
                         </form>
                     </div>
                     <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
-                        <div class="modal-footer text-center">
+                        <div class="modal-footer">
                             <div id="msgEmail" class="alert w-100 <?php echo $erreursEmail[$codeEmail][1]; ?>" role="alert">
                                 <?php echo $erreursEmail[$codeEmail][0]; ?>
                             </div>
