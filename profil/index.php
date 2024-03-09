@@ -223,7 +223,7 @@
 
                 // Après les 10 secondes, on actualise la page pour supprimer le code d'erreur de l'URL et le message d'erreur mais on ouvre la modal correspondante
                 setTimeout(function () {
-                    window.location.href = 'changes.php';
+                    window.location.href = './';
                     let url = new URL(window.location.href);
                     let modal = url.searchParams.get('modal');
                     if (modal === 'email') {
