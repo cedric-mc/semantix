@@ -190,7 +190,9 @@
                     </div>
                     <div class="modal-footer">
                         <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
-                            <div id="msgEmail" class="alert" role="alert"></div>
+                            <div id="msgEmail" class="alert <?php echo $erreursEmail[$codeEmail][1]; ?>" role="alert">
+                                <?php echo $erreursEmail[$codeEmail][0]; ?>
+                            </div>
                         <?php } ?>
                     </div>
                 </div>
