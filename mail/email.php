@@ -37,10 +37,11 @@
         <p>
             Bonjour <?php echo $_SESSION['pseudo']; ?>, Votre adresse e-mail a été modifiée. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.
             <br><br>
-            Cordialement, L'équipe de Semantic Analogy Explorer
+            Cordialement,<br>
+            L'équipe de Semonkey.
         </p>
         <footer>
-            <p>© 2024 Semantic Analogy Explorer. Tous droits réservés.</p>
+            <p>© 2024 Semonkey. Tous droits réservés.</p>
         </footer>
     </body>
 </html>

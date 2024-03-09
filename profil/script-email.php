@@ -51,6 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Mail
     include("../mail/mailer.php");
+    // Capture de la sortie de la page PHP dans une variable
+    ob_start();
+    include("../mail/connexion.php");
+    $content = ob_get_clean();
 
     $mail->addAddress($newEmail);
     $mail->isHTML(true);
