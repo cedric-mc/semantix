@@ -22,7 +22,7 @@
                                 <input type="email" class="form-control" placeholder="Ancienne adresse email" name="email1" id="email1" required>
                                 <label for="email1">Ancienne adresse email :</label>
                             </div>
-                            <div class="input-field">
+                            <div class="form-floating mb-3">
                                 <input type="email" class="form-control" name="email2" id="email2" required>
                                 <label for="email2">Nouvelle adresse email :</label>
                             </div>
