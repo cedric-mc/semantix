@@ -8,10 +8,10 @@
     include("../includes/fonctions.php");
     include("../includes/requetes.php");
     session_start();
-//    if (!isset($_SESSION['user'])) {
-//        header("Location: ../");
-//        exit;
-//    }
+    if (!isset($_SESSION['user'])) {
+        header("Location: ../");
+        exit;
+    }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
     $pseudo = $user->getPseudo();
 
