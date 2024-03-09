@@ -80,8 +80,6 @@
                 padding: 0.625rem;
                 border: 1px solid #4CAF50;
                 border-radius: 5px;
-                width: 10rem;
-                height: 10rem;
             }
 
             .user img {
