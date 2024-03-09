@@ -1,12 +1,22 @@
 <?php
-    include_once("class/User.php");
+    global $cnx, $listUsers;
+    include_once("../class/User.php");
+    include_once("../includes/conf.php");
     session_start();
     if (!isset($_SESSION['user'])) {
         header('Location: ./');
         exit;
     }
     $user = unserialize($_SESSION['user']);
-    $menu = 1;
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
+    $idUser = $user->getIdUser();
+
+    // Requête SQL pour obtenir la liste des amis à ajouter
+    $listUsersRequest = $cnx->prepare($listUsers);
+    $listUsersRequest->bindParam(':num_user', $idUser, PDO::PARAM_INT);
+    $listUsersRequest->execute();
+    $listUsersResult = $listUsersRequest->fetch(PDO::FETCH_OBJ);
+    $listUsersRequest->closeCursor();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -91,7 +101,7 @@
     </head>
 
     <body>
-        <?php include("../includes/menu.php"); ?>
+        <?php $menu = 1; include("../includes/menu.php"); ?>
         <main class="glassmorphism friends">
             <h1 class="title">Amis</h1>
             <br>
@@ -139,6 +149,13 @@
                         <p>Nom de l'utilisateur</p>
                         <button>Ajouter</button>
                     </div>
+                    <?php while ($listUsersResult) { ?>
+                        <div class="user">
+                            <img src="../img/profil.webp" alt="Photo de profil">
+                            <p><?php echo $listUsersResult->pseudo; ?></p>
+                            <button>Ajouter</button>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </main>
