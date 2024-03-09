@@ -18,13 +18,13 @@
                     </div>
                     <div class="modal-body">
                         <form action="script-email.php" method="POST">
-                            <div class="input-field">
-                                <label for="email1">Ancienne adresse email :</label>
+                            <div class="input-field form-floating">
                                 <input type="email" class="form-control" name="email1" id="email1" required>
+                                <label for="email1">Ancienne adresse email :</label>
                             </div>
                             <div class="input-field">
+                                <input type="email" class="form-control" name="email2" id="email2" required>
                                 <label for="email2">Nouvelle adresse email :</label>
-                                <input type="email" name="email2" id="email2" required>
                             </div>
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
