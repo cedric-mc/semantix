@@ -26,7 +26,7 @@
                                 <input type="email" class="form-control" placeholder="Nouvelle adresse email" name="email2" id="email2" required>
                                 <label for="email2">Nouvelle adresse email :</label>
                             </div>
-                            <button id="formButtonEmail" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
+                            <button id="formButtonEmail" type="submit" class="btn btn-outline-secondary fw-semibold">Valider</button>
                         </form>
                     </div>
                     <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
@@ -60,7 +60,7 @@
                                 <input type="password" class="form-control" placeholder="Confirmer le nouveau mot de passe" id="password3" name="password3" required>
                                 <label for="password3">Confirmer le nouveau mot de passe :</label>
                             </div>
-                            <button id="formButtonMdp" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
+                            <button id="formButtonMdp" type="submit" class="btn btn-outline-secondary fw-semibold">Valider</button>
                         </form>
                     </div>
                     <?php if ($codeMdp > 0 && $codeMdp < 6) { ?>
@@ -84,7 +84,7 @@
                         <form action="script-photo.php" method="POST" enctype="multipart/form-data">
                             <div class="input-group">
                                 <input type="file" class="form-control" aria-describedby="formButtonPhoto" aria-label="Upload" id="photo" name="photo" required>
-                                <button id="formButtonPhoto" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
+                                <button id="formButtonPhoto" type="submit" class="btn btn-outline-secondary fw-semibold">Valider</button>
                             </div>
                         </form>
                     </div>
