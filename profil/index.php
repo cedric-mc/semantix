@@ -168,7 +168,101 @@
                 </div>
             </div>
         </main>
-        <?php include("changes.php"); ?>
+        <div class="modal fade" id="emailModal" aria-labelledby="emailModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="emailModalLabel">Changer l'adresse email</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="script-email.php" method="POST">
+                            <div class="input-field">
+                                <label for="email1">Ancienne adresse email :</label>
+                                <input type="email" name="email1" id="email1" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="email2">Nouvelle adresse email :</label>
+                                <input type="email" name="email2" id="email2" required>
+                            </div>
+                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <?php
+                        // Si le message d'erreur est différent de 0
+                        if ($codeEmail > 0 && $codeEmail < 6) {
+                            echo "<br><div id='msg-error' class='alert' role='alert'></div>";
+                        }
+                        ?>
+                        <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
+                            <script>
+                                // Je récupère le message d’erreur
+                                let msgCode = <?php echo json_encode($codeEmail); ?>;
+                                let msgError = <?php echo json_encode($erreursEmail[$codeEmail][0]); ?>;
+                                // Si le message d’erreur est différent de 0
+                                if (msgCode > 0 && msgCode < 6) {
+                                    // J'affiche le message d'erreur
+                                    document.getElementById('msg-error').innerHTML = msgError;
+                                    // Je change la couleur du message d'erreur
+                                    document.getElementById('msg-error').classList.add(<?php echo json_encode($erreursEmail[$codeEmail][1]); ?>);
+                                    document.getElementById('msg-error').classList.add('visible');
+                                    // Après l'expiration du cookie, on actualise la page pour le supprimer
+                                    setTimeout(function () {
+                                        window.location.href = 'change_email.php';
+                                    }, 10000);
+                                }
+                            </script>
+                        <?php } ?>
+                    </div   >
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="mdpModal" aria-labelledby="mdpModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="mdpModalLabel">Changer le mot de passe</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="script-password.php" method="POST">
+                            <div class="input-field">
+                                <label for="password1">Ancien mot de passe :</label>
+                                <input type="password" id="password1" name="password1" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="password2">Nouveau mot de passe :</label>
+                                <input type="password" id="password2" name="password2" required>
+                            </div>
+                            <div class="input-field">
+                                <label for="password3">Confirmer le nouveau mot de passe :</label>
+                                <input type="password" id="password3" name="password3" required>
+                            </div>
+                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="photoModal" aria-labelledby="photoModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="photoModalLabel">Changer la photo de profil</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="script-photo.php" method="POST" enctype="multipart/form-data">
+                            <div class="input-field">
+                                <input type="file" id="photo" name="photo" required>
+                            </div>
+                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script>
             $(document).ready(function() {
                 function updateElapsedTime() {
