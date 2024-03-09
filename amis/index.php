@@ -143,7 +143,7 @@
                     <button id="searchButton">Rechercher</button>
                 </div>
                 <div class="users row row-cols-auto">
-                    <div class="user">
+                    <!--<div class="user">
                         <img src="../img/profil.webp" alt="Photo de profil">
                         <p>Nom de l'utilisateur</p>
                         <button>Ajouter</button>
@@ -152,7 +152,7 @@
                         <img src="../img/profil.webp" alt="Photo de profil">
                         <p>Nom de l'utilisateur</p>
                         <button>Ajouter</button>
-                    </div>
+                    </div>-->
                     <?php
                         foreach ($listUsersResult as $ligne) {
                             echo "<div class='user'>";
