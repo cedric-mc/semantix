@@ -65,7 +65,7 @@
                     </div>
                     <?php if ($codeMdp > 0 && $codeMdp < 6) { ?>
                         <div class="modal-footer text-center">
-                            <div id="msgMdp" class="alert <?php echo $erreursMdp[$codeMdp][1]; ?>" role="alert">
+                            <div id="msgMdp" class="alert w-100 <?php echo $erreursMdp[$codeMdp][1]; ?>" role="alert">
                                 <?php echo $erreursMdp[$codeMdp][0]; ?>
                             </div>
                         </div>
