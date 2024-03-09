@@ -14,7 +14,7 @@
     $user = unserialize($_SESSION['user']);
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
     $idUser = $user->getIdUser();
-    echo $listUsers;
+
     // Requête SQL pour obtenir la liste des amis à ajouter
     $listUsersRequest = $cnx->prepare($listUsers);
     $listUsersRequest->bindParam(':num_user', $idUser, PDO::PARAM_INT);
