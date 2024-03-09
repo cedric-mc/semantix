@@ -10,7 +10,7 @@
 
     <body>
         <div class="modal fade text-center bg-transparent" id="emailModal" aria-labelledby="emailModalLabel" tabindex="-1" style="display: none" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered bg-transparent">
+            <div class="modal-dialog modal-dialog-centered glassmorphism-section">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5 w-100" id="emailModalLabel">Changer l'adresse email</h1>
