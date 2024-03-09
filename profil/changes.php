@@ -98,27 +98,5 @@
                 </div>
             </div>
         </div>
-        <script>
-            // Faire disparaître le message d'erreur après 10 secondes
-            setTimeout(function () {
-                $('#msgEmail').fadeOut('slow');
-                $('#msgMdp').fadeOut('slow');
-                $('#msgPhoto').fadeOut('slow');
-
-                // Après les 10 secondes, on actualise la page pour supprimer le code d'erreur de l'URL et le message d'erreur mais on ouvre la modal correspondante
-                setTimeout(function () {
-                    window.location.href = 'changes.php';
-                    let url = new URL(window.location.href);
-                    let modal = url.searchParams.get('modal');
-                    if (modal === 'email') {
-                        $('#emailModal').modal('show');
-                    } else if (modal === 'mdp') {
-                        $('#mdpModal').modal('show');
-                    } else if (modal === 'photo') {
-                        $('#photoModal').modal('show');
-                    }
-                }, 1000);
-            }, 10000);
-        </script>
     </body>
 </html>
