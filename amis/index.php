@@ -17,7 +17,7 @@
 
     // Requête SQL pour obtenir la liste des amis à ajouter
     $listUsersRequest = $cnx->prepare($listUsers);
-    $listUsersRequest->bindParam(':num_user', $idUser, PDO::PARAM_INT);
+    $listUsersRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
     $listUsersRequest->execute();
     $listUsersResult = $listUsersRequest->fetch(PDO::FETCH_OBJ);
     $listUsersRequest->closeCursor();
