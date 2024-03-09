@@ -31,7 +31,7 @@
                     </div>
                     <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
                         <div class="modal-footer text-center">
-                            <div id="msgEmail" class="alert <?php echo $erreursEmail[$codeEmail][1]; ?>" role="alert">
+                            <div id="msgEmail" class="text-center alert <?php echo $erreursEmail[$codeEmail][1]; ?>" role="alert">
                                 <?php echo $erreursEmail[$codeEmail][0]; ?>
                             </div>
                         </div>
