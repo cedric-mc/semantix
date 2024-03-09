@@ -2,6 +2,7 @@
     global $cnx, $listUsers;
     include_once("../class/User.php");
     include_once("../includes/conf.php");
+    include_once("../includes/requetes.php");
     // Erreur PHP
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
