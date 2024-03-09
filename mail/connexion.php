@@ -8,7 +8,7 @@
                 padding: 20px;
                 text-align: center;
             }
-            
+
             footer {
                 background-color: #f3f3f3;
                 padding: 20px;
@@ -16,6 +16,8 @@
             }
 
             img {
+                width: 6.25rem;
+                height: auto;
                 margin: 20px;
             }
 
