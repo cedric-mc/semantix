@@ -175,15 +175,13 @@
                     <button id="addFriendButton">Ajouter</button>
                 </div>
                 <div class="users row row-cols-auto">
-                    <?php
-                        foreach ($listUsersResult as $ligne) {
-                            echo "<div class='user'>";
-                            echo "<img src='../img/profil.webp' alt='Photo de profil'>";
-                            echo "<p>$ligne->pseudo</p>";
-                            echo "<button>Ajouter</button>";
-                            echo "</div>";
-                        }
-                    ?>
+                    <?php foreach ($listUsersResult as $ligne) { ?>
+                        <div class="user">
+                            <img src="../img/profil.webp" alt="Photo de profil">
+                            <p><?php echo $ligne->pseudo; ?></p>
+                            <a class="btn btn-success" href="addFriend.php">Ajouter</a>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </main>
