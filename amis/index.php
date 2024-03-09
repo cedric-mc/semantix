@@ -152,8 +152,12 @@
                     <label for="amis">Choisir un ami</label>
                     <select name="amis" id="amis">
                         <?php
+                            $nbPseudos = count($listPseudosResult);
                             foreach ($listPseudosResult as $ligne) {
                                 echo "<option value='$ligne->num_user'>$ligne->pseudo</option>";
+                            }
+                            if ($nbPseudos == 0) {
+                                echo "<option value='0'>Aucun ami à ajouter, t'es génial(e) !</option>";
                             }
                         ?>
                     </select>
