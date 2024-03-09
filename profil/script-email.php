@@ -59,13 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress($newEmail);
     $mail->isHTML(true);
     $mail->Subject = "Changement d'email";
-    $mail->Body = "
-    Bonjour $_SESSION[pseudo],<br>
-    Votre adresse e-mail a été modifiée. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.<br>
-    Cordialement,<br>
-    L'équipe de Semantic Analogy Explorer.";
+    $mail->Body = $content;
     $mail->CharSet = 'UTF-8';
-
     $mail->send();
 
     // Effacer les adresses précédentes
@@ -75,13 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress($oldEmail);
     $mail->isHTML(true);
     $mail->Subject = "Changement d'email";
-    $mail->Body = "
-    Bonjour $_SESSION[pseudo],<br>
-    Votre adresse e-mail a été modifiée. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.<br>
-    Cordialement,<br>
-    L'équipe de Semantic Analogy Explorer.";
+    $mail->Body = $content;
     $mail->CharSet = 'UTF-8';
-
     $mail->send();
 
     // Journalisation
