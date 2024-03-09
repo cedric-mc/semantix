@@ -63,6 +63,7 @@ h2 {
     width: 6.25rem;
     border-radius: 50%;
     margin-bottom: 0.938rem;
+    overflow-x: auto;
 }
 
 .buttons button, .buttons a {
