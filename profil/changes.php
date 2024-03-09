@@ -82,7 +82,7 @@
                     </div>
                     <div class="modal-body">
                         <form action="script-photo.php" method="POST" enctype="multipart/form-data">
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <input type="file" class="form-control" aria-describedby="formButtonPhoto" aria-label="Upload" id="photo" name="photo" required>
                                 <button id="formButtonPhoto" type="submit" class="btn btn-outline-secondary fw-semibold">Valider</button>
                             </div>
