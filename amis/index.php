@@ -179,7 +179,7 @@
                         <div class="user">
                             <img src="../img/profil.webp" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
-                            <a class="btn btn-success" href="addFriend.php?idUser=<?php echo $ligne->idUser; ?>">Ajouter</a>
+                            <a class="btn btn-success" href="addFriend.php?idUser=<?php echo $ligne->idUser; ?>" role="button">Ajouter</a>
                         </div>
                     <?php } ?>
                 </div>
