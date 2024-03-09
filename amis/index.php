@@ -158,22 +158,11 @@
             <!-- Afficher la liste des utilisateurs pour ajouter un ami (sauf soi-même et les amis déjà ajoutés) -->
             <!-- Je propose d'afficher la liste avec des carrés pour chaque utilisateur avec le nom et le bouton pour ajouter l'ami, un utilisateur = un carré -->
             <div class="container">
-                <div class="recherche">
-                    <input type="text" id="search" placeholder="Rechercher un ami">
-                    <label for="amis">Choisir un ami</label>
-                    <select name="amis" id="amis">
-                        <?php
-                            $nbPseudos = count($listPseudosResult);
-                            foreach ($listPseudosResult as $ligne) {
-                                echo "<option value='$ligne->num_user'>$ligne->pseudo</option>";
-                            }
-                            if ($nbPseudos == 0) {
-                                echo "<option value='0'>Aucun ami à ajouter, t'es génial(e) !</option>";
-                            }
-                        ?>
-                    </select>
+                <!--<div class="recherche">
+                    <input type="text" id="search" name="search" placeholder="Rechercher un ami">
+                    <label for="search">Choisir un ami</label>
                     <button id="addFriendButton">Ajouter</button>
-                </div>
+                </div>-->
                 <div class="users row row-cols-auto">
                     <?php foreach ($listUsersResult as $ligne) { ?>
                         <div class="user">
