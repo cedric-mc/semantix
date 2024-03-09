@@ -146,11 +146,18 @@
                         <button>Supprimer</button>
                     </div>
                     <?php
+                        $nbAmis = count($allFriendsResult);
                         foreach ($allFriendsResult as $ligne) {
                             echo "<div class='user'>";
                             echo "<img src='../img/profil.webp' alt='Photo de profil'>";
                             echo "<p>$ligne->pseudo</p>";
                             echo "<button>Supprimer</button>";
+                            echo "</div>";
+                        }
+
+                        if ($nbAmis == 0) {
+                            echo "<div class='user'>";
+                            echo "<p>Aucun ami pour le moment, tu es seul(e) au monde !</p>";
                             echo "</div>";
                         }
                     ?>
