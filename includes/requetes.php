@@ -18,5 +18,5 @@
     $addFriend = "INSERT INTO SAE_FRIENDSHIP (user_id, friend_id, statut) VALUES (:num_user, :friend_id, 0);";
     $acceptFriend = "UPDATE SAE_FRIENDSHIP SET statut = 1 WHERE user_id = :num_user AND friend_id = :friend_id;";
     $deleteFriend = "DELETE FROM SAE_FRIENDSHIP WHERE user_id = :num_user AND friend_id = :friend_id OR user_id = :friend_id AND friend_id = :num_user;";
-    $listUsers = "SELECT * FROM SAE_USERS WHERE num_user NOT IN (SELECT friend_id FROM SAE_FRIENDSHIP WHERE user_id = :num_user) AND num_user != :num_user;";
+    $listUsers = "SELECT * FROM SAE_USERS WHERE num_user NOT IN (SELECT friend_id FROM SAE_FRIENDSHIP WHERE user_id = :num_user) AND num_user IS NOT :num_user;";
 ?>
