@@ -29,13 +29,13 @@
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
                     </div>
-                    <div class="modal-footer text-center">
-                        <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
+                    <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
+                        <div class="modal-footer text-center">
                             <div id="msgEmail" class="alert <?php echo $erreursEmail[$codeEmail][1]; ?>" role="alert">
                                 <?php echo $erreursEmail[$codeEmail][0]; ?>
                             </div>
-                        <?php } ?>
-                    </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -63,13 +63,13 @@
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
                     </div>
-                    <div class="modal-footer text-center">
-                        <?php if ($codeMdp > 0 && $codeMdp < 6) { ?>
+                    <?php if ($codeMdp > 0 && $codeMdp < 6) { ?>
+                        <div class="modal-footer text-center">
                             <div id="msgMdp" class="alert <?php echo $erreursMdp[$codeMdp][1]; ?>" role="alert">
                                 <?php echo $erreursMdp[$codeMdp][0]; ?>
                             </div>
-                        <?php } ?>
-                    </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -88,13 +88,13 @@
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
                     </div>
-                    <div class="modal-footer text-center">
-                        <?php if ($codePhoto > 0 && $codePhoto < 6) { ?>
+                    <?php if ($codePhoto > 0 && $codePhoto < 6) { ?>
+                        <div class="modal-footer text-center">
                             <div id="msgPhoto" class="alert <?php echo $erreursPhoto[$codePhoto][1]; ?>" role="alert">
                                 <?php echo $erreursPhoto[$codePhoto][0]; ?>
                             </div>
-                        <?php } ?>
-                    </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
