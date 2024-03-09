@@ -149,13 +149,15 @@
                         <p>Nom de l'utilisateur</p>
                         <button>Ajouter</button>
                     </div>
-                    <?php foreach ($listUsersResult as $ligne) { ?>
-                        <div class="user">
-                            <img src="../img/profil.webp" alt="Photo de profil">
-                            <p><?php echo $ligne->pseudo; ?></p>
-                            <button>Ajouter</button>
-                        </div>
-                    <?php } ?>
+                    <?php
+                        foreach ($listUsersResult as $ligne) {
+                            echo "<div class='user'>";
+                            echo "<img src='../img/profil.webp' alt='Photo de profil'>";
+                            echo "<p>$ligne->pseudo</p>";
+                            echo "<button>Ajouter</button>";
+                            echo "</div>";
+                        }
+                    ?>
                 </div>
             </div>
         </main>
