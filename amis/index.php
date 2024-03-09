@@ -123,20 +123,9 @@
             <!-- Je propose d'afficher la liste avec des carrés pour chaque ami avec le nom, le statut (en ligne, hors ligne) et le bouton pour supprimer l'ami, un utilisateur = un carré
             Lorsque l'on clique sur un carré, on affiche un modal avec les informations de l'ami (pseudo, date de naissance, statut, date de dernière connexion, (discuté avec Fressin pour l'email) -->
             <div class="container">
-                <!--<div class="recherche">
+                <div class="recherche">
                     <input type="text" id="search" placeholder="Rechercher un ami">
                     <button id="searchButton">Rechercher</button>
-                </div>-->
-                <!-- Fait peut importe le langage, permettant de rechercher un ami selon une liste de pseudos, il y a aura un select avec les pseudos des amis -->
-                <div class="recherche">
-                    <label for="amis">Choisir un ami</label>
-                    <select name="amis" id="amis">
-                        <?php
-                            foreach ($listPseudosResult as $ligne) {
-                                echo "<option value='$ligne->num_user'>$ligne->pseudo</option>";
-                            }
-                        ?>
-                    </select>
                 </div>
                 <div class="users row row-cols-auto">
                     <div class="user">
@@ -160,7 +149,18 @@
             <div class="container">
                 <div class="recherche">
                     <input type="text" id="search" placeholder="Rechercher un ami">
-                    <button id="searchButton">Rechercher</button>
+                    <label for="amis">Choisir un ami</label>
+                    <select name="amis" id="amis">
+                        <?php
+                            foreach ($listPseudosResult as $ligne) {
+                                echo "<option value='$ligne->num_user'>$ligne->pseudo</option>";
+                            }
+                        ?>
+                    </select>
+                    <?php
+                        // Existe-t-il un moyen de trier les utilisateurs par ordre alphabétique ?
+                    ?>
+                    <button id="addFriendButton">Ajouter</button>
                 </div>
                 <div class="users row row-cols-auto">
                     <!--<div class="user">
