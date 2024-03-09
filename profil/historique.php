@@ -15,7 +15,7 @@
     // Requête pour récupérer l'historique
     $historicRequest = $cnx->prepare("
     SELECT score, dateHeure
-    FROM SAE_USERS u, SAE_SCORES s
+    FROM sae_users u, sae_scores s
     WHERE pseudo = :pseudo AND u.num_user = s.num_user
     ORDER BY dateHeure DESC;");
     $historicRequest->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);

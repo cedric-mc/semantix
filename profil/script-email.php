@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Vérifier si l'ancien email est correct
-    $sql = "SELECT email FROM SAE_USERS WHERE pseudo = :pseudo";
+    $sql = "SELECT email FROM sae_users WHERE pseudo = :pseudo";
     $stmt = $cnx->prepare($sql);
     $stmt->execute(['pseudo' => $pseudo]);
     $user = $stmt->fetch();
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Vérifier si le nouvel email est déjà utilisé
-    $sql = "SELECT email FROM SAE_USERS WHERE email = :email";
+    $sql = "SELECT email FROM sae_users WHERE email = :email";
     $stmt = $cnx->prepare($sql);
     $stmt->bindParam(":email", $newEmail);
     $stmt->execute();
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Modifier l'email
-    $sql = "UPDATE SAE_USERS SET email = :email WHERE pseudo = :pseudo";
+    $sql = "UPDATE sae_users SET email = :email WHERE pseudo = :pseudo";
     $stmt = $cnx->prepare($sql);
     $stmt->bindParam(':email', $newEmail);
     $stmt->bindParam(':pseudo', $pseudo);
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->send();
 
     // Journalisation
-    $sql_num_user = "SELECT num_user FROM SAE_USERS WHERE pseudo = :pseudo";
+    $sql_num_user = "SELECT num_user FROM sae_users WHERE pseudo = :pseudo";
     $stmt_num_user = $cnx->prepare($sql_num_user);
     $stmt_num_user->execute(['pseudo' => $_SESSION['pseudo']]);
     $user_num_user = $stmt_num_user->fetch();

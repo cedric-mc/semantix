@@ -18,7 +18,7 @@
         $motdepasse = $_POST["motdepasse"];
 
         // Rechercher l'utilisateur dans la base de données
-        $query_select_user = "SELECT * FROM SAE_USERS WHERE pseudo = :pseudo";
+        $query_select_user = "SELECT * FROM sae_users WHERE pseudo = :pseudo";
         $stmt_select_user = $cnx->prepare($query_select_user);
         $stmt_select_user->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
         $stmt_select_user->execute();

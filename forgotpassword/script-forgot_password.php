@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
 
     // Rechercher l'utilisateur dans la base de données
-    $query_select_user = "SELECT * FROM SAE_USERS WHERE pseudo = :pseudo AND email = :email";
+    $query_select_user = "SELECT * FROM sae_users WHERE pseudo = :pseudo AND email = :email";
     $stmt_select_user = $cnx->prepare($query_select_user);
     $stmt_select_user->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
     $stmt_select_user->bindParam(":email", $email, PDO::PARAM_STR);
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $code_reinitialisation = bin2hex(random_bytes(16));
 
         // Enregistrement du code de réinitialisation dans la base de données
-        $query_insert_code = "INSERT INTO SAE_RESET_CODE (num_user, code) VALUES (:num_user, :code)";
+        $query_insert_code = "INSERT INTO sae_reset (num_user, code) VALUES (:num_user, :code)";
         $stmt_insert_code = $cnx->prepare($query_insert_code);
         $stmt_insert_code->bindParam(":num_user", $user['num_user']);
         $stmt_insert_code->bindParam(":code", $code_reinitialisation);

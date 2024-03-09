@@ -5,7 +5,7 @@
             $imageType = $_FILES["image"]["type"];
 
             include("../includes/conf.php");
-            $stmt = $cnx->prepare("UPDATE SAE_USERS SET image_data = :image_data, image_type = :image_type WHERE num_user = :num_user");
+            $stmt = $cnx->prepare("UPDATE sae_users SET image_data = :image_data, image_type = :image_type WHERE num_user = :num_user");
 
             if ($stmt->execute()) {
                 echo "L'image a été téléversée avec succès.";

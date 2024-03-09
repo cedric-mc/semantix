@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $motdepasse2 = $_POST["motdepasse2"];
 
     //Vérifier si le pseudo n'existe pas dans la base de données
-    $query_pseudo_exists = "SELECT COUNT(*) FROM SAE_USERS WHERE pseudo = :pseudo";
+    $query_pseudo_exists = "SELECT COUNT(*) FROM sae_users WHERE pseudo = :pseudo";
     $stmt_pseudo_exists = $cnx->prepare($query_pseudo_exists);
     $stmt_pseudo_exists->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
     $stmt_pseudo_exists->execute();
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //Vérifier si l'email n'existe pas dans la base de données
-    $query_email_exists = "SELECT COUNT(*) FROM SAE_USERS WHERE email = :email";
+    $query_email_exists = "SELECT COUNT(*) FROM sae_users WHERE email = :email";
     $stmt_email_exists = $cnx->prepare($query_email_exists);
     $stmt_email_exists->bindParam(":email", $email, PDO::PARAM_STR);
     $stmt_email_exists->execute();
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $motdepasse = hash_pbkdf2("sha256", $motdepasse1, $salt, $iterations, 32); // hachage du mot de passe
 
     // Préparer la requête SQL d'insertion
-    $query = "INSERT INTO SAE_USERS (pseudo, email, annee_naissance, motdepasse, salt, statut) VALUES (:pseudo, :email, :annee_naissance, :mot_de_passe, :salt, 0)";
+    $query = "INSERT INTO sae_users (pseudo, email, annee_naissance, motdepasse, salt, statut) VALUES (:pseudo, :email, :annee_naissance, :mot_de_passe, :salt, 0)";
     
     // Exécuter la requête avec des paramètres
     $stmt = $cnx->prepare($query);
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $code_confirmation = bin2hex(random_bytes(16));
 
     // Enregistrement du code de confirmation dans la base de données
-    $query_insert_confirmation = "INSERT INTO SAE_CONFIRMATION_CODES (num_user, code) VALUES (:num_user, :code)";
+    $query_insert_confirmation = "INSERT INTO sae_confirmation_codes (num_user, code) VALUES (:num_user, :code)";
     $stmt_insert_confirmation = $cnx->prepare($query_insert_confirmation);
     $stmt_insert_confirmation->bindParam(":num_user", $num_user, PDO::PARAM_INT);
     $stmt_insert_confirmation->bindParam(":code", $code_confirmation);

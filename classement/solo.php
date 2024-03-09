@@ -28,7 +28,7 @@
                         }
                         // Si le joueur n'est pas dans le top 10, on affiche son score
                         if (!in_array($user->getPseudo(), $top10Pseudos)) {
-                            $scoreRequest = $cnx->prepare("SELECT MAX(score) AS maxS FROM SAE_SCORES s, SAE_USERS u WHERE u.num_user = s.num_user AND u.pseudo = :pseudo");
+                            $scoreRequest = $cnx->prepare("SELECT MAX(score) AS maxS FROM sae_scores s, sae_users u WHERE u.num_user = s.num_user AND u.pseudo = :pseudo");
                             $scoreRequest->bindParam(':pseudo', $pseudo);
                             $scoreRequest->execute();
                             $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);

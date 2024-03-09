@@ -1,7 +1,7 @@
 <?php
 //Journalisation
 function trace($userId, $action, $cnx) {
-    $query = "INSERT INTO SAE_TRACES (utilisateur_id, action, ip_adress) VALUES (:utilisateur_id, :action, :ip_adress)";
+    $query = "INSERT INTO sae_traces (utilisateur_id, action, ip_adress) VALUES (:utilisateur_id, :action, :ip_adress)";
     $stmt = $cnx->prepare($query);
     $stmt->bindParam(":utilisateur_id", $userId, PDO::PARAM_INT);
     $stmt->bindParam(":action", $action, PDO::PARAM_STR);

@@ -21,7 +21,7 @@ include("game_fonctions.php");
 
 // Score final
 $calculateScore = calculateScore();
-$requestAddFinalScore = $cnx->prepare("INSERT INTO SAE_SCORES (num_user, score) VALUES (:num_user, :score)");
+$requestAddFinalScore = $cnx->prepare("INSERT INTO sae_scores (num_user, score) VALUES (:num_user, :score)");
 $requestAddFinalScore->bindParam(':num_user', $_SESSION['num_user']);
 $requestAddFinalScore->bindParam(':score', $calculateScore);
 $requestAddFinalScore->execute();

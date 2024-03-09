@@ -11,7 +11,7 @@ include 'includes/conf.php';
 $pseudo = $_SESSION['pseudo_temp'];
 
 //requête récuperer le num_user de l'utilisateur
-$queryGetNum = "SELECT num_user FROM SAE_USERS WHERE pseudo = :pseudo";
+$queryGetNum = "SELECT num_user FROM sae_users WHERE pseudo = :pseudo";
 $stmtGetNum = $cnx->prepare($queryGetNum);
 $stmtGetNum->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
 $stmtGetNum->execute();
@@ -23,14 +23,14 @@ $num_user = $stmtGetNum->fetchColumn();
 $code_confirmation = bin2hex(random_bytes(16));
 
 // Enregistrement du code de confirmation dans la base de données
-$query_insert_confirmation = "INSERT INTO SAE_CONFIRMATION_CODES (num_user, code) VALUES (:num_user, :code)";
+$query_insert_confirmation = "INSERT INTO sae_confirmation_codes (num_user, code) VALUES (:num_user, :code)";
 $stmt_insert_confirmation = $cnx->prepare($query_insert_confirmation);
 $stmt_insert_confirmation->bindParam(":num_user", $num_user, PDO::PARAM_INT);
 $stmt_insert_confirmation->bindParam(":code", $code_confirmation);
 $stmt_insert_confirmation->execute();
 
 //requête récuperer le mail de l'utilisateur
-$queryGetMail = "SELECT email FROM SAE_USERS WHERE pseudo = :pseudo";
+$queryGetMail = "SELECT email FROM sae_users WHERE pseudo = :pseudo";
 $stmtGetmail = $cnx->prepare($queryGetMail);
 $stmtGetmail->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
 $stmtGetmail->execute();

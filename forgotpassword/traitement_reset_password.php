@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Vérifier si l'ancien mot de passe est correct
-        $sql = "SELECT email, salt FROM SAE_USERS WHERE num_user = :num_user";
+        $sql = "SELECT email, salt FROM sae_users WHERE num_user = :num_user";
         $stmt = $cnx->prepare($sql);
         $stmt->bindParam(':num_user', $num_user, PDO::PARAM_INT);
         $stmt->execute();
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $motdepasse = hash_pbkdf2("sha256", $nouveau_mot_de_passe, $stored_salt, 5000, 32); // hachage du mot de passe
 
         // Mettre à jour le mot de passe dans la base de données
-        $query_update_mot_de_passe = "UPDATE SAE_USERS SET motdepasse = :mot_de_passe WHERE num_user = :num_user";
+        $query_update_mot_de_passe = "UPDATE sae_users SET motdepasse = :mot_de_passe WHERE num_user = :num_user";
         $stmt_update_mot_de_passe = $cnx->prepare($query_update_mot_de_passe);
         $stmt_update_mot_de_passe->bindParam(":mot_de_passe", $motdepasse, PDO::PARAM_STR);
         $stmt_update_mot_de_passe->bindParam(":num_user", $num_user, PDO::PARAM_INT);
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt_update_mot_de_passe->execute()) {
             // Supprimer le code de réinitialisation utilisé
-            $query_delete_code = "DELETE FROM SAE_RESET_CODE WHERE num_user = :num_user";
+            $query_delete_code = "DELETE FROM sae_reset WHERE num_user = :num_user";
             $stmt_delete_code = $cnx->prepare($query_delete_code);
             $stmt_delete_code->bindParam(":num_user", $num_user, PDO::PARAM_INT);
             $stmt_delete_code->execute();

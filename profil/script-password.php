@@ -18,7 +18,7 @@
         }
 
         // Vérifier si l'ancien mot de passe est correct
-        $sql = "SELECT num_user, motdepasse, salt, email FROM SAE_USERS WHERE pseudo = :pseudo";
+        $sql = "SELECT num_user, motdepasse, salt, email FROM sae_users WHERE pseudo = :pseudo";
         $stmt = $cnx->prepare($sql);
         $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
         $stmt->execute();
@@ -80,7 +80,7 @@
             $hashed_new_motdepasse = hash_pbkdf2("sha256", $newPassword, $new_salt, 5000, 32);
 
             // Mettre à jour le mot de passe et le sel dans la base de données
-            $stmt = $cnx->prepare("UPDATE SAE_USERS SET motdepasse = :motdepasse, salt = :salt WHERE pseudo = :pseudo");
+            $stmt = $cnx->prepare("UPDATE sae_users SET motdepasse = :motdepasse, salt = :salt WHERE pseudo = :pseudo");
             $stmt->bindParam(':motdepasse', $hashed_new_motdepasse);
             $stmt->bindParam(':salt', $new_salt);
             $stmt->bindParam(':pseudo', $_SESSION['pseudo']);

@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_SESSION['pseudo'])) {
         $pseudo = $_SESSION['pseudo'];
         // Vérifier si l'ancien mot de passe est correct
-        $sql = "SELECT num_user, email FROM SAE_USERS WHERE pseudo = :pseudo";
+        $sql = "SELECT num_user, email FROM sae_users WHERE pseudo = :pseudo";
         $stmt = $cnx->prepare($sql);
         $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
         $stmt->execute();

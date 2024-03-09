@@ -8,7 +8,7 @@
     }
 
     // Récupérer le num_user pour la journalisation
-    $queryNum = "SELECT * FROM SAE_USERS WHERE pseudo = :pseudo";
+    $queryNum = "SELECT * FROM sae_users WHERE pseudo = :pseudo";
     $stmtNum = $cnx->prepare($queryNum);
     $stmtNum->bindParam(':pseudo', $_SESSION['pseudo']);
     $stmtNum->execute();
