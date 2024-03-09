@@ -3,6 +3,22 @@
     <head>
         <title>Mail de Connexion - Semonkey</title>
         <style>
+            header {
+                background-color: #f3f3f3;
+                padding: 20px;
+                text-align: center;
+            }
+            
+            footer {
+                background-color: #f3f3f3;
+                padding: 20px;
+                text-align: center;
+            }
+
+            img {
+                margin: 20px;
+            }
+
             p {
                 font-size: 20px;
                 text-align: center;
