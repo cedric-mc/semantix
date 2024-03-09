@@ -13,7 +13,7 @@
             <div class="modal-dialog modal-dialog-centered text-center">
                 <div class="modal-content text-center">
                     <div class="modal-header text-center">
-                        <h1 class="modal-title fs-5" id="emailModalLabel">Changer l'adresse email</h1>
+                        <h1 class="modal-title fs-5 w-100" id="emailModalLabel">Changer l'adresse email</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
