@@ -157,9 +157,6 @@
                             }
                         ?>
                     </select>
-                    <?php
-                        // Existe-t-il un moyen de trier les utilisateurs par ordre alphabétique ?
-                    ?>
                     <button id="addFriendButton">Ajouter</button>
                 </div>
                 <div class="users row row-cols-auto">

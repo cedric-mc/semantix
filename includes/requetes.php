@@ -19,6 +19,5 @@
     $acceptFriend = "UPDATE sae_friendship SET statut = 1 WHERE user_id = :num_user AND friend_id = :friend_id;";
     $deleteFriend = "DELETE FROM sae_friendship WHERE user_id = :num_user AND friend_id = :friend_id OR user_id = :friend_id AND friend_id = :num_user;";
     $listUsers = "SELECT * FROM sae_users WHERE num_user NOT IN (SELECT friend_id FROM sae_friendship WHERE user_id = :idUser) AND num_user <> :num_user ORDER BY num_user ASC;";
-    // Requête SQL pour obtenir uniquement les pseudos de la requête précédente
     $listUsersPseudo = "SELECT num_user, pseudo FROM sae_users WHERE num_user NOT IN (SELECT friend_id FROM sae_friendship WHERE user_id = :idUser) AND num_user <> :num_user ORDER BY pseudo ASC;";
 ?>
