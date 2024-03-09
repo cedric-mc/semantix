@@ -18,7 +18,7 @@
                     </div>
                     <div class="modal-body">
                         <form action="script-email.php" method="POST">
-                            <div class="input-field form-floating">
+                            <div class="form-floating mb-3">
                                 <input type="email" class="form-control" name="email1" id="email1" required>
                                 <label for="email1">Ancienne adresse email :</label>
                             </div>
