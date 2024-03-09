@@ -197,6 +197,22 @@
 
                 // Appelez la fonction une fois au chargement de la page
                 updateElapsedTime();
+
+                // Vérifiez si le paramètre 'emailErreur' existe dans l'URL
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('emailErreur')) {
+                    $('#emailModal').modal('show'); // Ouverture de la modal email
+                }
+
+                // Vérifiez si le paramètre 'erreurMdp' existe dans l'URL
+                if (urlParams.has('erreurMdp')) {
+                    $('#mdpModal').modal('show'); // Ouverture de la modal mot de passe
+                }
+
+                // Vérifiez si le paramètre 'erreurPhoto' existe dans l'URL
+                if (urlParams.has('erreurPhoto')) {
+                    $('#photoModal').modal('show'); // Ouverture de la modal photo
+                }
             });
         </script>
     </body>
