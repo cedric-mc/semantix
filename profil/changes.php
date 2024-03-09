@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <div class="modal fade" id="emailModal" aria-labelledby="emailModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal fade text-center" id="emailModal" aria-labelledby="emailModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
