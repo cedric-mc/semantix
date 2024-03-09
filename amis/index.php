@@ -149,10 +149,10 @@
                         <p>Nom de l'utilisateur</p>
                         <button>Ajouter</button>
                     </div>
-                    <?php while ($listUsersResult) { ?>
+                    <?php foreach ($listUsersResult as $ligne) { ?>
                         <div class="user">
                             <img src="../img/profil.webp" alt="Photo de profil">
-                            <p><?php echo $listUsersResult->pseudo; ?></p>
+                            <p><?php echo $ligne->pseudo; ?></p>
                             <button>Ajouter</button>
                         </div>
                     <?php } ?>
