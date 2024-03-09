@@ -8,8 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
 
     // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['user'])) {
-        header('Location: ../');
+    if (!isset($_SESSION["user"])) {
+        header('Location: ./');
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
@@ -21,13 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: change_email.php?emailErreur=4');
         exit;
     }
-
-    // Vérifier si l'ancien email est correct
-    $sql = "SELECT email FROM sae_users WHERE pseudo = :pseudo";
-    $stmt = $cnx->prepare($sql);
-    $stmt->execute(['pseudo' => $pseudo]);
-    $user = $stmt->fetch();
-    $stmt->closeCursor();
 
     // Vérifier si l'ancien email est correct
     if ($email != $oldEmail) {
@@ -57,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->closeCursor();
 
     // Mail
-    include '../mail/mailer.php';
+    include("../mail/mailer.php");
 
     $mail->addAddress($newEmail);
     $mail->isHTML(true);
