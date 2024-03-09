@@ -76,21 +76,23 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                margin: 10px;
-                padding: 10px;
+                margin: 0.625rem;
+                padding: 0.625rem;
                 border: 1px solid #4CAF50;
                 border-radius: 5px;
+                width: 10rem;
+                height: 10rem;
             }
 
             .user img {
-                width: 100px;
-                height: 100px;
+                width: 6.25rem;
+                height: auto;
                 border-radius: 50%;
-                margin-bottom: 10px;
+                margin-bottom: 0.625rem;
             }
 
             .user p {
-                margin-bottom: 10px;
+                margin-bottom: 0.625rem;
             }
 
             .user button {
