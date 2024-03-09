@@ -25,6 +25,8 @@
                             </div>
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
+                    </div>
+                    <div class="modal-footer">
                         <?php
                             // Si le message d'erreur est différent de 0
                             if ($codeEmail > 0 && $codeEmail < 6) {
