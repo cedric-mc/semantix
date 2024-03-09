@@ -9,11 +9,11 @@
     </head>
 
     <body>
-        <div class="modal fade text-center" id="emailModal" aria-labelledby="emailModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal fade" id="emailModal" aria-labelledby="emailModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 text-center" id="emailModalLabel">Changer l'adresse email</h1>
+                        <h1 class="modal-title fs-5" id="emailModalLabel">Changer l'adresse email</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -26,7 +26,7 @@
                                 <label for="email2">Nouvelle adresse email :</label>
                                 <input type="email" name="email2" id="email2" required>
                             </div>
-                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold text-center">Valider</button>
+                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
                     </div>
                     <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
