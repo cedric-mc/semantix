@@ -83,9 +83,9 @@
 
     <body>
         <?php $menu = 1; include("../includes/menu.php"); ?>
-        <main class="glassmorphism overflow-x-auto">
+        <main class="glassmorphism">
             <h1 class="title">Mon Profil</h1>
-            <div class="parent">
+            <div class="parent overflow-x-auto">
                 <div class="photo-pseudo-buttons glassmorphism-section">
                     <div class="photo-pseudo">
                         <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $pseudo; ?>">
