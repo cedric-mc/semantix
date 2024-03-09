@@ -10,8 +10,8 @@
 
     <body>
         <div class="modal fade text-center bg-transparent" id="emailModal" aria-labelledby="emailModalLabel" tabindex="-1" style="display: none" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered glassmorphism">
-                <div class="modal-content glassmorphism-section">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content glassmorphism">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5 w-100" id="emailModalLabel">Changer l'adresse email</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
