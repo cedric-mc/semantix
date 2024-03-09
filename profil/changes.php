@@ -33,6 +33,25 @@
                                 echo "<br><div id='msg-error' class='alert' role='alert'></div>";
                             }
                         ?>
+                        <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
+                            <script>
+                                // Je récupère le message d’erreur
+                                let msgCode = <?php echo json_encode($codeEmail); ?>;
+                                let msgError = <?php echo json_encode($erreursEmail[$codeEmail][0]); ?>;
+                                // Si le message d’erreur est différent de 0
+                                if (msgCode > 0 && msgCode < 6) {
+                                    // J'affiche le message d'erreur
+                                    document.getElementById('msg-error').innerHTML = msgError;
+                                    // Je change la couleur du message d'erreur
+                                    document.getElementById('msg-error').classList.add(<?php echo json_encode($erreursEmail[$codeEmail][1]); ?>);
+                                    document.getElementById('msg-error').classList.add('visible');
+                                    // Après l'expiration du cookie, on actualise la page pour le supprimer
+                                    setTimeout(function () {
+                                        window.location.href = 'change_email.php';
+                                    }, 10000);
+                                }
+                            </script>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
