@@ -11,9 +11,9 @@
     <body>
         <div class="modal fade" id="emailModal" aria-labelledby="emailModalLabel" tabindex="-1" style="display: none; text-align: center" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+                <div class="modal-content text-center">
                     <div class="modal-header text-center">
-                        <h1 class="modal-title fs-5 text-center" id="emailModalLabel">Changer l'adresse email</h1>
+                        <h1 class="modal-title fs-5" id="emailModalLabel">Changer l'adresse email</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
