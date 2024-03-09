@@ -1,5 +1,5 @@
 <?php
-global $erreursEmail, $codeEmail;
+    global $erreursEmail, $codeEmail, $erreursMdp, $codeMdp, $codePhoto, $erreursPhoto;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
