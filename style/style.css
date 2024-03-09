@@ -24,11 +24,14 @@ main {
     width: min-content;
     background: transparent;
     border: 2px solid rgba(8, 6, 6, 0.2);
-    color: #fff;
     backdrop-filter: blur(1.25rem);
     box-shadow: 0 0 0.625rem rgba(0, 0, 0, .2);
     border-radius: 0.625rem;
     padding: 1.875rem 2.5rem;
+}
+
+main.glassmorphism {
+    color: #fff;
 }
 
 h1.title {
