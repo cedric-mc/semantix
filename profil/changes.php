@@ -39,26 +39,26 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="mdpModal" aria-labelledby="mdpModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal fade text-center" id="mdpModal" aria-labelledby="mdpModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
+                <div class="modal-content glassmorphism">
+                    <div class="modal-header">
                         <h1 class="modal-title fs-5 w-100" id="mdpModalLabel">Changer le mot de passe</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="script-password.php" method="POST">
-                            <div class="input-field">
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" placeholder="Ancien mot de passe" id="password1" name="password1" required>
                                 <label for="password1">Ancien mot de passe :</label>
-                                <input type="password" id="password1" name="password1" required>
                             </div>
-                            <div class="input-field">
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" placeholder="Nouveau mot de passe" id="password2" name="password2" required>
                                 <label for="password2">Nouveau mot de passe :</label>
-                                <input type="password" id="password2" name="password2" required>
                             </div>
-                            <div class="input-field">
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" placeholder="Confirmer le nouveau mot de passe" id="password3" name="password3" required>
                                 <label for="password3">Confirmer le nouveau mot de passe :</label>
-                                <input type="password" id="password3" name="password3" required>
                             </div>
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
                         </form>
@@ -73,16 +73,16 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="photoModal" aria-labelledby="photoModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal fade text-center" id="photoModal" aria-labelledby="photoModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
+                <div class="modal-content glassmorphism">
+                    <div class="modal-header">
                         <h1 class="modal-title fs-5 w-100" id="photoModalLabel">Changer la photo de profil</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="script-photo.php" method="POST" enctype="multipart/form-data">
-                            <div class="input-field">
+                            <div class="input-group">
                                 <input type="file" id="photo" name="photo" required>
                             </div>
                             <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
@@ -90,7 +90,7 @@
                     </div>
                     <?php if ($codePhoto > 0 && $codePhoto < 6) { ?>
                         <div class="modal-footer text-center">
-                            <div id="msgPhoto" class="alert <?php echo $erreursPhoto[$codePhoto][1]; ?>" role="alert">
+                            <div id="msgPhoto" class="alert w-100 <?php echo $erreursPhoto[$codePhoto][1]; ?>" role="alert">
                                 <?php echo $erreursPhoto[$codePhoto][0]; ?>
                             </div>
                         </div>
