@@ -26,7 +26,7 @@
                                 <label for="email2">Nouvelle adresse email :</label>
                                 <input type="email" name="email2" id="email2" required>
                             </div>
-                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold">Valider</button>
+                            <button id="formButton" type="submit" class="btn btn-outline-primary fw-semibold text-center">Valider</button>
                         </form>
                     </div>
                     <?php if ($codeEmail > 0 && $codeEmail < 6) { ?>
