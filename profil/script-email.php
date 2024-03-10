@@ -3,8 +3,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $oldEmail = $_POST['email1'];
     $newEmail = $_POST['email2'];
 
-    include_once("../class/User.php");
+    include_once("../class/User.php"); // Classe User
     include_once("../includes/conf.php"); // Connexion à la base de données
+    include_once("../includes/requetes.php"); // Requêtes SQL
     session_start();
 
     // Vérifier si l'utilisateur est connecté
@@ -29,8 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Vérifier si le nouvel email est déjà utilisé
-    $sql = "SELECT email FROM sae_users WHERE email = :email";
-    $stmt = $cnx->prepare($sql);
+    $stmt = $cnx->prepare($emailExists);
     $stmt->bindParam(":email", $newEmail);
     $stmt->execute();
     $user = $stmt->fetch();
@@ -42,8 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Modifier l'email
-    $sql = "UPDATE sae_users SET email = :email WHERE pseudo = :pseudo";
-    $stmt = $cnx->prepare($sql);
+    $stmt = $cnx->prepare($changeEmail);
     $stmt->bindParam(':email', $newEmail);
     $stmt->bindParam(':pseudo', $pseudo);
     $stmt->execute();
@@ -62,10 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->Body = $content;
     $mail->CharSet = 'UTF-8';
     $mail->send();
-
     // Effacer les adresses précédentes
     $mail->clearAddresses();
-
 
     $mail->addAddress($oldEmail);
     $mail->isHTML(true);

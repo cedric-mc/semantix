@@ -20,4 +20,8 @@
     $deleteFriend = "DELETE FROM sae_friendship WHERE user_id = :num_user AND friend_id = :friend_id OR user_id = :friend_id AND friend_id = :num_user;";
     $listUsers = "SELECT * FROM sae_users WHERE num_user NOT IN (SELECT friend_id FROM sae_friendship WHERE user_id = :idUser) AND num_user <> :num_user ORDER BY num_user ASC;";
     $listUsersPseudo = "SELECT num_user, pseudo FROM sae_users WHERE num_user NOT IN (SELECT friend_id FROM sae_friendship WHERE user_id = :idUser) AND num_user <> :num_user ORDER BY pseudo ASC;";
+
+    // Requêtes SQL pour le changement d'email
+    $emailExists = "SELECT email FROM sae_users WHERE email = :email;";
+    $changeEmail = "UPDATE sae_users SET email = :email WHERE pseudo = :pseudo;";
 ?>
