@@ -11,13 +11,14 @@ if (!isset($_SESSION["user"])) {
     exit();
 }
 $user = User::createUserFromUser(unserialize($_SESSION["user"]));
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["photo"])) {
     $image_data = file_get_contents($_FILES["photo"]["tmp_name"]);
 
     $stmt = $cnx->prepare("UPDATE sae_users SET photo = ? WHERE num_user = ?");
     $stmt->execute(array($image_data, $user->getIdUser()));
     $stmt->closeCursor();
 
+    echo "Photo de profil modifiée avec succès !";
     exit();
 } else {
     header("Location: ./");
