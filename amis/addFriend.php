@@ -21,4 +21,9 @@ $addFriendRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
 $addFriendRequest->bindParam(":friend_id", $idUser, PDO::PARAM_INT);
 $addFriendRequest->execute();
 $addFriendRequest->closeCursor();
+
+// Script JS pour afficher une alerte
+echo "<script>alert('Demande d\'ami envoyée !');</script>";
+header('Location: ./');
+exit();
 ?>
