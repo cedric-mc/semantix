@@ -30,26 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Vérifier si le nouvel email est déjà utilisé
-    $stmt = $cnx->prepare($emailExists);
-    $stmt->bindParam(":email", $newEmail);
-    $stmt->execute();
-    $user = $stmt->fetch();
-    $stmt->closeCursor();
-
-    if ($user) {
+    if ($user->isEmailExist($cnx, $newEmail, $emailExists)) { // Vérifier si le nouvel email est déjà utilisé
         header('Location: ./?emailErreur=5');
         exit;
     }
 
     // Modifier l'email
-    $stmt = $cnx->prepare($changeEmail);
-    $stmt->bindParam(':email', $newEmail);
-    $stmt->bindParam(':pseudo', $pseudo);
-    $stmt->execute();
-    $stmt->closeCursor();
-
-    $user->setEmail($newEmail);
+    $user->modifyEmail($cnx, $newEmail, $changeEmail);
 
     // Mail
     include("../mail/mailer.php");

@@ -35,5 +35,24 @@
         public function setEmail($email): void {
             $this->email = $email;
         }
+
+        public function isEmailExist(PDO $cnx, string $newEmail, string $emailExists): bool {
+            $stmt = $cnx->prepare($emailExists);
+            $stmt->bindParam(":email", $newEmail);
+            $stmt->execute();
+            $stmt = $stmt->fetch();
+            $stmt->closeCursor();
+            return $stmt;
+        }
+
+        public function modifyEmail(PDO $cnx, string $newEmail, string $changeEmail): void {
+            $stmt = $cnx->prepare($changeEmail);
+            $stmt->bindParam(':email', $newEmail);
+            $stmt->bindParam(':pseudo', $this->pseudo);
+            $stmt->execute();
+            $stmt->closeCursor();
+
+            $this->setEmail($newEmail);
+        }
     }
 ?>
