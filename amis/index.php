@@ -44,6 +44,7 @@
         <meta charset="UTF-8">
         <title>Amis - Semonkey</title>
         <link rel="shortcut icon" href="../img/monkeyapp.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../style/style.css">
         <link rel="stylesheet" href="../style/css_amis.css">
         <?php include("../includes/head.php"); ?>
