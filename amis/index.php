@@ -16,11 +16,19 @@
     $idUser = $user->getIdUser();
 
     // Requête SQL pour obtenr la liste des amis
-    $allFriendsRequest = $cnx->prepare($allFriends);
-    $allFriendsRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
-    $allFriendsRequest->execute();
-    $allFriendsResult = $allFriendsRequest->fetchAll(PDO::FETCH_OBJ);
-    $allFriendsRequest->closeCursor();
+    $myFriendsResult = $cnx->prepare($allFriends);
+    $myFriendsResult->bindParam(":num_user", $idUser, PDO::PARAM_INT);
+    $myFriendsResult->execute();
+    $myFriendsResult = $myFriendsResult->fetchAll(PDO::FETCH_OBJ);
+    $myFriendsResult->closeCursor();
+
+    // Requête SQL pour obtenir la liste des amis à ajouter (file d'attente)
+    $listUsersRequest = $cnx->prepare($canAddFriend);
+    $listUsersRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
+    $listUsersRequest->bindParam(":idUser", $idUser, PDO::PARAM_INT);
+    $listUsersRequest->execute();
+    $listUsersResult = $listUsersRequest->fetchAll(PDO::FETCH_OBJ);
+    $listUsersRequest->closeCursor();
 
     // Requête SQL pour obtenir la liste des pseudos qui peuvent être ajoutés en amis
     $listPseudosRequest = $cnx->prepare($listUsersPseudo);
@@ -29,14 +37,6 @@
     $listPseudosRequest->execute();
     $listPseudosResult = $listPseudosRequest->fetchAll(PDO::FETCH_OBJ);
     $listPseudosRequest->closeCursor();
-
-    // Requête SQL pour obtenir la liste des amis à ajouter
-    $listUsersRequest = $cnx->prepare($listUsers);
-    $listUsersRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
-    $listUsersRequest->bindParam(":idUser", $idUser, PDO::PARAM_INT);
-    $listUsersRequest->execute();
-    $listUsersResult = $listUsersRequest->fetchAll(PDO::FETCH_OBJ);
-    $listUsersRequest->closeCursor();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -137,8 +137,8 @@
                 </div>
                 <div class="users row row-cols-auto">
                     <?php
-                        $nbAmis = count($allFriendsResult);
-                        foreach ($allFriendsResult as $ligne) {
+                        $nbAmis = count($myFriendsResult);
+                        foreach ($myFriendsResult as $ligne) {
                             echo "<div class='user'>";
                             echo "<img src='../img/profil.webp' alt='Photo de profil'>";
                             echo "<p>$ligne->pseudo</p>";
@@ -152,6 +152,27 @@
                             echo "</div>";
                         }
                     ?>
+                </div>
+            </div>
+            <br>
+            <h2 class="add">Vos demandes d'amis</h2>
+            <div class="container">
+                <div class="users row row-cols-auto">
+                    <?php
+                        $nbPseudos = count($listPseudosResult);
+                        foreach ($listPseudosResult as $ligne) {
+                            echo "<div class='user'>";
+                            echo "<img src='../img/profil.webp' alt='Photo de profil'>";
+                            echo "<p>$ligne->pseudo</p>";
+                            echo "<button>Annuler</button>";
+                            echo "</div>";
+                        }
+
+                        if ($nbPseudos == 0) {
+                            echo "<div class='user text-center'>";
+                            echo "<p>Aucune demande d'ami pour le moment, tu es seul(e) au monde !</p>";
+                            echo "</div>";
+                        }
                 </div>
             </div>
             <br>
