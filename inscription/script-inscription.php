@@ -1,16 +1,19 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    session_start();
-    //Connexion à la BDD
-    include '../includes/conf.php';
-
     $pseudo = $_POST["pseudo"];
     $email = $_POST["email"];
     $annee_naissance = $_POST["annee_naissance"];
     $motdepasse1 = $_POST["motdepasse1"];
     $motdepasse2 = $_POST["motdepasse2"];
 
-    //Vérifier si le pseudo n'existe pas dans la base de données
+    include("../includes/conf.php");
+    session_start();
+    if (isset($_SESSION['user'])) {
+        header('Location: ../');
+        exit;
+    }
+
+    // Vérifier si le pseudo n'existe pas dans la base de données
     $query_pseudo_exists = "SELECT COUNT(*) FROM sae_users WHERE pseudo = :pseudo";
     $stmt_pseudo_exists = $cnx->prepare($query_pseudo_exists);
     $stmt_pseudo_exists->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
@@ -22,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    //Vérifier si l'email n'existe pas dans la base de données
+    // Vérifier si l'email n'existe pas dans la base de données
     $query_email_exists = "SELECT COUNT(*) FROM sae_users WHERE email = :email";
     $stmt_email_exists = $cnx->prepare($query_email_exists);
     $stmt_email_exists->bindParam(":email", $email, PDO::PARAM_STR);
@@ -34,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    //Les mots de passe sont-ils identiques ?
+    // Les mots de passe sont-ils identiques ?
     if ($motdepasse1 != $motdepasse2) {
         header('Location: index.php?erreur=3');
         exit;
@@ -45,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    //Vérifier si l'année est cohérente
+    // Vérifier si l'année est cohérente
     $annee_naissance = $_POST["annee_naissance"];
 
     // Vérifier si l'année de naissance est valide
@@ -64,10 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Exécuter la requête avec des paramètres
     $stmt = $cnx->prepare($query);
-    $stmt->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
-    $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-    $stmt->bindParam(":annee_naissance", $annee_naissance, PDO::PARAM_STR);
-    $stmt->bindParam(":mot_de_passe", $motdepasse, PDO::PARAM_STR);
+    $stmt->bindParam(":pseudo", $pseudo);
+    $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":annee_naissance", $annee_naissance);
+    $stmt->bindParam(":mot_de_passe", $motdepasse);
     $stmt->bindParam(":salt", $salt);
     $stmt->execute();
 
@@ -75,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_user = $cnx->lastInsertId();
 
     // Journalisation
-    include '../includes/fonctions.php';
+    include("../includes/fonctions.php");
     trace($num_user, 7, $cnx);
 
     // Génération d'un code de confirmation (peut être un jeton unique)
@@ -93,9 +96,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Contenu du mail
     $mail->isHTML(true);
-    $mail->Subject = 'Confirmation d\'inscription';
+    $mail->Subject = "Confirmation d'inscription";
     $mail->Body = "Bienvenue $pseudo sur notre site !<br><br>Veuillez confirmer votre inscription en cliquant sur le lien suivant : <a href='http://perso-etudiant.u-pem.fr/~chamsedine.amouche/Projet-SAE/inscription/script-confirmermail.php?code=$code_confirmation'>Confirmer</a>";
-    $mail->CharSet = 'UTF-8';
+    $mail->CharSet = "UTF-8";
     
     // Envoi du mail
     $mail->send();
