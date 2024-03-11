@@ -4,6 +4,10 @@
     include_once("includes/requetes.php");
     include_once("includes/conf.php");
     session_start();
+    // Erreur PHP
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     if (!isset($_SESSION['user'])) {
         header('Location: ./');
         exit;
