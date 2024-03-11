@@ -141,7 +141,12 @@
                             <img src="../img/profil.webp" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
                             <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
-                            <a class="btn btn-danger" href="#" role="button">Supprimer</a>
+                            <?php if ($ligne->statut == 0) { ?>
+                                <a class="btn btn-warning" href="#" role="button">Accepter</a>
+                                <a class="btn btn-danger" href="#" role="button">Refuser</a>
+                            <?php } else { ?>
+                                <a class="btn btn-danger" href="#" role="button">Supprimer</a>
+                            <?php } ?>
                         </div>
                     <?php } if ($nbAmis == 0) { ?>
                         <div class="user text-center">

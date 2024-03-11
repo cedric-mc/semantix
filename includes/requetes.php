@@ -13,7 +13,7 @@
     $userTrace = "SELECT timestamp, ip_adress, a.action FROM sae_traces t, sae_action a WHERE t.utilisateur_id = :num_user AND t.action = a.id ORDER BY t.id DESC LIMIT 500;";
 
     // Requêtes SQL pour les amis
-    $allFriends = "SELECT u.pseudo, f.statut FROM sae_friendship AS f JOIN sae_users AS u ON u.num_user = f.user_id OR u.num_user = f.friend_id WHERE (f.user_id = :num_user OR f.friend_id = :num_user) AND u.num_user != :num_user;";
+    $allFriends = "SELECT u.pseudo, f.statut FROM sae_friendship AS f JOIN sae_users AS u ON u.num_user = f.user_id OR u.num_user = f.friend_id WHERE (f.user_id = :num_user OR f.friend_id = :num_user) AND u.num_user != :num_user AND (f.user_id = :num_user AND f.friend_id != :num_user);";
     $canAddFriend = "SELECT u.* FROM sae_users u, sae_friendship f WHERE (u.num_user = f.user_id OR u.num_user = f.friend_id) AND f.statut = 0 AND u.num_user != 22 AND u.statut = 1";
     $addFriend = "INSERT INTO sae_friendship (user_id, friend_id, statut) VALUES (:num_user, :friend_id, 0);";
     $acceptFriend = "UPDATE sae_friendship SET statut = 1 WHERE user_id = :num_user AND friend_id = :friend_id;";
