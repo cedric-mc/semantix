@@ -35,7 +35,7 @@
     $wantToAddFriendsRequest->bindParam(":idUser", $idUser, PDO::PARAM_INT);
     $wantToAddFriendsRequest->execute();
     $wantToAddFriendsResult = $wantToAddFriendsRequest->fetchAll(PDO::FETCH_OBJ);
-    $wantToAddFriendsResult->closeCursor();
+    $wantToAddFriendsRequest->closeCursor();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
