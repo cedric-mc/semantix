@@ -161,11 +161,15 @@
                     <button id="addFriendButton">Ajouter</button>
                 </div>-->
                 <div class="users row row-cols-auto">
-                    <?php foreach ($wantToAddFriendsResult as $ligne) { ?>
+                    <?php $nbCanAdd = count($wantToAddFriendsResult); foreach ($wantToAddFriendsResult as $ligne) { ?>
                         <div class="user">
                             <img src="../img/profil.webp" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
                             <a class="btn btn-success" href="addFriend.php?idUser=<?php echo $ligne->num_user; ?>" role="button">Ajouter</a>
+                        </div>
+                    <?php } if ($nbCanAdd == 0) { ?>
+                        <div class="user text-center">
+                            <p>Tu as déjà ajouté tous les utilisateurs !</p>
                         </div>
                     <?php } ?>
                 </div>
