@@ -152,22 +152,17 @@
             <h2 class="add">Vos demandes d'amis</h2>
             <div class="container">
                 <div class="users row row-cols-auto">
-                    <?php
-                        $nbPseudos = count($canAddFriendResult);
-                        foreach ($canAddFriendResult as $ligne) {
-                            echo "<div class='user'>";
-                            echo "<img src='../img/profil.webp' alt='Photo de profil'>";
-                            echo "<p>$ligne->pseudo</p>";
-                            echo "<button>Annuler</button>";
-                            echo "</div>";
-                        }
-
-                        if ($nbPseudos == 0) {
-                            echo "<div class='user text-center'>";
-                            echo "<p>Aucune demande d'ami pour le moment, tu es seul(e) au monde !</p>";
-                            echo "</div>";
-                        }
-                    ?>
+                    <?php $nbPseudos = count($canAddFriendResult); foreach ($canAddFriendResult as $ligne) { ?>
+                        <div class="user">
+                            <img src="../img/profil.webp" alt="Photo de profil">
+                            <p><?php echo $ligne->pseudo; ?></p>
+                            <button>Annuler</button>
+                        </div>
+                    <?php } if ($nbPseudos == 0) { ?>
+                        <div class="user text-center">
+                            <p>Aucune demande d'ami pour le moment, tu es seul(e) au monde !</p>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
             <br>
