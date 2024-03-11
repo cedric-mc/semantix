@@ -17,4 +17,7 @@ $username = "";
 $password = "";
 $host = "";
 $name = "";
+
+// Lien vers la page de confirmation d'inscription
+$lienInscription = "";
 ?>
