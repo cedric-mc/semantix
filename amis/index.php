@@ -2,6 +2,7 @@
     include_once("../class/User.php");
     include_once("../includes/conf.php");
     include_once("../includes/requetes.php");
+    include_once("../includes/fonctions.php");
     // Erreur PHP
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -139,28 +140,12 @@
                         <div class="user">
                             <img src="../img/profil.webp" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
+                            <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
                             <button>Supprimer</button>
                         </div>
                     <?php } if ($nbAmis == 0) { ?>
                         <div class="user text-center">
                             <p>Aucun ami pour le moment, tu es seul(e) au monde !</p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-            <br>
-            <h2 class="add">Vos demandes d'amis</h2>
-            <div class="container">
-                <div class="users row row-cols-auto">
-                    <?php $nbPseudos = count($canAddFriendResult); foreach ($canAddFriendResult as $ligne) { ?>
-                        <div class="user">
-                            <img src="../img/profil.webp" alt="Photo de profil">
-                            <p><?php echo $ligne->pseudo; ?></p>
-                            <button>Annuler</button>
-                        </div>
-                    <?php } if ($nbPseudos == 0) { ?>
-                        <div class="user text-center">
-                            <p>Aucune demande d'ami pour le moment, tu es seul(e) au monde !</p>
                         </div>
                     <?php } ?>
                 </div>

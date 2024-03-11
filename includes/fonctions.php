@@ -10,6 +10,15 @@ function trace($userId, $action, $cnx) {
     $stmt->closeCursor();
 }
 
+// Statut de l'ami
+function friendStatus($statut) {
+    if ($statut == 0) {
+        return "En attente";
+    } else {
+        return "Ami";
+    }
+}
+
 // Formatage des dates
 function makeDate($date) {
     $date = date_create($date);
