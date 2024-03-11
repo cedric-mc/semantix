@@ -24,7 +24,7 @@
 
     // Journalisation
     $user->logging($cnx, 2);
-    
+
     session_unset();
     session_destroy();
     header('Location: ../index.php?erreur=6');

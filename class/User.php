@@ -16,7 +16,7 @@
         }
 
         public static function createUserFromUser(User $user) {
-            return new self($user->getIdUser(), $user->getPseudo(), $user->getEmail(), $user->getYear());
+            return new self($user->getIdUser(), $user->getPseudo(), $user->getEmail(), $user->getYear(), $user->getPhoto());
         }
 
         public function getIdUser(): int {
