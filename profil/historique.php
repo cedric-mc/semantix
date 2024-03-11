@@ -22,8 +22,6 @@
     $historicRequest->execute();
     $historicResult = $historicRequest->fetchAll(PDO::FETCH_OBJ);
     $historicRequest->closeCursor();
-
-    $menu = 1;
 ?>
 <html lang="fr">
     <head>
@@ -37,7 +35,7 @@
     </head>
 
     <body>
-        <?php include("../includes/menu.php"); ?>
+        <?php $menu = 1; include("../includes/menu.php"); ?>
         <main class="glassmorphism">
             <h1 class="title">Historique du jeu Semonkey</h1>
             <div class="table-responsive">

@@ -13,7 +13,6 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 $user = unserialize($_SESSION['user']);
-$menu = 1;
 // Requête pour récupérer le score des 10 premiers utilisateurs
 $top10ScoresRequest = $cnx->prepare($top10Scores);
 $top10ScoresRequest->execute();
@@ -40,7 +39,7 @@ $top10UsersRequest->closeCursor();
 	</head>
 
 	<body>
-        <?php include("../includes/menu.php"); ?>
+        <?php $menu = 1; include("../includes/menu.php"); ?>
 		<main class="glassmorphism no-glassmorphism">
             <div id="menuL" class="menuL">
                 <div id="solo" class="tab-button active">
