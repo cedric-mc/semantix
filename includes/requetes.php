@@ -9,8 +9,8 @@
     $top3ScoresProfil = "SELECT pseudo, MAX(score) AS score FROM sae_scores s, sae_users u WHERE u.num_user = s.num_user GROUP BY pseudo ORDER BY score DESC LIMIT 3;";
 
     // Requêtes SQL pour les traces
-    $allUsersTrace = "SELECT timestamp, ip_adress, utilisateur_id, a.action, pseudo FROM sae_traces t, sae_users u, sae_action a WHERE t.utilisateur_id = u.num_user AND t.action = a.id ORDER BY id DESC LIMIT 500;";
-    $userTrace = "SELECT timestamp, ip_adress, a.action FROM sae_traces t, sae_action a WHERE utilisateur_id = :num_user AND t.action = a.id ORDER BY id DESC LIMIT 500;";
+    $allUsersTrace = "SELECT timestamp, ip_adress, utilisateur_id, a.action, pseudo FROM sae_traces t, sae_users u, sae_action a WHERE t.utilisateur_id = u.num_user AND t.action = a.id ORDER BY t.id DESC LIMIT 500;";
+    $userTrace = "SELECT timestamp, ip_adress, a.action FROM sae_traces t, sae_action a WHERE t.utilisateur_id = :num_user AND t.action = a.id ORDER BY t.id DESC LIMIT 500;";
 
     // Requêtes SQL pour les amis
     $allFriends = "SELECT u.pseudo, f.statut FROM sae_friendship AS f JOIN sae_users AS u ON u.num_user = f.user_id OR u.num_user = f.friend_id WHERE (f.user_id = :num_user OR f.friend_id = :num_user) AND u.num_user != :num_user;";
