@@ -7,7 +7,7 @@
         // Photo from longblob type in database
         private string $photo;
 
-        public function __construct(int $idUser, string $pseudo, string $email, int $year, string $photo = null) {
+        public function __construct(int $idUser, string $pseudo, string $email, int $year, string $photo) {
             $this->idUser = $idUser;
             $this->pseudo = $pseudo;
             $this->email = $email;
