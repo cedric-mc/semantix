@@ -42,7 +42,8 @@
                     $idUser = intval($user['num_user']);
                     $email = $user['email'];
                     $year = $user['annee_naissance'];
-                    $user = new User($idUser, $pseudo, $email, $year);
+                    $photo = $user['photo'];
+                    $user = new User($idUser, $pseudo, $email, $year, $photo);
                     $_SESSION['user'] = serialize($user);
 
                     include("../mail/mailer.php");
