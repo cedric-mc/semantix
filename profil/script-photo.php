@@ -16,11 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["photo"])) {
 
     $stmt = $cnx->prepare("UPDATE sae_users SET photo = ? WHERE num_user = ?");
     $stmt->execute(array($image_data, $user->getIdUser()));
-    $stmt->closeCursor();
-
-    // Comment afficher l'image ?
-     header("Content-type: image/jpeg");
-     echo $image_data;
+    // Vérifier les erreurs de la requête
+    $errorInfo = $stmt->errorInfo();
+    if ($errorInfo[0] !== '00000') {
+        throw new Exception("Erreur lors de l'exécution de la requête : " . $errorInfo[2]);
+    }
 
     var_dump($image_data, $user->getIdUser());
     exit();
