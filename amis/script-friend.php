@@ -14,19 +14,6 @@
         exit;
     }
     $friendId = $_GET['friendId'];
-    if (isset($_GET['add'])) {
-        // Requête SQL pour ajouter un ami
-        $addFriendRequest = $cnx->prepare($addFriend);
-        $addFriendRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
-        $addFriendRequest->bindParam(":friend_id", $friendId, PDO::PARAM_INT);
-        $addFriendRequest->execute();
-        $addFriendRequest->closeCursor();
-
-        // Script JS pour afficher une alerte
-        echo "<script>alert('Demande d\'ami envoyée !')</script>";
-        echo "<script>window.location.replace('./');</script>";
-        exit();
-    }
 
     if (isset($_GET['accept'])) {
         // Requête SQL pour accepter une demande d'ami
@@ -40,9 +27,7 @@
         echo "<script>alert('Demande d\'ami acceptée !')</script>";
         echo "<script>window.location.replace('./');</script>";
         exit();
-    }
-
-    if (isset($_GET['refuse'])) {
+    } elseif (isset($_GET['refuse'])) {
         // Requête SQL pour refuser une demande d'ami
         $refuseFriendRequest = $cnx->prepare($refuseFriend);
         $refuseFriendRequest->bindParam(":num_user", $friendId, PDO::PARAM_INT);
@@ -52,6 +37,18 @@
 
         // Script JS pour afficher une alerte
         echo "<script>alert('Demande d\'ami refusée !')</script>";
+        echo "<script>window.location.replace('./');</script>";
+        exit();
+    } elseif (isset($_GET['add'])) {
+        // Requête SQL pour ajouter un ami
+        $addFriendRequest = $cnx->prepare($addFriend);
+        $addFriendRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
+        $addFriendRequest->bindParam(":friend_id", $friendId, PDO::PARAM_INT);
+        $addFriendRequest->execute();
+        $addFriendRequest->closeCursor();
+
+        // Script JS pour afficher une alerte
+        echo "<script>alert('Demande d\'ami envoyée !')</script>";
         echo "<script>window.location.replace('./');</script>";
         exit();
     }

@@ -71,8 +71,8 @@
                             <p><?php echo $ligne->pseudo; ?></p>
                             <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
                             <?php if ($ligne->statut == 0) { ?>
-                                <a class="btn btn-warning" href="addFriend.php?accept&friendId=<?php echo $ligne->num_user; ?>" role="button">Accepter<i class="fa-solid fa-check"></i></a>
-                                <a class="btn btn-danger" href="addFriend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser<i class="fa-solid fa-xmark"></i></a>
+                                <a class="btn btn-warning" href="script-friend.php?accept&friendId=<?php echo $ligne->num_user; ?>" role="button">Accepter<i class="fa-solid fa-check"></i></a>
+                                <a class="btn btn-danger" href="script-friend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser<i class="fa-solid fa-xmark"></i></a>
                             <?php } else { ?>
                                 <a class="btn btn-danger" href="#" role="button">Supprimer</a>
                             <?php } ?>
@@ -99,7 +99,7 @@
                         <div class="user">
                             <img src="../img/profil.webp" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
-                            <a class="btn btn-success" href="addFriend.php?add&friendId=<?php echo $ligne->num_user; ?>" role="button">Ajouter</a>
+                            <a class="btn btn-success" href="script-friend.php?add&friendId=<?php echo $ligne->num_user; ?>" role="button">Ajouter</a>
                         </div>
                     <?php } if ($nbCanAdd == 0) { ?>
                         <div class="user text-center">
