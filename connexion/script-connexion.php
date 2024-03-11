@@ -63,7 +63,7 @@
                     $mail->send();
 
                     // Journalisation
-                    trace($user->getIdUser(), 'Connexion au Site', $cnx);
+                    $user->logging($cnx, 1);
 
                     header('Location: ../');
                     exit;

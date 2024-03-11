@@ -6,17 +6,19 @@
     if (!isset($_SESSION['user'])) {
         header('Location: ../');
     }
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
+    $pseudo = $user->getPseudo();
 
     // Récupérer le num_user pour la journalisation
     $queryNum = "SELECT * FROM sae_users WHERE pseudo = :pseudo";
     $stmtNum = $cnx->prepare($queryNum);
-    $stmtNum->bindParam(':pseudo', $_SESSION['pseudo']);
+    $stmtNum->bindParam(':pseudo', $pseudo);
     $stmtNum->execute();
     $resultat = $stmtNum->fetch(PDO::FETCH_ASSOC);
     $num_user = $resultat['num_user'];
 
     // Journalisation
-    trace($num_user, "Déconnexion du Site", $cnx);
+    $user->logging($cnx, 2);
 
     session_start();
     session_unset();
