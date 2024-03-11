@@ -84,7 +84,7 @@ $codeErreur = isset($_GET['erreur']) ? intval($_GET['erreur']) : 0;
                 document.getElementById('msg-error').classList.add('visible');
                 // Je rafraîchis la page au bout de 10s pour supprimer la variable get erreur
                 setTimeout(function () {
-                    window.location.href = 'index.php';
+                    window.location.href = '';
                 }, 10000);
             }
         </script>

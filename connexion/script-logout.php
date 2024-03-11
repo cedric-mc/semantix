@@ -27,6 +27,6 @@
 
     session_unset();
     session_destroy();
-    header('Location: ../index.php?erreur=6');
+    header('Location: ../?erreur=6');
     exit();
 ?>

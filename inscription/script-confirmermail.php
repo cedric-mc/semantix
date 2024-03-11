@@ -34,7 +34,7 @@
                 // Journalisation
                 trace($confirmation_data['num_user'], 9, $cnx);
         
-                header('Location: ../index.php?erreur=4');
+                header('Location: ../?erreur=4');
             } else {
                 // Code de confirmation expiré, mais supprimer quand même l'enregistrement
                 $query_delete_confirmation = "DELETE FROM sae_confirmation_codes WHERE code = :code";
@@ -42,12 +42,12 @@
                 $stmt_delete_confirmation->bindParam(":code", $code_confirmation);
                 $stmt_delete_confirmation->execute();
 
-                header('Location: ../index.php?erreur=3');
+                header('Location: ../?erreur=3');
                 exit();
             }
         } else {
             // Code de confirmation invalide l’utilisateur déjà confirmé
-            header('Location: ../index.php?erreur=5');
+            header('Location: ../?erreur=5');
             exit();
         }
     }    

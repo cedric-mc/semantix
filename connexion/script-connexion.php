@@ -73,18 +73,18 @@
                     exit;
                 } else {
                     // Mot de passe incorrect
-                    header('Location: ../index.php?erreur=2');
+                    header('Location: ../?erreur=2');
                     exit;
                 }
             } else {
                 // Demander à l'utilisateur de verifier son email
                 include "../mail/envoyer_mail_token.php";
-                header("Location: ../index.php?erreur=7");
+                header("Location: ../?erreur=7");
                 exit;
             }
         } else {
             //L'utilisateur n'existe pas
-            header('Location: ../index.php?erreur=1');
+            header('Location: ../?erreur=1');
             exit;
         }
     }

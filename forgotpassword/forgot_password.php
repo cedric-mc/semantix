@@ -2,7 +2,7 @@
 session_start();
 // Utilisateur connecté ?
 if (isset($_SESSION['pseudo'])) {
-    header('Location: ../index.php');
+    header('Location: ../');
     exit;
 }
 
@@ -29,7 +29,7 @@ $codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
     <link rel="stylesheet" href="../css/form.css">
 </head>
 <body class="black">
-<a class="btn btn-light fw-semibold" href="../connexion/index.php">Retour</a>
+<a class="btn btn-light fw-semibold" href="../connexion/">Retour</a>
 <main class="position-absolute top-50 start-50 translate-middle">
     <div class="glassmorphism">
         <form method="POST" action="script-forgot_password.php">

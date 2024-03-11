@@ -5,7 +5,14 @@
         $confirmPassword = $_SESSION['password3'];
 
         include("../includes/conf.php");
+        include_once("../class/User.php");
         session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: ../');
+            exit;
+        }
+        $user = User::createUserFromUser(unserialize($_SESSION['user']));
+        $pseudo = $user->getPseudo();
 
         // Vérifier si le code correspond et n'a pas expiré
         $user_input_code = $_POST['verification_code'];
@@ -20,7 +27,7 @@
         // Vérifier si l'ancien mot de passe est correct
         $sql = "SELECT num_user, motdepasse, salt, email FROM sae_users WHERE pseudo = :pseudo";
         $stmt = $cnx->prepare($sql);
-        $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
+        $stmt->bindParam(':pseudo', $pseudo);
         $stmt->execute();
         $user = $stmt->fetch();
         $stmt->closeCursor();
@@ -83,7 +90,7 @@
             $stmt = $cnx->prepare("UPDATE sae_users SET motdepasse = :motdepasse, salt = :salt WHERE pseudo = :pseudo");
             $stmt->bindParam(':motdepasse', $hashed_new_motdepasse);
             $stmt->bindParam(':salt', $new_salt);
-            $stmt->bindParam(':pseudo', $_SESSION['pseudo']);
+            $stmt->bindParam(':pseudo', $pseudo);
             $stmt->execute();
             $stmt->closeCursor();
 
@@ -95,7 +102,7 @@
             $mail->isHTML(true);
             $mail->Subject = "Changement de mot de passe";
             $mail->Body =
-                "Bonjour $_SESSION[pseudo],<br>
+                "Bonjour $pseudo,<br>
             Votre mot de passe a été modifié. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.<br>
             Cordialement,<br>
             L'équipe de Semantic Analogy Explorer.";

@@ -51,7 +51,7 @@ $codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
 			<button id="formButton" type="submit" class="btn fw-semibold">Se connecter</button>
 			<div class="register">
 				<p>
-                    Pas encore de compte ? <a href="../inscription/index.php">Inscrivez-vous.</a>
+                    Pas encore de compte ? <a href="../inscription/">Inscrivez-vous.</a>
                 </p>
 			</div>
 		</form>
