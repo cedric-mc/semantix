@@ -94,7 +94,7 @@
                 justify-content: center;
                 margin: 0.625rem;
                 padding: 0.625rem;
-                border: 1px solid #4CAF50;
+                border: 1px solid #198754;
                 border-radius: 0.625rem;
             }
 
