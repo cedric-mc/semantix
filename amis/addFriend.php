@@ -31,8 +31,8 @@
     if (isset($_GET['accept'])) {
         // Requête SQL pour accepter une demande d'ami
         $acceptFriendRequest = $cnx->prepare($acceptFriend);
-        $acceptFriendRequest->bindParam(":num_user", $friendId, PDO::PARAM_INT);
-        $acceptFriendRequest->bindParam(":friend_id", $idUser, PDO::PARAM_INT);
+        $acceptFriendRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
+        $acceptFriendRequest->bindParam(":friend_id", $friendId, PDO::PARAM_INT);
         $acceptFriendRequest->execute();
         $acceptFriendRequest->closeCursor();
 
