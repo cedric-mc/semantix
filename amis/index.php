@@ -25,7 +25,6 @@
     // Requête SQL pour obtenir la liste des amis à ajouter (file d'attente)
     $listUsersRequest = $cnx->prepare($canAddFriend);
     $listUsersRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
-    $listUsersRequest->bindParam(":idUser", $idUser, PDO::PARAM_INT);
     $listUsersRequest->execute();
     $listUsersResult = $listUsersRequest->fetchAll(PDO::FETCH_OBJ);
     $listUsersRequest->closeCursor();
