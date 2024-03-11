@@ -16,11 +16,11 @@
     $idUser = $user->getIdUser();
 
     // Requête SQL pour obtenr la liste des amis
-    $myFriendsResult = $cnx->prepare($allFriends);
-    $myFriendsResult->bindParam(":num_user", $idUser, PDO::PARAM_INT);
-    $myFriendsResult->execute();
-    $myFriendsResult = $myFriendsResult->fetchAll(PDO::FETCH_OBJ);
-    $myFriendsResult->closeCursor();
+    $myFriendsRequest = $cnx->prepare($allFriends);
+    $myFriendsRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
+    $myFriendsRequest->execute();
+    $myFriendsResult = $myFriendsRequest->fetchAll(PDO::FETCH_OBJ);
+    $myFriendsRequest->closeCursor();
 
     // Requête SQL pour obtenir la liste des amis à ajouter (file d'attente)
     $listUsersRequest = $cnx->prepare($canAddFriend);
@@ -173,6 +173,7 @@
                             echo "<p>Aucune demande d'ami pour le moment, tu es seul(e) au monde !</p>";
                             echo "</div>";
                         }
+                    ?>
                 </div>
             </div>
             <br>
