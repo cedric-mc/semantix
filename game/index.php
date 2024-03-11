@@ -1,4 +1,5 @@
 <?php
+    include("../class/User.php");
     include("../class/Game.php");
     include("game_fonctions.php");
     session_start();
@@ -8,7 +9,7 @@
         header('Location: ../');
         exit();
     }
-    $user = unserialize($_SESSION['user']);
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
 
     $messagesErreur = [
         1 => "Le mot n'est pas dans le dictionnaire.",
@@ -68,7 +69,7 @@
                 </div>
             </div>
                 <div class="div3">
-                <p>Score actuel : <?php echo calculateScore(); ?></p>
+                <p>Score actuel : <?php echo calculateScore($user); ?></p>
                 <p>Nombre de mots : <?php echo count($game->wordsArray); ?></p>
                 <p>Dernier mot : <?php if (count($game->wordsArray) > 2) echo ucfirst($game->lastWord); else echo "Aucun mot entré"; ?>
                 </p>
@@ -82,7 +83,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>Bravo ! Votre score final est de <?php echo calculateScore(); ?> point(s).<br> Relèverez-vous le défi à nouveau ? </p>
+                            <p>Bravo ! Votre score final est de <?php echo calculateScore($user); ?> point(s).<br> Relèverez-vous le défi à nouveau ? </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" id="closeModalButton" data-bs-dismiss="modal">Fermer</button>

@@ -3,9 +3,8 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    $user = User::createUserFromUser(unserialize($_SESSION['user']));
 
-    function calculateScore() {
+    function calculateScore(User $user) {
         $fichier = fopen("partie/best_path_" . $user->getPseudo() . ".txt", 'r');
         // Lire jusqu'à la ligne MinimumSimilarity : 39.21 et stocker la valeur dans $score
         $score = 0;
@@ -19,7 +18,7 @@
         return $score;
     }
 
-    function fileToArray($user) {
+    function fileToArray(User $user) {
         $paires = [];
         $fichier = fopen("partie/best_path_" . $user->getPseudo() . ".txt", "r");
         // Ignorer les 4 premières lignes
@@ -87,7 +86,7 @@
         return $mot;
     }
     
-    function createDataForGraph($user, $paires) {
+    function createDataForGraph(User $user, $paires) {
         foreach (file("partie/best_path_" . $user->getPseudo() . ".txt") as $line) {
             if (strpos($line, "bestPathEdges") !== false) {
                 $ligne = $line;

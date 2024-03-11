@@ -22,7 +22,7 @@ $idUser = $user->getIdUser();
 
 // Score final
 // Ajout du score final dans la base de données
-$calculateScore = calculateScore();
+$calculateScore = calculateScore($user);
 $requestAddFinalScore = $cnx->prepare("INSERT INTO sae_scores (num_user, score) VALUES (:num_user, :score)");
 $requestAddFinalScore->bindParam(':num_user', $idUser);
 $requestAddFinalScore->bindParam(':score', $calculateScore);
