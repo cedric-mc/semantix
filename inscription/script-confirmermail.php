@@ -32,7 +32,7 @@
                 $stmt_delete_confirmation->execute();
 
                 // Journalisation
-                trace($confirmation_data['num_user'], "Confirmation d'inscription", $cnx);
+                trace($confirmation_data['num_user'], 9, $cnx);
         
                 header('Location: ../index.php?erreur=4');
             } else {

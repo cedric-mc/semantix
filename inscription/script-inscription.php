@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Journalisation
     include '../includes/fonctions.php';
-    trace($num_user, 'Inscription au Site', $cnx);
+    trace($num_user, 7, $cnx);
 
     // Génération d'un code de confirmation (peut être un jeton unique)
     $code_confirmation = bin2hex(random_bytes(16));
