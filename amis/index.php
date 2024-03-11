@@ -135,22 +135,17 @@
                     <button id="searchButton">Rechercher</button>
                 </div>
                 <div class="users row row-cols-auto">
-                    <?php
-                        $nbAmis = count($myFriendsResult);
-                        foreach ($myFriendsResult as $ligne) {
-                            echo "<div class='user'>";
-                            echo "<img src='../img/profil.webp' alt='Photo de profil'>";
-                            echo "<p>$ligne->pseudo</p>";
-                            echo "<button>Supprimer</button>";
-                            echo "</div>";
-                        }
-
-                        if ($nbAmis == 0) {
-                            echo "<div class='user text-center'>";
-                            echo "<p>Aucun ami pour le moment, tu es seul(e) au monde !</p>";
-                            echo "</div>";
-                        }
-                    ?>
+                    <?php $nbAmis = count($myFriendsResult); foreach ($myFriendsResult as $ligne) { ?>
+                        <div class="user">
+                            <img src="../img/profil.webp" alt="Photo de profil">
+                            <p><?php echo $ligne->pseudo; ?></p>
+                            <button>Supprimer</button>
+                        </div>
+                    <?php } if ($nbAmis == 0) { ?>
+                        <div class="user text-center">
+                            <p>Aucun ami pour le moment, tu es seul(e) au monde !</p>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
             <br>
