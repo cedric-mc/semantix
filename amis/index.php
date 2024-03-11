@@ -30,12 +30,12 @@
     $listUsersRequest->closeCursor();
 
     // Requête SQL pour obtenir la liste des pseudos qui peuvent être ajoutés en amis
-    $listPseudosRequest = $cnx->prepare($listUsersPseudo);
-    $listPseudosRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
-    $listPseudosRequest->bindParam(":idUser", $idUser, PDO::PARAM_INT);
-    $listPseudosRequest->execute();
-    $listPseudosResult = $listPseudosRequest->fetchAll(PDO::FETCH_OBJ);
-    $listPseudosRequest->closeCursor();
+    $wantToAddFriendsRequest = $cnx->prepare($listUsersPseudo);
+    $wantToAddFriendsRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
+    $wantToAddFriendsRequest->bindParam(":idUser", $idUser, PDO::PARAM_INT);
+    $wantToAddFriendsRequest->execute();
+    $wantToAddFriendsResult = $wantToAddFriendsRequest->fetchAll(PDO::FETCH_OBJ);
+    $wantToAddFriendsResult->closeCursor();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -186,7 +186,7 @@
                     <button id="addFriendButton">Ajouter</button>
                 </div>-->
                 <div class="users row row-cols-auto">
-                    <?php foreach ($listUsersResult as $ligne) { ?>
+                    <?php foreach ($wantToAddFriendsResult as $ligne) { ?>
                         <div class="user">
                             <img src="../img/profil.webp" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
