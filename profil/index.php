@@ -1,5 +1,4 @@
 <?php
-    global $lastConnexionProfil, $cnx, $scoreProfil, $top3ScoresProfil;
     // Erreur php
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
@@ -34,6 +33,12 @@
     $top3Request->execute();
     $top3Result = $top3Request->fetchAll(PDO::FETCH_OBJ);
     $top3Request->closeCursor();
+
+    $photoRequest = $cnx->prepare("SELECT photo FROM sae_users WHERE pseudo = :pseudo");
+    $photoRequest->bindParam(":pseudo", $pseudo);
+    $photoRequest->execute();
+    $photoResult = $photoRequest->fetch(PDO::FETCH_OBJ);
+    $photoRequest->closeCursor();
 
     // Messages d’erreurs possibles pour le changement d'email
     $erreursEmail = [
@@ -88,7 +93,7 @@
             <div class="parent">
                 <div class="photo-pseudo-buttons glassmorphism-section">
                     <div class="photo-pseudo">
-                        <img src="../img/profil.webp" alt="Photo de Profil" title="Photo <?php echo $pseudo; ?>">
+                        <img src="<?php echo $photoResult->photo == null ? "../img/default.png" : "data:image/jpeg;base64," . base64_encode($photoResult->photo); ?>" alt="Photo de profil" class="photo-profil">
                         <h1 class="title-section h1"><?php echo $pseudo; ?></h1>
                     </div>
                     <div class="buttons">
