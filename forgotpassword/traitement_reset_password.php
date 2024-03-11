@@ -1,12 +1,13 @@
 <?php
+include_once("../includes/conf.php");
+include_once("../class/User.php");
 session_start();
 // Utilisateur déjà connecté ?
-if (isset($_SESSION['pseudo'])) {
+if (isset($_SESSION['user'])) {
     header('Location: ../index.php');
     exit;
 }
-
-include '../includes/conf.php';
+$user = User::createUserFromUser(unserialize($_SESSION['user']));
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_user = $_POST['num_user'];
@@ -66,8 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->send();
 
             // Journalisation
-            include '../includes/fonctions.php';
-            trace($num_user, 'Changement de mot de passe', $cnx);
+            $user->logging($cnx, 5);
 
             header('Location: forgot_password.php?erreur=2');
             exit;

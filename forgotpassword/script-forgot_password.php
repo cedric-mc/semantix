@@ -1,16 +1,16 @@
 <?php
-session_start();
-// Utilisateur connecté ?
-if (isset($_SESSION['pseudo'])) {
-    header('Location: ../index.php');
-    exit;
-}
-
-include '../includes/conf.php';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pseudo = $_POST['pseudo'];
     $email = $_POST['email'];
+
+    include_once("../includes/conf.php");
+    session_start();
+    // Utilisateur connecté ?
+    if (isset($_SESSION['user'])) {
+        header("Location: ../");
+        exit;
+    }
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
 
     // Rechercher l'utilisateur dans la base de données
     $query_select_user = "SELECT * FROM sae_users WHERE pseudo = :pseudo AND email = :email";
@@ -46,8 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->send();
 
         // Journalisation
-        include '../includes/fonctions.php';
-        trace($user['num_user'], 'Mot de passe oublié', $cnx);
+        $user->logging($cnx, 3);
 
         header('Location: forgot_password.php?erreur=1');
         exit;
