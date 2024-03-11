@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    if (!isset($_SESSION['pseudo'])) {
+    if (!isset($_SESSION['user'])) {
         header('Location: ../index.php');
         exit();
     }
@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     require_once("../class/User.php");
     require_once("../class/Game.php");
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
     $game = unserialize($_SESSION['game']);
-    $user = unserialize($_SESSION['user']);
     $newWord = $_POST['word'];
     $game->setLastWord($newWord);
     include("game_fonctions.php");
@@ -35,9 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: ./?erreur=1');
         exit();
     }
-    exec("./C/bin/add_word C/fasttext-fr.bin $newWord $user->pseudo");
+    exec("./C/bin/add_word C/fasttext-fr.bin $newWord " . $user->getPseudo());
     // Java : trier les paires
-    $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_$_SESSION[pseudo].txt partie/mst_$_SESSION[pseudo].txt 2>&1";
+    $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_" . $user->getPseudo() . ".txt partie/mst_" . $user->getPseudo() . ".txt 2>&1";
     exec($commandeJar, $output);
     $_SESSION['output'] = $output;
     $_SESSION['game'] = serialize($game);

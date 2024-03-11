@@ -6,7 +6,7 @@
         header("Location: ../");
         exit();
     }
-    $user = unserialize($_SESSION['user']);
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
     // Erreurs PHP
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -29,11 +29,11 @@
             $verif_mot = shell_exec($commande_verif);
         }
 
-        $commande_start_game = "./C/bin/new_game C/fasttext-fr.bin $mot1 $mot2 $user->pseudo";
+        $commande_start_game = "./C/bin/new_game C/fasttext-fr.bin $mot1 $mot2 " . $user->getPseudo();
         exec($commande_start_game);
 
         $distance = 100;
-        $fichier = fopen("partie/game_data_$user->pseudo.txt", "r");
+        $fichier = fopen("partie/game_data_" . $user->getPseudo() . ".txt", "r");
         // Lire le fichier jusqu’à la 8ème ligne et stocker ce qui se trouve après "distance: " dans $distance
         for ($i = 0; $i < 8; $i++) {
             $ligne = fgets($fichier);
