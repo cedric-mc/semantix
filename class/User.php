@@ -36,7 +36,7 @@
         }
 
         public function getPhoto(): string {
-            return "data:image/jpeg;base64," . base64_encode($this->photo);
+            return $this->photo;
         }
 
         public function setEmail($email): void {
