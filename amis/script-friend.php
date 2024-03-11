@@ -51,5 +51,17 @@
         echo "<script>alert('Demande d\'ami envoyée !')</script>";
         echo "<script>window.location.replace('./');</script>";
         exit();
+    } elseif (isset($_GET['delete'])) {
+        // Requête SQL pour supprimer un ami
+        $deleteFriendRequest = $cnx->prepare($deleteFriend);
+        $deleteFriendRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
+        $deleteFriendRequest->bindParam(":friend_id", $friendId, PDO::PARAM_INT);
+        $deleteFriendRequest->execute();
+        $deleteFriendRequest->closeCursor();
+
+        // Script JS pour afficher une alerte
+        echo "<script>alert('Ami supprimé !')</script>";
+        echo "<script>window.location.replace('./');</script>";
+        exit();
     }
 ?>
