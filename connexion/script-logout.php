@@ -2,6 +2,7 @@
     global $cnx;
     include_once("../includes/conf.php");
     include_once("../includes/fonctions.php");
+    include_once("../class/User.php");
     session_start();
     // Erreurs PHP
     ini_set('display_errors', 1);
