@@ -142,8 +142,8 @@
                             <p><?php echo $ligne->pseudo; ?></p>
                             <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
                             <?php if ($ligne->statut == 0) { ?>
-                                <a class="btn btn-warning" href="#" role="button">Accepter</a>
-                                <a class="btn btn-danger" href="#" role="button">Refuser</a>
+                                <a class="btn btn-warning" href="addFriend.php?accept&friendId=<?php echo $ligne->num_user; ?>" role="button">Accepter</a>
+                                <a class="btn btn-danger" href="addFriend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser</a>
                             <?php } else { ?>
                                 <a class="btn btn-danger" href="#" role="button">Supprimer</a>
                             <?php } ?>
@@ -170,7 +170,7 @@
                         <div class="user">
                             <img src="../img/profil.webp" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
-                            <a class="btn btn-success" href="addFriend.php?add&idUser=<?php echo $ligne->num_user; ?>" role="button">Ajouter</a>
+                            <a class="btn btn-success" href="addFriend.php?add&friendId=<?php echo $ligne->num_user; ?>" role="button">Ajouter</a>
                         </div>
                     <?php } if ($nbCanAdd == 0) { ?>
                         <div class="user text-center">
