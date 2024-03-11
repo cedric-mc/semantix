@@ -1,6 +1,7 @@
 <?php
+    include_once("../includes/conf.php");
+    include("../includes/fonctions.php");
     session_start();
-    include '../includes/conf.php';
 
     if (isset($_GET['code'])) {
         $code_confirmation = $_GET['code'];
@@ -31,7 +32,6 @@
                 $stmt_delete_confirmation->execute();
 
                 // Journalisation
-                include '../includes/fonctions.php';
                 trace($confirmation_data['num_user'], "Confirmation d'inscription", $cnx);
         
                 header('Location: ../index.php?erreur=4');
