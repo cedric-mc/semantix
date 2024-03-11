@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["photo"])) {
     $stmt->execute(array($image_data, $user->getIdUser()));
     $stmt->closeCursor();
 
-    echo "Photo de profil modifiée avec succès !";
     exit();
 } else {
     header("Location: ./");
