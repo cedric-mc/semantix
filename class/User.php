@@ -4,7 +4,6 @@
         private string $pseudo;
         private string $email;
         private int $year;
-        // Photo from longblob type in database
         private string $photo;
 
         public function __construct(int $idUser, string $pseudo, string $email, int $year, string $photo) {
@@ -12,11 +11,7 @@
             $this->pseudo = $pseudo;
             $this->email = $email;
             $this->year = $year;
-            if ($photo) {
-                $this->photo = $photo;
-            } else {
-                $this->photo = "profil.webp";
-            }
+            $this->photo = $photo;
         }
 
         public static function createUserFromUser(User $user) {
