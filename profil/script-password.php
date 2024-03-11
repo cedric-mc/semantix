@@ -105,7 +105,7 @@
 
             // Journalisation
             include '../includes/fonctions.php';
-            trace($num_user, 'Changement de mot de passe', $cnx);
+            trace($num_user, 5, $cnx);
 
             // Rediriger vers la page de connexion avec un message, mot de passe modifié
             header('Location: change_password.php?confirmMdpError=1');
