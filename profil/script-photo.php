@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["photo"])) {
     $stmt->execute(array($image_data, $user->getIdUser()));
     $stmt->closeCursor();
 
+    var_dump($image_data, $user->getIdUser());
     exit();
 } else {
     header("Location: ./");
