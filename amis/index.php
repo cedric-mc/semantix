@@ -23,11 +23,11 @@
     $myFriendsRequest->closeCursor();
 
     // Requête SQL pour obtenir la liste des amis à ajouter (file d'attente)
-    $listUsersRequest = $cnx->prepare($canAddFriend);
-    $listUsersRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
-    $listUsersRequest->execute();
-    $listUsersResult = $listUsersRequest->fetchAll(PDO::FETCH_OBJ);
-    $listUsersRequest->closeCursor();
+    $canAddFriendRequest = $cnx->prepare($canAddFriend);
+    $canAddFriendRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
+    $canAddFriendRequest->execute();
+    $canAddFriendResult = $canAddFriendRequest->fetchAll(PDO::FETCH_OBJ);
+    $canAddFriendRequest->closeCursor();
 
     // Requête SQL pour obtenir la liste des pseudos qui peuvent être ajoutés en amis
     $wantToAddFriendsRequest = $cnx->prepare($listUsersPseudo);
@@ -158,8 +158,8 @@
             <div class="container">
                 <div class="users row row-cols-auto">
                     <?php
-                        $nbPseudos = count($listPseudosResult);
-                        foreach ($listPseudosResult as $ligne) {
+                        $nbPseudos = count($canAddFriendResult);
+                        foreach ($canAddFriendResult as $ligne) {
                             echo "<div class='user'>";
                             echo "<img src='../img/profil.webp' alt='Photo de profil'>";
                             echo "<p>$ligne->pseudo</p>";
