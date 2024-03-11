@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $num_user = $user_num_user['num_user'];
 
-    trace($num_user, "Changement d'adresse email", $cnx);
+    $user->logging($cnx, 4);
 
     header('Location: ./?emailErreur=1');
     exit;

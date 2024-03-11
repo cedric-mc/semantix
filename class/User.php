@@ -54,5 +54,15 @@
 
             $this->setEmail($newEmail);
         }
+
+        public function logging(PDO $cnx, int $numAction): void {
+            $query = "INSERT INTO sae_traces (utilisateur_id, action, ip_adress) VALUES (:utilisateur_id, :action, :ip_adress)";
+            $stmt = $cnx->prepare($query);
+            $stmt->bindParam(":utilisateur_id", $userId, PDO::PARAM_INT);
+            $stmt->bindParam(":action", $action, PDO::PARAM_STR);
+            $stmt->bindParam(":ip_adress", $_SERVER['REMOTE_ADDR'], PDO::PARAM_STR);
+            $stmt->execute();
+            $stmt->closeCursor();
+        }
     }
 ?>
