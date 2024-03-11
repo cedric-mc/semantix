@@ -8,7 +8,7 @@
     error_reporting(E_ALL);
     session_start();
     if (!isset($_SESSION['user'])) {
-        header('Location: ./');
+        header("Location: ../");
         exit;
     }
     $user = unserialize($_SESSION['user']);
