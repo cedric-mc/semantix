@@ -32,7 +32,7 @@
             return $this->year;
         }
 
-        public function setEmail($email) {
+        public function setEmail($email): void {
             $this->email = $email;
         }
     }

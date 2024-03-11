@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once("../class/User.php"); // Classe User
     include_once("../includes/conf.php"); // Connexion à la base de données
     include_once("../includes/requetes.php"); // Requêtes SQL
+    include_once("../includes/fonctions.php");
     session_start();
 
     // Vérifier si l'utilisateur est connecté
@@ -48,6 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $stmt->closeCursor();
 
+    $user->setEmail($newEmail);
+
     // Mail
     include("../mail/mailer.php");
     // Capture de la sortie de la page PHP dans une variable
@@ -80,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $num_user = $user_num_user['num_user'];
 
-    include '../includes/fonctions.php';
     trace($num_user, "Changement d'adresse email", $cnx);
 
     header('Location: ./?emailErreur=1');
