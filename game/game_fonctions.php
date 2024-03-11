@@ -3,6 +3,21 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
+
+    function calculateScore() {
+        $fichier = fopen("partie/best_path_" . $user->getPseudo() . ".txt", 'r');
+        // Lire jusqu'à la ligne MinimumSimilarity : 39.21 et stocker la valeur dans $score
+        $score = 0;
+        while (($ligne = fgets($fichier)) !== false) {
+            if (strpos($ligne, "MinimumSimilarity") !== false) {
+                $score = floatval(trim(str_replace("MinimumSimilarity : ", "", $ligne)));
+                break;
+            }
+        }
+        fclose($fichier);
+        return $score;
+    }
 
     function fileToArray($user) {
         $paires = [];
@@ -70,21 +85,6 @@
         $mot = $listeDeMots[$indiceMot];
     
         return $mot;
-    }
-    
-    function calculateScore() {
-        $user = unserialize($_SESSION['user']);
-        $fichier = fopen("partie/best_path_$user->pseudo.txt", 'r');
-        // Lire jusqu'à la ligne MinimumSimilarity : 39.21 et stocker la valeur dans $score
-        $score = 0;
-        while (($ligne = fgets($fichier)) !== false) {
-            if (strpos($ligne, "MinimumSimilarity") !== false) {
-                $score = floatval(trim(str_replace("MinimumSimilarity : ", "", $ligne)));
-                break;
-            }
-        }
-        fclose($fichier);
-        return $score;
     }
     
     function createDataForGraph($user, $paires) {
