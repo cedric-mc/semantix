@@ -71,8 +71,8 @@
                             <p><?php echo $ligne->pseudo; ?></p>
                             <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
                             <?php if ($ligne->statut == 0) { ?>
-                                <a class="btn btn-warning" href="addFriend.php?accept&friendId=<?php echo $ligne->num_user; ?>" role="button">Accepter</a>
-                                <a class="btn btn-danger" href="addFriend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser</a>
+                                <a class="btn btn-warning" href="addFriend.php?accept&friendId=<?php echo $ligne->num_user; ?>" role="button">Accepter<i class="fa-solid fa-check"></i></a>
+                                <a class="btn btn-danger" href="addFriend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser<i class="fa-solid fa-xmark"></i></a>
                             <?php } else { ?>
                                 <a class="btn btn-danger" href="#" role="button">Supprimer</a>
                             <?php } ?>
