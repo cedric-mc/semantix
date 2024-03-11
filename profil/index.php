@@ -93,7 +93,7 @@
             <div class="parent">
                 <div class="photo-pseudo-buttons glassmorphism-section">
                     <div class="photo-pseudo">
-                        <img src="<?php echo $photoResult->photo == null ? "../img/profil.webp" : "data:image/jpeg;base64," . base64_encode($photoResult->photo); ?>" alt="Photo de profil" class="photo-profil">
+                        <img src="<?php echo $user->getPhoto(); ?>" alt="Photo de profil" class="photo-profil">
                         <h1 class="title-section h1"><?php echo $pseudo; ?></h1>
                     </div>
                     <div class="buttons">

@@ -4,12 +4,15 @@
         private string $pseudo;
         private string $email;
         private int $year;
+        // Photo from longblob type in database
+        private string $photo;
 
-        public function __construct(int $idUser, string $pseudo, string $email, int $year) {
+        public function __construct(int $idUser, string $pseudo, string $email, int $year, string $photo = null) {
             $this->idUser = $idUser;
             $this->pseudo = $pseudo;
             $this->email = $email;
             $this->year = $year;
+            $this->photo = $photo;
         }
 
         public static function createUserFromUser(User $user) {
@@ -32,8 +35,16 @@
             return $this->year;
         }
 
+        public function getPhoto(): string {
+            return "data:image/jpeg;base64," . base64_encode($this->photo);
+        }
+
         public function setEmail($email): void {
             $this->email = $email;
+        }
+
+        public function setPhoto($photo): void {
+            $this->photo = $photo;
         }
 
         public function isEmailExist(PDO $cnx, string $newEmail, string $emailExists): bool {
