@@ -12,7 +12,11 @@
             $this->pseudo = $pseudo;
             $this->email = $email;
             $this->year = $year;
-            $this->photo = $photo;
+            if ($photo) {
+                $this->photo = $photo;
+            } else {
+                $this->photo = "profil.webp";
+            }
         }
 
         public static function createUserFromUser(User $user) {
