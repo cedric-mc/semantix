@@ -4,11 +4,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passeword2 = $_POST['password2'];
     $passeword3 = $_POST['password3'];
     include("../includes/conf.php");
+    include_once("../class/Game.php");
     session_start();
     if (!isset($_SESSION['user'])) {
         header("Location: ./");
         exit;
     }
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
     // Vérifier si les mots de passe sont identiques
     if ($passeword2 != $passeword3) {
         header("Location: change_password.php?");
