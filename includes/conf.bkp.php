@@ -24,4 +24,6 @@
     $lienInscription = $lienGeneral . "inscription/script-confirmermail.php";
     // Vers la page de réinitialisation du mot de passe
     $lienReinitialisation = $lienGeneral . "forgotpassword/reset_password.php";
+    // Vers la page de confirmation de l'adresse mail
+    $lienConfirmerMail = $lienGeneral . "inscription/script-confirmermail.php";
 ?>

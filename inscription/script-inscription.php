@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Capture de la sortie de la page PHP dans une variable
     ob_start();
-    include("../mail/forgotpassword.php");
+    include("../mail/inscription.php");
     $content = ob_get_clean();
 
     $mail->addAddress($email, $pseudo);
