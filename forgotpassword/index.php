@@ -39,7 +39,7 @@
                 </div>
                 <button id="formButton" type="submit" class="btn fw-semibold">Récuperer votre mot de passe</button>
             </form>
-            <div class="forget">
+            <div class="register">
                 <a href="../connexion/">Retour à la connexion</a>
             </div>
             <?php
