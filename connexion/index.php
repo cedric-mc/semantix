@@ -43,7 +43,7 @@ $codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
 				<input name="motdepasse" id="motdepasse" type="password" required> <label for="motdepasse">Mot de passe</label>
 			</div>
 			<div class="forget">
-				<a href="../forgotpassword/index.php">Mot de passe oublié ?</a>
+				<a href="../forgotpassword/">Mot de passe oublié ?</a>
 			</div>
 			<button id="formButton" type="submit" class="btn fw-semibold">Se connecter</button>
 			<div class="register">
