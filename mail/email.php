@@ -34,12 +34,17 @@
             <h1>Changement d'email</h1>
             <img src="cid:mylogo" alt="Semantic Analogy Explorer" width="100px" height="100px">
         </header>
-        <p>
-            Bonjour <?php echo $_SESSION['pseudo']; ?>, Votre adresse e-mail a été modifiée. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.
-            <br><br>
-            Cordialement,<br>
-            L'équipe de Semonkey.
-        </p>
+        <main>
+            <p>
+                Bonjour <?php echo $_SESSION['pseudo']; ?>,
+                <br><br>
+                Votre adresse e-mail a été modifiée.
+                Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.
+                <br><br>
+                Cordialement,<br>
+                L'équipe de Semonkey.
+            </p>
+        </main>
         <footer>
             <p>© 2024 Semonkey. Tous droits réservés.</p>
         </footer>

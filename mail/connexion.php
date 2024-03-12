@@ -33,15 +33,17 @@
             <h1>Alerte de Connexion</h1>
             <img src="cid:mylogo" alt="Semonkey" width="100px" height="100px">
         </header>
-        <p>
-            Bonjour <?php echo $pseudo; ?>, Vous venez de vous connecter sur notre site !
-            <br>
-            <br>
-            Si vous n'êtes pas à l'origine de cette connexion, veuillez changer immédiatement votre mot de passe !
-            <br><br>
-            Cordialement,<br>
-            L'Équipe de Semonkey.
-        </p>
+        <main>
+            <p>
+                Bonjour <?php echo $pseudo; ?>,
+                <br><br>
+                Vous venez de vous connecter sur notre site !
+                Si vous n'êtes pas à l'origine de cette connexion, veuillez changer immédiatement votre mot de passe !
+                <br><br>
+                Cordialement,<br>
+                L'Équipe de Semonkey.
+            </p>
+        </main>
         <footer>
             <p>© 2024 Semonkey. Tous droits réservés.</p>
         </footer>

@@ -36,13 +36,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Configurer PHPMailer
         include("../mail/mailer.php");
 
+        // Capture de la sortie de la page PHP dans une variable
+        ob_start();
+        include("../mail/forgotpassword.php");
+        $content = ob_get_clean();
+
         $mail->addAddress($email, $pseudo);
 
         // Contenu du mail
         $mail->isHTML();
         $mail->Subject = "Réinitialisation de votre mot de passe";
-        $mail->Body = "Bonjour $pseudo,<br><br>Vous avez demandé la réinitialisation de votre mot de passe. Veuillez cliquer sur le lien suivant pour choisir un nouveau mot de passe : <a href='http://perso-etudiant.u-pem.fr/~chamsedine.amouche/Projet-SAE/forgotpassword/reset_password.php?code=$code_reinitialisation'>Réinitialiser le mot de passe</a>";
-        $mail->CharSet = 'UTF-8';
+        $mail->Body = $content;
+        $mail->CharSet = "UTF-8";
+        $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
         $mail->send();
 
         // Journalisation

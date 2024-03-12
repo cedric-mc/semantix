@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->Subject = "Changement d'email";
     $mail->Body = $content;
     $mail->CharSet = 'UTF-8';
+    $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
     $mail->send();
     // Effacer les adresses précédentes
     $mail->clearAddresses();
