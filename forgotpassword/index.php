@@ -39,6 +39,9 @@
                 </div>
                 <button id="formButton" type="submit" class="btn fw-semibold">Récuperer votre mot de passe</button>
             </form>
+            <div class="forget">
+                <a href="../connexion/">Retour à la connexion</a>
+            </div>
             <?php
                 // Si le message d'erreur est différent de 0
                 if ($codeErreur > 0 && $codeErreur < 5) {
