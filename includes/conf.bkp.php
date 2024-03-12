@@ -18,6 +18,10 @@ $password = "";
 $host = "";
 $name = "";
 
+// Lien général
+$lienGeneral = "";
 // Lien vers la page de confirmation d'inscription
-$lienInscription = "";
+$lienInscription = $lienGeneral . "inscription/script-confirmermail.php";
+// Lien vers la page de réinitialisation du mot de passe
+$lienReinitialisation = $lienGeneral . "forgotpassword/reset_password.php";
 ?>
