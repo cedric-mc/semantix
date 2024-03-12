@@ -27,7 +27,7 @@
     $stmt_insert_confirmation->execute();
 
     //requête récuperer le mail de l'utilisateur
-    $queryGetMail = "SELECT email FROM sae_users WHERE pseudo = :pseudo";
+    $queryGetMail = "SELECT email FROM sae_users WHERE pseudo = :pseudo;";
     $stmtGetmail = $cnx->prepare($queryGetMail);
     $stmtGetmail->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
     $stmtGetmail->execute();
