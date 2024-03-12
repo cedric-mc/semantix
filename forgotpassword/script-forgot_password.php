@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $code_reinitialisation = bin2hex(random_bytes(16));
 
         // Enregistrement du code de réinitialisation dans la base de données
-        $query_insert_code = "INSERT INTO sae_reset (num_user, code) VALUES (:num_user, :code)";
+        $query_insert_code = "INSERT INTO sae_reset_code (num_user, code) VALUES (:num_user, :code)";
         $stmt_insert_code = $cnx->prepare($query_insert_code);
         $stmt_insert_code->bindParam(":num_user", $user['num_user']);
         $stmt_insert_code->bindParam(":code", $code_reinitialisation);

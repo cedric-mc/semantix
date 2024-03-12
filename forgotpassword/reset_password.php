@@ -17,7 +17,7 @@ if ($_GET['code']) {
     $code_reinitialisation = $_GET['code'];
 
     // Rechercher le code de réinitialisation dans la base de données
-    $query_select_code = "SELECT * FROM sae_reset WHERE code = :code";
+    $query_select_code = "SELECT * FROM sae_reset_code WHERE code = :code";
     $stmt_select_code = $cnx->prepare($query_select_code);
     $stmt_select_code->bindParam(":code", $code_reinitialisation);
     $stmt_select_code->execute();
