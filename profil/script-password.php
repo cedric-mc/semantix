@@ -54,28 +54,8 @@
                 header('Location: change_password.php?confirmMdpError=3');
                 exit;
             }
-            // Vérifier si le nouveau mot de passe respecte les règles de la CNIL
-            $passwordError = "";
-            if (strlen($newPassword) < 12) {
-                header("Location: change_password.php?confirmMdpError=5");
-                exit;
-            }
-            if (!preg_match('/[0-9]/', $newPassword)) {
-                header("Location: change_password.php?confirmMdpError=5");
-                exit;
-            }
-            if (!preg_match('/[A-Z]/', $newPassword)) {
-                header("Location: change_password.php?confirmMdpError=5");
-                exit;
-            }
-            if (!preg_match('/[a-z]/', $newPassword)) {
-                header("Location: change_password.php?confirmMdpError=5");
-                exit;
-            }
-            if (!preg_match('/[^a-zA-Z0-9]/', $newPassword)) {
-                header("Location: change_password.php?confirmMdpError=5");
-                exit;
-            }
+            // Vérifier si le nouveau mot de passe respecte les normes de la CNIL
+            // 12 caractères minimum, au moins une majuscule, une minuscule, un chiffre et un caractère spécial
             if (strlen($newPassword) < 12 && !preg_match('/[0-9]/', $newPassword) && !preg_match('/[A-Z]/', $newPassword) && !preg_match('/[a-z]/', $newPassword) && !preg_match('/[^a-zA-Z0-9]/', $newPassword)) {
                 header("Location: change_password.php?confirmMdpError=5");
                 exit;
@@ -97,17 +77,17 @@
             //Mail
             include '../mail/mailer.php';
 
+            // Capture de la sortie de la page PHP dans une variable
+            ob_start();
+            include("../mail/motdepasse.php");
+            $content = ob_get_clean();
             $mail->addAddress($user['email']);
 
             $mail->isHTML(true);
             $mail->Subject = "Changement de mot de passe";
-            $mail->Body =
-                "Bonjour $pseudo,<br>
-            Votre mot de passe a été modifié. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.<br>
-            Cordialement,<br>
-            L'équipe de Semantic Analogy Explorer.";
-            $mail->CharSet = 'UTF-8';
-
+            $mail->Body = $content;
+            $mail->CharSet = "UTF-8";
+            $mail->addEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
             $mail->send();
 
             // Journalisation

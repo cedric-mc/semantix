@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>Mail pour changement d'email</title>
+        <title>Mail pour d'inscription</title>
         <style>
             header {
                 background-color: #f3f3f3;
@@ -31,7 +31,7 @@
 
     <body>
         <header>
-            <h1>Changement d'email</h1>
+            <h1>Inscription</h1>
             <img src="cid:mylogo" alt="Semantic Analogy Explorer" width="100px" height="100px">
         </header>
         <main>
