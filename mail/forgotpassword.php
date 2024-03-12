@@ -36,7 +36,7 @@
         </header>
         <main>
             <p>
-                Bonjour <?php echo $_SESSION['pseudo']; ?>,
+                Bonjour <?php echo $pseudo; ?>,
                 <br><br>
                 Vous avez demandé la réinitialisation de votre mot de passe.
                 Veuillez cliquer sur le lien suivant pour choisir un nouveau mot de passe : <a href="<?php echo $lienReinitialisation . '?code=' . $code_reinitialisation; ?>">Réinitialiser le mot de passe</a>

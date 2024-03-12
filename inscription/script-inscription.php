@@ -92,13 +92,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_insert_confirmation->execute();
 
     include '../mail/mailer.php';
+
+    // Capture de la sortie de la page PHP dans une variable
+    ob_start();
+    include("../mail/forgotpassword.php");
+    $content = ob_get_clean();
+
     $mail->addAddress($email, $pseudo);
 
     // Contenu du mail
     $mail->isHTML(true);
     $mail->Subject = "Confirmation d'inscription";
-    $mail->Body = "Bienvenue $pseudo sur notre site !<br><br>Veuillez confirmer votre inscription en cliquant sur le lien suivant : <a href='$lienInscription?code=$code_confirmation'>Confirmer</a>";
+    $mail->Body = $content;
     $mail->CharSet = "UTF-8";
+    $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
     
     // Envoi du mail
     $mail->send();

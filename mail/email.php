@@ -36,7 +36,7 @@
         </header>
         <main>
             <p>
-                Bonjour <?php echo $_SESSION['pseudo']; ?>,
+                Bonjour <?php echo $pseudo; ?>,
                 <br><br>
                 Votre adresse e-mail a été modifiée.
                 Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.
