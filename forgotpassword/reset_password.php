@@ -90,11 +90,11 @@ if ($_GET['code']) {
         <?php
 
     } else {
-        header('Location: forgot_password.php');
+        header('Location: index.php');
         exit;
     }
 } else {
-    header('Location: forgot_password.php');
+    header('Location: index.php');
     exit;
 }
 ?>

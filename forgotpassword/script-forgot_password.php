@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Journalisation
         $user->logging($cnx, 3);
 
-        header('Location: forgot_password.php?erreur=1');
+        header('Location: index.php?erreur=1');
         exit;
     }
 }

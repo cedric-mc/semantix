@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Journalisation
             $user->logging($cnx, 5);
 
-            header('Location: forgot_password.php?erreur=2');
+            header('Location: index.php?erreur=2');
             exit;
         } else {
             // Erreur lors de la mise à jour du mot de passe
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 } else {
-    header('Location: forgot_password.php');
+    header('Location: index.php');
     exit;
 }
 ?>
