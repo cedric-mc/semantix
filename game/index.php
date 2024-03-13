@@ -94,8 +94,8 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            var error = <?php echo json_encode($erreur); ?>;
+        <!--<script>
+            var error = <?php /*echo json_encode($erreur); */?>;
             var messagesErreur = [
                 "",
                 "Le mot n'est pas dans le dictionnaire.",
@@ -107,7 +107,7 @@
                     alert("Erreur : " + messagesErreur[error]);
                 }
             });
-        </script>
+        </script>-->
         <script>
             // Fonction pour charger les données depuis PHP
             function loadData() {
