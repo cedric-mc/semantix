@@ -20,24 +20,20 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
-                                <tr class="table-dark text-center">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Date et Heure</th>
-                                    <th scope="col">Score</th>
-                                </tr>
+                                    <tr class="table-dark text-center">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Date et Heure</th>
+                                        <th scope="col">Score</th>
+                                    </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                <?php
-                                $i = 1;
-                                foreach ($historicResult as $historic) {
-                                    echo "<tr>";
-                                    echo "<td>$i</td>";
-                                    echo "<td>" . makeDateTime($historic->dateHeure) . "</td>";
-                                    echo "<td>$historic->score</td>";
-                                    echo "</tr>";
-                                    $i++;
-                                }
-                                ?>
+                                    <?php $i = 1; foreach ($historicResult as $historic) { ?>
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo makeDateTime($historic->dateHeure); ?></td>
+                                            <td><?php echo $historic->score; ?></td>
+                                        </tr>
+                                    <?php $i++; } ?>
                                 </tbody>
                             </table>
                         </div>

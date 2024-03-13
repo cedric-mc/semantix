@@ -108,7 +108,6 @@
                         <h1 class="title-section h1"><?php echo $pseudo; ?></h1>
                     </div>
                     <div class="buttons">
-                        <a id="historique" href="historique.php" class="btn btn-primary g-col-6 text-nowrap">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></a>
                         <button id="btn-historique" type="button" class="btn btn-primary g-col-6 text-nowrap" data-bs-target="#historiqueModal" data-bs-toggle="modal">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></button>
                         <button id="btn-email" type="button" class="btn btn-warning text-nowrap" data-bs-target="#emailModal" data-bs-toggle="modal">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button>
                         <button id="btn-mdp" type="button" class="btn btn-warning text-nowrap" data-bs-target="#mdpModal" data-bs-toggle="modal">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
@@ -185,7 +184,7 @@
                 </div>
             </div>
         </main>
-        <?php include("changes.php"); ?>
+        <?php include("modals.php"); ?>
         <script>
             $(document).ready(function() {
                 function updateElapsedTime() {
