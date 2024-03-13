@@ -51,7 +51,7 @@
                 $stmt_delete_code->bindParam(":num_user", $num_user, PDO::PARAM_INT);
                 $stmt_delete_code->execute();
 
-                //Mail
+                // Mail
                 include '../mail/mailer.php';
 
                 $mail->addAddress($user['email']);
