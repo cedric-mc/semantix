@@ -25,13 +25,13 @@
             }
 
             // Vérifier si l'ancien mot de passe est correct
-            $sql = "SELECT email, salt FROM sae_users WHERE num_user = :num_user";
+            $sql = "SELECT pseudo, email, salt FROM sae_users WHERE num_user = :num_user";
             $stmt = $cnx->prepare($sql);
             $stmt->bindParam(':num_user', $num_user, PDO::PARAM_INT);
             $stmt->execute();
             $user = $stmt->fetch();
             $stmt->closeCursor();
-
+            $pseudo = $user['pseudo'];
             $stored_salt = $user['salt']; // Sel stocké dans la base de données
 
             $motdepasse = hash_pbkdf2("sha256", $nouveau_mot_de_passe, $stored_salt, 5000, 32); // hachage du mot de passe
