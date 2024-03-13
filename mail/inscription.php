@@ -36,7 +36,7 @@
         </header>
         <main>
             <p>
-                Bienvenue <?php echo $pseudo; ?> sur notre site !
+                Bienvenue :pseudo sur notre site !
                 <br><br>
                 Veuillez confirmer votre inscription en cliquant sur le lien suivant : <a href='<?php echo "$lienInscription?code=$code_confirmation"; ?>'>Confirmer</a>
                 <br><br>

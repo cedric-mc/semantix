@@ -87,6 +87,7 @@
             $mail->Subject = "Changement de mot de passe";
             $mail->Body = $content;
             $mail->CharSet = "UTF-8";
+            $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
             $mail->addEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
             $mail->send();
 

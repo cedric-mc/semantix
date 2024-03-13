@@ -36,7 +36,7 @@
         </header>
         <main>
             <p>
-                Bonjour <?php echo $pseudo; ?>,
+                Bonjour :pseudo,
                 <br><br>
                 Votre mot de passe a été modifié. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.
                 <br><br>
