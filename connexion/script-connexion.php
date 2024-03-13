@@ -52,7 +52,7 @@
                     include("../mail/mailer.php");
 
                     // Capture de la sortie de la page PHP dans une variable
-                    getMailContent("../mail/connexion.php");
+                    $content = getMailContent("../mail/connexion.php");
 
                     //Contenu du mail
                     $mail->isHTML(true);
