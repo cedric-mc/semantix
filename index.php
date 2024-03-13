@@ -1,11 +1,11 @@
 <?php
-include_once("class/User.php");
-session_start();
-if (!isset($_SESSION['user'])) {
-    header('Location: connexion/');
-    exit;
-}
-$user = unserialize($_SESSION['user']);
+    include_once("class/User.php");
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header('Location: connexion/');
+        exit;
+    }
+    $user = User::createUserFromUser(unserialize($_SESSION['user']));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,7 +20,7 @@ $user = unserialize($_SESSION['user']);
     </head>
     <body>
         <?php
-            require_once("includes/menu.php");
+            include("includes/menu.php");
         ?>
         <main class="glassmorphism">
             <section class="home">
@@ -31,11 +31,6 @@ $user = unserialize($_SESSION['user']);
                 <h2 class="subtitle">Bienvenue, joueur <?php echo $user->getPseudo(); ?></h2>
                 <button class="executeButton" onclick="window.location.href='game/start_game.php'">Solo&emsp;<i class="fa-solid fa-user"></i></button>
                 <button class="executeButton disabled" disabled>Multijoueur&emsp;<i class="fa-solid fa-users"></i></button>
-                <!--<form method="post" action="game/start_game.php">
-                    <h3 class="subtitle2"><i class="fa-solid fa-gamepad"></i>&emsp;Choisissez un mode de jeu&emsp;<i class="fa-solid fa-dice"></i></h3>
-                    <button id="executeButton" class="btn btn-primary btn-lg" type="submit">Solo&emsp;<i class="fa-solid fa-user"></i></button>
-                    <button id="executeButton" class="btn btn-primary btn-lg disabled" type="reset">Multijoueur&emsp;<i class="fa-solid fa-users"></i></button>
-                </form>-->
             </section>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
