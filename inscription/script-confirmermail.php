@@ -6,7 +6,7 @@
     if (isset($_GET['code'])) {
         $code_confirmation = $_GET['code'];
     
-        // Vérifier le code dans la table code_confirmation
+        // Vérifier le code dans la table confirmation_codes
         $query_check_code = "SELECT * FROM sae_confirmation_codes WHERE code = :code";
         $stmt_check_code = $cnx->prepare($query_check_code);
         $stmt_check_code->bindParam(":code", $code_confirmation);
