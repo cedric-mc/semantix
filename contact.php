@@ -19,9 +19,7 @@
         <?php include("includes/head.php"); ?>
     </head>
     <body>
-        <?php
-            include("includes/menu.php");
-        ?>
+        <?php include("includes/menu.php"); ?>
         <main class="glassmorphism">
             <section class="home">
                 <header>
