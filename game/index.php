@@ -10,15 +10,7 @@
         exit();
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
-
-    $messagesErreur = [
-        1 => "Le mot n'est pas dans le dictionnaire.",
-        2 => "Le mot est déjà dans la chaîne.",
-        3 => "Le mot n'est pas assez proche du dernier mot de la chaîne."
-    ];
-    $erreur = (isset($_GET['erreur'])) ? $_GET['erreur'] : 0;
-
-    $game = unserialize($_SESSION['game']);
+    $game = Game::createGameFromGame(unserialize($_SESSION['game']));
     $paires = array();
     $paires = fileToArray($user);
     $highchartsData = createDataForGraph($user, $paires);
@@ -94,20 +86,6 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-        <!--<script>
-            var error = <?php /*echo json_encode($erreur); */?>;
-            var messagesErreur = [
-                "",
-                "Le mot n'est pas dans le dictionnaire.",
-                "Le mot est déjà dans la chaîne.",
-                "Le mot n'est pas assez proche des mots précédents."
-            ];
-            document.addEventListener('DOMContentLoaded', function() {
-                if (error != 0) {
-                    alert("Erreur : " + messagesErreur[error]);
-                }
-            });
-        </script>-->
         <script>
             // Fonction pour charger les données depuis PHP
             function loadData() {
@@ -204,6 +182,7 @@
                     myInput.focus();
                 }
             });
+
             document.addEventListener('DOMContentLoaded', function() {
                 // Récupérez le modal par son ID
                 var endGameModal = new bootstrap.Modal(document.getElementById('endGameModal'));
@@ -229,6 +208,7 @@
         </script>
 
         <?php
+            // Afficher les messages de débogage
 //            if (isset($_SESSION['output'])) {
 //                echo "<pre>";
 //                print_r($_SESSION['output']);
