@@ -58,8 +58,8 @@
                     $mail->isHTML();
                     $mail->Subject = "Connexion";
                     $mail->Body = $content;
-                    $mail->CharSet = "UTF-8";
                     $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
+                    $mail->CharSet = "UTF-8";
                     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
 
                     $mail->addAddress($user->getEmail(), $user->getPseudo());
