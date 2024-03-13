@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <div class="modal fade text-center" id="historiqueModal" aria-labelledby="historiqueModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+        <!--<div class="modal fade text-center" id="historiqueModal" aria-labelledby="historiqueModalLabel" tabindex="-1" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content glassmorphism">
                     <div class="modal-header">
@@ -17,11 +17,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <?php include("historique.php"); ?>
+                        <?php /*include("historique.php"); */?>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="modal fade text-center" id="emailModal" aria-labelledby="emailModalLabel" tabindex="-1" style="display: none" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered"> <!-- Mettre la classe pour le background ici -->
                 <div class="modal-content glassmorphism"> <!-- Mettre la classe pour le background ici -->
