@@ -35,7 +35,6 @@
     </head>
 
     <body>
-<!--        --><?php //$menu = 1; include("../includes/menu.php"); ?>
         <main class="glassmorphism no-glassmorphism">
             <h1 class="title">Historique du jeu Semonkey</h1>
             <div class="table-responsive">

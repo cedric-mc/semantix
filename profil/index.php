@@ -71,6 +71,16 @@
     $codeEmail = isset($_GET['emailErreur']) ? (int)$_GET['emailErreur'] : 0;
     $codeMdp = isset($_GET["erreurMdp"]) ? (int)$_GET["erreurMdp"] : 0;
     $codePhoto = isset($_GET["erreurPhoto"]) ? (int)$_GET["erreurPhoto"] : 0;
+
+    $historicRequest = $cnx->prepare("
+        SELECT score, dateHeure
+        FROM sae_users u, sae_scores s
+        WHERE pseudo = :pseudo AND u.num_user = s.num_user
+        ORDER BY dateHeure DESC;");
+    $historicRequest->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+    $historicRequest->execute();
+    $historicResult = $historicRequest->fetchAll(PDO::FETCH_OBJ);
+    $historicRequest->closeCursor();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
