@@ -11,11 +11,11 @@
             $this->pseudo = $pseudo;
             $this->email = $email;
             $this->year = $year;
-            $this->$imageData = $imageData;
+            $this->imageData = $imageData;
         }
 
         public static function createUserFromUser(User $user) {
-            return new self($user->getIdUser(), $user->getPseudo(), $user->getEmail(), $user->getYear(), $user->getPhoto());
+            return new self($user->getIdUser(), $user->getPseudo(), $user->getEmail(), $user->getYear(), $user->getImageData());
         }
 
         public function getIdUser(): int {
@@ -32,6 +32,10 @@
 
         public function getYear(): int {
             return $this->year;
+        }
+
+        public function getImageData(): ?string {
+            return $this->imageData;
         }
 
         public function getImageSrc(): string {
