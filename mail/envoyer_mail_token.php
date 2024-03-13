@@ -1,12 +1,12 @@
 <?php
     include_once("../includes/fonctions.php");
+    include_once("../includes/conf.php");
     session_start();
     if (!isset($_SESSION['pseudo_temp'])) {
         header('Location: ../');
         exit;
     }
     $pseudo = $_SESSION['pseudo_temp'];
-    include("../includes/conf.php");
 
     //requête récuperer le num_user de l'utilisateur
     $queryGetNum = "SELECT num_user FROM sae_users WHERE pseudo = :pseudo";
@@ -37,15 +37,12 @@
 
     include("mailer.php");
 
-    // Capture de la sortie de la page PHP dans une variable
-    getMailContent("inscription.php");
-
     $mail->addAddress($email, $pseudo);
 
     // Contenu du mail
     $mail->isHTML(true);
     $mail->Subject = "Confirmation d'inscription";
-    $mail->Body = $content;
+    $mail->Body = getMailContent("../mail/inscription.php");
     $mail->CharSet = "UTF-8";
     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
     $mail->send();
