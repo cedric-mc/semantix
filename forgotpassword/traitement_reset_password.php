@@ -66,7 +66,7 @@
                 // Journalisation
                 $user->logging($cnx, 5);
 
-                header('Location: index.php?erreur=2');
+                header('Location: ./?erreur=2');
                 exit;
             } else {
                 // Erreur lors de la mise à jour du mot de passe
@@ -79,7 +79,7 @@
             exit;
         }
     } else {
-        header('Location: index.php');
+        header('Location: ./');
         exit;
     }
 ?>

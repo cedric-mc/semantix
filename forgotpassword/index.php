@@ -62,7 +62,7 @@
                 document.getElementById('msg-error').classList.add('visible');
                 // Après l'expiration du cookie, on actualise la page pour le supprimer
                 setTimeout(function () {
-                    window.location.href = 'index.php';
+                    window.location.href = './';
                 }, 10000);
             }
         </script>

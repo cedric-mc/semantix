@@ -87,11 +87,11 @@ if ($_GET['code']) {
         <?php
 
     } else {
-        header('Location: index.php');
+        header('Location: ./');
         exit;
     }
 } else {
-    header('Location: index.php');
+    header('Location: ./');
     exit;
 }
 ?>
