@@ -57,7 +57,7 @@
                 $mail->addAddress($user['email']);
 
                 $mail->isHTML(true);
-                $mail->Subject = "Changement de mot de passe";
+                $mail->Subject = "Réinitialisation de votre mot de passe";
                 $mail->Body =
                     "Bonjour " . $user->getPseudo() . ",<br>
                         Votre mot de passe a été modifié. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.<br>

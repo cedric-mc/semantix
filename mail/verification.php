@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>
+        <title>Réinitialisation de votre mot de passe</title>
         <style>
             header {
                 background-color: #f3f3f3;
@@ -30,22 +30,22 @@
     </head>
 
     <body>
-    <header>
-        <h1></h1>
-        <img src="cid:mylogo" alt="Semantic Analogy Explorer" width="100px" height="100px">
-    </header>
-    <main>
-        <p>
-            Bonjour :pseudo,
-            <br><br>
-            Votre mot de passe a été
-            <br><br>
-            Cordialement,<br>
-            L'équipe de Semonkey.
-        </p>
-    </main>
-    <footer>
-        <p>© 2024 Semonkey. Tous droits réservés.</p>
-    </footer>
+        <header>
+            <h1>Réinitialisation de votre mot de passe</h1>
+            <img src="cid:mylogo" alt="Semantic Analogy Explorer" width="100px" height="100px">
+        </header>
+        <main>
+            <p>
+                Bonjour :pseudo,
+                <br><br>
+                Votre mot de passe a été réinitialisé avec succès. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.
+                <br><br>
+                Cordialement,<br>
+                L'équipe de Semonkey.
+            </p>
+        </main>
+        <footer>
+            <p>© 2024 Semonkey. Tous droits réservés.</p>
+        </footer>
     </body>
 </html>
