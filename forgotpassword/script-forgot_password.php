@@ -4,6 +4,7 @@
         $email = $_POST['email'];
 
         include_once("../includes/conf.php");
+        include_once("../includes/fonctions.php");
         session_start();
         // Utilisateur connecté ?
         if (isset($_SESSION['user'])) {

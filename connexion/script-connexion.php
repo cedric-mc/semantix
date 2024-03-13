@@ -51,13 +51,10 @@
 
                     include("../mail/mailer.php");
 
-                    // Capture de la sortie de la page PHP dans une variable
-                    $content = getMailContent("../mail/connexion.php");
-
                     //Contenu du mail
                     $mail->isHTML();
                     $mail->Subject = "Connexion";
-                    $mail->Body = $content;
+                    $mail->Body = getMailContent("../mail/connexion.php");
                     $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
                     $mail->CharSet = "UTF-8";
                     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");

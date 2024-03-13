@@ -42,7 +42,8 @@
     // Contenu du mail
     $mail->isHTML(true);
     $mail->Subject = "Confirmation d'inscription";
-    $mail->Body = getMailContent("../mail/inscription.php");
+    $mail->Body = getMailContent("inscription.php");
+    $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
     $mail->CharSet = "UTF-8";
     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
     $mail->send();

@@ -93,17 +93,13 @@
 
         include '../mail/mailer.php';
 
-        // Capture de la sortie de la page PHP dans une variable
-        ob_start();
-        include("../mail/inscription.php");
-        $content = ob_get_clean();
-
         $mail->addAddress($email, $pseudo);
 
         // Contenu du mail
         $mail->isHTML(true);
         $mail->Subject = "Confirmation d'inscription";
-        $mail->Body = $content;
+        $mail->Body = getMailContent("../mail/inscription.php");
+        $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
         $mail->CharSet = "UTF-8";
         $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
 
