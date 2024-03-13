@@ -55,7 +55,7 @@
                     $content = getMailContent("../mail/connexion.php");
 
                     //Contenu du mail
-                    $mail->isHTML(true);
+                    $mail->isHTML();
                     $mail->Subject = "Connexion";
                     $mail->Body = $content;
                     $mail->CharSet = "UTF-8";

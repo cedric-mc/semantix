@@ -37,9 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         include("../mail/mailer.php");
 
         // Capture de la sortie de la page PHP dans une variable
-        ob_start();
-        include("../mail/forgotpassword.php");
-        $content = ob_get_clean();
+        $content = getMailContent("../mail/forgotpassword.php");
 
         $mail->addAddress($email, $pseudo);
 
@@ -48,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Subject = "Réinitialisation de votre mot de passe";
         $mail->Body = $content;
         $mail->CharSet = "UTF-8";
+        $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
         $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
         $mail->send();
 
