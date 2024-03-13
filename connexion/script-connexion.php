@@ -52,7 +52,7 @@
                     include("../mail/mailer.php");
 
                     //Contenu du mail
-                    $mail->isHTML();
+                    $mail->isHTML(true);
                     $mail->Subject = "Connexion";
                     $mail->Body = getMailContent("../mail/connexion.php");
                     $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);

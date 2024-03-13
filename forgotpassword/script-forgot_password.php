@@ -40,7 +40,7 @@
             $mail->addAddress($email, $pseudo);
 
             // Contenu du mail
-            $mail->isHTML();
+            $mail->isHTML(true);
             $mail->Subject = "Réinitialisation de votre mot de passe";
             $mail->Body = getMailContent("../mail/forgotpassword.php");
             $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);

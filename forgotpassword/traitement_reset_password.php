@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt_update_mot_de_passe->execute()) {
             // Supprimer le code de réinitialisation utilisé
-            $query_delete_code = "DELETE FROM sae_reset_code_code WHERE num_user = :num_user";
+            $query_delete_code = "DELETE FROM sae_reset_code WHERE num_user = :num_user";
             $stmt_delete_code = $cnx->prepare($query_delete_code);
             $stmt_delete_code->bindParam(":num_user", $num_user, PDO::PARAM_INT);
             $stmt_delete_code->execute();
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     Votre mot de passe a été modifié. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.<br>
                     Cordialement,<br>
                     L'équipe de Semantic Analogy Explorer.";
-            $mail->CharSet = 'UTF-8';
+            $mail->CharSet = "UTF-8";
 
             $mail->send();
 
