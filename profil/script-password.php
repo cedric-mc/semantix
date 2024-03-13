@@ -6,6 +6,7 @@
 
         include("../includes/conf.php");
         include_once("../class/User.php");
+        include_once("../includes/fonctions.php");
         session_start();
         if (!isset($_SESSION['user'])) {
             header('Location: ../');
@@ -76,23 +77,17 @@
 
             //Mail
             include '../mail/mailer.php';
-
-            // Capture de la sortie de la page PHP dans une variable
-            ob_start();
-            include("../mail/motdepasse.php");
-            $content = ob_get_clean();
             $mail->addAddress($user['email']);
 
             $mail->isHTML(true);
             $mail->Subject = "Changement de mot de passe";
-            $mail->Body = $content;
-            $mail->CharSet = "UTF-8";
+            $mail->Body = getMailContent("../mail/change_password.php");
             $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
+            $mail->CharSet = "UTF-8";
             $mail->addEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
             $mail->send();
 
             // Journalisation
-            include '../includes/fonctions.php';
             trace($num_user, 5, $cnx);
 
             // Rediriger vers la page de connexion avec un message, mot de passe modifié
