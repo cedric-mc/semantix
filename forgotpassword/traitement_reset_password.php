@@ -58,13 +58,10 @@
 
                 $mail->isHTML(true);
                 $mail->Subject = "Réinitialisation de votre mot de passe";
-                $mail->Body =
-                    "Bonjour " . $user->getPseudo() . ",<br>
-                        Votre mot de passe a été modifié. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.<br>
-                        Cordialement,<br>
-                        L'équipe de Semantic Analogy Explorer.";
+                $mail->Body = getMailContent("../mail/reset_password.php");
+                $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
                 $mail->CharSet = "UTF-8";
-
+                $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
                 $mail->send();
 
                 // Journalisation
