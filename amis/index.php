@@ -97,7 +97,7 @@
                 <div class="users row row-cols-auto">
                     <?php $nbCanAdd = count($wantToAddFriendsResult); foreach ($wantToAddFriendsResult as $ligne) { ?>
                         <div class="user">
-                            <img src="../img/profil.webp" alt="Photo de profil">
+                            <img src="<?php echo getProfilePicture($ligne->photo); ?>" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
                             <a class="btn btn-success" href="script-friend.php?add&friendId=<?php echo $ligne->num_user; ?>" role="button">Ajouter</a>
                         </div>
