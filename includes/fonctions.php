@@ -77,4 +77,10 @@ function addStyleTableRow($action): string
     }
 }
 
+function getMailContent($file) {
+    ob_start();
+    include($file);
+    return ob_get_clean();
+}
+
 ?>

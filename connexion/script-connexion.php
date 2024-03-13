@@ -52,9 +52,7 @@
                     include("../mail/mailer.php");
 
                     // Capture de la sortie de la page PHP dans une variable
-                    ob_start();
-                    include("../mail/connexion.php");
-                    $content = ob_get_clean();
+                    getMailContent("../mail/connexion.php");
 
                     //Contenu du mail
                     $mail->isHTML(true);

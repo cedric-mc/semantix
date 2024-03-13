@@ -1,4 +1,5 @@
 <?php
+    include_once("../includes/fonctions.php");
     session_start();
     if (!isset($_SESSION['pseudo_temp'])) {
         header('Location: ../');
@@ -37,9 +38,7 @@
     include("mailer.php");
 
     // Capture de la sortie de la page PHP dans une variable
-    ob_start();
-    include("confirmation.php");
-    $content = ob_get_clean();
+    getMailContent("inscription.php");
 
     $mail->addAddress($email, $pseudo);
 
