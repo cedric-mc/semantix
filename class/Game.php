@@ -15,6 +15,10 @@
             $this->lastWord = "";
         }
 
+        public static function createGameFromGame($game) {
+            return new Game($game->user, $game->tour);
+        }
+
         public function addTour() {
             $this->tour++;
         }
