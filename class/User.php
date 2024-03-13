@@ -4,14 +4,14 @@
         private string $pseudo;
         private string $email;
         private int $year;
-        private string $photo;
+        private ?string $imageData;
 
-        public function __construct(int $idUser, string $pseudo, string $email, int $year, string $photo) {
+        public function __construct(int $idUser, string $pseudo, string $email, int $year, ?string $imageData = null) {
             $this->idUser = $idUser;
             $this->pseudo = $pseudo;
             $this->email = $email;
             $this->year = $year;
-            $this->photo = $photo;
+            $this->$imageData = $imageData;
         }
 
         public static function createUserFromUser(User $user) {
@@ -34,16 +34,21 @@
             return $this->year;
         }
 
-        public function getPhoto(): string {
-            return $this->photo;
+        public function getImageSrc(): string {
+            if ($this->imageData !== null) {
+                $base64 = base64_encode($this->imageData);
+                return "data:image/jpeg;base64,$base64";
+            } else {
+                return "../img/profil.webp";
+            }
         }
 
         public function setEmail($email): void {
             $this->email = $email;
         }
 
-        public function setPhoto($photo): void {
-            $this->photo = $photo;
+        public function setImageData($imageData): void {
+            $this->imageData = $imageData;
         }
 
         public function isEmailExist(PDO $cnx, string $newEmail, string $emailExists): bool {
@@ -68,8 +73,8 @@
         public function logging(PDO $cnx, int $numAction): void {
             $query = "INSERT INTO sae_traces (utilisateur_id, action, ip_adress) VALUES (:utilisateur_id, :action, :ip_adress)";
             $stmt = $cnx->prepare($query);
-            $stmt->bindParam(":utilisateur_id", $userId, PDO::PARAM_INT);
-            $stmt->bindParam(":action", $action, PDO::PARAM_STR);
+            $stmt->bindParam(":utilisateur_id", $this->idUser, PDO::PARAM_INT);
+            $stmt->bindParam(":action", $numAction, PDO::PARAM_STR);
             $stmt->bindParam(":ip_adress", $_SERVER['REMOTE_ADDR'], PDO::PARAM_STR);
             $stmt->execute();
             $stmt->closeCursor();
