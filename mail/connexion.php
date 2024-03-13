@@ -35,7 +35,7 @@
         </header>
         <main>
             <p>
-                Bonjour <?php echo $pseudo; ?>,
+                Bonjour :pseudo,
                 <br><br>
                 Vous venez de vous connecter sur notre site !
                 Si vous n'êtes pas à l'origine de cette connexion, veuillez changer immédiatement votre mot de passe !
