@@ -22,7 +22,9 @@
 
         if ($game->isWordInArray($newWord)) {
             $_SESSION['game'] = serialize($game);
-            header('Location: ./?erreur=2');
+            // Script JS pour afficher une alerte
+            echo "<script>alert('Le mot est déjà dans la chaîne.')</script>";
+            echo "<script>window.location.replace('./');</script>";
             exit();
         }
         $game->addWord($newWord); // Ajout du mot dans le tableau
@@ -32,15 +34,26 @@
         $verif_mot = shell_exec($commande_verif_mot);
         if ($verif_mot == -1) {
             $_SESSION['game'] = serialize($game);
-            header('Location: ./?erreur=1');
+            // Script JS pour afficher une alerte
+            echo "<script>alert('Le mot n\'existe pas dans le dictionnaire.')</script>";
+            echo "<script>window.location.replace('./');</script>";
             exit();
         }
         exec("./C/bin/add_word C/fasttext-fr.bin $newWord " . $user->getPseudo());
         // Java : trier les paires
         $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_" . $user->getPseudo() . ".txt partie/mst_" . $user->getPseudo() . ".txt 2>&1";
         exec($commandeJar, $output);
-        $_SESSION['output'] = $output;
+        // Vérifier si le mot est dans le graphe
+        if (!isWordInGraph($user, $newWord)) {
+            $_SESSION['game'] = serialize($game);
+            // Script JS pour afficher une alerte
+            echo "<script>alert('Le mot n\'a pas été ajouté dans le graphe.')</script>";
+            echo "<script>window.location.replace('./');</script>";
+            exit();
+        }
+        $game->addTour();
         $_SESSION['game'] = serialize($game);
+        $_SESSION['output'] = $output;
         header('Location: ./');
         exit();
     }
