@@ -8,7 +8,6 @@
         header("Location: ../");
         exit;
     }
-    $user = User::createUserFromUser(unserialize($_SESSION['user']));
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $num_user = $_POST['num_user'];
