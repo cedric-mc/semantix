@@ -13,10 +13,10 @@
     }
 
     // PHPMailer
-    $username = "";
-    $password = "";
-    $host = "";
-    $name = "";
+    $username = ""; // Email
+    $password = ""; // Mot de passe
+    $host = ""; // Serveur de messagerie
+    $name = ""; // Nom de l'expéditeur
 
     // Lien général vers le site
     $lienGeneral = "";
