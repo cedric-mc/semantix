@@ -28,61 +28,60 @@ if ($_GET['code']) {
         ?>
         <!DOCTYPE html>
         <html lang="fr">
-        <head>
-			<meta charset="UTF-8">
-			<title>Réinistialiser mot de passe - Semonkey</title>
-			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-			<link rel="stylesheet" href="../style/style.css">
-            <link rel="stylesheet" type="text/css" href="../style/form.css">
-            <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-            <?php include("../includes/head.php"); ?>
-        </head>
-        <body class="black">
-        <main class="position-absolute top-50 start-50 translate-middle">
-            <div class="glassmorphism">
-                <h1 class="title">Définissez un nouveau mot de passe :</h1>
-                <form action="traitement_reset_password.php" method="POST">
-                    <input type="hidden" name="num_user" value="<?php echo $reset_code['num_user']; ?>">
-                    <input type="hidden" name="code_reinitialisation"
-                           value="<?php echo htmlspecialchars($code_reinitialisation); ?>">
-                    <div class="input-field">
-                        <input type="password" name="nouveau_mot_de_passe" id="nouveau_mot_de_passe" minlength="12"
-                               required>
-                        <label for="nouveau_mot_de_passe">Nouveau mot de passe :</label>
-                    </div>
-                    <div class="input-field">
-                        <input type="password" name="confirmer_nouveau_mot_de_passe" id="confirmer_nouveau_mot_de_passe"
-                               minlength="12" required>
-                        <label for="confirmer_nouveau_mot_de_passe">Confirmer le nouveau mot de passe :</label>
-                    </div>
-                    <button id="formButton" type="submit" class="btn fw-semibold">Réinitialiser le mot de passe</button>
-                </form>
-                <?php
-                // Si le message d'erreur est différent de 0
-                if ($codeErreur > 0 && $codeErreur < 8) {
-                    echo "<br><div id='msg-error' class='alert' role='alert'></div>";
-                }
-                ?>
-            </div>
-        </main>
-        <script>
-            // Je récupère le message d’erreur
-            let msgCode = <?php echo json_encode($codeErreur); ?>;
-            let msgError = <?php echo json_encode($messagesErreur[$codeErreur][0]); ?>;
-            // Si le message d’erreur est différent de 0
-            if (msgCode > 0 && msgCode < 8) {
-                // J'affiche le message d'erreur
-                document.getElementById('msg-error').innerHTML = msgError;
-                // Je change la couleur du message d'erreur
-                document.getElementById('msg-error').classList.add(<?php echo json_encode($messagesErreur[$codeErreur][1]); ?>);
-                // Après l'expiration du cookie, on actualise la page pour le supprimer
-                setTimeout(function () {
-                    window.location.href = '../forgotpassword/reset_password.php?code=<?php echo $code_reinitialisation; ?>';
-                }, 10000);
-            }
-        </script>
-        </body>
+            <head>
+                <meta charset="UTF-8">
+                <title>Réinistialiser mot de passe - Semonkey</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+                <link rel="stylesheet" href="../style/style.css">
+                <link rel="stylesheet" type="text/css" href="../style/form.css">
+                <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+                <?php include("../includes/head.php"); ?>
+            </head>
+
+            <body>
+                <main class="glassmorphism">
+                    <h1 class="title">Définissez un nouveau mot de passe :</h1>
+                    <form action="traitement_reset_password.php" method="POST">
+                        <input type="hidden" name="num_user" value="<?php echo $reset_code['num_user']; ?>">
+                        <input type="hidden" name="code_reinitialisation"
+                               value="<?php echo htmlspecialchars($code_reinitialisation); ?>">
+                        <div class="input-field">
+                            <input type="password" name="nouveau_mot_de_passe" id="nouveau_mot_de_passe" minlength="12"
+                                   required>
+                            <label for="nouveau_mot_de_passe">Nouveau mot de passe :</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="confirmer_nouveau_mot_de_passe" id="confirmer_nouveau_mot_de_passe"
+                                   minlength="12" required>
+                            <label for="confirmer_nouveau_mot_de_passe">Confirmer le nouveau mot de passe :</label>
+                        </div>
+                        <button id="formButton" type="submit" class="btn fw-semibold">Réinitialiser le mot de passe</button>
+                    </form>
+                    <?php
+                        // Si le message d'erreur est différent de 0
+                        if ($codeErreur > 0 && $codeErreur < 8) {
+                            echo "<br><div id='msg-error' class='alert' role='alert'></div>";
+                        }
+                    ?>
+                </main>
+                <script>
+                    // Je récupère le message d’erreur
+                    let msgCode = <?php echo json_encode($codeErreur); ?>;
+                    let msgError = <?php echo json_encode($messagesErreur[$codeErreur][0]); ?>;
+                    // Si le message d’erreur est différent de 0
+                    if (msgCode > 0 && msgCode < 8) {
+                        // J'affiche le message d'erreur
+                        document.getElementById('msg-error').innerHTML = msgError;
+                        // Je change la couleur du message d'erreur
+                        document.getElementById('msg-error').classList.add(<?php echo json_encode($messagesErreur[$codeErreur][1]); ?>);
+                        // Après l'expiration du cookie, on actualise la page pour le supprimer
+                        setTimeout(function () {
+                            window.location.href = '../forgotpassword/reset_password.php?code=<?php echo $code_reinitialisation; ?>';
+                        }, 10000);
+                    }
+                </script>
+            </body>
         </html>
 
         <?php
