@@ -31,7 +31,7 @@
     $canAddFriendRequest->closeCursor();
 
     // Requête SQL pour obtenir la liste des pseudos qui peuvent être ajoutés en amis
-    $wantToAddFriendsRequest = $cnx->prepare($listUsersPseudo);
+    $wantToAddFriendsRequest = $cnx->prepare($wantToAddFriends);
     $wantToAddFriendsRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
     $wantToAddFriendsRequest->bindParam(":idUser", $idUser, PDO::PARAM_INT);
     $wantToAddFriendsRequest->execute();
