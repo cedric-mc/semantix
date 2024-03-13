@@ -67,7 +67,7 @@
                 <div class="users row row-cols-auto">
                     <?php $nbAmis = count($myFriendsResult); foreach ($myFriendsResult as $ligne) { ?>
                         <div class="user">
-                            <img src="../img/profil.webp" alt="Photo de profil">
+                            <img src="<?php echo getProfilePicture($ligne->photo); ?>" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
                             <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
                             <?php if ($ligne->statut == 0) { ?>

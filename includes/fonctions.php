@@ -1,4 +1,13 @@
 <?php
+function getProfilePicture($imageData): string {
+    if ($imageData !== null) {
+        $base64 = base64_encode($imageData);
+        return "data:image/jpeg;base64,$base64";
+    } else {
+        return "../img/profil.webp";
+    }
+}
+
 //Journalisation
 function trace($userId, $action, $cnx) {
     $query = "INSERT INTO sae_traces (utilisateur_id, action, ip_adress) VALUES (:utilisateur_id, :action, :ip_adress)";
