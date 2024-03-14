@@ -23,11 +23,12 @@
         <main class="glassmorphism">
             <section class="home">
                 <header>
-                    <h1 class="title">Contact</h1>
+                    <h1 class="title">Semonkey</h1>
                     <img src="img/monkeyapp.png" alt="Semantic Analogy Explorer">
                 </header>
-                <h2 class="subtitle">Équipe</h2>
-                <p>Le projet Semonkey a été réalisé par une équipe de 5 étudiants en informatique de l'Université de Gustave Eiffel.</p>
+                <h2 class="subtitle">Bienvenue, joueur <?php echo $user->getPseudo(); ?></h2>
+                <button class="executeButton" onclick="window.location.href='game/start_game.php'">Solo&emsp;<i class="fa-solid fa-user"></i></button>
+                <button class="executeButton disabled" disabled>Multijoueur&emsp;<i class="fa-solid fa-users"></i></button>
             </section>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
