@@ -18,6 +18,7 @@
         <link rel="shortcut icon" href="./img/monkeyapp.png">
         <?php include("includes/head.php"); ?>
     </head>
+
     <body>
         <?php include("includes/menu.php"); ?>
         <main class="glassmorphism">
@@ -34,7 +35,7 @@
             <form action="contact.php" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="<?php echo $user->getPseudo(); ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Adresse email</label>
