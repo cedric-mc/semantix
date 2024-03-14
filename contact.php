@@ -24,7 +24,7 @@
         <main class="glassmorphism">
             <h1 class="title">Contact</h1>
             <h2 class="subtitle">Équipe</h2>
-            <ul>
+            <ul class="text-nowrap">
                 <li><a href="https://github.com/mamadou186" target="_blank">BA Mamadou</a></li>
                 <li><a href="https://github.com/cedric-mc" target="_blank">MARIYA CONSTANTINE Cédric</a></li>
                 <li><a href="https://github.com/Abdelrahim-Riche" target="_blank">RICHE Abdelrahim</a></li>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Adresse email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="<?php echo $user->getEmail(); ?>" required>
                 </div>
                 <div class="mb-3">
                     <label for="subject" class="form-label">Sujet</label>
