@@ -19,7 +19,7 @@
         <?php include("includes/head.php"); ?>
         <style>
             label {
-                color: #212529;
+                color: #6c757d;
             }
         </style>
     </head>
