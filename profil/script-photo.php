@@ -20,6 +20,12 @@
             echo "<script>window.location.replace('./');</script>";
             exit();
         }
+        // Si le fichier est trop grand
+        if ($_FILES["photo"]["size"] > 1000000) {
+            echo "<script>alert('Le fichier est trop grand');</script>";
+            echo "<script>window.location.replace('./');</script>";
+            exit();
+        }
 
         $stmt = $cnx->prepare("UPDATE sae_users SET photo = ? WHERE num_user = ?");
         $stmt->execute(array($image_data, $user->getIdUser()));
