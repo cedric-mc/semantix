@@ -17,6 +17,11 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="shortcut icon" href="./img/monkeyapp.png">
         <?php include("includes/head.php"); ?>
+        <style>
+            label {
+                color: black;
+            }
+        </style>
     </head>
 
     <body>
