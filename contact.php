@@ -35,15 +35,15 @@
             <form action="contact.php" method="post">
                 <div class="form-group row mb-2">
                     <div class="col">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nom</label>
+                        <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="name" name="name" placeholder="<?php echo $user->getPseudo(); ?>" required>
+                            <label for="name">Nom</label>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Adresse email</label>
+                        <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="email" name="email" placeholder="<?php echo $user->getEmail(); ?>" required>
+                            <label for="email">Adresse email</label>
                         </div>
                     </div>
                 </div>
