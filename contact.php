@@ -24,10 +24,11 @@
             <h1 class="title">Contact</h1>
             <h2 class="subtitle">Équipe</h2>
             <ul>
-                <li>BA Mamadou</li>
-                <li>MARIYA CONSTANTINE Cédric</li>
-                <li>RICHE Abdelrahim</li>
-                <li></li>
+                <li><a href="https://github.com/mamadou186" target="_blank">BA Mamadou</a></li>
+                <li><a href="https://github.com/cedric-mc" target="_blank">MARIYA CONSTANTINE Cédric</a></li>
+                <li><a href="https://github.com/Abdelrahim-Riche" target="_blank">RICHE Abdelrahim</a></li>
+                <li><a href="https://github.com/VincentSousa" target="_blank">SOUSA Vincent</a></li>
+                <li><a href="https://github.com/Yacine771" target="_blank">ZEMOUCHE Yacine</a></li>
             </ul>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
