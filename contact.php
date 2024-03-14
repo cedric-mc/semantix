@@ -52,13 +52,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label for="subject" class="form-label">Sujet</label>
-                    <input type="text" class="form-control" id="subject" name="subject" required>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Sujet" required>
+                    <label for="subject">Sujet</label>
                 </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" name="message" required></textarea>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="message" name="message" placeholder="Message" required></textarea>
+                    <label for="message">Message</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
