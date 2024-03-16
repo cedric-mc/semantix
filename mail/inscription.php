@@ -38,7 +38,7 @@
             <p>
                 Bienvenue :pseudo sur notre site !
                 <br><br>
-                Veuillez confirmer votre inscription en cliquant sur le lien suivant : <a href='<?php echo "$lienInscription?code=$code_confirmation"; ?>'>Confirmer</a>
+                Veuillez confirmer votre inscription en cliquant sur le lien suivant : <a href=':lienInscription'>Confirmer</a>
                 <br><br>
                 Cordialement,<br>
                 L'équipe de Semonkey.
