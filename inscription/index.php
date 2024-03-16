@@ -28,6 +28,7 @@ $codeErreur = isset($_GET['erreur']) ? intval($_GET['erreur']) : 0;
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../style/style.css">
         <link rel="stylesheet" href="../style/form.css">
+        <link rel="icon shortcut" href="../img/monkeyapp.png">
         <?php include("../includes/head.php"); ?>
     </head>
 
