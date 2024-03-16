@@ -42,7 +42,7 @@
     // Contenu du mail
     $mail->isHTML(true);
     $mail->Subject = "Confirmation d'inscription";
-    $mail->Body = getMailContent("inscription.php");
+    $mail->Body = getMailContent("../mail/inscription.php");
     $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
     $mail->Body = str_replace(":lienInscription", "$lienInscription?code=$code_confirmation", $mail->Body);
     $mail->CharSet = "UTF-8";
