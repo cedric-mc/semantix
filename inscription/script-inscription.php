@@ -5,6 +5,11 @@
         $annee_naissance = $_POST["annee_naissance"];
         $motdepasse1 = $_POST["motdepasse1"];
         $motdepasse2 = $_POST["motdepasse2"];
+        // Erreur PHP
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
 
         include("../includes/conf.php");
         session_start();
@@ -21,7 +26,7 @@
         $pseudo_exists = $stmt_pseudo_exists->fetchColumn();
 
         if ($pseudo_exists) { // Si le pseudo existe déjà
-            header('Location: ?erreur=1');
+            header('Location: ./?erreur=1');
             exit;
         }
 
@@ -33,18 +38,18 @@
         $email_exists = $stmt_email_exists->fetchColumn();
 
         if ($email_exists) {
-            header('Location: ?erreur=2');
+            header('Location: ./?erreur=2');
             exit;
         }
 
         // Les mots de passe sont-ils identiques ?
         if ($motdepasse1 != $motdepasse2) {
-            header('Location: ?erreur=3');
+            header('Location: ./?erreur=3');
             exit;
         }
         // Vérifier si le nouveau mot de passe respecte les règles de la CNIL
         if (strlen($motdepasse1) < 12 && !preg_match('/[0-9]/', $motdepasse1) && !preg_match('/[A-Z]/', $motdepasse1) && !preg_match('/[a-z]/', $motdepasse1) && !preg_match('/[^a-zA-Z0-9]/', $motdepasse1)) {
-            header("Location: ?erreur=4");
+            header("Location: ./?erreur=4");
             exit;
         }
 
@@ -53,7 +58,7 @@
 
         // Vérifier si l'année de naissance est valide
         if ($annee_naissance < 1930 || $annee_naissance > 2017) {
-            header('Location: ?erreur=6');
+            header('Location: ./?erreur=6');
             exit;
         }
 
@@ -106,7 +111,7 @@
         // Envoi du mail
         $mail->send();
 
-        header('Location: ?erreur=5');
+        header('Location: ./?erreur=5');
         exit;
     }
 ?>
