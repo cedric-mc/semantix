@@ -43,9 +43,6 @@
                     $email = $user['email'];
                     $year = $user['annee_naissance'];
                     $photo = $user['photo'];
-                    if ($photo == null) {
-                        $photo = "profil.webp";
-                    }
                     $user = new User($idUser, $pseudo, $email, $year, $photo);
                     $_SESSION['user'] = serialize($user);
 
