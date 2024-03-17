@@ -1,6 +1,6 @@
 <?php
     include_once("../includes/conf.php");
-    include("../includes/fonctions.php");
+    include_once("../includes/fonctions.php");
     // Erreur PHP
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -21,7 +21,7 @@
             $expiration_time = strtotime($confirmation_data['created_at']) + (20 * 60); // 20 minutes en secondes
             $current_time = time();
 
-            if ($current_time <= $expiration_time) {
+            if ($current_time <= $expiration_time) { // Le code n'a pas expiré
                 // Mise à jour du statut à 1 dans la table users
                 $query_update_statut = "UPDATE sae_users SET statut = 1 WHERE num_user = :num_user";
                 $stmt_update_statut = $cnx->prepare($query_update_statut);
@@ -45,7 +45,7 @@
                 $stmt_delete_confirmation->bindParam(":code", $code_confirmation);
                 $stmt_delete_confirmation->execute();
 
-                header('Location: ../?erreur=3');
+                header('Location: ../connexion/?erreur=3');
                 exit();
             }
         } else {
@@ -54,7 +54,7 @@
             exit();
         }
     } else {
-        header('Location: ../');
+        header("Location: ../connexion/");
         exit();
     }
 ?>
