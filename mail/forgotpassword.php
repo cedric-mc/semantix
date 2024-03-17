@@ -39,7 +39,7 @@
                 Bonjour :pseudo,
                 <br><br>
                 Vous avez demandé la réinitialisation de votre mot de passe.
-                Veuillez cliquer sur le lien suivant pour choisir un nouveau mot de passe : <a href="<?php echo $lienReinitialisation . '?code=' . $code_reinitialisation; ?>">Réinitialiser le mot de passe</a>
+                Veuillez cliquer sur le lien suivant pour choisir un nouveau mot de passe : <a href=":lienReinitialisation">Réinitialiser le mot de passe</a>
                 <br><br>
                 Cordialement,<br>
                 L'équipe de Semonkey.

@@ -11,7 +11,6 @@
             header("Location: ../");
             exit;
         }
-        $user = User::createUserFromUser(unserialize($_SESSION['user']));
 
         // Rechercher l'utilisateur dans la base de données
         $query_select_user = "SELECT * FROM sae_users WHERE pseudo = :pseudo AND email = :email";
@@ -22,9 +21,9 @@
         $user = $stmt_select_user->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            //Pseudo et email correspondent
+            // Pseudo et email correspondent
 
-            //Générer un code de réinitialisation
+            // Générer un code de réinitialisation
             $code_reinitialisation = bin2hex(random_bytes(16));
 
             // Enregistrement du code de réinitialisation dans la base de données
@@ -44,6 +43,7 @@
             $mail->Subject = "Réinitialisation de votre mot de passe";
             $mail->Body = getMailContent("../mail/forgotpassword.php");
             $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
+            $mail->Body = str_replace(":lienReinitialisation", "$lienReinitialisation?code=$code_reinitialisation", $mail->Body);
             $mail->CharSet = "UTF-8";
             $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
             $mail->send();
