@@ -54,5 +54,8 @@
             header('Location: ../?erreur=5');
             exit();
         }
-    }    
+    } else {
+        header('Location: ../');
+        exit();
+    }
 ?>
