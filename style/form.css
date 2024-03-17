@@ -2,20 +2,6 @@
     min-width: 25rem;
 }
 
-/* Cibler les champs lorsqu'ils sont autocomplétés */
-.input-field input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* Change la couleur de fond */
-    -webkit-text-fill-color: #fff !important; /* Change la couleur du texte */
-}
-
-.input-field input:-webkit-autofill:focus {
-    -webkit-text-fill-color: #fff !important; /* Change la couleur du texte lorsqu'il est en focus */
-}
-
-.input-field input:-webkit-autofill::placeholder {
-    color: #fff !important; /* Change la couleur du placeholder */
-}
-
 form {
     display: flex;
     flex-direction: column;
@@ -59,6 +45,14 @@ h2.title {
     font-size: 0.8rem;
     top: 0.625rem;
     transform: translateY(-120%);
+}
+
+/* autocomplete off */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.15) inset !important;
 }
 
 .forget {
