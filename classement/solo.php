@@ -34,7 +34,7 @@
                             $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
                             $scoreRequest->closeCursor();
                             echo "<tr>";
-                            echo "<td colspan='3' class='text-center'>Votre score : $scoreResult->maxS == null ? 0 : $scoreResult->maxS</td>";
+                            echo "<td colspan='3' class='text-center'>Votre score : ($scoreResult->maxS == null ? 0 : $scoreResult->maxS)</td>";
                             echo "</tr>";
                         }
                     ?>
