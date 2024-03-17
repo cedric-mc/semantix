@@ -48,7 +48,10 @@ h2.title {
 }
 
 /* autocomplete background color transparent */
-.input-field input:-webkit-autofill {
+.input-field input:-webkit-autofill,
+.input-field input:-webkit-autofill:hover,
+.input-field input:-webkit-autofill:focus,
+.input-field input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 1000px transparent inset;
 }
 
