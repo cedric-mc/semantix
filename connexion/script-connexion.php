@@ -3,6 +3,7 @@
     include_once("../includes/conf.php");
     include_once("../includes/fonctions.php");
     session_start();
+    include_once("../includes/session.php");
     // erreur php
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
