@@ -11,8 +11,7 @@
         $code_confirmation = $_GET['code'];
     
         // Vérifier le code dans la table confirmation_codes
-        $query_check_code = "SELECT * FROM sae_confirmation_codes WHERE code = :code";
-        $stmt_check_code = $cnx->prepare($query_check_code);
+        $stmt_check_code = $cnx->prepare("SELECT * FROM sae_confirmation_codes WHERE code = :code;");
         $stmt_check_code->bindParam(":code", $code_confirmation);
         $stmt_check_code->execute();
         $confirmation_data = $stmt_check_code->fetch(PDO::FETCH_ASSOC);
