@@ -40,6 +40,10 @@ h2.title {
     color: #fff;
 }
 
+input:-internal-autofill-selected {
+    background-color: transparent !important;
+}
+
 .input-field input:focus~label,
 .input-field input:valid~label {
     font-size: 0.8rem;
