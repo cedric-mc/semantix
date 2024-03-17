@@ -41,7 +41,11 @@ h2.title {
 }
 
 input:-internal-autofill-selected {
-    background-color: transparent !important;
+    /* Add your custom styles here */
+    background-color: #f0f0f0; /* Change background color */
+    border: 2px solid #ccc; /* Change border style */
+    color: #333; /* Change text color */
+    /* Add any other styles you want to apply */
 }
 
 .input-field input:focus~label,
