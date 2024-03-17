@@ -34,7 +34,7 @@
                             $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
                             $scoreRequest->closeCursor();
                             echo "<tr class='table-secondary'>";
-                            echo "<td colspan='3' class='text-center'>Votre score : $scoreResult->score</td>";
+                            echo "<td colspan='3' class='text-center'>Votre score : " . ($scoreResult->score == null ? 0 : $scoreResult->score) . "</td>";
                             echo "</tr>";
                         }
                     ?>
