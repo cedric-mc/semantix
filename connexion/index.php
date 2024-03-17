@@ -35,7 +35,7 @@ $codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
 <main class="position-absolute top-50 start-50 translate-middle">
 	<div class="glassmorphism">
 		<h1 class="title">Connexion</h1>
-		<form action="script-connexion.php" method="POST">
+		<form action="script-connexion.php" method="POST" autocomplete="off">
 			<div class="input-field">
 				<input name="pseudo" type="text" id="pseudo" required> <label for="pseudo">Pseudo</label>
 			</div>
