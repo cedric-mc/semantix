@@ -38,7 +38,7 @@
                 // Journalisation
                 trace($confirmation_data['num_user'], 9, $cnx);
         
-                header('Location: ../?erreur=4');
+                header('Location: ../connexion/?erreur=4');
             } else {
                 // Code de confirmation expiré, mais supprimer quand même l'enregistrement
                 $query_delete_confirmation = "DELETE FROM sae_confirmation_codes WHERE code = :code";
