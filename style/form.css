@@ -47,12 +47,9 @@ h2.title {
     transform: translateY(-120%);
 }
 
-/* autocomplete off */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.15) inset !important;
+/* autocomplete background color transparent */
+.input-field input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset;
 }
 
 .forget {
