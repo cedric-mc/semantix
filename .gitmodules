@@ -1,3 +1,6 @@
 [submodule "game/ChainMotor"]
 	path = game/ChainMotor
 	url = git@github.com:cedric-mc/ChainMotor.git
+[submodule "PHPMailer"]
+	path = PHPMailer
+	url = .\\PHPMailer\\
