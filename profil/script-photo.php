@@ -21,8 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["photo"])) {
     if ($errorInfo[0] !== '00000') {
         throw new Exception("Erreur lors de l'exécution de la requête : " . $errorInfo[2]);
     }
-
-    var_dump($image_data, $user->getIdUser());
+    header("Location: ./");
     exit();
 } else {
     header("Location: ./");

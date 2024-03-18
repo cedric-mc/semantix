@@ -23,7 +23,7 @@ h2 {
 }
 
 .photo-pseudo-buttons {
-    height: fit-content;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -175,21 +175,19 @@ h2 {
     margin-top: 1rem;
 }
 
+.profil-section{
+    margin: 5rem auto;
+}
+
 /* Adapte le nombre de colonnes en fonction de la largeur de l'écran */
-@media (min-width: 800px) {
+@media (min-width: 1370px) {
+
     .parent {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
-}
 
-@media (max-width: 800px) {
-    .parent {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
 }
 
 .alert {

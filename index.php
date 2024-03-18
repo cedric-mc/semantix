@@ -20,7 +20,7 @@
     </head>
     <body>
         <?php include("includes/menu.php"); ?>
-        <main class="glassmorphism">
+        <main class="glassmorphism acceuil-container">
             <section class="home">
                 <header>
                     <h1 class="title">Semonkey</h1>
