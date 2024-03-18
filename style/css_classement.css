@@ -1,0 +1,111 @@
+.header {
+    width: auto;
+    background: /*#35B3CC*/ linear-gradient(45deg, #35B3CC, #3D7EAA);
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.header h1 {
+    color: white;
+    padding: 1rem;
+    flex: 1;
+    font-weight: 700;
+}
+
+.header img {
+    width: 10rem;
+}
+
+.classement-container {
+    margin: 0 auto;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.classement-container table {
+    background-color: #16181e;
+    color: #999;
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    overflow: hidden;
+}
+
+thead {
+    font-size: 0.7rem;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.classement-container tbody {
+    /*color: white;*/
+    font-size: 0.9rem;
+}
+
+.classement-container tbody tr:nth-child(2n) {
+    background-color: #1f232c;
+}
+
+.classement-container th {
+    padding: 1.5rem 1rem 0.5rem;
+}
+
+.classement-container td {
+    padding: 1rem 1rem;
+}
+
+/* Style de l'effet hover sur une ligne */
+.classement-container tbody tr:hover {
+    background-color: #2c3039;
+}
+
+/* hover sur toute la colonne sur laquelle on passe la souris */
+.classement-container tbody tr:hover td {
+    background-color: transparent;
+    color: #35B3CC;
+}
+
+.glassmorphism #menuL {
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background-color: #35B3CC;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out; /* Add transition */
+    width: 100%; /* Full width on small screens */
+    text-align: center; /* Center the text */
+}
+
+.tab-button.active {
+    background-color: #3D7EAA;
+    transform: scale(1.1); /* Increase size for active tab */
+}
+
+/* Media query for screens larger than 768px */
+@media (min-width: 768px) {
+    .tab-button {
+        width: auto; /* Auto width on large screens */
+        text-align: left; /* Left align the text */
+    }
+}
+
+.tab {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Adjusted transition duration */
+}
+
+.tab.active {
+    display: block;
+    opacity: 1; /* Full opacity for active tab */
+}

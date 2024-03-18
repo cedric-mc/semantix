@@ -1,0 +1,3 @@
+[submodule "game/ChainMotor"]
+	path = game/ChainMotor
+	url = git@github.com:cedric-mc/ChainMotor.git

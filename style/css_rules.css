@@ -1,0 +1,54 @@
+.rules p, .rules h2, .rules h3 {
+    color: white;
+}
+
+.rules {
+    width: auto;
+    margin: 1rem 0 1rem 0; /* top right bottom left */
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    text-align: center;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    margin: 0 auto 1.25rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 0.125rem solid #FFFFFF;
+    text-transform: uppercase;
+}
+
+.rules h2 {
+    font-size: 1.25rem;
+    color: #FFFFFF;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 0.125rem solid #FFFFFF;
+    text-transform: uppercase;
+}
+
+.rules h3 {
+    font-size: 1rem;
+    color: #CCCCCC;
+    margin-top: 1.25rem;
+    margin-bottom: 0.625rem;
+}
+
+.rules p {
+    font-size: 1rem;
+    color: #FFFFFF;
+    margin-bottom: 1.25rem;
+}
+
+main h1:last-child {
+    margin-top: 2rem;
+}
+
+
+@media (max-width: 900px) {
+    .rules{
+        margin: 0;
+    }
+}

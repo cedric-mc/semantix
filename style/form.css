@@ -1,0 +1,126 @@
+.glassmorphism {
+    min-width: 25rem;
+}
+
+.form-connexion{
+    width: 300px;
+    margin: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+h2.title {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    color: #fff;
+}
+
+.input-field {
+    position: relative;
+    border-bottom: 2px solid #ccc;
+    margin: 0.938rem 0;
+}
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.15s ease;
+}
+
+.input-field input {
+    width: 100%;
+    height: 2.5rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #fff;
+}
+
+input:-internal-autofill-selected {
+    /* Add your custom styles here */
+    background-color: #f0f0f0; /* Change background color */
+    border: 2px solid #ccc; /* Change border style */
+    color: #333; /* Change text color */
+    /* Add any other styles you want to apply */
+}
+
+.input-field input:focus~label,
+.input-field input:valid~label {
+    font-size: 0.8rem;
+    top: 0.625rem;
+    transform: translateY(-120%);
+}
+
+/* autocomplete background color transparent */
+.input-field input:-webkit-autofill,
+.input-field input:-webkit-autofill:hover,
+.input-field input:-webkit-autofill:focus,
+.input-field input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0) inset !important;
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+.forget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.563rem 0 2.188rem 0;
+    color: #fff;
+}
+
+.forget label {
+    display: flex;
+    align-items: center;
+}
+
+.forget label p {
+    margin-left: 0.5rem;
+}
+
+.glassmorphism a {
+    color: #efefef;
+    text-decoration: none;
+}
+
+.glassmorphism a:hover {
+    text-decoration: underline;
+}
+
+button#formButton {
+    background: #fff;
+    color: #000;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    border: 2px solid transparent;
+    transition: 0.3s ease;
+}
+
+button#formButton:hover {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.register {
+    text-align: center;
+    margin-top: 1.875rem;
+    color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    .glassmorphism {
+        width: 90%;
+    }
+}
