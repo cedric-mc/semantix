@@ -45,3 +45,10 @@ h1 {
 main h1:last-child {
     margin-top: 2rem;
 }
+
+
+@media (max-width: 900px) {
+    .rules{
+        margin: 0;
+    }
+}

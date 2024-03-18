@@ -33,7 +33,7 @@ $codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
 
 <body class="black">
 <main class="position-absolute top-50 start-50 translate-middle">
-	<div class="glassmorphism">
+	<div class="glassmorphism form-connexion">
 		<h1 class="title">Connexion</h1>
 		<form action="script-connexion.php" method="POST">
 			<div class="input-field">
