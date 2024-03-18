@@ -77,7 +77,7 @@ if ($_GET['code']) {
                         document.getElementById('msg-error').classList.add(<?php echo json_encode($messagesErreur[$codeErreur][1]); ?>);
                         // Après l'expiration du cookie, on actualise la page pour le supprimer
                         setTimeout(function () {
-                            window.location.href = '../forgotpassword/reset_password.php?code=<?php echo $code_reinitialisation; ?>';
+                            window.location.href = "../forgotpassword/reset_password.php?code=<?php echo $code_reinitialisation; ?>";
                         }, 10000);
                     }
                 </script>
