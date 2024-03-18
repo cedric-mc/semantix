@@ -11,10 +11,6 @@
     margin: 1rem;
 }
 
-h2 {
-    white-space: nowrap;
-}
-
 .photo-pseudo-buttons,
 .stats,
 .scores,
@@ -69,7 +65,8 @@ h2 {
     margin: 0 auto;
 }
 
-.buttons button, .buttons a {
+.buttons button,
+.buttons a {
     margin-bottom: 0.938rem;
 }
 
@@ -89,8 +86,9 @@ h2 {
 }
 
 .stats ul li {
-    justify-content: space-between;
+    justify-content: left;
     color: white;
+    font-size: 20px;
 }
 
 .stats ul li ul {
@@ -175,7 +173,7 @@ h2 {
     margin-top: 1rem;
 }
 
-.profil-section{
+.profil-section {
     margin: 5rem auto;
 }
 
@@ -188,6 +186,24 @@ h2 {
         justify-content: space-between;
     }
 
+}
+
+@media (max-width: 900px) {
+
+    .stats ul {
+        flex-direction: column;
+    }
+
+    .profil-section {
+        margin: 5rem 0;
+        width: 100%;
+        font-size: 1cm;
+    }
+    
+    .glassmorphism-section{
+        width:100%;
+        margin-left:0;
+    }
 }
 
 .alert {

@@ -107,16 +107,16 @@ $historicRequest->closeCursor();
                     <h1 class="title-section h1"><?php echo $pseudo; ?></h1>
                 </div>
                 <div class="buttons">
-                    <button id="btn-historique" type="button" class="btn btn-primary g-col-6 text-nowrap" data-bs-target="#historiqueModal" data-bs-toggle="modal">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></button>
-                    <button id="btn-email" type="button" class="btn btn-warning text-nowrap" data-bs-target="#emailModal" data-bs-toggle="modal">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button>
-                    <button id="btn-mdp" type="button" class="btn btn-warning text-nowrap" data-bs-target="#mdpModal" data-bs-toggle="modal">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
-                    <button id="btn-photo" type="button" class="btn btn-warning text-nowrap" data-bs-target="#photoModal" data-bs-toggle="modal">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></button>
+                    <button id="btn-historique" type="button" class="btn btn-primary g-col-6 " data-bs-target="#historiqueModal" data-bs-toggle="modal">Voir mon historique&emsp;<i class="fa-solid fa-clock-rotate-left"></i></button>
+                    <button id="btn-email" type="button" class="btn btn-warning " data-bs-target="#emailModal" data-bs-toggle="modal">Changer l'email&emsp;<i class="fa-solid fa-envelope"></i></button>
+                    <button id="btn-mdp" type="button" class="btn btn-warning " data-bs-target="#mdpModal" data-bs-toggle="modal">Changer le mot de passe&emsp;<i class="fa-solid fa-key"></i></button>
+                    <button id="btn-photo" type="button" class="btn btn-warning " data-bs-target="#photoModal" data-bs-toggle="modal">Changer la photo de profil&emsp;<i class="fa-regular fa-pen-to-square"></i></button>
                 </div>
             </div>
             <div class="parent2">
                 <div class="stats glassmorphism-section">
                     <h2 class="title-section h2">Mes Statistiques</h2>
-                    <ul>
+                    <ul class="score-responsive">
                         <li>
                             <ul>
                                 <li>Score Minimum</li>
@@ -176,13 +176,18 @@ $historicRequest->closeCursor();
                 <h2 class="title-section">Mes Informations</h2>
                 <div>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $user->getEmail(); ?>">
-                        Email : <?php echo $user->getEmail(); ?>
+                        Email : <p  style="font-size: 0.25cm;"><?php echo $user->getEmail(); ?></p>
                     </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $user->getYear(); ?>">
                         Année de Naissance : <?php echo $user->getYear(); ?>
                     </button>
-                    <button id="tempsEcoule" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo makeDateTime($profilResult->lastConnexion); ?>"></button>
-                </div>
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo $user->getPseudo(); ?>">
+                    Pseudo : <?php echo $user->getPseudo(); ?>
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Id de joueur : <?php echo $user->getIdUser(); ?>">
+                    ID de joueur : <?php echo $user->getIdUser(); ?>
+                    </button>
+                    </div>
             </div>
         </div>
     </main>
