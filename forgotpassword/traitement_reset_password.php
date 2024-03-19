@@ -2,6 +2,10 @@
     include_once("../includes/conf.php");
     include_once("../class/User.php");
     include_once("../includes/fonctions.php");
+    // Erreur PHP
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     session_start();
     // Utilisateur déjà connecté ?
     if (isset($_SESSION['user'])) {
@@ -13,7 +17,7 @@
         $num_user = $_POST['num_user'];
         $nouveau_mot_de_passe = $_POST["nouveau_mot_de_passe"];
         $confirmer_mot_de_passe = $_POST["confirmer_nouveau_mot_de_passe"];
-        $code_reinitialisation = $_POST['code_reinitialisation'] ?? null;
+        $code_reinitialisation = isset($_POST['code_reinitialisation']) ? $_POST['code_reinitialisation'] : null;
 
 
         // Vérifier si les mots de passe correspondent
