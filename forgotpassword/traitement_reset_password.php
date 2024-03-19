@@ -68,7 +68,7 @@
                 $mail->send();
 
                 // Journalisation
-                $user->logging($cnx, 5);
+                trace($num_user, 6, $cnx);
 
                 header('Location: ./?erreur=2');
                 exit;
