@@ -31,8 +31,8 @@ $codeErreur = isset($_GET['erreur']) ? (int)$_GET['erreur'] : 0;
     <?php include("../includes/head.php"); ?>
 </head>
 
-<body class="black">
-<main class="position-absolute top-50 start-50 translate-middle">
+<body>
+<main>
 	<div class="glassmorphism form-connexion">
 		<h1 class="title">Connexion</h1>
 		<form action="script-connexion.php" method="POST">
