@@ -41,7 +41,7 @@
         }
         exec("./C/bin/add_word C/fasttext-fr.bin $newWord " . $user->getPseudo());
         // Java : trier les paires
-        $commandeJar = "/home/3binf2/mariyaconsta02/jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_" . $user->getPseudo() . ".txt partie/mst_" . $user->getPseudo() . ".txt 2>&1";
+        $commandeJar = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_" . $user->getPseudo() . ".txt partie/mst_" . $user->getPseudo() . ".txt 2>&1";
         exec($commandeJar, $output);
         // Vérifier si le mot est dans le graphe
         if (!isWordInGraph($user, $newWord)) {
