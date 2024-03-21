@@ -123,7 +123,7 @@ main {
     transform: rotate(-180deg) translateX(-50%);
 }
 
-.hamburger-menu{
+.hamburger-menu {
     display: none;
     width: 100%;
     min-height: 100vh;
@@ -135,12 +135,12 @@ main {
     transform: translateX(1000px);
 }
 
-.hamburger-menu-visible{
+.hamburger-menu-visible {
     transition: 0.2s;
     transform: translateX(0);
 }
 
-.hamburger-menu ul{
+.hamburger-menu ul {
     list-style-type: none;
     margin-top: 100px;
     display: flex;
@@ -148,14 +148,14 @@ main {
     justify-content: center;
 }
 
-.hamburger-menu ul li{
+.hamburger-menu ul li {
     padding: 5px 10px;
     font-size: 0.75cm;
     text-decoration: none;
     color: snow;
 }
 
-.hamburger-menu ul li a{
+.hamburger-menu ul li a {
     padding: 5px 10px;
     font-size: 0.75cm;
     text-decoration: none;
@@ -164,12 +164,12 @@ main {
     transition: 0.2s;
 }
 
-.hamburger-menu ul li a:hover{
+.hamburger-menu ul li a:hover {
     transition: 0.2s;
     color: wheat;
 }
 
-.hamburger{
+.hamburger {
     display: none;
     z-index: 2;
     position: fixed;
@@ -179,7 +179,7 @@ main {
 
 .bar2,
 .bar1,
-.bar3{
+.bar3 {
     width: 50px;
     height: 5px;
     background: snow;
@@ -188,27 +188,27 @@ main {
     transition: 0.2s;
 }
 
-.bar2{
+.bar2 {
     margin-top: 0px;
 }
 
-.bar3{
+.bar3 {
     margin-bottom: 0px;
 }
 
-.none{
+.none {
     opacity: 0;
 }
 
-.cross1{
+.cross1 {
     display: block;
     margin-top: 0px;
-    transform: translate(5px,0px);
+    transform: translate(5px, 0px);
     rotate: -45deg;
     transition: 0.2s;
 }
 
-.cross2{
+.cross2 {
     display: block;
     margin-bottom: 0px;
     rotate: 45deg;
@@ -269,11 +269,11 @@ main {
 }
 
 @media (max-width: 900px) {
-    .hamburger-menu{
+    .hamburger-menu {
         display: block;
     }
 
-    .hamburger{
+    .hamburger {
         display: block;
     }
 }

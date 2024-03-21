@@ -1,10 +1,13 @@
-.rules p, .rules h2, .rules h3 {
+.rules p,
+.rules h2,
+.rules h3 {
     color: white;
 }
 
 .rules {
     width: auto;
-    margin: 1rem 0 1rem 0; /* top right bottom left */
+    margin: 1rem 0 1rem 0;
+    /* top right bottom left */
     padding: 1.25rem;
     border-radius: 0.625rem;
     text-align: center;
@@ -48,7 +51,7 @@ main h1:last-child {
 
 
 @media (max-width: 900px) {
-    .rules{
+    .rules {
         margin: 0;
     }
 }

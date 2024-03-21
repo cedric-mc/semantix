@@ -2,7 +2,7 @@
     min-width: 25rem;
 }
 
-.form-connexion{
+.form-connexion {
     width: 300px;
     margin: auto;
 }
@@ -47,9 +47,12 @@ h2.title {
 
 input:-internal-autofill-selected {
     /* Add your custom styles here */
-    background-color: #f0f0f0; /* Change background color */
-    border: 2px solid #ccc; /* Change border style */
-    color: #333; /* Change text color */
+    background-color: #f0f0f0;
+    /* Change background color */
+    border: 2px solid #ccc;
+    /* Change border style */
+    color: #333;
+    /* Change text color */
     /* Add any other styles you want to apply */
 }
 
