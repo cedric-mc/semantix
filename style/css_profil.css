@@ -199,17 +199,9 @@
         width: 100%;
         font-size: 1cm;
     }
-    
-    .glassmorphism-section{
-        width:100%;
-        margin-left:0;
+
+    .glassmorphism-section {
+        width: 100%;
+        margin-left: 0;
     }
 }
-
-.alert {
-    margin: 1rem auto;
-}
-
-/* .profil {
-    
-} */

@@ -70,10 +70,10 @@ $codeMdp = isset($_GET["erreurMdp"]) ? (int)$_GET["erreurMdp"] : 0;
 $codePhoto = isset($_GET["erreurPhoto"]) ? (int)$_GET["erreurPhoto"] : 0;
 
 $historicRequest = $cnx->prepare("
-        SELECT score, dateHeure
-        FROM sae_users u, sae_scores s
-        WHERE pseudo = :pseudo AND u.num_user = s.num_user
-        ORDER BY dateHeure DESC;");
+    SELECT score, dateHeure
+    FROM sae_users u, sae_scores s
+    WHERE pseudo = :pseudo AND u.num_user = s.num_user
+    ORDER BY dateHeure DESC;");
 $historicRequest->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
 $historicRequest->execute();
 $historicResult = $historicRequest->fetchAll(PDO::FETCH_OBJ);
@@ -176,18 +176,18 @@ $historicRequest->closeCursor();
                 <h2 class="title-section">Mes Informations</h2>
                 <div>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $user->getEmail(); ?>">
-                        Email : <p  style="font-size: 0.25cm;"><?php echo $user->getEmail(); ?></p>
+                        Email : <p style="font-size: 0.25cm;"><?php echo $user->getEmail(); ?></p>
                     </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $user->getYear(); ?>">
                         Année de Naissance : <?php echo $user->getYear(); ?>
                     </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo $user->getPseudo(); ?>">
-                    Pseudo : <?php echo $user->getPseudo(); ?>
+                        Pseudo : <?php echo $user->getPseudo(); ?>
                     </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Id de joueur : <?php echo $user->getIdUser(); ?>">
-                    ID de joueur : <?php echo $user->getIdUser(); ?>
+                        ID de joueur : <?php echo $user->getIdUser(); ?>
                     </button>
-                    </div>
+                </div>
             </div>
         </div>
     </main>

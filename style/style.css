@@ -24,11 +24,11 @@ main {
     justify-content: center;
 }
 
-.profil-section{
+.profil-section {
     margin: auto;
 }
 
-.parent{
+.parent {
     width: 100%;
 }
 
@@ -53,6 +53,7 @@ h1.title {
     color: #FFFFFF;
     margin-bottom: 1.25rem;
     font-weight: bold;
+
 }
 
 /* Class no-glassmorphism pour désactiver l'effet de verre */
@@ -64,7 +65,7 @@ h1.title {
 }
 
 @media (max-width: 900px) {
-    .glassmorphism{
+    .glassmorphism {
         margin: 5rem 0;
         width: 100%;
     }
