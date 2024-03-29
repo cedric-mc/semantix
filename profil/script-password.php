@@ -21,11 +21,11 @@
         $code_time = $_SESSION['verification_time'];
 
         if ($user_input_code != $stored_code || (time() - $code_time) > 600) { // 600 secondes = 10 minutes
-            header('Location: change_password.php?confirmMdpError=6'); // Code incorrect ou expiré
+            header("Location: ./?erreurMdp=6");
             exit;
         }
 
-        // Vérifier si l'ancien mot de passe est correct
+        // Vérifier si l"ancien mot de passe est correct
         $sql = "SELECT num_user, motdepasse, salt, email FROM sae_users WHERE pseudo = :pseudo";
         $stmt = $cnx->prepare($sql);
         $stmt->bindParam(':pseudo', $pseudo);

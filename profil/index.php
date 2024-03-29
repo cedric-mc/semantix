@@ -48,7 +48,7 @@ $erreursEmail = [
 
 // Messages d'erreurs possibles pour le changement de mot de passe
 $erreursMdp = [
-    1 => ["Le mot de passe a bien été changé.", "alert-success"],
+    1 => ["Le code de confirmation est correct. Mot de passe modifié avec succès.", "alert-success"],
     2 => ["L'ancien mot de passe est incorrect.", "alert-danger"],
     3 => ["Les nouveaux mots de passe ne correspondent pas.", "alert-danger"],
     4 => ["Le nouveau mot de passe est identique à l'ancien.", "alert-danger"],
