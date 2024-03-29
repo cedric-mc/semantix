@@ -14,13 +14,14 @@
         }
         $user = User::createUserFromUser(unserialize($_SESSION['user']));
         $pseudo = $user->getPseudo();
+        $idUser = $user->getIdUser();
 
         // Vérifier si le code correspond et n'a pas expiré
-        $user_input_code = $_POST['verification_code'];
-        $stored_code = $_SESSION['verification_code'];
-        $code_time = $_SESSION['verification_time'];
+        $enterCode = $_POST['verification_code'];
+        $realCode = $_SESSION['verification_code'];
+        $codeTime = $_SESSION['verification_time'];
 
-        if ($user_input_code != $stored_code || (time() - $code_time) > 600) { // 600 secondes = 10 minutes
+        if ($enterCode != $realCode || (time() - $codeTime) > 600) { // 600 secondes = 10 minutes
             header("Location: ./?erreurMdp=6");
             exit;
         }
@@ -32,9 +33,6 @@
         $stmt->execute();
         $user = $stmt->fetch();
         $stmt->closeCursor();
-
-        //Pour la journalisation, on récupère le num_user
-        $num_user = $user['num_user'];
 
         // L'utilisateur existe maintenant, tu peux vérifier le mot de passe
         $stored_motdepasse = $user['motdepasse']; // Mot de passe stocké dans la base de données

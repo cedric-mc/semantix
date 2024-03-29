@@ -14,20 +14,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
     // Vérifier si les mots de passe sont identiques
-    if ($password2 == $password3) {
+    if ($password2 != $password3) {
+        header("Location: ./?erreurMdp=3");
+    }
+    // Vérifier si l'ancien mot de passe correspond au nouveau
+    if ($password1 == $password2) {
         header("Location: ./?erreurMdp=4");
+        exit;
     }
 
     $pseudo = $user->getPseudo();
     $email = $user->getEmail();
     // Vérifier si l'ancien mot de passe est correct
-    $request = $cnx->prepare("SELECT password, salt FROM sae_users WHERE pseudo = :pseudo;");
+    $request = $cnx->prepare("SELECT motdepasse, salt FROM sae_users WHERE pseudo = :pseudo;");
     $request->bindParam(":pseudo", $pseudo);
     $request->execute();
     $result = $request->fetch();
     $hash = hash("sha256", $password1 . $result['salt']);
-    if ($hash != $result['password']) {
+    if ($hash != $result['password']) { // Mot de passe incorrect
         header("Location: ./?erreurMdp=2");
+        exit;
+    }
+
+    // Vérifier si le nouveau mot de passe correspond aux normes de la CNIL
+    if (strlen($password2) < 12 && !preg_match('/[0-9]/', $password2) && !preg_match('/[A-Z]/', $password2) && !preg_match('/[a-z]/', $password2) && !preg_match('/[^a-zA-Z0-9]/', $password2)) {
+        header("Location: ./?erreurMdp=5");
         exit;
     }
 
