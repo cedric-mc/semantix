@@ -1,3 +1,11 @@
+* {
+    color: white;
+}
+
+label {
+    color: black;
+}
+
 html {
     padding: 20px;
     font-family: Arial, sans-serif; /* Police plus moderne */
@@ -21,14 +29,14 @@ body {
     font-size: 2.5rem; /* Taille du titre */
     margin: 20px 0; /* Espacement autour du titre */
     color: #00bcd4; /* Couleur de titre - Bleu cyan clair */
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* Ombre pour le texte */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Ombre pour le texte */
     padding: 20px;
     border-radius: 8px; /* Bordures arrondies */
     background-color: #1a1a1a; /* Fond légèrement plus clair que le fond principal */
-    box-shadow: 0 0 10px rgba(255,255,255,0.1); /* Ombre subtile */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Ombre subtile */
 }
 
-.div4 h1{
+.div4 h1 {
     margin: 0;
 }
 
@@ -37,7 +45,7 @@ body {
     justify-content: center;
 }
 
-#end a, .btn btn-primary {
+#endGameButton, .btn btn-primary {
     background-color: #ff0000; /* Couleur de fond - Rouge */
     font-size: 1.125rem;
     border: none;
@@ -47,7 +55,7 @@ body {
     color: #fff; /* Texte en blanc */
 }
 
-#end a:hover, .btn btn-primary:hover {
+#endGameButton:hover, .btn btn-primary:hover {
     background-color: #cc0000; /* Changement de couleur au survol */
     cursor: pointer; /* Curseur pointeur */
 }
@@ -78,20 +86,19 @@ form#add {
     grid-area: 2 / 2 / 5 / 5;
     padding: 20px; /* Padding pour le contenu */
     border-radius: 10px; /* Bordures arrondies */
-    box-shadow: 0 0 10px rgba(255,255,255,0.1); /* Ombre subtile */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Ombre subtile */
 }
 
 
-
 .div2 {
-    grid-area:3 / 1 / 4 / 2;
+    grid-area: 3 / 1 / 4 / 2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
 .div3 {
-    grid-area:3 / 5 / 4 / 6;
+    grid-area: 3 / 5 / 4 / 6;
 }
 
 .div2, .div3 {
@@ -115,8 +122,9 @@ form#add {
     width: 100%; /* Largeur maximale */
     text-align: center; /* Centrer le texte */
     margin: 10px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
 .modal-content {
     background: linear-gradient(-45deg, #000000, #434343, #000000); /* Fond en dégradé */
     color: #fff; /* Texte en blanc */
