@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once("../class/Game.php");
     include_once("../class/User.php");
     include_once("../includes/requetes.php");
+    include_once("../includes/fonctions.php");
     session_start();
     if (!isset($_SESSION['user'])) {
         header("Location: ./");
