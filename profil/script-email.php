@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress($oldEmail);
     $mail->isHTML(true);
     $mail->Subject = "Changement d'email";
-    $mail->Body = $content;
+    $mail->Body = str_replace(":pseudo", $pseudo, getMailContent("../mail/email.php"));
     $mail->CharSet = 'UTF-8';
     $mail->send();
 
