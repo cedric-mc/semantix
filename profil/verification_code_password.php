@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $_SESSION['verification_code'] = $verification_code; // Stocker le code dans la session
     $_SESSION['verification_time'] = time(); // Stocker le temps de la demande
+    $_SESSION['password2'] = $password2; // Stocker le nouveau mot de passe dans la session
 
     // Envoyer le code par email
     include("../mail/mailer.php");
@@ -58,6 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->CharSet = "UTF-8";
     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
     $mail->send();
+
+    $user->logging($cnx, 11); // Journalisation
 
     header("Location: confirm_change_password.php"); // Rediriger l'utilisateur vers la page de vérification du code
 } else {
