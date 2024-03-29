@@ -70,9 +70,12 @@
                             <img src="<?php echo getProfilePicture($ligne->photo); ?>" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
                             <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
-                            <?php if ($ligne->statut == 0 && $ligne->user_id == $idUser) { ?>
+                            <?php if ($ligne->statut == 0 && $ligne->acceptF == $idUser) { ?>
                                 <a class="btn btn-warning" href="script-friend.php?accept&friendId=<?php echo $ligne->num_user; ?>" role="button">Accepter&emsp;<i class="fa-solid fa-check"></i></a>
                                 <a class="btn btn-danger" href="script-friend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser&emsp;<i class="fa-solid fa-xmark"></i></a>
+                            <?php } elseif ($ligne->creatorF == $idUser) { ?>
+                                <span class="text-muted">En attente de l'acceptation de l'ami</span>
+                                <a class="btn btn-danger" href="script-friend.php?delete&friendId=<?php echo $ligne->num_user; ?>" role="button">Annuler&emsp;<i class="fa-solid fa-trash"></i></a>
                             <?php } else { ?>
                                 <a class="btn btn-danger" href="script-friend.php?delete&friendId=<?php echo $ligne->num_user; ?>" role="button">Supprimer&emsp;<i class="fa-solid fa-trash"></i></a>
                             <?php } ?>
