@@ -38,7 +38,9 @@
             <p>
                 Bonjour :pseudo,
                 <br><br>
-                Votre mot de passe a été modifié. Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.
+                Votre code de vérification pour changer votre mot de passe est : :code.
+                <br><br>
+                Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.
                 <br><br>
                 Cordialement,<br>
                 L'équipe de Semonkey.
