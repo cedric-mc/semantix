@@ -70,7 +70,6 @@
             $stmt->bindParam(':pseudo', $this->pseudo);
             $stmt->execute();
             $stmt->closeCursor();
-            $this->setEmail($newEmail);
         }
 
         public function logging(PDO $cnx, int $numAction): void {

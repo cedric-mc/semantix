@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Modifier l'email
     $user->modifyEmail($cnx, $newEmail, $changeEmail);
+    $user->setEmail($newEmail);
 
     // Mail
     include("../mail/mailer.php");
