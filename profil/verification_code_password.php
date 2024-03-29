@@ -4,6 +4,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password2 = $_POST['password2'];
     $password3 = $_POST['password3'];
 
+    // Erreurs PHP
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
     include_once("../includes/conf.php");
     include_once("../class/Game.php");
     include_once("../class/User.php");
