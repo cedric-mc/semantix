@@ -47,8 +47,8 @@
             }
         }
 
-        public function setEmail($email): void {
-            $this->email = $email;
+        public function setEmail($newEmail): void {
+            $this->email = $newEmail;
         }
 
         public function setImageData($imageData): void {
