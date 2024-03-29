@@ -2,9 +2,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $oldEmail = $_POST['email1'];
     $newEmail = $_POST['email2'];
-    // Erreur PHP
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+
     include_once("../class/User.php"); // Classe User
     include_once("../includes/conf.php"); // Connexion à la base de données
     include_once("../includes/requetes.php"); // Requêtes SQL

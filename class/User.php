@@ -47,7 +47,7 @@
             }
         }
 
-        public function setEmail($newEmail): void {
+        public function setEmail(string $newEmail): void {
             $this->email = $newEmail;
         }
 
