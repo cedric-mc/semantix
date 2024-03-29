@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once("../includes/conf.php");
     include_once("../class/Game.php");
     include_once("../class/User.php");
+    include_once("../includes/requetes.php");
     session_start();
     if (!isset($_SESSION['user'])) {
         header("Location: ./");
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pseudo = $user->getPseudo();
     $email = $user->getEmail();
     // Vérifier si l'ancien mot de passe est correct
-    $request = $cnx->prepare("SELECT motdepasse, salt FROM sae_users WHERE pseudo = :pseudo;");
+    $request = $cnx->prepare($isPasswordCorrect);
     $request->bindParam(":pseudo", $pseudo);
     $request->execute();
     $result = $request->fetch();
