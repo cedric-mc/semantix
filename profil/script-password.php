@@ -4,6 +4,9 @@
         $newPassword = $_SESSION['password2'];
         $confirmPassword = $_SESSION['password3'];
 
+        // Erreurs PHP
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
         include_once("../includes/conf.php");
         include_once("../class/User.php");
         include_once("../includes/requetes.php");
