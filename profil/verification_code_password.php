@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
-    // Vérifier si les mots de passe sont identiques
+    // Vérifier si les nouveaux mots de passe sont identiques
     if ($password2 != $password3) {
         header("Location: ./?erreurMdp=3");
     }
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $request->bindParam(":pseudo", $pseudo);
     $request->execute();
     $result = $request->fetch();
-    $hash = hash("sha256", $password1 . $result['salt']);
+    $hash = hash_pbkdf2("sha256", $password1, $result['salt'], 5000, 32);
     if ($hash != $result['password']) { // Mot de passe incorrect
         header("Location: ./?erreurMdp=2");
         exit;
