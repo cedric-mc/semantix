@@ -175,6 +175,9 @@ $historicRequest->closeCursor();
             <div class="mesinformations glassmorphism-section">
                 <h2 class="title-section">Mes Informations</h2>
                 <div>
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Id de joueur : <?php echo $user->getIdUser(); ?>">
+                        ID de joueur : <?php echo $user->getIdUser(); ?>
+                    </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $user->getEmail(); ?>">
                         Email : <?php echo $user->getEmail(); ?>
                     </button>
@@ -183,9 +186,6 @@ $historicRequest->closeCursor();
                     </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo $user->getPseudo(); ?>">
                         Pseudo : <?php echo $user->getPseudo(); ?>
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Id de joueur : <?php echo $user->getIdUser(); ?>">
-                        ID de joueur : <?php echo $user->getIdUser(); ?>
                     </button>
                 </div>
             </div>
