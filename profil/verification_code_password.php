@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $request->bindParam(":pseudo", $pseudo);
     $request->execute();
     $result = $request->fetch();
-    $hash = hash_pbkdf2("sha256", $password1, $result['salt'], 5000, 32);
-    if ($hash != $result['password']) { // Mot de passe incorrect
+    $hashPassword = hash_pbkdf2("sha256", $password1, $result['salt'], 5000, 32);
+    if ($hashPassword != $result['motdepasse']) { // Mot de passe incorrect
         header("Location: ./?erreurMdp=2");
         exit;
     }
