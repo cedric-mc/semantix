@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>Mail pour changement de mot de passe</title>
+        <title>Mail de demande de changement de mot de passe</title>
         <style>
             header {
                 background-color: #f3f3f3;
@@ -31,7 +31,7 @@
 
     <body>
         <header>
-            <h1>Changement de mot de passe</h1>
+            <h1>Demande de changement de mot de passe</h1>
             <img src="cid:mylogo" alt="Semantic Analogy Explorer" width="100px" height="100px">
         </header>
         <main>
@@ -40,7 +40,7 @@
                 <br><br>
                 Votre code de vérification pour changer votre mot de passe est : :code.
                 <br><br>
-                Si vous n'êtes pas à l'origine de cette modification, veuillez contacter l'administrateur du site.
+                Si vous n'avez pas demandé de changement de mot de passe, veuillez ignorer ce message.
                 <br><br>
                 Cordialement,<br>
                 L'équipe de Semonkey.
