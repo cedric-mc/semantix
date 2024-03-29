@@ -4,8 +4,9 @@
         $newPassword = $_SESSION['password2'];
         $confirmPassword = $_SESSION['password3'];
 
-        include("../includes/conf.php");
+        include_once("../includes/conf.php");
         include_once("../class/User.php");
+        include_once("../includes/requetes.php");
         include_once("../includes/fonctions.php");
         session_start();
         if (!isset($_SESSION['user'])) {
@@ -31,7 +32,7 @@
         $hashed_new_motdepasse = hash_pbkdf2("sha256", $newPassword, $new_salt, 5000, 32);
 
         // Mettre à jour le mot de passe et le sel dans la base de données
-        $stmt = $cnx->prepare("UPDATE sae_users SET motdepasse = :motdepasse, salt = :salt WHERE pseudo = :pseudo");
+        $stmt = $cnx->prepare($changePassword);
         $stmt->bindParam(':motdepasse', $hashed_new_motdepasse);
         $stmt->bindParam(':salt', $new_salt);
         $stmt->bindParam(':pseudo', $pseudo);
@@ -52,7 +53,7 @@
         $user->logging($cnx, 5); // Journalisation
 
         // Rediriger vers la page de connexion avec un message, mot de passe modifié
-        header('Location: change_password.php?confirmMdpError=1');
+        header("Location: ./?erreurMdp=1");
         exit;
     } else {
         header('Location: ./');

@@ -27,5 +27,5 @@
     $changeEmail = "UPDATE sae_users SET email = :email WHERE pseudo = :pseudo;";
 
     // Requêtes SQL pour le changement de mot de passe
-    $changePassword = "UPDATE sae_users SET password = :password WHERE pseudo = :pseudo;";
+    $changePassword = "UPDATE sae_users SET motdepasse = :motdepasse, salt = :salt WHERE pseudo = :pseudo;";
 ?>
