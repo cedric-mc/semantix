@@ -16,7 +16,7 @@
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
     $idUser = $user->getIdUser();
 
-    // Requête SQL pour obtenr la liste des amis
+    // Requête SQL pour obtenir la liste des amis
     $myFriendsRequest = $cnx->prepare($allFriends);
     $myFriendsRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
     $myFriendsRequest->execute();
