@@ -63,7 +63,7 @@
     $_SESSION['game'] = serialize($game);
     // Vérifier si les trois fichiers existent
     if (!file_exists("partie/game_data_" . $user->getPseudo() . ".txt") || !file_exists("partie/mst_" . $user->getPseudo() . ".txt") || !file_exists("partie/best_path_" . $user->getPseudo() . ".txt")) {
-        header('Location: ./');
+        header('Location: ../');
         exit();
     }
     header('Location: ./');
