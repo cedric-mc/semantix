@@ -75,7 +75,6 @@
                                 <a class="btn btn-danger" href="script-friend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser&emsp;<i class="fa-solid fa-xmark"></i></a>
                             <?php } elseif ($ligne->statut == 0 && $ligne->creatorF == $idUser) { ?>
                                 <span class="text-muted">En attente de l'acceptation de l'ami</span>
-                                <a class="btn btn-danger" href="script-friend.php?delete&friendId=<?php echo $ligne->num_user; ?>" role="button">Annuler&emsp;<i class="fa-solid fa-trash"></i></a>
                             <?php } else { ?>
                                 <a class="btn btn-danger" href="script-friend.php?delete&friendId=<?php echo $ligne->num_user; ?>" role="button">Supprimer&emsp;<i class="fa-solid fa-trash"></i></a>
                             <?php } ?>
