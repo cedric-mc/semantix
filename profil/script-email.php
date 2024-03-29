@@ -37,9 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Modifier l'email
     $user->modifyEmail($cnx, $newEmail, $changeEmail);
-    // Création du nouveau User
-    $user = User::createUserFromUser($user);
-    $_SESSION['user'] = serialize($user);
+    $_SESSION['user'] = serialize($user); // Mettre à jour la session
 
     // Mail
     include("../mail/mailer.php");
