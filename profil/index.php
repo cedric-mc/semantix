@@ -176,7 +176,7 @@ $historicRequest->closeCursor();
                 <h2 class="title-section">Mes Informations</h2>
                 <div>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $user->getEmail(); ?>">
-                        Email : <p style="font-size: 0.25cm;"><?php echo $user->getEmail(); ?></p>
+                        Email : <?php echo $user->getEmail(); ?>
                     </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $user->getYear(); ?>">
                         Année de Naissance : <?php echo $user->getYear(); ?>

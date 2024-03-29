@@ -79,7 +79,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="script-password.php" method="POST">
+                        <form action="verification_code_password.php" method="POST">
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" placeholder="Ancien mot de passe" id="password1" name="password1" required>
                                 <label for="password1">Ancien mot de passe :</label>

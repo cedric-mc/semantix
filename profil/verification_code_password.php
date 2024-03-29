@@ -5,6 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passeword3 = $_POST['password3'];
     include("../includes/conf.php");
     include_once("../class/Game.php");
+    include_once("../class/User.php");
     session_start();
     if (!isset($_SESSION['user'])) {
         header("Location: ./");
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         votre mot de passe immédiatement et/ou contacter l'administrateur du site !";
         $mail->send();
         
-        header('Location: confirm_change_password.php'); // Rediriger l'utilisateur vers la page de vérification du code
+        header("Location: confirm_change_password.php"); // Rediriger l'utilisateur vers la page de vérification du code
     } else {
         header('Location: ../');
         exit;
