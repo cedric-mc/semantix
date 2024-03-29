@@ -1,6 +1,7 @@
 import React from 'react';
 import AddWord from './AddWord';
-import './App.css';
+import "./style.css";
+import "./css_game.css";
 
 function App() {
     return (
