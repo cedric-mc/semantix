@@ -2,7 +2,9 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];
-
+        // Erreurs PHP
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
         include_once("../includes/conf.php");
         include_once("../includes/fonctions.php");
         session_start();
@@ -49,7 +51,7 @@
             $mail->send();
 
             // Journalisation
-            $user->logging($cnx, 3);
+            trace($user['num_user'], 3, $cnx);
 
             header('Location: ./?erreur=1');
             exit;
