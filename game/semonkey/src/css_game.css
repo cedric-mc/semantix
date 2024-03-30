@@ -163,3 +163,21 @@ form#add {
 .btn-secondary:hover {
     background-color: #333333; /* Changement de couleur au survol */
 }
+
+.add-word {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* Espacement entre les éléments */
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.score-board {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacement entre les éléments */
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}

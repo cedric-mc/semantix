@@ -1,12 +1,18 @@
 import React from "react";
+import { Offcanvas } from "react-bootstrap";
 
-const ScoreBoard = () => {
+const ScoreBoard = (props: { show: boolean, handleClose: () => void }) => {
     return (
-        <div className="score-board">
-            <h2>Score</h2>
-            <p>Nombre de mots trouvés : 0</p>
-            <p>Nombre de mots restants : 0</p>
-        </div>
+        <Offcanvas placement="end" title="ScoreBoard" id="offcanvasRight">
+            <Offcanvas.Header closeButton>
+                <Offcanvas.Title>ScoreBoard</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+                <h2>Score</h2>
+                <p>Nombre de mots trouvés : 0</p>
+                <p>Nombre de mots restants : 0</p>
+            </Offcanvas.Body>
+        </Offcanvas>
     );
 }
 
