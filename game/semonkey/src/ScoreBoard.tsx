@@ -3,7 +3,7 @@ import { Offcanvas } from "react-bootstrap";
 
 const ScoreBoard = (props: { show: boolean, handleClose: () => void }) => {
     return (
-        <Offcanvas placement="end" title="ScoreBoard" id="offcanvasRight">
+        <Offcanvas show={props.show} onHide={props.handleClose} placement="end" title="ScoreBoard" id="offcanvasRight"/* className="custom-offcanvas"*/ variant="dark">
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>ScoreBoard</Offcanvas.Title>
             </Offcanvas.Header>

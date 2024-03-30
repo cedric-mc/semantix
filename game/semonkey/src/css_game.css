@@ -181,3 +181,9 @@ form#add {
     justify-content: center;
     margin: 10px 0;
 }
+
+.custom-offcanvas {
+    background-color: #333 !important; /* Fond sombre */
+    color: #fff !important; /* Texte en blanc */
+    border: none;
+}
