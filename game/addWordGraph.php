@@ -18,6 +18,14 @@
         $user = User::createUserFromUser(unserialize($_SESSION['user']));
         $game = Game::createGameFromGame(unserialize($_SESSION['game']));
         $newWord = $_POST['word'];
+        // Vérifier que le mot n'est pas dans le fichier de partie
+        if ($game->isWordInFile($newWord)) {
+            $_SESSION['game'] = serialize($game);
+            // Script JS pour afficher une alerte
+            echo "<script>alert('Le mot est déjà dans la chaîne.')</script>";
+            echo "<script>window.location.replace('./');</script>";
+            exit();
+        }
         $game->setLastWord($newWord);
 
         if ($game->isWordInArray($newWord)) {
