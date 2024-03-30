@@ -22,7 +22,7 @@
         if ($game->isWordInFile($newWord)) {
             $_SESSION['game'] = serialize($game);
             // Script JS pour afficher une alerte
-            echo "<script>alert('Le mot est déjà dans la chaîne.')</script>";
+            echo "<script>alert('Le mot a déjà été entré.')</script>";
             echo "<script>window.location.replace('./');</script>";
             exit();
         }
