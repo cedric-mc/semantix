@@ -17,6 +17,7 @@ function App() {
 
     useEffect(() => {
         // Accédez aux données `userData` qui ont été incluses dans votre page HTML
+        // @ts-ignore
         const userData = window.userData;
 
         // Créez une instance de l'objet User à partir des données userData
