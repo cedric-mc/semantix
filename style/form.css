@@ -125,5 +125,10 @@ button#formButton:hover {
 @media screen and (max-width: 600px) {
     .glassmorphism {
         width: 90%;
+        min-width: auto; /* Supprimer la largeur minimale pour les petits écrans */
+    }
+
+    .form-connexion {
+        width: 90%;
     }
 }
