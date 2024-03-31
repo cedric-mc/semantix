@@ -1,3 +1,13 @@
+<?php
+include_once("../class/User.php");
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('Location: ../');
+    exit();
+}
+$user = User::createUserFromUser(unserialize($_SESSION['user']));
+$userJson = json_encode($user);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
