@@ -12,11 +12,20 @@ function App() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    fetch("https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.field1);
+            console.log(data.field2);
+        });
+
     return (
         <div className="game-body">
             <AddWord/>
-            <Button variant="primary" onClick={handleShow}>Open ScoreBoard</Button>
+            <Button variant="primary" onClick={handleShow}>Afficher les informations</Button>
             <ScoreBoard show={show} handleClose={handleClose} />
+            <br></br>
+            <Button className="btn btn-danger">Fin de partie</Button>
         </div>
     );
 }

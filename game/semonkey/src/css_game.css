@@ -107,7 +107,34 @@ form#add {
 }
 
 .custom-offcanvas {
-    background-color: #333 !important; /* Fond sombre */
+    background: linear-gradient(-45deg, #000000, #434343, #000000) !important; /* Fond sombre */
     color: #fff !important; /* Texte en blanc */
     border: none;
+    animation: Gradient 15s ease infinite;
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.closeButtonStyle {
+    background-color: /* #ff0000 en rgba pour la transparence */ rgba(255, 0, 0, 1) !important; /* Couleur de fond - Rouge avec transparence */
+    border: none !important;
+    padding: 12px 12px !important; /* Plus de padding pour un meilleur clic */
+    border-radius: 5px !important; /* Bordures arrondies */
+    transition: background-color 0.3s ease !important; /* Transition douce */
+    color: #fff !important; /* Texte en blanc */
+}
+
+.closeButtonStyle:hover {
+    background-color: /* #cc0000 en rgba pour la transparence */ rgba(204, 0, 0, 0.5) !important; /* Changement de couleur au survol */
+    cursor: pointer !important; /* Curseur pointeur */
 }
