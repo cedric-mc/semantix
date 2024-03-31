@@ -6,6 +6,7 @@
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
+    echo json_encode($user);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
