@@ -16,12 +16,20 @@ function App() {
     const handleShow = () => setShow(true);
 
     useEffect(() => {
-        fetch('../')
-            .then(response => response.json())
-            .then(data => {
-                const user = new User(data.idUser, data.pseudo, data.email, data.year, data.imageData);
-                setUser(user);
-            });
+        // Accédez aux données `userData` qui ont été incluses dans votre page HTML
+        const userData = window.userData;
+
+        // Créez une instance de l'objet User à partir des données userData
+        const userJson = new User(
+            userData.idUser,
+            userData.pseudo,
+            userData.email,
+            parseInt(userData.year), // Assurez-vous de convertir l'année en nombre si nécessaire
+            userData.imageData
+        );
+
+        // Définissez l'utilisateur dans l'état
+        setUser(userJson);
     }, []);
 
     if (!user) {
