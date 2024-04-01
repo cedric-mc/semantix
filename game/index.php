@@ -2,7 +2,9 @@
     include("../class/User.php");
     include("../class/Game.php");
     include("game_fonctions.php");
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     if (!isset($_SESSION['user'])) {

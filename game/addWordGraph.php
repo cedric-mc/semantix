@@ -3,7 +3,9 @@
         include_once("../class/User.php");
         include_once("../class/Game.php");
         include_once("game_fonctions.php");
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         // Erreur PHP
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
