@@ -29,12 +29,9 @@
 
             // Comparer les hachages
             if ($hashed_input_motdepasse === $stored_motdepasse) {
-                $tokenData = [
-                    'pseudo' => $pseudo,
-                    'expiration' => time() + (60 * 60) // expiration du jeton dans 1 heure
-                ];
-
-                $jwtToken = base64_encode(json_encode($tokenData));
+                $length = 32;
+                $randomBytes = random_bytes($length);
+                $jwtToken= bin2hex($randomBytes);
                 $_SESSION['user'] = serialize($user);
 
                 // Vérifier si le pseudo existe déjà dans sae_token_user
@@ -71,4 +68,5 @@
         // Authentification échouée
         echo json_encode(array("success" => false));
     }
+
 ?>

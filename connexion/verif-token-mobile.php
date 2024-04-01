@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $authToken = $_POST['auth_token'];
 
     // Rechercher le jeton dans la base de données
-    $query_select_token = "SELECT * FROM sae_token_user WHERE token = :token AND datetime >= DATE_SUB(NOW(), INTERVAL 1 MINUTE)";
+    $query_select_token = "SELECT * FROM sae_token_user WHERE token = :token AND datetime >= DATE_SUB(NOW(), INTERVAL 720 MINUTE)";
     $stmt_select_token = $cnx->prepare($query_select_token);
     $stmt_select_token->bindParam(":token", $authToken, PDO::PARAM_STR);
     $stmt_select_token->execute();
