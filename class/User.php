@@ -47,8 +47,8 @@
             }
         }
 
-        public function setEmail($email): void {
-            $this->email = $email;
+        public function setEmail(string $newEmail): void {
+            $this->email = $newEmail;
         }
 
         public function setImageData($imageData): void {
@@ -56,12 +56,12 @@
         }
 
         public function isEmailExist(PDO $cnx, string $newEmail, string $emailExists): bool {
-            $stmt = $cnx->prepare($emailExists);
-            $stmt->bindParam(":email", $newEmail);
-            $stmt->execute();
-            $stmt = $stmt->fetch();
-            $stmt->closeCursor();
-            return $stmt;
+            $request = $cnx->prepare($emailExists);
+            $request->bindParam(":email", $newEmail);
+            $request->execute();
+            $result = $request->fetch();
+            $request->closeCursor();
+            return $result;
         }
 
         public function modifyEmail(PDO $cnx, string $newEmail, string $changeEmail): void {

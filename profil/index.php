@@ -48,7 +48,7 @@ $erreursEmail = [
 
 // Messages d'erreurs possibles pour le changement de mot de passe
 $erreursMdp = [
-    1 => ["Le mot de passe a bien été changé.", "alert-success"],
+    1 => ["Le code de confirmation est correct. Mot de passe modifié avec succès.", "alert-success"],
     2 => ["L'ancien mot de passe est incorrect.", "alert-danger"],
     3 => ["Les nouveaux mots de passe ne correspondent pas.", "alert-danger"],
     4 => ["Le nouveau mot de passe est identique à l'ancien.", "alert-danger"],
@@ -175,17 +175,17 @@ $historicRequest->closeCursor();
             <div class="mesinformations glassmorphism-section">
                 <h2 class="title-section">Mes Informations</h2>
                 <div>
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Id de joueur : <?php echo $user->getIdUser(); ?>">
+                        ID de joueur : <?php echo $user->getIdUser(); ?>
+                    </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $user->getEmail(); ?>">
-                        Email : <p style="font-size: 0.25cm;"><?php echo $user->getEmail(); ?></p>
+                        Email : <?php echo $user->getEmail(); ?>
                     </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $user->getYear(); ?>">
                         Année de Naissance : <?php echo $user->getYear(); ?>
                     </button>
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo $user->getPseudo(); ?>">
                         Pseudo : <?php echo $user->getPseudo(); ?>
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Id de joueur : <?php echo $user->getIdUser(); ?>">
-                        ID de joueur : <?php echo $user->getIdUser(); ?>
                     </button>
                 </div>
             </div>

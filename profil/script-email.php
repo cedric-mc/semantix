@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Modifier l'email
     $user->modifyEmail($cnx, $newEmail, $changeEmail);
+    $_SESSION['user'] = serialize($user); // Mettre à jour la session
 
     // Mail
     include("../mail/mailer.php");
@@ -46,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress($newEmail);
     $mail->isHTML(true);
     $mail->Subject = "Changement d'email";
-    $mail->Body = $content;
+    $mail->Body = str_replace(":pseudo", $pseudo, getMailContent("../mail/email.php"));
     $mail->CharSet = 'UTF-8';
     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
     $mail->send();
@@ -56,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress($oldEmail);
     $mail->isHTML(true);
     $mail->Subject = "Changement d'email";
-    $mail->Body = $content;
+    $mail->Body = str_replace(":pseudo", $pseudo, getMailContent("../mail/email.php"));
     $mail->CharSet = 'UTF-8';
     $mail->send();
 

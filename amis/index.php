@@ -16,7 +16,7 @@
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
     $idUser = $user->getIdUser();
 
-    // Requête SQL pour obtenr la liste des amis
+    // Requête SQL pour obtenir la liste des amis
     $myFriendsRequest = $cnx->prepare($allFriends);
     $myFriendsRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
     $myFriendsRequest->execute();
@@ -70,9 +70,11 @@
                             <img src="<?php echo getProfilePicture($ligne->photo); ?>" alt="Photo de profil">
                             <p><?php echo $ligne->pseudo; ?></p>
                             <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
-                            <?php if ($ligne->statut == 0) { ?>
+                            <?php if ($ligne->statut == 0 && $ligne->acceptF == $idUser) { ?>
                                 <a class="btn btn-warning" href="script-friend.php?accept&friendId=<?php echo $ligne->num_user; ?>" role="button">Accepter&emsp;<i class="fa-solid fa-check"></i></a>
                                 <a class="btn btn-danger" href="script-friend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser&emsp;<i class="fa-solid fa-xmark"></i></a>
+                            <?php } elseif ($ligne->statut == 0 && $ligne->creatorF == $idUser) { ?>
+                                <span class="text-muted">En attente de l'acceptation de l'ami</span>
                             <?php } else { ?>
                                 <a class="btn btn-danger" href="script-friend.php?delete&friendId=<?php echo $ligne->num_user; ?>" role="button">Supprimer&emsp;<i class="fa-solid fa-trash"></i></a>
                             <?php } ?>
