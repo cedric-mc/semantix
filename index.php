@@ -29,7 +29,7 @@
                 </header>
                 <h2 class="subtitle">Bienvenue, joueur <?php echo $user->getPseudo(); ?></h2>
                 <button class="executeButton" onclick="window.location.href='game/start_game.php'">Solo&emsp;<i class="fa-solid fa-user"></i></button>
-                <button class="executeButton" onclick="window.location.href='game/semonkey/build/'">Multijoueur&emsp;<i class="fa-solid fa-users"></i></button>
+                <button class="executeButton disabled" disabled onclick="window.location.href='game/semonkey/build/'">Multijoueur&emsp;<i class="fa-solid fa-users"></i></button>
             </section>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
