@@ -6,6 +6,7 @@ import ScoreBoard from "./ScoreBoard";
 import { User } from "./User";
 import UserDisplay from "./UserDisplay";
 import { Button } from 'react-bootstrap';
+import ReactDOM from "react-dom/client";
 
 function App() {
     const [word, setWord] = React.useState("");
