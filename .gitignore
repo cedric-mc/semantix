@@ -1,5 +1,6 @@
 includes/conf.php
 .idea/
+.vscode/
 java/.idea
 game/partie/*
 game/test.php
