@@ -67,8 +67,7 @@ function passedTime($dateHeure) {
     return $passedTime;
 }
 
-function addStyleTableRow($action): string
-{
+function addStyleTableRow($action): string {
     // Casse
     $action = mb_strtolower($action);
     if ($action == "connexion au site") {

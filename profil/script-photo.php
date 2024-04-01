@@ -37,6 +37,7 @@
             exit();
         }
         $user->setImageData($image_data);
+        $user->logging($cnx, 12);
         $_SESSION["user"] = serialize($user);
         echo "<script>alert('Photo modifiée avec succès');</script>";
         echo "<script>window.location.replace('./');</script>";
