@@ -4,7 +4,7 @@
 
 .form-connexion {
     width: 300px;
-    margin: auto;
+    margin: 2.5rem auto;
 }
 
 form {
@@ -125,10 +125,13 @@ button#formButton:hover {
 @media screen and (max-width: 600px) {
     .glassmorphism {
         width: 90%;
-        min-width: auto; /* Supprimer la largeur minimale pour les petits écrans */
+        min-width: auto;
+        /* Supprimer la largeur minimale pour les petits écrans */
     }
 
     .form-connexion {
+        margin: 1.25rem auto;
         width: 90%;
+        min-width: auto; /* Supprimer la largeur minimale pour les petits écrans */
     }
 }

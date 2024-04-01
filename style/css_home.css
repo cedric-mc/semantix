@@ -1,11 +1,6 @@
-.home {
-    background: transparent;
-}
-
-.acceuil-container {
+.accueil-container {
     width: 100%;
-    margin: auto;
-    margin-top: 250px;
+    margin: 2.5rem auto;
 }
 
 .executeButton {

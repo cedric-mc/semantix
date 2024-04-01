@@ -1,3 +1,7 @@
+label {
+    color: black;
+}
+
 html {
     padding: 20px;
     font-family: Arial, sans-serif; /* Police plus moderne */
@@ -6,13 +10,17 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background-color: #121212; /* Fond noir foncé */
     display: flex;
     flex-direction: column;
     align-items: center; /* Centre tout le contenu */
 }
 
-.endGameBtn {
+#end {
+    display: flex;
+    justify-content: center;
+}
+
+.endGameButton, .btn .btn-primary {
     background-color: #ff0000; /* Couleur de fond - Rouge */
     font-size: 1.125rem;
     border: none;
@@ -22,57 +30,23 @@ body {
     color: #fff; /* Texte en blanc */
 }
 
-.endGameBtn:hover {
+.endGameButton:hover, .btn .btn-primary:hover {
     background-color: #cc0000; /* Changement de couleur au survol */
     cursor: pointer; /* Curseur pointeur */
 }
 
-.addWord form {
+form#add {
     display: flex;
-    flex-direction: row; /* Change this from column to row */
+    flex-direction: column;
     justify-content: center;
-    align-items: center; /* Center items vertically */
-    gap: 1rem; /* Add some gap between the input and the button */
+    align-items: center;
+    height: 100%;
 }
 
-.addWord form input[type="submit"] {
+#add input[type="submit"] {
     border-radius: 5px; /* Bordures arrondies */
     border: none;
     transition: background-color 0.3s; /* Transition douce */
-}
-
-.parent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.graph {
-    grid-area: 2 / 2 / 5 / 5;
-    padding: 20px; /* Padding pour le contenu */
-    border-radius: 10px; /* Bordures arrondies */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Ombre subtile */
-}
-
-
-.addWord {
-    grid-area: 3 / 1 / 4 / 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.addWord p {
-    font-size: 1.2rem; /* Police plus grande pour une meilleure lisibilité */
-    padding: 5px 10px; /* Padding pour un meilleur look */
-    border-radius: 5px; /* Bordures arrondies */
-    background-color: #333; /* Fond pour chaque information */
-    width: 100%; /* Largeur maximale */
-    text-align: center; /* Centrer le texte */
-    margin: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content {
@@ -114,44 +88,55 @@ body {
     background-color: #333333; /* Changement de couleur au survol */
 }
 
-.player-info {
+.add-word {
     display: flex;
+    flex-direction: row;
+    gap: 10px; /* Espacement entre les éléments */
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin: 10px 0;
 }
 
-.player-info img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 1rem;
+.score-board {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacement entre les éléments */
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
 }
 
-.player-info .username {
-    font-size: 1.5rem;
-    color: #FFFFFF;
+.custom-offcanvas {
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Ombre subtile */
 }
 
-.game-info-title {
-    font-size: 1.5rem;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Ombre subtile, comme dans le modal */
-    color: #000000; /* Texte en blanc */
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.game-info-title .btn-close {
-    color: #fff !important;
+.closeButtonStyle {
+    background: rgba(255, 0, 0, 1);
+    border: none;
+    padding: 12px 12px;
+    border-radius: 5px;
+    transition: background-color 2s ease;
+    color: #fff;
+}
+
+.closeButtonStyle:hover, .closeButtonStyle:focus, .closeButtonStyle:active {
+    background-color: rgba(255, 0, 0, 1);
     cursor: pointer;
 }
 
-.game-info {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Ombre subtile, comme dans le modal */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px; /* Espacement entre les éléments */
-}
-
-.game-info p {
-    color: #000000;
+.custom-offcanvas-body {
+    text-align: center;
 }

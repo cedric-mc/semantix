@@ -2,7 +2,9 @@
     include("../class/User.php");
     include("../class/Game.php");
     include("game_fonctions.php");
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     if (!isset($_SESSION['user'])) {
@@ -27,6 +29,7 @@
         <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="shortcut icon" href="../img/monkeyapp.png">
         <?php include("../includes/head.php"); ?>
         <style>
             * {
@@ -40,42 +43,50 @@
 
     <body>
         <div class="parent">
-            <div class="div4">
-                <h1 class="title">Semantic Analogy Explorer</h1>
+            <div class="player-info">
+                <img src="<?php echo $user->getImageSrc();?>" alt="Profile Picture">
+                <div class="username me-3"><?php echo $user->getPseudo(); ?></div>
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfogame" aria-controls="offcanvasInfogame">Informations de la partie</button>
             </div>
-            <div class="div1" id="container"></div> <!-- Le graphique sera affiché ici -->
             <!-- Formulaire pour ajouter un nouveau mot -->
-            <div class="div2">
+            <div class="addWord">
                 <form id="add" action="addWordGraph.php" method="POST">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="word" name="word" placeholder="Nouveau mot" required>
                         <label for="word">Nouveau mot</label>
                     </div>
-                    <input type="submit" value="Insérer un nouveau mot" class="btn btn-success <?php if (count($game->wordsArray) >= 7) echo 'disabled'; ?>">
+                    <input type="submit" value="Insérer un nouveau mot" class="btn btn-success border border-white <?php if (count($game->wordsArray) >= 7) echo 'disabled'; ?>">
                 </form>
-                <div id="end">
-                    <a href="#" class="btn btn-primary" id="endGameButton">Finir la partie</a>
+            </div>
+            <div class="graph" id="container"></div><!-- Le graphique sera affiché ici -->
+            <button type="button" class="endGameBtn" data-bs-toggle="modal" data-bs-target="#endGameModal" id="endGameButton">
+                Finir la partie
+            </button>
+            <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="offcanvasInfogame" aria-labelledby="offcanvasInfogameLabel">
+                <div class="offcanvas-header game-info-title">
+                    <h5 class="offcanvas-title" id="offcanvasInfogameLabel">Informations de la partie</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body game-info">
+                    <p>Score actuel : <?php echo calculateScore($user); ?></p>
+                    <p>Nombre de mots : <?php echo count($game->wordsArray); ?></p>
+                    <p>Dernier mot : <?php if (count($game->wordsArray) > 2) echo ucfirst($game->lastWord); else echo "Aucun mot entré"; ?></p>
+                    <p>Nombre de mots restants : <?php echo 7 - count($game->wordsArray) ?></p>
                 </div>
             </div>
-                <div class="div3">
-                <p>Score actuel : <?php echo calculateScore($user); ?></p>
-                <p>Nombre de mots : <?php echo count($game->wordsArray); ?></p>
-                <p>Dernier mot : <?php if (count($game->wordsArray) > 2) echo ucfirst($game->lastWord); else echo "Aucun mot entré"; ?>
-                </p>
-                <p>Nombre de mots restants : <?php echo 7 - count($game->wordsArray) ?></p>
-            </div>
-            <div class="modal fade" id="endGameModal" tabindex="-1">
+            <div class="modal fade" id="endGameModal" tabindex="-1" aria-labelledby="endGameModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Fin de la Partie</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title" id="endGameModalLabel">Fin de la Partie</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <p>Bravo ! Votre score final est de <?php echo calculateScore($user); ?> point(s).<br> Relèverez-vous le défi à nouveau ? </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="closeModalButton" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-info" id="replayButton">Rejouer</button>
+                            <button type="button" class="btn btn-secondary" id="closeModalButton" data-bs-dismiss="modal">Terminer la partie</button>
                         </div>
                     </div>
                 </div>
@@ -181,25 +192,19 @@
             });
 
             document.addEventListener('DOMContentLoaded', function() {
-                // Récupérez le modal par son ID
-                var endGameModal = new bootstrap.Modal(document.getElementById('endGameModal'));
 
-                // Récupérez le bouton "Finir la partie" par son ID (Assurez-vous que cet ID existe dans votre HTML)
-                var endGameButton = document.getElementById("endGameButton");
-
-                // Attachez un gestionnaire d'événements au clic sur le bouton "Finir la partie"
-                endGameButton.addEventListener('click', function () {
-                    // Affichez le modal lorsque le bouton "Finir la partie" est cliqué
-                    endGameModal.show();
-                });
-
-                // Récupérez le bouton "Fermer" du modal par son ID
+                // Récupérez le bouton "Fermer" du modal par son ID et le bouton "Rejouer"
                 var closeModalButton = document.getElementById("closeModalButton");
+                var replayButton = document.getElementById("replayButton");
 
                 // Attachez un gestionnaire d'événements au clic sur le bouton "Fermer" du modal
                 closeModalButton.addEventListener('click', function () {
                     // Effectuez la redirection vers end_game.php lorsque le bouton "Fermer" du modal est cliqué
                     window.location.href = "end_game.php";
+                });
+                // Attachez un gestionnaire d'événements au clic sur le bouton "Rejouer"
+                replayButton.addEventListener('click', function () {
+                    window.location.href = "end_game.php?again=true";
                 });
             });
         </script>

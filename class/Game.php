@@ -1,12 +1,11 @@
 <?php
-
-    require_once('User.php');
+    include_once("User.php");
 
     class Game {
-        public $user;
-        public $tour;
-        public $wordsArray;
-        public $lastWord;
+        public User $user;
+        public int $tour;
+        public array $wordsArray;
+        public string $lastWord;
 
         public function __construct($user, $tour) {
             $this->user = $user;
@@ -35,6 +34,19 @@
 
         public function setLastWord($word) {
             $this->lastWord = $word;
+        }
+
+        public function isWordInFile($word): bool {
+            $file = fopen("partie/game_data_" . $this->user->getPseudo() . ".txt", "r");
+            while (!feof($file)) {
+                $line = fgets($file);
+                if (strpos($line, $word) !== false) {
+                    fclose($file);
+                    return true;
+                }
+            }
+            fclose($file);
+            return false;
         }
     }
 ?>

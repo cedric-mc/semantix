@@ -3,7 +3,9 @@
         include_once("../class/User.php");
         include_once("../class/Game.php");
         include_once("game_fonctions.php");
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         // Erreur PHP
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
@@ -18,6 +20,14 @@
         $user = User::createUserFromUser(unserialize($_SESSION['user']));
         $game = Game::createGameFromGame(unserialize($_SESSION['game']));
         $newWord = $_POST['word'];
+        // Vérifier que le mot n'est pas dans le fichier de partie
+        if ($game->isWordInFile($newWord)) {
+            $_SESSION['game'] = serialize($game);
+            // Script JS pour afficher une alerte
+            echo "<script>alert('Le mot a déjà été entré.')</script>";
+            echo "<script>window.location.replace('./');</script>";
+            exit();
+        }
         $game->setLastWord($newWord);
 
         if ($game->isWordInArray($newWord)) {
@@ -41,7 +51,7 @@
         }
         exec("./C/bin/add_word C/fasttext-fr.bin $newWord " . $user->getPseudo());
         // Java : trier les paires
-        $commandeJar = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_" . $user->getPseudo() . ".txt partie/mst_" . $user->getPseudo() . ".txt 2>&1";
+        $commandeJar = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.semonkey.main.Main partie/game_data_" . $user->getPseudo() . ".txt partie/mst_" . $user->getPseudo() . ".txt 2>&1";
         exec($commandeJar, $output);
         // Vérifier si le mot est dans le graphe
         if (!isWordInGraph($user, $newWord)) {

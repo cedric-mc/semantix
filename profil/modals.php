@@ -52,11 +52,11 @@
                         <form action="script-email.php" method="POST">
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" placeholder="Ancienne adresse email" name="email1" id="email1" required>
-                                <label for="email1">Ancienne adresse email :</label>
+                                <label for="email1">Ancienne adresse email</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" placeholder="Nouvelle adresse email" name="email2" id="email2" required>
-                                <label for="email2">Nouvelle adresse email :</label>
+                                <label for="email2">Nouvelle adresse email</label>
                             </div>
                             <button id="formButtonEmail" type="submit" class="btn btn-outline-secondary fw-semibold">Valider</button>
                         </form>
@@ -82,15 +82,15 @@
                         <form action="verification_code_password.php" method="POST">
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" placeholder="Ancien mot de passe" id="password1" name="password1" required>
-                                <label for="password1">Ancien mot de passe :</label>
+                                <label for="password1">Ancien mot de passe</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" placeholder="Nouveau mot de passe" id="password2" name="password2" required>
-                                <label for="password2">Nouveau mot de passe :</label>
+                                <label for="password2">Nouveau mot de passe</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="password" class="form-control" placeholder="Confirmer le nouveau mot de passe" id="password3" name="password3" required>
-                                <label for="password3">Confirmer le nouveau mot de passe :</label>
+                                <label for="password3">Confirmer le nouveau mot de passe</label>
                             </div>
                             <button id="formButtonMdp" type="submit" class="btn btn-outline-secondary fw-semibold">Valider</button>
                         </form>
