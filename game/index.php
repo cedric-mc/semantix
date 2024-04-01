@@ -84,7 +84,7 @@
                             <p>Bravo ! Votre score final est de <?php echo calculateScore($user); ?> point(s).<br> Relèverez-vous le défi à nouveau ? </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Rejouer</button>
+                            <button type="button" class="btn btn-info" id="replayButton">Rejouer</button>
                             <button type="button" class="btn btn-secondary" id="closeModalButton" data-bs-dismiss="modal">Terminer la partie</button>
                         </div>
                     </div>
@@ -192,13 +192,18 @@
 
             document.addEventListener('DOMContentLoaded', function() {
 
-                // Récupérez le bouton "Fermer" du modal par son ID
+                // Récupérez le bouton "Fermer" du modal par son ID et le bouton "Rejouer"
                 var closeModalButton = document.getElementById("closeModalButton");
+                var replayButton = document.getElementById("replayButton");
 
                 // Attachez un gestionnaire d'événements au clic sur le bouton "Fermer" du modal
                 closeModalButton.addEventListener('click', function () {
                     // Effectuez la redirection vers end_game.php lorsque le bouton "Fermer" du modal est cliqué
                     window.location.href = "end_game.php";
+                });
+                // Attachez un gestionnaire d'événements au clic sur le bouton "Rejouer"
+                replayButton.addEventListener('click', function () {
+                    window.location.href = "end_game.php?again=true";
                 });
             });
         </script>
