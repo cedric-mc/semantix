@@ -1,7 +1,9 @@
 <?php
     include_once("game_fonctions.php");
     include_once("../class/Game.php");
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
     if (!isset($_SESSION['user'])) {
         header("Location: ../");
         exit();
@@ -53,7 +55,7 @@
         }
     }
 
-    $commandeJava = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_" . $user->getPseudo() . ".txt 2>&1";
+    $commandeJava = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.semonkey.main.Main partie/game_data_" . $user->getPseudo() . ".txt 2>&1";
     exec($commandeJava, $output);
     $_SESSION['output'] = $output;
 
