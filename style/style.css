@@ -64,6 +64,7 @@ h1.title {
     background: transparent;
 }
 
+
 @media (max-width: 900px) {
     .glassmorphism {
         margin: 5rem 0;
@@ -71,4 +72,7 @@ h1.title {
         margin-left: auto;
         margin-right: auto;
     }
+}
+
+
 }
