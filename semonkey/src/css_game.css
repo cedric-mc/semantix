@@ -20,7 +20,7 @@ body {
     justify-content: center;
 }
 
-#endGameButton, .btn btn-primary {
+.endGameButton, .btn .btn-primary {
     background-color: #ff0000; /* Couleur de fond - Rouge */
     font-size: 1.125rem;
     border: none;
@@ -30,7 +30,7 @@ body {
     color: #fff; /* Texte en blanc */
 }
 
-#endGameButton:hover, .btn btn-primary:hover {
+.endGameButton:hover, .btn .btn-primary:hover {
     background-color: #cc0000; /* Changement de couleur au survol */
     cursor: pointer; /* Curseur pointeur */
 }
@@ -107,10 +107,8 @@ form#add {
 }
 
 .custom-offcanvas {
-    background: linear-gradient(-45deg, #000000, #434343, #000000) !important; /* Fond sombre */
-    color: #fff !important; /* Texte en blanc */
     border: none;
-    animation: Gradient 15s ease infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Ombre subtile */
 }
 
 @keyframes Gradient {
@@ -126,15 +124,19 @@ form#add {
 }
 
 .closeButtonStyle {
-    background-color: /* #ff0000 en rgba pour la transparence */ rgba(255, 0, 0, 1) !important; /* Couleur de fond - Rouge avec transparence */
-    border: none !important;
-    padding: 12px 12px !important; /* Plus de padding pour un meilleur clic */
-    border-radius: 5px !important; /* Bordures arrondies */
-    transition: background-color 0.3s ease !important; /* Transition douce */
-    color: #fff !important; /* Texte en blanc */
+    background: rgba(255, 0, 0, 1);
+    border: none;
+    padding: 12px 12px;
+    border-radius: 5px;
+    transition: background-color 2s ease;
+    color: #fff;
 }
 
-.closeButtonStyle:hover {
-    background-color: /* #cc0000 en rgba pour la transparence */ rgba(204, 0, 0, 0.5) !important; /* Changement de couleur au survol */
-    cursor: pointer !important; /* Curseur pointeur */
+.closeButtonStyle:hover, .closeButtonStyle:focus, .closeButtonStyle:active {
+    background-color: rgba(255, 0, 0, 1);
+    cursor: pointer;
+}
+
+.custom-offcanvas-body {
+    text-align: center;
 }
