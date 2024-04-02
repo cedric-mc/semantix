@@ -40,17 +40,7 @@
 
             console.log(userId);
             // écrire le code dans un fichier JSON dans le répertoire tmp/
-            let data = JSON.stringify(userId);
-            let url = 'tmp/user.json';
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', url, true);
-            xhr.setRequestHeader('Content-type', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log('Fichier JSON créé');
-                }
-            };
-            xhr.send(data);
+            <?php file_put_contents("tmp/user.json", json_encode($user)); ?>
         </script>
     </body>
 </html>
