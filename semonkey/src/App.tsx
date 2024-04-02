@@ -19,6 +19,16 @@ function App() {
     const handleEndGame = () => setShowEndGame(true);
     const handleCloseEndGame = () => setShowEndGame(false);
 
+   /* useEffect(() => {
+        axios.get('https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/')
+            .then(response => {
+                setUser(new User(response.data.id, response.data.name, response.data.email, response.data.username));
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
+    }, []);*/
+
     useEffect(() => {
         axios.get('https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/')
             .then(response => {
@@ -28,6 +38,10 @@ function App() {
                 console.error('Error fetching user data:', error);
             });
     }, []);
+
+    if (!user) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="parent">

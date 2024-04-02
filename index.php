@@ -6,13 +6,14 @@
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
-    $userData = [
-        $user->getIdUser(),
-        $user->getPseudo(),
-        $user->getImageSrc(),
-    ];
-    $userDataJson = json_encode($userData);
-    echo "<p style='opacity: 0'>$userDataJson</p>";
+    header('Content-Type: application/json');
+
+    echo json_encode([
+        'idUser' => $user->getIdUser(),
+        'pseudo' => $user->getPseudo(),
+        'imageSrc' => $user->getImageSrc()
+    ]);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
