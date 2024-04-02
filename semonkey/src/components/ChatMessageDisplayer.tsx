@@ -1,6 +1,6 @@
 import React from "react";
 import { Message } from "./Message";
-import "./style/ChatMessageDisplayer.css";
+import "../style/ChatMessageDisplayer.css";
 
 const ChatMessageDisplayer = (props: { message: Message }) => {
     const handleCopy = () => {

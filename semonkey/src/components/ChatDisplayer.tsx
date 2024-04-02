@@ -1,11 +1,11 @@
 import React from "react";
-import "./style/ChatDisplayer.css";
+import "../style/ChatDisplayer.css";
 import ChatMessageDisplayer from "./ChatMessageDisplayer";
 import {Message} from "./Message";
 
 const ChatDisplayer = (props: { messages: Message[] }) => {
     return (
-        <div>
+        <div className="chat-displayer">
             {props.messages.map((message, index) => (
                 <ChatMessageDisplayer key={index} message={message}/>
             ))}

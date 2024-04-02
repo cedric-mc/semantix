@@ -1,19 +1,36 @@
-.chat-message {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: #f0f0f0;
+.sent-message {
+    background-color: #4CAF50; /* vert */
+    color: white;
+    text-align: right;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
-.message-send {
-    background-color: #f0f0f0;
-    margin-left: auto;
+.received-message {
+    background-color: #f2f2f2; /* gris clair */
+    color: black;
+    text-align: left;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
-.message-receive {
-    background-color: #f0f0f0;
-    margin-right: auto;
+.message-content {
+    display: inline-block;
+    max-width: 80%; /* ajustez la largeur selon vos besoins */
+}
+
+.copy-button {
+    background-color: #008CBA; /* bleu */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
 }

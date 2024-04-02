@@ -57,7 +57,7 @@ function App() {
             <EndGameDisplayer showModal={showEndGame} handleCloseModal={handleCloseEndGame} handleReplay={() => {
             }}/>
             <div className="chat">
-                <Chatter chatManager={chatManager} user={user} showChat={showChat} />
+                <Chatter chatManager={chatManager} user={user} showChat={showChat} handleShowChat={handleShowChat} />
             </div>
         </div>
     );

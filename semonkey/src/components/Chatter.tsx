@@ -7,11 +7,10 @@ import useWebSocket from "react-use-websocket";
 import {Offcanvas} from "react-bootstrap";
 import {User} from "../User";
 
-const Chatter = (props: { chatManager: ChatManager | null, user: User, showChat: boolean }) => {
+const Chatter = (props: { chatManager: ChatManager | null, user: User, showChat: boolean, handleShowChat: () => void }) => {
     const [messages, setMessages] = useState<{ kind: 'sent' | 'received', content: string, date: Date, username: string }[]>([]);
     const [chatStarted, setChatStarted] = useState(false);
     const [username, setUsername] = useState('');
-    const [showChat, setShowChat] = useState(false);
 
     const { sendMessage, readyState, lastMessage, getWebSocket } = useWebSocket('ws://localhost:2024', {
         onMessage: (event) => {
@@ -34,7 +33,7 @@ const Chatter = (props: { chatManager: ChatManager | null, user: User, showChat:
 
     return (
         <div>
-            <Offcanvas show={showChat} onHide={() => setShowChat(false)} placement="start" title="Chat">
+            <Offcanvas show={props.showChat} onHide={props.handleShowChat} placement="start" title="Chat">
                 {!chatStarted ? (
                     <ChatLauncher onChatStarted={handleChatStarted} user={props.user}/>
                 ) : (
