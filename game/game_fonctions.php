@@ -29,7 +29,7 @@
         // Lire le fichier jusqu'à la fin
         while (($ligne = fgets($fichier)) !== false) {
             if (strpos($ligne, "EOF") !== false) {
-                break;
+                continue;
             }
             // Si la ligne est sous la forme "mot1 -> mot2 : nombre"
             if (preg_match($format, $ligne, $matches)) {

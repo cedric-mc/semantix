@@ -29,7 +29,7 @@
             exit();
         }
         $game->setLastWord($newWord);
-
+        // Vérifier que le mot n'est pas déjà dans la chaîne
         if ($game->isWordInArray($newWord)) {
             $_SESSION['game'] = serialize($game);
             // Script JS pour afficher une alerte
@@ -42,7 +42,7 @@
 
         $commande_verif_mot = "./C/bin/dictionary_lookup C/arbre_lexicographique.lex $newWord";
         $verif_mot = shell_exec($commande_verif_mot);
-        if ($verif_mot == -1) {
+        if ($verif_mot == -1) { // Si le mot n'existe pas dans le dictionnaire
             $_SESSION['game'] = serialize($game);
             // Script JS pour afficher une alerte
             echo "<script>alert('Le mot n\'existe pas dans le dictionnaire.')</script>";
