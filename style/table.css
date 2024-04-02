@@ -33,6 +33,37 @@
     background: linear-gradient(to right, #CD7F32, #8B4513, #804A00, #CD7F32, #B87333, #B8860B, #CD7F32, #D2691E, #CD7F32);
     animation: Gradient 5s ease infinite;
 }
+.glassmorphism.accueil-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: auto;
+    width: 50vmin; /* Adapte la taille pour garder un carré responsive */
+    height: 50vmin; /* Même valeur que la largeur pour un carré */
+    max-width: 600px; /* Limite la largeur maximale */
+    max-height: 600px; /* Limite la hauteur maximale */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1000px) {
+    .glassmorphism.accueil-container {
+        width: 100vmin; /* Augmente la taille pour les petits écrans */
+        height: 100vmin;
+        max-width: 90%; /* Permet au conteneur de prendre plus de largeur sur petits écrans */
+        max-height: 90%; /* Idem pour la hauteur */
+        padding: 15px; /* Ajuste le padding pour petits écrans */
+    }
+}
+
 
 @keyframes Gradient {
     0% {

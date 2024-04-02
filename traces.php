@@ -43,7 +43,7 @@
             <div class="text-end">
                 <p class="text-white">Nombre de traces : <?php echo count($tracesOnlyMeResult); ?></p>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive w-100">
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-dark">
