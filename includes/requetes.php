@@ -29,4 +29,6 @@
     // Requêtes SQL pour le changement de mot de passe
     $isPasswordCorrect = "SELECT motdepasse, salt FROM sae_users WHERE pseudo = :pseudo;";
     $changePassword = "UPDATE sae_users SET motdepasse = :motdepasse, salt = :salt WHERE pseudo = :pseudo;";
+
+    $friendSearch = "SELECT DISTINCT u.num_user, u.pseudo, u.email, u.annee_naissance, u.photo, f.statut, f.user_id AS creatorF, f.friend_id AS acceptF FROM sae_users u JOIN sae_friendship f ON u.num_user = f.friend_id OR u.num_user = f.user_id WHERE u.num_user <> :num_user LIMIT 1;";
 ?>

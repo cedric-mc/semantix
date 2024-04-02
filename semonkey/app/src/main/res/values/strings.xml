@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Semonkey</string>
+    <string name="message">Vous avez reçu un message</string>
+</resources>
