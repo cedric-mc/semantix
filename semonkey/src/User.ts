@@ -5,16 +5,24 @@ export class User {
     private year: number;
     private imageData: string | null;
 
-    constructor(idUser: number, pseudo: string, email: string, year: number, imageData: string | null = null) {
+    constructor(idUser: number) {
+        this.idUser = idUser;
+        this.pseudo = "";
+        this.email = "";
+        this.year = 0;
+        this.imageData = null;
+    }
+
+    /*constructor(idUser: number, pseudo: string, email: string, year: number, imageData: string | null = null) {
         this.idUser = idUser;
         this.pseudo = pseudo;
         this.email = email;
         this.year = year;
         this.imageData = imageData;
-    }
+    }*/
 
     static createUserFromUser(user: User) {
-        return new User(user.getIdUser(), user.getPseudo(), user.getEmail(), user.getYear(), user.getImageData());
+        return new User(user.getIdUser());
     }
 
     getIdUser(): number {

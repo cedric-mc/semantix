@@ -12,7 +12,7 @@ function App() {
     const [word, setWord] = React.useState("");
     const [showInfo, setShowInfo] = React.useState(false);
     const [showEndGame, setShowEndGame] = React.useState(false);
-    const [user, setUser] = useState<User>(new User(1, "John Doe", "john.doe@email.fr", 2024, "/img/profil.webp"));
+    const [user, setUser] = useState<User>(new User(1));
 
     const handleShowInfo = () => setShowInfo(true);
     const handleCloseInfo = () => setShowInfo(false);
@@ -32,7 +32,7 @@ function App() {
     useEffect(() => {
         axios.get('https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/')
             .then(response => {
-                setUser(new User(response.data.id, response.data.name, response.data.email, response.data.username));
+                setUser(new User(response.data.id));
             })
             .catch(error => {
                 console.error('Error fetching user data:', error);

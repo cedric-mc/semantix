@@ -9,9 +9,7 @@
     header('Content-Type: application/json');
 
     echo json_encode([
-        'idUser' => $user->getIdUser(),
-        'pseudo' => $user->getPseudo(),
-        'imageSrc' => $user->getImageData()
+        'idUser' => $user->getIdUser()
     ]);
 ?>
 <!DOCTYPE html>
