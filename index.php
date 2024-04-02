@@ -11,9 +11,8 @@
     echo json_encode([
         'idUser' => $user->getIdUser(),
         'pseudo' => $user->getPseudo(),
-        'imageSrc' => $user->getImageSrc()
+        'imageSrc' => $user->getImageData()
     ]);
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
