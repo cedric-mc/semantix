@@ -6,7 +6,9 @@
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
-    file_put_contents("tmp/user.json", json_encode($user));
+    // Mettre les données de l'utilisateur dans un fichier JSON dans le répertoire tmp/
+    $json = json_encode($user);
+    file_put_contents('tmp/user.json', $json);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
