@@ -120,25 +120,25 @@ $historicRequest->closeCursor();
                         <li>
                             <ul>
                                 <li>Score Minimum</li>
-                                <li><button class="btn btn-dark"><?php echo $scoreResult->minS == null ? 0 : $scoreResult->minS; ?> <i class="fa-solid fa-arrow-down"></i></button></li>
+                                <li><button class="btn btn-warning"><?php echo $scoreResult->minS == null ? 0 : $scoreResult->minS; ?> <i class="fa-solid fa-arrow-down"></i></button></li>
                             </ul>
                         </li>
                         <li>
                             <ul>
                                 <li>Score Maximum</li>
-                                <li><button class="btn btn-dark"><?php echo $scoreResult->maxS == null ? 0 : $scoreResult->maxS; ?> <i class="fa-solid fa-arrow-up"></i></button></li>
+                                <li><button class="btn btn-warning"><?php echo $scoreResult->maxS == null ? 0 : $scoreResult->maxS; ?> <i class="fa-solid fa-arrow-up"></i></button></li>
                             </ul>
                         </li>
                         <li>
                             <ul>
                                 <li>Score Moyen</li>
-                                <li><button class="btn btn-dark"><?php echo round($scoreResult->avgS) == null ? 0 : round($scoreResult->avgS); ?> <i class="fa-solid fa-arrows-left-right"></i></button></li>
+                                <li><button class="btn btn-warning"><?php echo round($scoreResult->avgS) == null ? 0 : round($scoreResult->avgS); ?> <i class="fa-solid fa-arrows-left-right"></i></button></li>
                             </ul>
                         </li>
                         <li>
                             <ul>
                                 <li>Nombre de Parties</li>
-                                <li><button class="btn btn-dark"><?php echo $scoreResult->nbParties == null ? "<span style='color: red'>Essayez de jouer !</span>" : $scoreResult->nbParties; ?> <i class="fa-solid fa-hashtag"></i></button></li>
+                                <li><button class="btn btn-warning"><?php echo $scoreResult->nbParties == null ? "<span style='color: red'>Essayez de jouer !</span>" : $scoreResult->nbParties; ?> <i class="fa-solid fa-hashtag"></i></button></li>
                             </ul>
                         </li>
                     </ul>
@@ -175,16 +175,16 @@ $historicRequest->closeCursor();
             <div class="mesinformations glassmorphism-section">
                 <h2 class="title-section">Mes Informations</h2>
                 <div>
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Id de joueur : <?php echo $user->getIdUser(); ?>">
+                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Id de joueur : <?php echo $user->getIdUser(); ?>">
                         ID de joueur : <?php echo $user->getIdUser(); ?>
                     </button>
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $user->getEmail(); ?>">
+                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Email : <?php echo $user->getEmail(); ?>">
                         Email : <?php echo $user->getEmail(); ?>
                     </button>
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $user->getYear(); ?>">
+                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $user->getYear(); ?>">
                         Année de Naissance : <?php echo $user->getYear(); ?>
                     </button>
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo $user->getPseudo(); ?>">
+                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo $user->getPseudo(); ?>">
                         Pseudo : <?php echo $user->getPseudo(); ?>
                     </button>
                 </div>
