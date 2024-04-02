@@ -34,7 +34,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             // Encodé en json les données de l'utilisateur
-            let user = <?php echo json_encode($user); ?>;
+            let user = {
+                idUser: <?php echo $user->getIdUser(); ?>,
+                pseudo: "<?php echo $user->getPseudo(); ?>",
+                email: "<?php echo $user->getEmail(); ?>",
+                year: <?php echo $user->getYear(); ?>,
+                imageData: "<?php echo $user->getImageData(); ?>"
+            };
             // Stocker les données de l'utilisateur dans le localStorage
             localStorage.setItem('user', JSON.stringify(user));
 
