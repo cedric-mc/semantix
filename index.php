@@ -6,6 +6,7 @@
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
+    file_put_contents("tmp/user.json", json_encode($user));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,7 +41,7 @@
 
             console.log(userId);
             // écrire le code dans un fichier JSON dans le répertoire tmp/
-            <?php file_put_contents("tmp/user.json", json_encode($user)); ?>
+
         </script>
     </body>
 </html>
