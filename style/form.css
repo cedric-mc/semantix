@@ -1,11 +1,27 @@
-.glassmorphism {
-    min-width: 25rem;
+body, html {
+    height: 100%; /* Assurez-vous que le corps et le html s'étendent à toute la hauteur */
+    margin: 0; /* Retirer les marges par défaut */
+    display: flex; /* Utilisez flex pour centrer le contenu */
+    justify-content: center; /* Centrage horizontal */
+    align-items: center; /* Centrage vertical */
 }
 
-.form-connexion {
-    width: 300px;
-    margin: 2.5rem auto;
+.glassmorphism {
+    min-width: 25rem;
+    width: 300px; /* Définissez une largeur spécifique si nécessaire */
+    margin: auto; /* Centrage automatique dans le flex context */
+    /* align-content est inutile ici puisque nous utilisons flex sur le body */
 }
+
+.glassmorphism a {
+    color: #efefef;
+    text-decoration: none;
+}
+
+.glassmorphism a:hover {
+    text-decoration: underline;
+}
+
 
 form {
     display: flex;
@@ -90,14 +106,6 @@ input:-internal-autofill-selected {
     margin-left: 0.5rem;
 }
 
-.glassmorphism a {
-    color: #efefef;
-    text-decoration: none;
-}
-
-.glassmorphism a:hover {
-    text-decoration: underline;
-}
 
 button#formButton {
     background: #fff;
