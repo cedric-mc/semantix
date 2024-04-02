@@ -20,7 +20,7 @@ function App() {
     const handleCloseEndGame = () => setShowEndGame(false);
 
     useEffect(() => {
-        axios.get('https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/includes/jsonUser.php')
+        axios.get('https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/')
             .then(response => {
                 setUser(new User(response.data.id, response.data.name, response.data.email, response.data.username));
             })
