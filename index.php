@@ -36,14 +36,7 @@
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            // Encodé en json les données de l'utilisateur
-            let userId = <?php echo $user->getIdUser(); ?>;
-            // Stocker les données de l'utilisateur dans le localStorage
-            localStorage.setItem('user', JSON.stringify(userId));
-
-            console.log(userId);
-            // écrire le code dans un fichier JSON dans le répertoire tmp/
-
+            console.log(<?php echo $json; ?>);
         </script>
     </body>
 </html>
