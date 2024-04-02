@@ -1,3 +1,8 @@
+body {
+    /* Empêcher scroll horizontal */
+    overflow-x: hidden;
+}
+
 .glassmorphism.accueil-container {
     display: flex;
     flex-direction: column;
@@ -23,9 +28,6 @@
     width: 100%;
     margin: 2.5rem auto;
 }
-
-
-
 
 .executeButton {
     margin-top: 1.5rem;
