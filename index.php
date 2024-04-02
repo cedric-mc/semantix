@@ -40,7 +40,7 @@
             }
             console.log(userData);
             // Local storage
-            localStorage.setItem('user', JSON.stringify(userData));
+            localStorage.setItem('userData', JSON.stringify(userData));
         </script>
     </body>
 </html>

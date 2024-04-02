@@ -19,9 +19,13 @@ function App() {
     const handleCloseEndGame = () => setShowEndGame(false);
 
     useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('user') || '{}');
-        console.log(userData);
-        setUser(new User(userData.idUser, userData.pseudo));
+        let userData = localStorage.getItem('userData');
+        if (userData) {
+            let user = JSON.parse(userData);
+            setUser(new User(user.idUser, user.pseudo));
+        } else {
+            setUser(new User(0, "Unknown"));
+        }
     }, []);
 
     if (!user) {
