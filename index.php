@@ -9,7 +9,7 @@
     $userData = [
         $user->getIdUser(),
         $user->getPseudo(),
-        $user->getImageData(),
+        $user->getImageSrc(),
     ];
     $userDataJson = json_encode($userData);
     echo $userDataJson;
