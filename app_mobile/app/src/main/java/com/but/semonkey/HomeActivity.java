@@ -126,6 +126,7 @@ public class HomeActivity extends AppCompatActivity implements MessageAdapter.Me
         String authToken = sharedPreferences.getString("auth_token", null);
         if (authToken != null) {
             // Fetch messages from server using auth token
+            messageList.clear();
             fetchMessages(authToken);
         } else {
             // Handle case where auth token is not available

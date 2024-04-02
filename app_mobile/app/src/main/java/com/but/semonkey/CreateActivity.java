@@ -77,7 +77,7 @@ public class CreateActivity extends AppCompatActivity {
 
     // Méthode pour charger l'URL dans le WebView
     private void loadUrl() {
-        wv.loadUrl("https://perso-etudiant.u-pem.fr/~mamadou.ba2/semantix/inscription/index-mobile.php");
+        wv.loadUrl("https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/inscription/index-mobile.php");
         wv.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
