@@ -11,7 +11,9 @@
         $user->getPseudo(),
         $user->getImageData(),
     ];
-    echo json_encode($userData);
+    $userDataJson = json_encode($userData);
+    echo "<script>let userData = $userDataJson;</script>";
+    echo $userDataJson;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
