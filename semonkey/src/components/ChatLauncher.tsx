@@ -1,25 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ChatLauncher = (props: {
-    initialName: string,
-    initialEmail: string,
-    onChatStarted: (name: string, email: string) => void
-}) => {
+const ChatLauncher = (props: { initialName: string, initialEmail: string, onChatStarted: (name: string, email: string) => void }) => {
+    const [name, setName] = useState(props.initialName);
+    const [email, setEmail] = useState(props.initialEmail);
+
+    const handleNameChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        setName(event.target.value);
+    };
+    const handleEmailChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        setEmail(event.target.value);
+    };
+    const handleSubmit = (event: { preventDefault: () => void; }) => {
+        event.preventDefault();
+        props.onChatStarted(name, email);
+    };
+
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Nom</label>
-                <input type="text" name="name" defaultValue={props.initialName}/>
+                <input type="text" name={name} onChange={handleNameChange}/>
                 <label>Email</label>
-                <input type="email" name="email" defaultValue={props.initialEmail}/>
+                <input type="email" name={email} onChange={handleEmailChange}/>
 
-                <button onClick={(e) => {
-                    e.preventDefault();
-                    const name = (document.querySelector('input[name="name"]') as HTMLInputElement).value;
-                    const email = (document.querySelector('input[name="email"]') as HTMLInputElement).value;
-                    props.onChatStarted(name, email);
-                }}>Commencer le chat
-                </button>
+                <button type="submit" onClick={handleSubmit}>Commencer le chat</button>
             </form>
         </div>
     )

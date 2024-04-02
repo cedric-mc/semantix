@@ -1,12 +1,19 @@
 import React from "react";
 import "./style/ChatMessageDisplayer.css";
 
-const ChatMessageDisplayer = (props: { messages: { name: string, message: string }[], onMessageSent: (message: string) => void }) => {
+const ChatMessageDisplayer = (props: { message: Message }) => {
+    const handleCopy = () => {
+        navigator.clipboard.writeText(props.message.content).then(r => console.log('Copied')).catch(e => console.error('Error copying'));
+    };
+
     return (
-        <div className="chat-message">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+        <div style={{
+            textAlign: props.message.kind === 'received' ? 'left' : 'right',
+            backgroundColor: props.message.kind === 'received' ? '#f2f2f2' : '#4CAF50',
+            padding: '10px',
+            margin: '10px' }}>
+            <p>{props.message.content}</p>
+            <button onClick={handleCopy}>Copy Message</button>
         </div>
     );
 };
