@@ -19,7 +19,8 @@
         }
         $user = User::createUserFromUser(unserialize($_SESSION['user']));
         $game = Game::createGameFromGame(unserialize($_SESSION['game']));
-        $newWord = $_POST['word'];
+        // Mettre en minuscule le mot
+        $newWord = strtolower($_POST['word']);
         // Vérifier que le mot n'est pas dans le fichier de partie
         if ($game->isWordInFile($newWord)) {
             $_SESSION['game'] = serialize($game);
