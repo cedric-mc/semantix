@@ -37,6 +37,8 @@
             let user = <?php echo json_encode($user); ?>;
             // Stocker les données de l'utilisateur dans le localStorage
             localStorage.setItem('user', JSON.stringify(user));
+
+            console.log(user);
         </script>
     </body>
 </html>
