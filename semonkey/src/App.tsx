@@ -21,7 +21,7 @@ function App() {
     useEffect(() => {
         // Fetch user data from the server
         // fetch("https://jsonplaceholder.typicode.com/users/1")
-        fetch("https://etudiant.u-pem.fr/~mariyaconsta02/semantix/")
+        fetch("https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/")
             .then(response => response.json())
             .then(data => {
                 setUser(new User(data.id, data.name, data.email, data.username));

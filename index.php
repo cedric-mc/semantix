@@ -39,6 +39,8 @@
             localStorage.setItem('user', JSON.stringify(userId));
 
             console.log(userId);
+            // écrire le code dans un fichier JSON
+            let user = JSON.parse(localStorage.getItem('user'));
         </script>
     </body>
 </html>
