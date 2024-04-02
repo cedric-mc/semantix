@@ -23,8 +23,6 @@ function App() {
         if (userData) {
             let user = JSON.parse(userData);
             setUser(new User(user.idUser, user.pseudo));
-        } else {
-            setUser(new User(0, "Unknown"));
         }
     }, []);
 
