@@ -6,6 +6,7 @@ import "./css_game.css";
 import ScoreBoard from "./ScoreBoard";
 import {User} from "./User";
 import EndGameDisplayer from "./EndGameDisplayer";
+import Chat from "./Chat";
 
 function App() {
     const [word, setWord] = React.useState("");
@@ -47,6 +48,7 @@ function App() {
             <ScoreBoard show={showInfo} handleClose={handleCloseInfo} game={{score: 0, wordsArray: []}}/>
             <EndGameDisplayer showModal={showEndGame} handleCloseModal={handleCloseEndGame} handleReplay={() => {
             }}/>
+            <Chat/>
         </div>
     );
 }
