@@ -7,5 +7,5 @@
         $user->getPseudo(),
         $user->getImageData(),
     ];
-    json_encode($userData);
+    echo json_encode($userData);
 ?>
