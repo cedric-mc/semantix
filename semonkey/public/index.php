@@ -2,7 +2,7 @@
     include_once("class/User.php");
     session_start();
     if (!isset($_SESSION['user'])) {
-        header('Location: connexion/');
+        header('Location: ../');
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
@@ -11,11 +11,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <link rel="icon" href="favicon.ico"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="apple-touch-icon" href="logo192.png"/>
-        <link rel="manifest" href="manifest.json"/>
-        <title>React App</title>
+        <link rel="shortcut icon" href="../img/monkeyapp.png">
+        <title>Semonkey</title>
     </head>
 
     <body>

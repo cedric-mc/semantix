@@ -1,0 +1,19 @@
+.chat-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+
+.message-send {
+    background-color: #f0f0f0;
+    margin-left: auto;
+}
+
+.message-receive {
+    background-color: #f0f0f0;
+    margin-right: auto;
+}

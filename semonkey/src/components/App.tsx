@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {Button} from 'react-bootstrap';
 import AddWord from './AddWord';
-import "./style.css";
-import "./css_game.css";
+import "../style/style.css";
+import "../style/css_game.css";
 import ScoreBoard from "./ScoreBoard";
-import {User} from "./User";
+import {User} from "../User";
 import EndGameDisplayer from "./EndGameDisplayer";
 import Chat from "./Chat";
 
