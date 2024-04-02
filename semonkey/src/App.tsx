@@ -6,7 +6,6 @@ import "./css_game.css";
 import ScoreBoard from "./ScoreBoard";
 import {User} from "./User";
 import EndGameDisplayer from "./EndGameDisplayer";
-import axios from "axios";
 
 function App() {
     const [word, setWord] = React.useState("");
@@ -19,20 +18,10 @@ function App() {
     const handleEndGame = () => setShowEndGame(true);
     const handleCloseEndGame = () => setShowEndGame(false);
 
-    /*
-    <script>
-            const userData = {
-                idUser: <?php echo $user->getIdUser(); ?>,
-                pseudo: "<?php echo $user->getPseudo(); ?>"
-            }
-            console.log(userData);
-            // Local storage
-            localStorage.setItem('userData', JSON.stringify(userData));
-        </script>
-     */
     useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
-        setUser(new User(1, userData.pseudo));
+        const userData = JSON.parse(localStorage.getItem('user') || '{}');
+        console.log(userData);
+        setUser(new User(userData.idUser, userData.pseudo));
     }, []);
 
     if (!user) {
