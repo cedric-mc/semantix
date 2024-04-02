@@ -12,7 +12,6 @@
         $user->getImageData(),
     ];
     $userDataJson = json_encode($userData);
-    echo "<script>let userData = $userDataJson;</script>";
     echo $userDataJson;
 ?>
 <!DOCTYPE html>
