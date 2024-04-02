@@ -6,13 +6,14 @@ import "../style/css_game.css";
 import ScoreBoard from "./ScoreBoard";
 import {User} from "../User";
 import EndGameDisplayer from "./EndGameDisplayer";
-import Chat from "./Chat";
+import ChatManager from "./ChatManager";
 
 function App() {
     const [word, setWord] = React.useState("");
     const [showInfo, setShowInfo] = React.useState(false);
     const [showEndGame, setShowEndGame] = React.useState(false);
     const [user, setUser] = useState<User | null>(null);
+    const [chatManager, setChatManager] = useState<ChatManager | null>(null);
 
     const handleShowInfo = () => setShowInfo(true);
     const handleCloseInfo = () => setShowInfo(false);
@@ -25,6 +26,8 @@ function App() {
             let user = JSON.parse(userData);
             setUser(new User(user.idUser, user.pseudo));
         }
+        // Initialisation du chatManager ici.
+        setChatManager(new ChatManager());
     }, []);
 
     if (!user) {
@@ -48,7 +51,7 @@ function App() {
             <ScoreBoard show={showInfo} handleClose={handleCloseInfo} game={{score: 0, wordsArray: []}}/>
             <EndGameDisplayer showModal={showEndGame} handleCloseModal={handleCloseEndGame} handleReplay={() => {
             }}/>
-            <Chat/>
+
         </div>
     );
 }

@@ -1,27 +1,28 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
+import { User } from "../User";
 
-const ChatLauncher = (props: { initialName: string, initialEmail: string, onChatStarted: (name: string, email: string) => void }) => {
-    const [name, setName] = useState(props.initialName);
-    const [email, setEmail] = useState(props.initialEmail);
+interface ChatLauncherProps {
+    user: User;
+    onChatStarted: (name: string) => void;
+}
 
-    const handleNameChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setName(event.target.value);
-    };
-    const handleEmailChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setEmail(event.target.value);
-    };
+const ChatLauncher = (props: { user: User, onChatStarted: (name: string) => void }) => {
+    const [name, setName] = useState(props.user.getPseudo);
+
+    useEffect(() => {
+        setName(props.user.getPseudo());
+    }, [props.user]);
+
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        props.onChatStarted(name, email);
+        props.onChatStarted(name);
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Nom</label>
-                <input type="text" name={name} onChange={handleNameChange}/>
-                <label>Email</label>
-                <input type="email" name={email} onChange={handleEmailChange}/>
+                <input type="text" value={name} readOnly/>
 
                 <button type="submit" onClick={handleSubmit}>Commencer le chat</button>
             </form>

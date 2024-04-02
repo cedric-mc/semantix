@@ -1,44 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import ChatLauncher from './ChatLauncher';
 import ChatMessageDisplayer from './ChatMessageDisplayer';
 import ChatSender from './ChatSender';
 import ChatManager from './ChatManager';
+import ChatDisplayer from "./ChatDisplayer";
+import useWebSocket from "react-use-websocket";
 
 const Chatter = ({ chatManager }) => {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState<{ kind: string, content: string, date: Date, username: string }[]>([]);
     const [chatStarted, setChatStarted] = useState(false);
+    const [username, setUsername] = useState('');
 
-    // Fonction pour ouvrir le chat
-    const handleChatStarted = (name, email) => {
-        chatManager.open();
+    const {
+        sendMessage,
+        readyState,
+    } = useWebSocket('ws://localhost:2024', {
+        onMessage: (event) => {
+            const message = JSON.parse(event.data);
+            setMessages(prevMessages => [...prevMessages, { kind: 'received', content: message.content, date: new Date(), username: message.username }]);
+        },
+        shouldReconnect: (closeEvent) => true,
+    });
+
+    const handleChatStarted = (name) => {
+        setUsername(name);
         setChatStarted(true);
     };
 
-    // Définit le récepteur de message
-    useEffect(() => {
-        const messageReceiver = (content) => {
-            setMessages(prevMessages => [...prevMessages, { kind: 'received', content, date: new Date() }]);
-        };
-        chatManager.setMessageReceiver(messageReceiver);
-
-        return () => {
-            chatManager.setMessageReceiver(null); // Nettoyage du récepteur lors du démontage du composant
-        };
-    }, [chatManager]);
-
-    // Fonction pour envoyer un message
-    const handleMessageEntered = (content) => {
-        chatManager.sendMessage(content);
-        setMessages(prevMessages => [...prevMessages, { kind: 'sent', content, date: new Date() }]);
-    };
+    const handleMessageEntered = useCallback((content: string) => {
+        const message = JSON.stringify({ content, username });
+        sendMessage(message);
+        setMessages(prevMessages => [...prevMessages, { kind: 'sent', content, date: new Date(), username }]);
+    }, [sendMessage, username]);
 
     return (
         <div>
             {!chatStarted ? (
-                <ChatLauncher initialName="" initialEmail="" onChatStarted={handleChatStarted} />
+                <ChatLauncher onChatStarted={handleChatStarted} />
             ) : (
                 <div>
-                    <ChatMessageDisplayer messages={messages} />
+                    <ChatDisplayer messages={messages} />
                     <ChatSender onMessageEntered={handleMessageEntered} />
                 </div>
             )}

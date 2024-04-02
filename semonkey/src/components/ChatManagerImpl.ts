@@ -1,6 +1,6 @@
 import ChatManager from './ChatManager';
 
-class MockChatManager implements ChatManager {
+class ChatManagerImpl implements ChatManager {
     private messageReceiver: ((content: string) => void) | null = null;
 
     // Ouvre la connexion (simulé)
@@ -28,4 +28,4 @@ class MockChatManager implements ChatManager {
     }
 }
 
-export default MockChatManager;
+export default ChatManagerImpl;
