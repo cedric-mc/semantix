@@ -6,6 +6,7 @@ import "./css_game.css";
 import ScoreBoard from "./ScoreBoard";
 import {User} from "./User";
 import EndGameDisplayer from "./EndGameDisplayer";
+import axios from "axios";
 
 function App() {
     const [word, setWord] = React.useState("");
@@ -19,12 +20,12 @@ function App() {
     const handleCloseEndGame = () => setShowEndGame(false);
 
     useEffect(() => {
-        // Fetch user data from the server
-        // fetch("https://jsonplaceholder.typicode.com/users/1")
-        fetch("https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/includes/jsonUser.php")
-            .then(response => response.json())
-            .then(data => {
-                setUser(new User(data.id, data.name, data.email, data.username));
+        axios.get('https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/includes/jsonUser.php')
+            .then(response => {
+                setUser(new User(response.data.id, response.data.name, response.data.email, response.data.username));
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
             });
     }, []);
 
