@@ -12,7 +12,7 @@
         $user->getImageSrc(),
     ];
     $userDataJson = json_encode($userData);
-    echo $userDataJson;
+    echo "<p style='opacity: 0'>$userDataJson</p>";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
