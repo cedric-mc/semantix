@@ -18,6 +18,26 @@
             return new Game($game->user, $game->tour);
         }
 
+        public function getUser() {
+            return $this->user;
+        }
+
+        public function getTour() {
+            return $this->tour;
+        }
+
+        public function getWordsArray() {
+            return $this->wordsArray;
+        }
+
+        public function getLastWord() {
+            return $this->lastWord;
+        }
+
+        public function getNumberOfWords() {
+            return count($this->wordsArray);
+        }
+
         public function addTour() {
             $this->tour++;
         }

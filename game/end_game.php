@@ -20,16 +20,18 @@ if (isset($_SESSION['output'])) {
 $pseudo = $user->getPseudo();
 $idUser = $user->getIdUser();
 
-// Score final
-// Ajout du score final dans la base de données
-$calculateScore = calculateScore($user);
-$requestAddFinalScore = $cnx->prepare("INSERT INTO sae_scores (num_user, score) VALUES (:num_user, :score)");
-$requestAddFinalScore->bindParam(':num_user', $idUser);
-$requestAddFinalScore->bindParam(':score', $calculateScore);
-$requestAddFinalScore->execute();
-$requestAddFinalScore->closeCursor();
-$user->logging($cnx, 8);
-unset($_SESSION['words']);
+if ($game->getNumberOfWords() > 2) {
+    // Score final
+    // Ajout du score final dans la base de données
+    $calculateScore = calculateScore($user);
+    $requestAddFinalScore = $cnx->prepare("INSERT INTO sae_scores (num_user, score) VALUES (:num_user, :score)");
+    $requestAddFinalScore->bindParam(':num_user', $idUser);
+    $requestAddFinalScore->bindParam(':score', $calculateScore);
+    $requestAddFinalScore->execute();
+    $requestAddFinalScore->closeCursor();
+    $user->logging($cnx, 8);
+    unset($_SESSION['words']);
+}
 
 // Supprimer tous les fichiers associés à l'utilisateur qui sont dans le dossier partie
 unlink("partie/game_data_$pseudo.txt");
