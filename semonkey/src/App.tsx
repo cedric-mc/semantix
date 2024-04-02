@@ -12,31 +12,27 @@ function App() {
     const [word, setWord] = React.useState("");
     const [showInfo, setShowInfo] = React.useState(false);
     const [showEndGame, setShowEndGame] = React.useState(false);
-    const [user, setUser] = useState<User>(new User(1));
+    const [user, setUser] = useState<User | null>(null);
 
     const handleShowInfo = () => setShowInfo(true);
     const handleCloseInfo = () => setShowInfo(false);
     const handleEndGame = () => setShowEndGame(true);
     const handleCloseEndGame = () => setShowEndGame(false);
 
-   /* useEffect(() => {
-        axios.get('https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/')
-            .then(response => {
-                setUser(new User(response.data.id, response.data.name, response.data.email, response.data.username));
-            })
-            .catch(error => {
-                console.error('Error fetching user data:', error);
-            });
-    }, []);*/
-
+    /*
+    <script>
+            const userData = {
+                idUser: <?php echo $user->getIdUser(); ?>,
+                pseudo: "<?php echo $user->getPseudo(); ?>"
+            }
+            console.log(userData);
+            // Local storage
+            localStorage.setItem('userData', JSON.stringify(userData));
+        </script>
+     */
     useEffect(() => {
-        axios.get('https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/')
-            .then(response => {
-                setUser(new User(response.data.id));
-            })
-            .catch(error => {
-                console.error('Error fetching user data:', error);
-            });
+        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+        setUser(new User(1, userData.pseudo));
     }, []);
 
     if (!user) {
