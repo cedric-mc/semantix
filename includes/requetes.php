@@ -14,7 +14,7 @@
 
     // Requêtes SQL pour les amis
     $allFriends = "SELECT DISTINCT u.num_user, u.pseudo, u.email, u.annee_naissance, u.photo, f.statut, f.user_id AS creatorF, f.friend_id AS acceptF FROM sae_users u JOIN sae_friendship f ON u.num_user = f.friend_id OR u.num_user = f.user_id WHERE (f.user_id = :num_user OR f.friend_id = :num_user) AND u.num_user <> :num_user;";
-    $canAddFriend = "SELECT u.* FROM sae_users u, sae_friendship f WHERE (u.num_user = f.user_id OR u.num_user = f.friend_id) AND f.statut = 0 AND u.num_user != 22 AND u.statut = 1";
+    $canAddFriend = "SELECT u.* FROM sae_users u, sae_friendship f WHERE (u.num_user = f.user_id OR u.num_user = f.friend_id) AND f.statut = 0 AND u.num_user != :num_user AND u.statut = 1";
     $addFriend = "INSERT INTO sae_friendship (user_id, friend_id, statut) VALUES (:num_user, :friend_id, 0);";
     $acceptFriend = "UPDATE sae_friendship SET statut = 1 WHERE user_id = :num_user AND friend_id = :friend_id;";
     $refuseFriend = "DELETE FROM sae_friendship WHERE user_id = :num_user AND friend_id = :friend_id;";

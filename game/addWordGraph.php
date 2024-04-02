@@ -53,6 +53,14 @@
         // Java : trier les paires
         $commandeJar = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.semonkey.main.Main partie/game_data_" . $user->getPseudo() . ".txt partie/mst_" . $user->getPseudo() . ".txt 2>&1";
         exec($commandeJar, $output);
+        // Vérifier si le mot est dans l'arbre
+        if (!isWordInTree($user, $newWord)) {
+            $_SESSION['game'] = serialize($game);
+            // Script JS pour afficher une alerte
+            echo "<script>alert('Le mot n\'a pas été ajouté dans l\'arbre.')</script>";
+            echo "<script>window.location.replace('./');</script>";
+            exit();
+        }
         // Vérifier si le mot est dans le graphe
         if (!isWordInGraph($user, $newWord)) {
             $_SESSION['game'] = serialize($game);

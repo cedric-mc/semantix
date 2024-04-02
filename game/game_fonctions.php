@@ -133,7 +133,21 @@
         ];
     }
 
-    // Fonction pour savoir si le mot a été ajouté dans le graphe après le programme Java
+    // Fonction pour savoir si le mot a été ajouté dans l'arbre
+    function isWordInTree(User $user, $word) {
+        $fichier = fopen("partie/mst_" . $user->getPseudo() . ".txt", "r");
+        $isInGraph = false;
+        while (($ligne = fgets($fichier)) !== false) {
+            if (strpos($ligne, $word) !== false) {
+                $isInGraph = true;
+                break;
+            }
+        }
+        fclose($fichier);
+        return $isInGraph;
+    }
+
+    // Fonction pour savoir si le mot a été ajouté dans le graphe
     function isWordInGraph(User $user, $word) {
         $fichier = fopen("partie/best_path_" . $user->getPseudo() . ".txt", "r");
         $isInGraph = false;
