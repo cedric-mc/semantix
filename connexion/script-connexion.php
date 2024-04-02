@@ -81,5 +81,9 @@
             header("Location: ./?erreur=1");
             exit;
         }
+    } else {
+        // Rediriger vers la page de connexion
+        header("Location: ./");
+        exit;
     }
 ?>
