@@ -6,11 +6,6 @@
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
-    header('Content-Type: application/json');
-
-    echo json_encode([
-        'idUser' => $user->getIdUser()
-    ]);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
