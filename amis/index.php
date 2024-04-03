@@ -58,8 +58,10 @@ include("../includes/menu.php"); ?>
     <h1 class="title">Amis</h1>
     <div class="recherche">
         <form method="get">
-            <input type="text" id="search" placeholder="Rechercher un ami" name="search" value="">
-            <button id="searchButton" type="submit" class="btn btn-primary">Rechercher</button>
+            <div class="input-group mb-3">
+                <button class="btn btn-outline-secondary" type="submit" id="search">Rechercher</button>
+                <input type="text" id="search" name="search" class="form-control" placeholder="Rechercher un ami" aria-label="Example text with button addon" aria-describedby="search">
+            </div>
         </form>
         <?php
         $nbLigne = 0;
