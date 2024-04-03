@@ -25,6 +25,12 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
+.classement-container .table-responsive {
+    border-collapse: collapse;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
 .classement-container table {
     background-color: #16181e;
     color: #999;
