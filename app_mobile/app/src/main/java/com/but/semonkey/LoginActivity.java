@@ -89,6 +89,12 @@ public class LoginActivity extends AppCompatActivity {
                         return; // Arrêter l'exécution de la méthode si le jeton est valide
                     }
                 }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(LoginActivity.this, "Aucune session active, veuillez vous connecter", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }).start();
     }

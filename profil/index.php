@@ -158,16 +158,14 @@ $historicRequest->closeCursor();
                             <span class="pseudo"><?php echo $top3Result[2]->pseudo; ?></span>
                             <span class="score"><?php echo $top3Result[2]->score; ?></span>
                         </div>
-                        <?php
-                        if (!in_array($pseudo, array($top3Result[0]->pseudo, $top3Result[1]->pseudo, $top3Result[2]->pseudo))) {
-                            echo "<div id='myScore' class='btn btn-dark'>";
-                        } else {
-                            echo "<div id='myScore' class='btn " . ($top3Result[0]->pseudo == $pseudo ? "gold" : ($top3Result[1]->pseudo == $pseudo ? "silver" : "bronze")) . "'>";
-                        }
-                        echo "<span class='pseudo'>" . $pseudo . "</span>";
-                        echo "<span class='score'>" . ($scoreResult->maxS == null ? 0 : $scoreResult->maxS) . "</span>";
-                        echo "</div>";
-                        ?>
+                        <?php if (!in_array($pseudo, array($top3Result[0]->pseudo, $top3Result[1]->pseudo, $top3Result[2]->pseudo))) { ?>
+                            <div id='myScore' class='btn btn-dark'>
+                        <?php } else { ?>
+                            <div id="myScore" class="btn <?php echo ($top3Result[0]->pseudo == $pseudo ? "gold" : ($top3Result[1]->pseudo == $pseudo ? "silver" : "bronze")) ?>">
+                        <?php } ?>
+                        <span class='pseudo'><?php echo $pseudo; ?></span>
+                        <span class='score'><?php echo ($scoreResult->maxS == null ? 0 : $scoreResult->maxS); ?></span>
+                        </div>
                     </div>
                 </div>
             </div>
