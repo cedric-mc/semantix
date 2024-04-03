@@ -20,7 +20,7 @@ if (isset($_SESSION['output'])) {
 $pseudo = $user->getPseudo();
 $idUser = $user->getIdUser();
 
-if ($game->getNumberOfWords() > 2) {
+if ($game->getNumberOfWords() >= 2) {
     // Score final
     // Ajout du score final dans la base de données
     $calculateScore = calculateScore($user);
