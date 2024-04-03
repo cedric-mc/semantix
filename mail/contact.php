@@ -20,46 +20,42 @@
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
+    // Ajout de l'expéditeur du message
+    $message .= "<br><br>Envoyé par : " . $user->getPseudo() . " (" . $user->getEmail() . ")";
 
     // PHPMailer
-    require "../PHPMailer/src/PHPMailer.php";
-    require "../PHPMailer/src/SMTP.php";
-    require "../PHPMailer/src/Exception.php";
-
     use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
+
+    require '../PHPMailer/src/Exception.php';
+    require '../PHPMailer/src/PHPMailer.php';
+    require '../PHPMailer/src/SMTP.php';
     // Configurer PHPMailer
     $mail = new PHPMailer(true);
+
     $mail->isSMTP();
     $mail->Host = $host;
-    $mail->Port = 465;
-    $mail->SMTPSecure = 'ssl';
-
     $mail->SMTPAuth = true; // Activer l'authentification SMTP
     $mail->Username = $username;
     $mail->Password = $password;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $mail->Port = 465;
+    $mail->SMTPSecure = 'ssl';
     $mail->CharSet = 'UTF-8';
 
-    $mail->setFrom($user->getEmail(), $user->getPseudo());
+    $mail->setFrom($username, $name);
+    $mail->addAddress($username, $name);
+    $mail->addReplyTo($user->getEmail(), $user->getPseudo());
+
     $mail->isHTML(true);
     $mail->Subject = $sujet;
     $mail->Body = $message;
+    $mail->AltBody = $message;
     $mail->CharSet = "UTF-8";
-    $mail->addAddress($username, $name);
 
-
-    try {
-        // Envoi du mail
-        $mail->send();
-        echo "<script>alert('Message envoyé.')</script>";
-        echo "<script>window.location.replace('../contact.php')</script>";
-        exit;
-    } catch (Exception $e) {
-        // Enregistrement du message d'erreur dans un fichier log
-        file_put_contents('error_log.txt', 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo . "\n", FILE_APPEND);
-        echo "<script>alert('Message could not be sent. Check the error log for more details.')</script>";
-        echo "<script>window.location.replace('../contact.php')</script>";
-        exit;
-    }
+    // Envoi du mail
+    $mail->send();
+    echo "<script>alert('Message envoyé.')</script>";
+    echo "<script>window.location.replace('../contact.php')</script>";
+    exit;
 ?>
