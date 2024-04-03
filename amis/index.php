@@ -58,15 +58,16 @@ include("../includes/menu.php"); ?>
     <h1 class="title">Amis</h1>
     <div class="recherche">
         <form method="get">
-            <input type="text" id="pseudo" placeholder="Rechercher un ami" name="pseudo" value="<?php echo $_GET['pseudo'] ?? ''; ?>">
+            <input type="text" id="search" placeholder="Rechercher un ami" name="search" value="<?php echo $_GET['pseudo'] ?? ''; ?>">
             <button id="searchButton" type="submit" class="btn btn-primary">Rechercher</button>
         </form>
         <?php
         $nbLigne = 0;
         if (!empty($_GET['search'])) {
+            $search = $_GET['search'];
             $friendSearchRequest = $cnx->prepare($friendSearch);
             $friendSearchRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
-            $friendSearchRequest->bindParam(":search_string", $_GET['search'], PDO::PARAM_STR);
+            $friendSearchRequest->bindParam(":search_string", $search, PDO::PARAM_STR);
             $friendSearchRequest->execute();
             $friendSearchResult = $friendSearchRequest->fetchAll(PDO::FETCH_OBJ);
             $friendSearchRequest->closeCursor();
