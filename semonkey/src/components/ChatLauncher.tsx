@@ -6,28 +6,32 @@ interface ChatLauncherProps {
     onChatStarted: (name: string) => void;
 }
 
-const ChatLauncher = (props: { user: User, onChatStarted: (name: string) => void }) => {
+const ChatLauncher = (props: ChatLauncherProps) => {
     const [name, setName] = useState(props.user.getPseudo);
 
     useEffect(() => {
         setName(props.user.getPseudo());
     }, [props.user]);
 
-    const handleSubmit = (event: { preventDefault: () => void; }) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         props.onChatStarted(name);
+    };
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value);
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Nom</label>
-                <input type="text" value={name} readOnly/>
+                <input type="text" value={name} onChange={handleChange} />
 
-                <button type="submit" onClick={handleSubmit}>Commencer le chat</button>
+                <button type="submit">Commencer le chat</button>
             </form>
         </div>
-    )
+    );
 }
 
 export default ChatLauncher;
