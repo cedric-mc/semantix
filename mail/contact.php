@@ -10,15 +10,6 @@
     include_once('../class/User.php');
     include_once('../includes/conf.php');
 
-    // PHPMailer
-    require "../PHPMailer/src/PHPMailer.php";
-    require "../PHPMailer/src/SMTP.php";
-    require "../PHPMailer/src/Exception.php";
-
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
-
     // Erreur PHP
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -29,9 +20,15 @@
         exit;
     }
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
-    $email = $user->getEmail();
-    $pseudo = $user->getPseudo();
 
+    // PHPMailer
+    require "../PHPMailer/src/PHPMailer.php";
+    require "../PHPMailer/src/SMTP.php";
+    require "../PHPMailer/src/Exception.php";
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
     // Configurer PHPMailer
     $mail = new PHPMailer(true);
     $mail->isSMTP();
@@ -42,13 +39,15 @@
     $mail->SMTPAuth = true; // Activer l'authentification SMTP
     $mail->Username = $username;
     $mail->Password = $password;
-    $mail->CharSet = "UTF-8";
+    $mail->CharSet = 'UTF-8';
 
-    $mail->setFrom($email, $pseudo);
-    $mail->addAddress($email, $pseudo);
+    $mail->setFrom($user->getEmail(), $user->getPseudo());
     $mail->isHTML(true);
     $mail->Subject = $sujet;
     $mail->Body = $message;
+    $mail->CharSet = "UTF-8";
+    $mail->addAddress($username, $name);
+
 
     try {
         // Envoi du mail
