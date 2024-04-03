@@ -1,9 +1,9 @@
 <?php
     // Base de données
-    $user = "";
-    $pass = "";
-    $dbname = "";
-    $server = "";
+    $user = ""; // Utilisateur
+    $pass = ""; // Mot de passe
+    $dbname = ""; // Nom de la base de données
+    $server = ""; // Serveur
 
     try {
         $cnx = new PDO("mysql:host=$server;dbname=$dbname;charset=utf8mb4", $user, $pass);
