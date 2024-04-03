@@ -1,6 +1,6 @@
 .header {
     width: auto;
-    background: /*#35B3CC*/ linear-gradient(45deg, #348c3e, #0a5611);
+    background: /*#35B3CC*/ linear-gradient(45deg, #45b052, #0a5611);
     display: flex;
     padding: 1rem;
     align-items: center;
@@ -30,8 +30,8 @@
     color: #999;
     width: 100%;
     border-collapse: collapse;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 0.1rem;
+    border-bottom-right-radius: 0.1rem;
     overflow: hidden;
 }
 
