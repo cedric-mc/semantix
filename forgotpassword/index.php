@@ -7,7 +7,7 @@
     }
     // Messages possibles
     $messagesErreur = [
-        1 => ["Si le search et l'adresse e-mail que vous avez saisis correspondent, vous recevrez alors un e-mail pour changer votre mot de passe.", "alert-warning"],
+        1 => ["Si le pseudo et l'adresse e-mail que vous avez saisis correspondent, vous recevrez alors un e-mail pour changer votre mot de passe.", "alert-warning"],
         2 => ["Mot de passe réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.", "alert-success"]
     ];
     // Récupérer le code d'erreur depuis l'URL

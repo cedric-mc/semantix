@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 try {
                     // Créer une connexion HTTP
-                    URL url = new URL("https://perso-etudiant.u-pem.fr/~mamadou.ba2/semantix/connexion/script-connexion-mobile.php");
+                    URL url = new URL("https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/connexion/script-connexion-mobile.php");
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
                     // Paramètres de la requête
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isValidToken(String authToken) {
         try {
             // Créer une connexion HTTP
-            URL url = new URL("https://perso-etudiant.u-pem.fr/~mamadou.ba2/semantix/connexion/verif-token-mobile.php");
+            URL url = new URL("https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/connexion/verif-token-mobile.php");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             // Paramètres de la requête

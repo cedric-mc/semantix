@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress($newEmail);
     $mail->isHTML(true);
     $mail->Subject = "Changement d'email";
-    $mail->Body = str_replace(":search", $pseudo, getMailContent("../mail/email.php"));
+    $mail->Body = str_replace(":pseudo", $pseudo, getMailContent("../mail/email.php"));
     $mail->CharSet = 'UTF-8';
     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
     $mail->send();
@@ -57,14 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress($oldEmail);
     $mail->isHTML(true);
     $mail->Subject = "Changement d'email";
-    $mail->Body = str_replace(":search", $pseudo, getMailContent("../mail/email.php"));
+    $mail->Body = str_replace(":pseudo", $pseudo, getMailContent("../mail/email.php"));
     $mail->CharSet = 'UTF-8';
     $mail->send();
 
     // Journalisation
-    $sql_num_user = "SELECT num_user FROM sae_users WHERE search = :search";
+    $sql_num_user = "SELECT num_user FROM sae_users WHERE pseudo = :pseudo";
     $stmt_num_user = $cnx->prepare($sql_num_user);
-    $stmt_num_user->execute(['search' => $_SESSION['search']]);
+    $stmt_num_user->execute(['pseudo' => $_SESSION['pseudo']]);
     $user_num_user = $stmt_num_user->fetch();
     $stmt_num_user->closeCursor();
 

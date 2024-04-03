@@ -64,9 +64,10 @@ include("../includes/menu.php"); ?>
         <?php
         $nbLigne = 0;
         if (!empty($_GET['search'])) {
+            $search = $_GET['search'];
             $friendSearchRequest = $cnx->prepare($friendSearch);
             $friendSearchRequest->bindParam(":num_user", $idUser, PDO::PARAM_INT);
-            $friendSearchRequest->bindParam(":search_string", $_GET['search'], PDO::PARAM_STR);
+            $friendSearchRequest->bindParam(":search_string", $search, PDO::PARAM_STR);
             $friendSearchRequest->execute();
             $friendSearchResult = $friendSearchRequest->fetchAll(PDO::FETCH_OBJ);
             $friendSearchRequest->closeCursor();

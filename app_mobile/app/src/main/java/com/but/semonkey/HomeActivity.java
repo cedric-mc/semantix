@@ -197,7 +197,7 @@ public class HomeActivity extends AppCompatActivity implements MessageAdapter.Me
                 try {
                     messageList.clear();
                     // Créer la connexion
-                    URL url = new URL("https://perso-etudiant.u-pem.fr/~mamadou.ba2/semantix/android/recupe_message.php");
+                    URL url = new URL("https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/android/recupe_message.php");
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("POST");
                     connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

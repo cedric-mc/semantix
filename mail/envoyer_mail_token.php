@@ -9,9 +9,9 @@
     $pseudo = $_SESSION['pseudo_temp'];
 
     //requête récuperer le num_user de l'utilisateur
-    $queryGetNum = "SELECT num_user FROM sae_users WHERE search = :search";
+    $queryGetNum = "SELECT num_user FROM sae_users WHERE pseudo = :pseudo";
     $stmtGetNum = $cnx->prepare($queryGetNum);
-    $stmtGetNum->bindParam(":search", $pseudo, PDO::PARAM_STR);
+    $stmtGetNum->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
     $stmtGetNum->execute();
 
     // Récupère le résultat
@@ -28,9 +28,9 @@
     $stmt_insert_confirmation->execute();
 
     //requête récuperer le mail de l'utilisateur
-    $queryGetMail = "SELECT email FROM sae_users WHERE search = :search;";
+    $queryGetMail = "SELECT email FROM sae_users WHERE pseudo = :pseudo;";
     $stmtGetmail = $cnx->prepare($queryGetMail);
-    $stmtGetmail->bindParam(":search", $pseudo, PDO::PARAM_STR);
+    $stmtGetmail->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
     $stmtGetmail->execute();
     // Récupère le résultat
     $email = $stmtGetmail->fetchColumn();
@@ -43,7 +43,7 @@
     $mail->isHTML(true);
     $mail->Subject = "Confirmation d'inscription";
     $mail->Body = getMailContent("../mail/inscription.php");
-    $mail->Body = str_replace(":search", $pseudo, $mail->Body);
+    $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
     $mail->Body = str_replace(":lienInscription", "$lienInscription?code=$code_confirmation", $mail->Body);
     $mail->CharSet = "UTF-8";
     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");

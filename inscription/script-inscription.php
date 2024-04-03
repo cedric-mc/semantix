@@ -1,6 +1,6 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $pseudo = $_POST["search"];
+        $pseudo = $_POST["pseudo"];
         $email = $_POST["email"];
         $annee_naissance = $_POST["annee_naissance"];
         $motdepasse1 = $_POST["motdepasse1"];
@@ -18,14 +18,14 @@
             exit;
         }
 
-        // Vérifier si le search n'existe pas dans la base de données
-        $query_pseudo_exists = "SELECT COUNT(*) FROM sae_users WHERE search = :search";
+        // Vérifier si le pseudo n'existe pas dans la base de données
+        $query_pseudo_exists = "SELECT COUNT(*) FROM sae_users WHERE pseudo = :pseudo";
         $stmt_pseudo_exists = $cnx->prepare($query_pseudo_exists);
-        $stmt_pseudo_exists->bindParam(":search", $pseudo, PDO::PARAM_STR);
+        $stmt_pseudo_exists->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
         $stmt_pseudo_exists->execute();
         $pseudo_exists = $stmt_pseudo_exists->fetchColumn();
 
-        if ($pseudo_exists) { // Si le search existe déjà
+        if ($pseudo_exists) { // Si le pseudo existe déjà
             header('Location: ./?erreur=1');
             exit;
         }
@@ -68,11 +68,11 @@
         $motdepasse = hash_pbkdf2("sha256", $motdepasse1, $salt, $iterations, 32); // hachage du mot de passe
 
         // Préparer la requête SQL d'insertion
-        $query = "INSERT INTO sae_users (search, email, annee_naissance, motdepasse, salt, statut) VALUES (:search, :email, :annee_naissance, :mot_de_passe, :salt, 0)";
+        $query = "INSERT INTO sae_users (pseudo, email, annee_naissance, motdepasse, salt, statut) VALUES (:pseudo, :email, :annee_naissance, :mot_de_passe, :salt, 0)";
 
         // Exécuter la requête avec des paramètres
         $stmt = $cnx->prepare($query);
-        $stmt->bindParam(":search", $pseudo);
+        $stmt->bindParam(":pseudo", $pseudo);
         $stmt->bindParam(":email", $email);
         $stmt->bindParam(":annee_naissance", $annee_naissance);
         $stmt->bindParam(":mot_de_passe", $motdepasse);
@@ -104,7 +104,7 @@
         $mail->isHTML(true);
         $mail->Subject = "Confirmation d'inscription";
         $mail->Body = getMailContent("../mail/inscription.php");
-        $mail->Body = str_replace(":search", $pseudo, $mail->Body);
+        $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
         $mail->Body = str_replace(":lienInscription", "$lienInscription?code=$code_confirmation", $mail->Body);
         $mail->CharSet = "UTF-8";
         $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");

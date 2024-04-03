@@ -2,7 +2,7 @@
 
 // Messages d'erreurs possibles
 $messagesErreur = [
-    1 => ["Le search est déjà pris.", "alert-danger"],
+    1 => ["Le pseudo est déjà pris.", "alert-danger"],
     2 => ["L'email est déjà utilisé.", "alert-danger"],
     3 => ["Les mots de passes ne correspondent pas.", "alert-danger"],
     4 => ["Le mot de passe doit comporter au moins 12 caractères et contenir au minimum 1 lettre minuscule, 1 lettre majuscule, 1 chiffre et 1 caractère spécial.", "alert-danger"],
