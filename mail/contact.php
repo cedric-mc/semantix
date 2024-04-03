@@ -44,14 +44,11 @@
     $mail->Password = $password;
     $mail->CharSet = "UTF-8";
 
-    $mail->setFrom($email, $pseudo); // Expéditeur : Utilisateur
-
-    // Contenu du mail
+    $mail->setFrom($email, $pseudo);
+    $mail->addAddress($email, $pseudo);
     $mail->isHTML(true);
     $mail->Subject = $sujet;
     $mail->Body = $message;
-    $mail->CharSet = "UTF-8";
-    $mail->addAddress($username, $name); // Destinataire : Semonkey
 
     // Envoi du mail
     $mail->send();
