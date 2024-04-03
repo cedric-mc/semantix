@@ -50,9 +50,15 @@
     $mail->Subject = $sujet;
     $mail->Body = $message;
 
-    // Envoi du mail
-    $mail->send();
-    echo "<script>alert('Message envoyé.')</script>";
-    echo "<script>window.location.replace('../contact.php')</script>";
-    exit;
+    try {
+        // Envoi du mail
+        $mail->send();
+        echo "<script>alert('Message envoyé.')</script>";
+        echo "<script>window.location.replace('../contact.php')</script>";
+        exit;
+    } catch (Exception $e) {
+        echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
+        echo "<script>window.location.replace('../contact.php')</script>";
+        exit;
+    }
 ?>
