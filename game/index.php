@@ -46,7 +46,7 @@
             <div class="player-info">
                 <img src="<?php echo $user->getImageSrc();?>" alt="Profile Picture">
                 <div class="username me-3"><?php echo $user->getPseudo(); ?></div>
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfogame" aria-controls="offcanvasInfogame">Informations de la partie</button>
+                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfogame" aria-controls="offcanvasInfogame">Informations de la partie</button>
             </div>
             <!-- Formulaire pour ajouter un nouveau mot -->
             <div class="addWord">
