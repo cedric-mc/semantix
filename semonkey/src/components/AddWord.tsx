@@ -1,7 +1,7 @@
 import React from "react";
 
 // word en props
-const AddWord = () => {
+const AddWord = (props: { word: string, setWord: (word: string) => void }) => {
     const [word, setWord] = React.useState("");
 
     return (

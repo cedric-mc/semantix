@@ -40,14 +40,22 @@ function App() {
 
     return (
         <div className="parent">
-            <div className="player-info">
-                <img className="me-3" src={user.getImageSrc()} alt="User"/>
-                <p className="username me-3">{user.getPseudo()}</p>
-                <Button variant="dark" onClick={handleShowInfo}>Informations de la partie</Button>
-                <Button variant="primary" onClick={handleShowChat}>Chat</Button>
+            <div className="player-info row justify-content-between">
+                <div className="col-auto">
+                    <img className="me-3" src={user.getImageSrc()} alt="User"/>
+                </div>
+                <div className="col-auto">
+                    <p className="username me-3">{user.getPseudo()}</p>
+                </div>
+                <div className="col-auto">
+                    <Button variant="dark" onClick={handleShowInfo}>Informations de la partie</Button>
+                </div>
+                <div className="col-auto">
+                    <Button variant="primary" onClick={handleShowChat}>Chat</Button>
+                </div>
             </div>
             <div className="addWord">
-                <AddWord/>
+                <AddWord word={word} setWord={setWord}/>
             </div>
             <div className="graph" id="container">
                 {/* Graph component goes here */}

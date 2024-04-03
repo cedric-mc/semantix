@@ -3,10 +3,10 @@ export class User {
     private pseudo: string;
     private imageData: string | null;
 
-    constructor(idUser: number, pseudo: string) {
+    constructor(idUser: number, pseudo: string, imageData?: string | null) {
         this.idUser = idUser;
         this.pseudo = pseudo;
-        this.imageData = null;
+        this.imageData = imageData || null;
     }
 
     getIdUser(): number {

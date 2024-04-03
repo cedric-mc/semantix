@@ -155,4 +155,7 @@ form#add {
 .player-info .username {
     font-size: 1.5rem;
     color: #FFFFFF;
+    font-weight: bold;
+    top: 25%;
+    position: relative;
 }
