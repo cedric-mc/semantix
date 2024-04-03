@@ -2,6 +2,7 @@
     if (empty($_POST['sujet']) || empty($_POST['message'])) {
         echo "<script>alert('Veuillez remplir tous les champs.')</script>";
         echo "<script>window.location.replace('../contact.php')</script>";
+        exit;
     }
     $sujet = $_POST['sujet'];
     $message = $_POST['message'];
@@ -53,15 +54,8 @@
     $mail->addAddress($username, $name); // Destinataire : Semonkey
 
     // Envoi du mail
-    if ($mail->send()) {
-        echo "<script>alert('Message envoyé.')</script>";
-        echo "<script>window.location.replace('../')</script>";
-    } else {
-        echo "<script>alert('Erreur lors de l\'envoi du message.')</script>";
-        echo "<script>window.location.replace('../contact.php')</script>";
-    }
-    $mail->smtpClose();
-    // Redirection
-    header("Location: ../");
+    $mail->send();
+    echo "<script>alert('Message envoyé.')</script>";
+    echo "<script>window.location.replace('../contact.php')</script>";
     exit;
 ?>
