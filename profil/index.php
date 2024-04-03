@@ -182,7 +182,7 @@ $historicRequest->closeCursor();
                     <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Année de Naissance : <?php echo $user->getYear(); ?>">
                         Année de Naissance : <?php echo $user->getYear(); ?>
                     </button>
-                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Dernière Connexion : <?php echo $user->getPseudo(); ?>">
+                    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Pseudo : <?php echo $user->getPseudo(); ?>">
                         Pseudo : <?php echo $user->getPseudo(); ?>
                     </button>
                 </div>
