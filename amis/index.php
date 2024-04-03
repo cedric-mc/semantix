@@ -58,7 +58,7 @@ include("../includes/menu.php"); ?>
     <h1 class="title">Amis</h1>
     <div class="recherche">
         <form method="get">
-            <input type="text" id="search" placeholder="Rechercher un ami" name="search" value="<?php echo $_GET['pseudo'] ?? ''; ?>">
+            <input type="text" id="search" placeholder="Rechercher un ami" name="search" value="<?php echo $_GET['search'] ?? ''; ?>">
             <button id="searchButton" type="submit" class="btn btn-primary">Rechercher</button>
         </form>
         <?php
