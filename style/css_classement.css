@@ -1,6 +1,6 @@
 .header {
     width: auto;
-    background: /*#35B3CC*/ linear-gradient(45deg, #179927, #188021);
+    background: /*#35B3CC*/ linear-gradient(45deg, #348c3e, #0e6b16);
     display: flex;
     padding: 1rem;
     align-items: center;
@@ -66,7 +66,7 @@ thead {
 /* hover sur toute la colonne sur laquelle on passe la souris */
 .classement-container tbody tr:hover td {
     background-color: transparent;
-    color: #35B3CC;
+    color: #45b052;
 }
 
 .glassmorphism #menuL {
@@ -74,7 +74,7 @@ thead {
 }
 
 .tab-button {
-    background-color: #35B3CC;
+    background-color: #095d0d;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -87,7 +87,7 @@ thead {
 }
 
 .tab-button.active {
-    background-color: #3D7EAA;
+    background-color: #45b052;
     transform: scale(1.1); /* Increase size for active tab */
 }
 
