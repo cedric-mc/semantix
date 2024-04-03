@@ -21,7 +21,8 @@
     $deleteFriend = "DELETE FROM sae_friendship WHERE user_id = :num_user AND friend_id = :friend_id OR user_id = :friend_id AND friend_id = :num_user;";
     $listUsers = "SELECT * FROM sae_users WHERE num_user NOT IN (SELECT friend_id FROM sae_friendship WHERE user_id = :idUser) AND num_user <> :num_user ORDER BY num_user;";
     $wantToAddFriends = "SELECT u.num_user, u.pseudo, u.photo FROM sae_users AS u LEFT JOIN sae_friendship AS f ON (u.num_user = f.user_id AND f.friend_id = :idUser) OR (u.num_user = f.friend_id AND f.user_id = :idUser) WHERE f.statut IS NULL AND u.num_user <> :num_user ORDER BY u.pseudo;";
-
+    $friendSearch = "SELECT DISTINCT u.num_user, u.pseudo, u.email, u.annee_naissance, u.photo, f.statut, f.user_id AS creatorF, f.friend_id AS acceptF FROM sae_users u JOIN sae_friendship f ON u.num_user = f.friend_id OR u.num_user = f.user_id WHERE u.num_user <> :num_user LIMIT 1;";
+    
     // Requêtes SQL pour le changement d'email
     $emailExists = "SELECT email FROM sae_users WHERE email = :email;";
     $changeEmail = "UPDATE sae_users SET email = :email WHERE pseudo = :pseudo;";
@@ -29,6 +30,4 @@
     // Requêtes SQL pour le changement de mot de passe
     $isPasswordCorrect = "SELECT motdepasse, salt FROM sae_users WHERE pseudo = :pseudo;";
     $changePassword = "UPDATE sae_users SET motdepasse = :motdepasse, salt = :salt WHERE pseudo = :pseudo;";
-
-    $friendSearch = "SELECT DISTINCT u.num_user, u.pseudo, u.email, u.annee_naissance, u.photo, f.statut, f.user_id AS creatorF, f.friend_id AS acceptF FROM sae_users u JOIN sae_friendship f ON u.num_user = f.friend_id OR u.num_user = f.user_id WHERE u.num_user <> :num_user LIMIT 1;";
 ?>

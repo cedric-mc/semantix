@@ -69,73 +69,74 @@ if (isset($_POST['pseudo'])) {
         <!-- Afficher la liste des amis (avec le statut : en attente, accepté, refusé ; statut : en ligne, hors ligne) -->
         <!-- Je propose d'afficher la liste avec des carrés pour chaque ami avec le nom, le statut (en ligne, hors ligne) et le bouton pour supprimer l'ami, un utilisateur = un carré
             Lorsque l'on clique sur un carré, on affiche un modal avec les informations de l'ami (pseudo, date de naissance, statut, date de dernière connexion, (discuté avec Fressin pour l'email) -->
-        <div class="container">
-            <div class="recherche">
-                <form method="post">
-                    <input type="text" id="search" placeholder="Rechercher un ami" name="pseudo">
-                    <button id="searchButton">Rechercher</button>
-                </form>
-            </div>
-            <?php if (isset($_POST['pseudo'])) { ?>
-                <div class="user">
-                    <img src="<?php echo getProfilePicture($friendSearchResult->photo); ?>" alt="Photo de profil">
-                    <p><?php echo $friendSearchResult->pseudo; ?></p>
-                    <p>Statut : <?php echo friendStatus($friendSearchResult->statut) ?></p>
-                    <?php if ($friendSearchResult->statut == 0 && $friendSearchResult->acceptF == $idUser) { ?>
-                        <a class="btn btn-warning" href="script-friend.php?accept&friendId=<?php echo $friendSearchResult->num_user; ?>" role="button">Accepter&emsp;<i class="fa-solid fa-check"></i></a>
-                        <a class="btn btn-danger" href="script-friend.php?refuse&friendId=<?php echo $friendSearchResult->num_user; ?>" role="button">Refuser&emsp;<i class="fa-solid fa-xmark"></i></a>
-                    <?php } elseif ($friendSearchResult->statut == 0 && $friendSearchResult->creatorF == $idUser) { ?>
-                        <span class="text-muted">En attente de l'acceptation de l'ami</span>
-                    <?php } else { ?>
-                        <a class="btn btn-danger" href="script-friend.php?delete&friendId=<?php echo $friendSearchResult->num_user; ?>" role="button">Supprimer&emsp;<i class="fa-solid fa-trash"></i></a>
-                    <?php } ?>
-                </div>
+        <div class="recherche">
+            <form method="post">
+                <input type="text" id="search" placeholder="Rechercher un ami" name="search">
+                <button id="searchButton">Rechercher</button>
+            </form>
+            <?php if (!empty($_POST['pseudo'])) { ?>
+                <p>Résultat de la recherche pour : <?php echo $_POST['pseudo']; ?></p>
             <?php } else { ?>
-                <div class="users row row-cols-auto">
-                    <?php $nbAmis = count($myFriendsResult);
-                    foreach ($myFriendsResult as $ligne) { ?>
+                <div class="container">
+                    <?php if (isset($_POST['pseudo'])) { ?>
                         <div class="user">
-                            <img src="<?php echo getProfilePicture($ligne->photo); ?>" alt="Photo de profil">
-                            <p><?php echo $ligne->pseudo; ?></p>
-                            <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
-                            <?php if ($ligne->statut == 0 && $ligne->acceptF == $idUser) { ?>
-                                <a class="btn btn-warning" href="script-friend.php?accept&friendId=<?php echo $ligne->num_user; ?>" role="button">Accepter&emsp;<i class="fa-solid fa-check"></i></a>
-                                <a class="btn btn-danger" href="script-friend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser&emsp;<i class="fa-solid fa-xmark"></i></a>
-                            <?php } elseif ($ligne->statut == 0 && $ligne->creatorF == $idUser) { ?>
+                            <img src="<?php echo getProfilePicture($friendSearchResult->photo); ?>" alt="Photo de profil">
+                            <p><?php echo $friendSearchResult->pseudo; ?></p>
+                            <p>Statut : <?php echo friendStatus($friendSearchResult->statut) ?></p>
+                            <?php if ($friendSearchResult->statut == 0 && $friendSearchResult->acceptF == $idUser) { ?>
+                                <a class="btn btn-warning" href="script-friend.php?accept&friendId=<?php echo $friendSearchResult->num_user; ?>" role="button">Accepter&emsp;<i class="fa-solid fa-check"></i></a>
+                                <a class="btn btn-danger" href="script-friend.php?refuse&friendId=<?php echo $friendSearchResult->num_user; ?>" role="button">Refuser&emsp;<i class="fa-solid fa-xmark"></i></a>
+                            <?php } elseif ($friendSearchResult->statut == 0 && $friendSearchResult->creatorF == $idUser) { ?>
                                 <span class="text-muted">En attente de l'acceptation de l'ami</span>
                             <?php } else { ?>
-                                <a class="btn btn-danger" href="script-friend.php?delete&friendId=<?php echo $ligne->num_user; ?>" role="button">Supprimer&emsp;<i class="fa-solid fa-trash"></i></a>
+                                <a class="btn btn-danger" href="script-friend.php?delete&friendId=<?php echo $friendSearchResult->num_user; ?>" role="button">Supprimer&emsp;<i class="fa-solid fa-trash"></i></a>
                             <?php } ?>
                         </div>
-                    <?php }
-                    if ($nbAmis == 0) { ?>
-                        <div class="user text-center">
-                            <p>Aucun ami pour le moment, tu es seul(e) au monde !</p>
+                    <?php } else { ?>
+                        <div class="users row row-cols-auto">
+                            <?php $nbAmis = count($myFriendsResult);
+                            foreach ($myFriendsResult as $ligne) { ?>
+                                <div class="user">
+                                    <img src="<?php echo getProfilePicture($ligne->photo); ?>" alt="Photo de profil">
+                                    <p><?php echo $ligne->pseudo; ?></p>
+                                    <p>Statut : <?php echo friendStatus($ligne->statut) ?></p>
+                                    <?php if ($ligne->statut == 0 && $ligne->acceptF == $idUser) { ?>
+                                        <a class="btn btn-warning" href="script-friend.php?accept&friendId=<?php echo $ligne->num_user; ?>" role="button">Accepter&emsp;<i class="fa-solid fa-check"></i></a>
+                                        <a class="btn btn-danger" href="script-friend.php?refuse&friendId=<?php echo $ligne->num_user; ?>" role="button">Refuser&emsp;<i class="fa-solid fa-xmark"></i></a>
+                                    <?php } elseif ($ligne->statut == 0 && $ligne->creatorF == $idUser) { ?>
+                                        <span class="text-muted">En attente de l'acceptation de l'ami</span>
+                                    <?php } else { ?>
+                                        <a class="btn btn-danger" href="script-friend.php?delete&friendId=<?php echo $ligne->num_user; ?>" role="button">Supprimer&emsp;<i class="fa-solid fa-trash"></i></a>
+                                    <?php } ?>
+                                </div>
+                            <?php }
+                            if ($nbAmis == 0) { ?>
+                                <div class="user text-center">
+                                    <p>Aucun ami pour le moment, tu es seul(e) au monde !</p>
+                                </div>
+                            <?php } ?>
                         </div>
                     <?php } ?>
                 </div>
-            <?php } ?>
-        </div>
-        <br>
-        <h2 class="add">Ajouter un Ami</h2>
-        <!-- Afficher la liste des utilisateurs pour ajouter un ami (sauf soi-même et les amis déjà ajoutés) -->
-        <!-- Je propose d'afficher la liste avec des carrés pour chaque utilisateur avec le nom et le bouton pour ajouter l'ami, un utilisateur = un carré -->
-        <div class="container">
-
-            <?php if (isset($_POST['pseudo'])) {
-            } else { ?>
-                <div class="users row row-cols-auto">
-                    <?php $nbCanAdd = count($wantToAddFriendsResult);
-                    foreach ($wantToAddFriendsResult as $ligne) { ?>
-                        <div class="user">
-                            <img src="<?php echo getProfilePicture($ligne->photo); ?>" alt="Photo de profil">
-                            <p><?php echo $ligne->pseudo; ?></p>
-                            <a class="btn btn-success" href="script-friend.php?add&friendId=<?php echo $ligne->num_user; ?>" role="button">Ajouter</a>
-                        </div>
-                    <?php }
-                    if ($nbCanAdd == 0) { ?>
-                        <div class="user text-center">
-                            <p>Tu as déjà ajouté tous les utilisateurs !</p>
+                <br>
+                <h2 class="add">Ajouter un Ami</h2>
+                <div class="container">
+                    <?php if (isset($_POST['pseudo'])) {
+                    } else { ?>
+                        <div class="users row row-cols-auto">
+                            <?php $nbCanAdd = count($wantToAddFriendsResult);
+                            foreach ($wantToAddFriendsResult as $ligne) { ?>
+                                <div class="user">
+                                    <img src="<?php echo getProfilePicture($ligne->photo); ?>" alt="Photo de profil">
+                                    <p><?php echo $ligne->pseudo; ?></p>
+                                    <a class="btn btn-success" href="script-friend.php?add&friendId=<?php echo $ligne->num_user; ?>" role="button">Ajouter</a>
+                                </div>
+                            <?php }
+                            if ($nbCanAdd == 0) { ?>
+                                <div class="user text-center">
+                                    <p>Tu as déjà ajouté tous les utilisateurs !</p>
+                                </div>
+                            <?php } ?>
                         </div>
                     <?php } ?>
                 </div>
