@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Offcanvas, CloseButton } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 
 interface Game {
     score: number;
