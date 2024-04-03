@@ -25,7 +25,7 @@ function friendStatus($statut) {
         return "Statut : En attente";
     } else if ($statut == 1) {
         return "Statut : Ami";
-    } else {
+    } else if ($statut == 2) {
         return "";
     }
 }
