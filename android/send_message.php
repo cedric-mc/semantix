@@ -9,15 +9,15 @@ $subject = $_POST['subject'];
 $content = $_POST['content'];
 $auth_token = $_POST['auth_token'];
 
-// Retrieve user's pseudo from auth token
-$query_select_user = "SELECT pseudo FROM sae_token_user WHERE token = :token";
+// Retrieve user's search from auth token
+$query_select_user = "SELECT search FROM sae_token_user WHERE token = :token";
 $stmt_select_user = $cnx->prepare($query_select_user);
 $stmt_select_user->bindParam(":token", $auth_token, PDO::PARAM_STR);
 $stmt_select_user->execute();
 $user = $stmt_select_user->fetch(PDO::FETCH_ASSOC);
 
-// Vérifier que le pseudo du destinataire existe
-$query_check_recipient = "SELECT * FROM sae_users WHERE pseudo = :recipient";
+// Vérifier que le search du destinataire existe
+$query_check_recipient = "SELECT * FROM sae_users WHERE search = :recipient";
 $stmt_check_recipient = $cnx->prepare($query_check_recipient);
 $stmt_check_recipient->bindParam(":recipient", $recipient, PDO::PARAM_STR);
 $stmt_check_recipient->execute();
@@ -25,7 +25,7 @@ $recipient_exists = $stmt_check_recipient->fetch(PDO::FETCH_ASSOC);
 
 
 if ($user && $recipient_exists) {
-    $pseudo = $user['pseudo'];
+    $pseudo = $user['search'];
     // Vérifier si l'utilisateur n'a pas envoyé plus de 10 messages dans l'heure
     $query_message_count = "SELECT COUNT(*) AS message_count FROM sae_message WHERE expediteur = :expediteur AND date > DATE_SUB(NOW(), INTERVAL 1 HOUR)";
     $stmt_message_count = $cnx->prepare($query_message_count);

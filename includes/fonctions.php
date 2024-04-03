@@ -22,9 +22,11 @@ function trace($userId, $action, $cnx) {
 // Statut de l'ami
 function friendStatus($statut) {
     if ($statut == 0) {
-        return "En attente";
+        return "Statut : En attente";
+    } else if ($statut == 1) {
+        return "Statut : Ami";
     } else {
-        return "Ami";
+        return "";
     }
 }
 

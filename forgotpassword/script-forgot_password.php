@@ -1,6 +1,6 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $pseudo = $_POST['pseudo'];
+        $pseudo = $_POST['search'];
         $email = $_POST['email'];
         // Erreurs PHP
         error_reporting(E_ALL);
@@ -15,9 +15,9 @@
         }
 
         // Rechercher l'utilisateur dans la base de données
-        $query_select_user = "SELECT * FROM sae_users WHERE pseudo = :pseudo AND email = :email";
+        $query_select_user = "SELECT * FROM sae_users WHERE search = :search AND email = :email";
         $stmt_select_user = $cnx->prepare($query_select_user);
-        $stmt_select_user->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
+        $stmt_select_user->bindParam(":search", $pseudo, PDO::PARAM_STR);
         $stmt_select_user->bindParam(":email", $email, PDO::PARAM_STR);
         $stmt_select_user->execute();
         $user = $stmt_select_user->fetch(PDO::FETCH_ASSOC);
@@ -44,7 +44,7 @@
             $mail->isHTML(true);
             $mail->Subject = "Réinitialisation de votre mot de passe";
             $mail->Body = getMailContent("../mail/forgotpassword.php");
-            $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
+            $mail->Body = str_replace(":search", $pseudo, $mail->Body);
             $mail->Body = str_replace(":lienReinitialisation", "$lienReinitialisation?code=$code_reinitialisation", $mail->Body);
             $mail->CharSet = "UTF-8";
             $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");

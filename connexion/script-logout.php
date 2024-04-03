@@ -15,9 +15,9 @@
     $pseudo = $user->getPseudo();
 
     // Récupérer le num_user pour la journalisation
-    $queryNum = "SELECT * FROM sae_users WHERE pseudo = :pseudo";
+    $queryNum = "SELECT * FROM sae_users WHERE search = :search";
     $stmtNum = $cnx->prepare($queryNum);
-    $stmtNum->bindParam(':pseudo', $pseudo);
+    $stmtNum->bindParam(':search', $pseudo);
     $stmtNum->execute();
     $resultat = $stmtNum->fetch(PDO::FETCH_ASSOC);
     $num_user = $resultat['num_user'];

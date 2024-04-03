@@ -13,26 +13,26 @@ $pseudo = $user->getPseudo();
 
 // Requête pour récupérer les informations de l'utilisateur
 $profilRequest = $cnx->prepare($lastConnexionProfil);
-$profilRequest->bindParam(":pseudo", $pseudo);
+$profilRequest->bindParam(":search", $pseudo);
 $profilRequest->execute();
 $profilResult = $profilRequest->fetch(PDO::FETCH_OBJ);
 $profilRequest->closeCursor();
 
 // Requête pour récupérer les statistiques de l'utilisateur
 $scoreRequest = $cnx->prepare($scoreProfil);
-$scoreRequest->bindParam(':pseudo', $pseudo);
+$scoreRequest->bindParam(':search', $pseudo);
 $scoreRequest->execute();
 $scoreResult = $scoreRequest->fetch(PDO::FETCH_OBJ);
 $scoreRequest->closeCursor();
 
-// Requête pour récupérer le top 3 des meilleurs scores (max), le pseudo n'apparaît qu'une seule fois
+// Requête pour récupérer le top 3 des meilleurs scores (max), le search n'apparaît qu'une seule fois
 $top3Request = $cnx->prepare($top3ScoresProfil);
 $top3Request->execute();
 $top3Result = $top3Request->fetchAll(PDO::FETCH_OBJ);
 $top3Request->closeCursor();
 
-$photoRequest = $cnx->prepare("SELECT photo FROM sae_users WHERE pseudo = :pseudo");
-$photoRequest->bindParam(":pseudo", $pseudo);
+$photoRequest = $cnx->prepare("SELECT photo FROM sae_users WHERE search = :search");
+$photoRequest->bindParam(":search", $pseudo);
 $photoRequest->execute();
 $photoResult = $photoRequest->fetch(PDO::FETCH_OBJ);
 $photoRequest->closeCursor();
@@ -72,9 +72,9 @@ $codePhoto = isset($_GET["erreurPhoto"]) ? (int)$_GET["erreurPhoto"] : 0;
 $historicRequest = $cnx->prepare("
     SELECT score, dateHeure
     FROM sae_users u, sae_scores s
-    WHERE pseudo = :pseudo AND u.num_user = s.num_user
+    WHERE search = :search AND u.num_user = s.num_user
     ORDER BY dateHeure DESC;");
-$historicRequest->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+$historicRequest->bindParam(':search', $pseudo, PDO::PARAM_STR);
 $historicRequest->execute();
 $historicResult = $historicRequest->fetchAll(PDO::FETCH_OBJ);
 $historicRequest->closeCursor();

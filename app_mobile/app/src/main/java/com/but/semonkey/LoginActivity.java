@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                     connection.setDoOutput(true);
 
                     // Construire les données à envoyer
-                    String postData = "pseudo=" + URLEncoder.encode(username, "UTF-8") +
+                    String postData = "search=" + URLEncoder.encode(username, "UTF-8") +
                             "&motdepasse=" + URLEncoder.encode(password, "UTF-8");
 
                     // Envoyer les données d'authentification

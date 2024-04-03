@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $user->getEmail();
     // Vérifier si l'ancien mot de passe est correct
     $request = $cnx->prepare($isPasswordCorrect);
-    $request->bindParam(":pseudo", $pseudo);
+    $request->bindParam(":search", $pseudo);
     $request->execute();
     $result = $request->fetch();
     $hashPassword = hash_pbkdf2("sha256", $password1, $result['salt'], 5000, 32);
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->addAddress($email);
     $mail->isHTML(true);
     $mail->Subject = "Votre Code de Vérification";
-    $mail->Body = str_replace(":pseudo", $pseudo, getMailContent("../mail/motdepasse.php"));
+    $mail->Body = str_replace(":search", $pseudo, getMailContent("../mail/motdepasse.php"));
     $mail->Body = str_replace(":code", $verification_code, $mail->Body); // Remplacer le code dans le mail
     $mail->CharSet = "UTF-8";
     $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");

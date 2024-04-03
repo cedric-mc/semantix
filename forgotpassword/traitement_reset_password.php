@@ -29,13 +29,13 @@
             }
 
             // Vérifier si l'ancien mot de passe est correct
-            $sql = "SELECT pseudo, email, salt FROM sae_users WHERE num_user = :num_user";
+            $sql = "SELECT search, email, salt FROM sae_users WHERE num_user = :num_user";
             $stmt = $cnx->prepare($sql);
             $stmt->bindParam(':num_user', $num_user, PDO::PARAM_INT);
             $stmt->execute();
             $user = $stmt->fetch();
             $stmt->closeCursor();
-            $pseudo = $user['pseudo'];
+            $pseudo = $user['search'];
             $stored_salt = $user['salt']; // Sel stocké dans la base de données
 
             $motdepasse = hash_pbkdf2("sha256", $nouveau_mot_de_passe, $stored_salt, 5000, 32); // hachage du mot de passe
@@ -62,7 +62,7 @@
                 $mail->isHTML(true);
                 $mail->Subject = "Réinitialisation de votre mot de passe";
                 $mail->Body = getMailContent("../mail/reset_password.php");
-                $mail->Body = str_replace(":pseudo", $pseudo, $mail->Body);
+                $mail->Body = str_replace(":search", $pseudo, $mail->Body);
                 $mail->CharSet = "UTF-8";
                 $mail->AddEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
                 $mail->send();

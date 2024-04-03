@@ -38,7 +38,7 @@
         $stmt = $cnx->prepare($changePassword);
         $stmt->bindParam(':motdepasse', $hashed_new_motdepasse);
         $stmt->bindParam(':salt', $new_salt);
-        $stmt->bindParam(':pseudo', $pseudo);
+        $stmt->bindParam(':search', $pseudo);
         $stmt->execute();
         $stmt->closeCursor();
 
@@ -48,7 +48,7 @@
 
         $mail->isHTML(true);
         $mail->Subject = "Changement de mot de passe";
-        $mail->Body = str_replace(":pseudo", $pseudo, getMailContent("../mail/password.php"));
+        $mail->Body = str_replace(":search", $pseudo, getMailContent("../mail/password.php"));
         $mail->CharSet = "UTF-8";
         $mail->addEmbeddedImage("../img/monkey.png", "mylogo", "monkey.png", "base64", "image/png");
         $mail->send();
