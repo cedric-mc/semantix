@@ -18,6 +18,10 @@
         <link rel="shortcut icon" href="./img/monkeyapp.png">
         <?php include("includes/head.php"); ?>
         <style>
+            h2 {
+                text-align: center;
+            }
+
             label {
                 color: #212529;
             }
@@ -36,28 +40,14 @@
                 <li><a href="https://github.com/VincentSousa" target="_blank">SOUSA Vincent</a></li>
                 <li><a href="https://github.com/Yacine771" target="_blank">ZEMOUCHE Yacine</a></li>
             </ul>
-            <h2 class="subtitle">Contact</h2>
-            <form action="contact.php" method="post">
-                <div class="form-group row mb-2">
-                    <div class="col">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="<?php echo $user->getPseudo(); ?>" required>
-                            <label for="name">Nom</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="<?php echo $user->getEmail(); ?>" required>
-                            <label for="email">Adresse email</label>
-                        </div>
-                    </div>
+            <h2 class="subtitle w-100">Contact</h2>
+            <form action="mail/contact.php" method="post" class="w-50">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="sujet" name="sujet" placeholder="Sujet" required>
+                    <label for="sujet">Sujet</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Sujet" required>
-                    <label for="subject">Sujet</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" id="message" name="message" placeholder="Message" required></textarea>
+                    <textarea class="form-control" id="message" name="message" placeholder="Message" required style="height: 200px"></textarea>
                     <label for="message">Message</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Envoyer</button>
