@@ -22,7 +22,7 @@
     border: none;
     border-radius: 1rem;
     padding: 0.5rem 1rem;
-    margin-right: 1rem;
+    margin-left: 1rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: all 0.3s ease-in-out;
     font-size: 1.2rem; /* Augmente la taille de la police pour une meilleure lisibilité */

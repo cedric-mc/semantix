@@ -59,8 +59,8 @@ include("../includes/menu.php"); ?>
     <div class="recherche">
         <form method="get">
             <div class="input-group mb-3">
-                <button class="btn btn-outline-secondary" type="submit" id="search">Rechercher</button>
                 <input type="text" id="search" name="search" class="form-control" placeholder="Rechercher un ami" aria-label="Example text with button addon" aria-describedby="search">
+                <button class="btn btn-outline-secondary" type="submit" id="search">Rechercher</button>
             </div>
         </form>
         <?php
