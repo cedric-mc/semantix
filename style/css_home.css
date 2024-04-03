@@ -14,8 +14,8 @@ body {
     padding: 20px;
     box-sizing: border-box;
     margin: auto;
-    width: 50vmin; /* Adapte la taille pour garder un carré responsive */
-    height: 50vmin; /* Même valeur que la largeur pour un carré */
+    width: 60vmin; /* Adapte la taille pour garder un carré responsive */
+    height: 60vmin; /* Même valeur que la largeur pour un carré */
     max-width: 600px; /* Limite la largeur maximale */
     max-height: 600px; /* Limite la hauteur maximale */
     position: absolute;
