@@ -85,7 +85,7 @@ public class SendMessageActivity extends AppCompatActivity {
             public void run() {
                 try {
                     // Création de la connexion HTTP
-                    URL url = new URL("https://perso-etudiant.u-pem.fr/~mamadou.ba2/semantix/android/send_message.php");
+                    URL url = new URL("https://perso-etudiant.u-pem.fr/~mariyaconsta02/semantix/android/send_message.php");
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("POST");
                     connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
