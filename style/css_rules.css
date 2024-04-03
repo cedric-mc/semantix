@@ -34,9 +34,11 @@ h1 {
 
 .rules h3 {
     font-size: 1rem;
-    color: #CCCCCC;
+    color: rgb(88, 79, 79);
     margin-top: 1.25rem;
     margin-bottom: 0.625rem;
+    /* Souligné */
+    text-decoration: underline;
 }
 
 .rules p {
