@@ -57,7 +57,9 @@
         echo "<script>window.location.replace('../contact.php')</script>";
         exit;
     } catch (Exception $e) {
-        echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
+        // Enregistrement du message d'erreur dans un fichier log
+        file_put_contents('error_log.txt', 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo . "\n", FILE_APPEND);
+        echo "<script>alert('Message could not be sent. Check the error log for more details.')</script>";
         echo "<script>window.location.replace('../contact.php')</script>";
         exit;
     }
