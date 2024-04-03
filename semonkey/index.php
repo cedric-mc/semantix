@@ -13,11 +13,11 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <title>Semonkey</title>
-    <script defer="defer" src="static/js/main.18ed5e47.js"></script>
+    <script defer="defer" src="static/js/main.aa63edf7.js"></script>
     <link rel="shortcut icon" href="../img/monkeyapp.png">
-    <link href="static/css/main.d81cbcc2.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../style/style.css">
-    <?php include("../includes/header.php"); ?>
+    <link href="static/css/main.736cb202.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style/style.css">
+    <?php include("../includes/head.php"); ?>
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
