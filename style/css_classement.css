@@ -30,8 +30,8 @@
     color: #999;
     width: 100%;
     border-collapse: collapse;
-    border-bottom-left-radius: 0.1rem;
-    border-bottom-right-radius: 0.1rem;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
     overflow: hidden;
 }
 
