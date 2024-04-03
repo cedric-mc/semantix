@@ -35,6 +35,7 @@ $top10UsersRequest->closeCursor();
         <link rel="stylesheet" href="../style/style.css">
 		<link rel="stylesheet" href="../style/table.css">
         <link rel="stylesheet" href="../style/css_classement.css">
+        <link rel="shortcut icon" href="../img/monkey.png">
 	</head>
 
 	<body>
