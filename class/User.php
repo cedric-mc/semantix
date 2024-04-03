@@ -67,7 +67,7 @@
         public function modifyEmail(PDO $cnx, string $newEmail, string $changeEmail): void {
             $stmt = $cnx->prepare($changeEmail);
             $stmt->bindParam(':email', $newEmail);
-            $stmt->bindParam(':search', $this->pseudo);
+            $stmt->bindParam(':pseudo', $this->pseudo);
             $stmt->execute();
             $stmt->closeCursor();
 

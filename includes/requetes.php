@@ -21,7 +21,7 @@
     $deleteFriend = "DELETE FROM sae_friendship WHERE user_id = :num_user AND friend_id = :friend_id OR user_id = :friend_id AND friend_id = :num_user;";
     $listUsers = "SELECT * FROM sae_users WHERE num_user NOT IN (SELECT friend_id FROM sae_friendship WHERE user_id = :idUser) AND num_user <> :num_user ORDER BY num_user;";
     $wantToAddFriends = "SELECT u.num_user, pseudo, u.photo FROM sae_users AS u LEFT JOIN sae_friendship AS f ON (u.num_user = f.user_id AND f.friend_id = :idUser) OR (u.num_user = f.friend_id AND f.user_id = :idUser) WHERE f.statut IS NULL AND u.num_user <> :num_user ORDER BY pseudo;";
-    $friendSearch = "SELECT u.num_user, pseudo, u.photo, CASE WHEN f.statut = 0 AND f.user_id = :num_user THEN 0 WHEN f.statut = 1 THEN 1 WHEN f.statut IS NULL THEN 2 END AS statut FROM sae_users AS u LEFT JOIN sae_friendship AS f ON (u.num_user = f.user_id OR u.num_user = f.friend_id) AND (f.user_id = :num_user OR f.friend_id = :num_user) WHERE u.num_user <> :num_user AND pseudo LIKE CONCAT('%', :search_string, '%') ORDER BY pseudo;";
+    $friendSearch = "SELECT u.num_user, pseudo, u.photo, CASE WHEN f.statut = 0 AND f.user_id = :num_user THEN 0 WHEN f.statut = 1 THEN 1 WHEN f.statut IS NULL THEN 2 END AS statut FROM sae_users AS u LEFT JOIN sae_friendship AS f ON (u.num_user = f.user_id OR u.num_user = f.friend_id) AND (f.user_id = :num_user OR f.friend_id = :num_user) WHERE u.num_user <> :num_user AND pseudo LIKE CONCAT('%', :pseudo_string, '%') ORDER BY pseudo;";
 
     // Requêtes SQL pour le changement d'email
     $emailExists = "SELECT email FROM sae_users WHERE email = :email;";

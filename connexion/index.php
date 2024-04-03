@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Utilisateur connecté ?
-if (isset($_SESSION['search'])) {
+if (isset($_SESSION['pseudo'])) {
     header('Location: ../');
     exit;
 }
