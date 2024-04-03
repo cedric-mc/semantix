@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="../style/style.css">
         <link rel="stylesheet" href="../style/form.css">
         <?php include("../includes/head.php"); ?>
-        <link rel="shortcut icon" href="../img/monkeyapp.png">
+        <link rel="shortcut icon" href="../img/monkey.png">
     </head>
 
     <body>
