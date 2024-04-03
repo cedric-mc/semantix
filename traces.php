@@ -28,7 +28,7 @@
         <title>Traces - Semonkey</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/3f3ecfc27b.js"></script>
-        <link rel="shortcut icon" href="./img/monkeyapp.png">
+        <link rel="shortcut icon" href="./img/monkey.png">
         <link rel="stylesheet" href="style/style.css">
         <link rel="stylesheet" href="style/table.css">
         <link rel="stylesheet" href="style/css_traces.css">

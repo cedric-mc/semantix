@@ -16,7 +16,7 @@
 	    <link href="style/style.css" rel="stylesheet">
         <link href="style/css_home.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="shortcut icon" href="./img/monkeyapp.png">
+        <link rel="shortcut icon" href="./img/monkey.png">
         <?php include("includes/head.php"); ?>
     </head>
     <body>
@@ -25,7 +25,7 @@
             <section class="home">
                 <header>
                     <h1 class="title">Semonkey</h1>
-                    <img src="img/monkeyapp.png" alt="Semantic Analogy Explorer">
+                    <img src="img/monkey.png" alt="Semantic Analogy Explorer">
                 </header>
                 <h2 class="subtitle">Bienvenue, joueur <?php echo $user->getPseudo(); ?></h2>
                 <button class="executeButton" onclick="window.location.href='game/start_game.php'">Solo&emsp;<i class="fa-solid fa-user"></i></button>
