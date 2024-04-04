@@ -69,8 +69,8 @@
                 </div>
                 <div class="offcanvas-body game-info">
                     <p>Score actuel : <?php echo calculateScore($user); ?></p>
-                    <p>Nombre de mots : <?php echo count($game->wordsArray); ?></p>
-                    <p>Dernier mot : <?php if (count($game->wordsArray) > 2) echo ucfirst($game->lastWord); else echo "Aucun mot entré"; ?></p>
+                    <p>Nombre de mots : <?php echo count($game->getWordsArray()); ?></p>
+                    <p>Dernier mot : <?php if (count($game->getWordsArray()) > 2) echo ucfirst($game->getLastWord()); else echo "Aucun mot entré"; ?></p>
                     <p>Nombre de mots restants : <?php echo 7 - count($game->wordsArray) ?></p>
                 </div>
             </div>
