@@ -20,12 +20,8 @@
     $user = User::createUserFromUser(unserialize($_SESSION['user']));
     $game = Game::createGameFromGame(unserialize($_SESSION['game']));
     $paires = array();
-    $paires = fileToArray($user);
+    $paires = fileToArray($user); // fileToArrayTree($user);
     $highchartsData = createDataForGraph($user, $paires);
-
-    $pairesTree = array();
-    $pairesTree = fileToArrayTree($user);
-    $highchartsDataTree = createDataForGraph($user, $pairesTree);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -56,8 +52,7 @@
             <div class="player-info">
                 <img src="<?php echo $user->getImageSrc();?>" alt="Profile Picture">
                 <div class="username me-3"><?php echo $user->getPseudo(); ?></div>
-                <button class="btn btn-dark me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfogame" aria-controls="offcanvasInfogame">Informations de la partie</button>
-                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTree" aria-controls="offcanvasTree">Arbre des paires</button>
+                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfogame" aria-controls="offcanvasInfogame">Informations de la partie</button>
             </div>
             <!-- Formulaire pour ajouter un nouveau mot -->
             <div class="addWord">
@@ -83,16 +78,6 @@
                     <p>Nombre de mots : <?php echo count($game->getWordsArray()); ?></p>
                     <p>Dernier mot : <?php if (count($game->getWordsArray()) > 2) echo ucfirst($game->getLastWord()); else echo "Aucun mot entré"; ?></p>
                     <p>Nombre de mots restants : <?php echo 7 - count($game->getWordsArray()) ?></p>
-                </div>
-            </div>
-            <!-- Affiche le graphe de l'arbre des paires dans un offcanvas left -->
-            <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="offcanvasTree" aria-labelledby="offcanvasTreeLabel">
-                <div class="offcanvas-header game-info-title">
-                    <h5 class="offcanvas-title" id="offcanvasTreeLabel">Arbre des paires</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body game-info">
-                    <div class="graph" id="containerTree"></div><!-- Le graphique sera affiché ici -->
                 </div>
             </div>
             <div class="modal fade" id="endGameModal" tabindex="-1" aria-labelledby="endGameModalLabel" aria-hidden="true">
@@ -121,93 +106,15 @@
                 // Charger les données depuis le fichier PHP
                 var nodes = <?php echo json_encode($highchartsData["nodes"]); ?>;
                 var links = <?php echo json_encode($highchartsData["links"]); ?>;
-                var nodesTree = <?php echo json_encode($highchartsDataTree["nodes"]); ?>;
-                var linksTree = <?php echo json_encode($highchartsDataTree["links"]); ?>;
                 var highchartsData = {
                     "nodes": nodes,
                     "links": links
                 };
-                var highchartsDataTree = {
-                    "nodes": nodesTree,
-                    "links": linksTree
-                };
                 let chart = createChart(highchartsData); // Créer ou mettre à jour le graphique
-                let chartTree = createChartTree(highchartsDataTree); // Créer ou mettre à jour le graphique
             }
 
             function createChart(highchartsData) {
                 let chart = Highcharts.chart('container', {
-                    chart: {
-                        type: 'networkgraph',
-                        plotBorderWidth: 0,
-                        animation: true
-                    },
-                    title: {
-                        text: ''
-                    },
-                    plotOptions: {
-                        networkgraph: {
-                            keys: ['from', 'to'],
-                            layoutAlgorithm: {
-                                enableSimulation: true,
-                                linkLength: 150,
-                                integration: 'verlet'
-                            },
-                            marker: {
-                                radius: 10
-                            },
-                            link: {
-                                width: 2,
-                                color: '#C0C0C0' // Couleur des liens - Argenté
-                            },
-                            node: {
-                                marker: {
-                                    fillColor: '#000000', // Couleur de remplissage des nœuds - Noir
-                                    lineWidth: 2,
-                                    lineColor: '#C0C0C0' // Couleur de la bordure des nœuds - Argenté
-                                },
-                                events: {
-                                    add: function(event) {
-                                        event.point.graphic.animate({
-                                            radius: 15
-                                        }, {
-                                            duration: 1000,
-                                            easing: 'elastic'
-                                        });
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    credits: {
-                        enabled: false
-                    },
-                    series: [{
-                        name: 'K3',
-                        dataLabels: {
-                            enabled: true,
-                            linkFormat: '{point.weight}',
-                            style: {
-                                fontSize: '0.8rem',
-                                fontWeight: 'normal'
-                            }
-                        },
-                        data: highchartsData.links.map(function(link) {
-                            return {
-                                from: link.source,
-                                to: link.target,
-                                weight: link.linkTextPath
-                            };
-                        }),
-                        nodes: highchartsData.nodes
-                    }]
-                });
-
-                return chart;
-            }
-
-            function createChartTree(highchartsData) {
-                let chart = Highcharts.chart('containerTree', {
                     chart: {
                         type: 'networkgraph',
                         plotBorderWidth: 0,
