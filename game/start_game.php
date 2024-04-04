@@ -1,6 +1,7 @@
 <?php
     include_once("game_fonctions.php");
     include_once("../class/Game.php");
+    include_once("../class/User.php");
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
@@ -59,15 +60,15 @@
     exec($commandeJava, $output);
     $_SESSION['output'] = $output;
 
-    $game = new Game($user, 1);
-    $game->addWord($mot1);
-    $game->addWord($mot2);
-    $_SESSION['game'] = serialize($game);
+    $game = new Game($user->getPseudo(), 1, array(), "");
+    $game->addWordsFromArray([$mot1, $mot2]);
+
     // Vérifier si les trois fichiers existent
     if (!file_exists("partie/game_data_" . $user->getPseudo() . ".txt") || !file_exists("partie/mst_" . $user->getPseudo() . ".txt") || !file_exists("partie/best_path_" . $user->getPseudo() . ".txt")) {
         header('Location: ../');
         exit();
     }
+    $_SESSION['game'] = serialize($game);
     header('Location: ./');
     exit();
 ?>

@@ -1,25 +1,23 @@
 <?php
-    include_once("User.php");
-
     class Game {
-        public User $user;
-        public int $tour;
-        public array $wordsArray;
-        public string $lastWord;
+        private string $pseudo;
+        private int $tour;
+        private array $wordsArray;
+        private string $lastWord;
 
-        public function __construct($user, $tour) {
-            $this->user = $user;
+        public function __construct($pseudo, $tour, $wordsArray, $lastWord) {
+            $this->pseudo = $pseudo;
             $this->tour = $tour;
-            $this->wordsArray = array();
-            $this->lastWord = "";
+            $this->wordsArray = $wordsArray;
+            $this->lastWord = $lastWord;
         }
 
         public static function createGameFromGame($game) {
-            return new Game($game->user, $game->tour);
+            return new Game($game->pseudo, $game->tour, $game->wordsArray, $game->lastWord);
         }
 
-        public function getUser() {
-            return $this->user;
+        public function getPseudo() {
+            return $this->pseudo;
         }
 
         public function getTour() {
@@ -43,8 +41,9 @@
         }
 
         public function addWord($word) {
-            if (!in_array($word, $this->wordsArray)) {
-                $this->wordsArray[] = $word;
+            if (!$this->isWordInArray($word)) {
+                array_push($this->wordsArray, $word);
+                $this->setLastWord($word);
             }
         }
 
@@ -57,7 +56,7 @@
         }
 
         public function isWordInFile($word): bool {
-            $file = fopen("partie/game_data_" . $this->user->getPseudo() . ".txt", "r");
+            $file = fopen("partie/game_data_" . $this->pseudo . ".txt", "r");
             while (!feof($file)) {
                 $line = fgets($file);
                 if (strpos($line, $word) !== false) {
@@ -67,6 +66,13 @@
             }
             fclose($file);
             return false;
+        }
+
+        // Méthode pour ajouter plusieurs mots à la fois dans le tableau wordsArray
+        public function addWordsFromArray(array $words) {
+            foreach ($words as $word) {
+                $this->addWord($word);
+            }
         }
     }
 ?>

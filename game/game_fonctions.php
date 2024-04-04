@@ -67,6 +67,32 @@
         return $paires;
     }
 
+    // Fonction pour générer un Array à partir du fichier de partie de l'arbre MST
+    function fileToArrayTree(User $user) {
+        $paires = [];
+        $fichier = fopen("partie/mst_" . $user->getPseudo() . ".txt", "r");
+        // Ignorer les 4 premières lignes
+        for ($i = 0; $i < 4; $i++) {
+            fgets($fichier);
+        }
+        $format = "/^(\w+)_(\w+),(\d+(\.\d+)?)$/";
+        // Lire le fichier jusqu'à la fin
+        while (($ligne = fgets($fichier)) !== false) {
+            if (strpos($ligne, "EOF") !== false) {
+                continue;
+            }
+            // Si la ligne est sous la forme "mot1_mot2, nombre"
+            if (preg_match($format, $ligne, $matches)) {
+                $mot1 = $matches[1]; // Récupérer le premier mot
+                $mot2 = $matches[2]; // Récupérer le deuxième mot
+                $nombre = floatval($matches[3]); // Récupérer le nombre et le convertir en double
+                $paires[] = ["mot1" => $mot1, "mot2" => $mot2, "nombre" => $nombre];
+            }
+        }
+        fclose($fichier);
+        return $paires;
+    }
+
     function randomWord($filename) {
         // Lire le contenu du fichier dans une chaîne
         $content = file_get_contents($filename);

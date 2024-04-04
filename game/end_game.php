@@ -30,9 +30,7 @@ if ($game->getNumberOfWords() >= 2) {
     $requestAddFinalScore->execute();
     $requestAddFinalScore->closeCursor();
     $user->logging($cnx, 8);
-    unset($_SESSION['words']);
 }
-
 // Supprimer tous les fichiers associés à l'utilisateur qui sont dans le dossier partie
 unlink("partie/game_data_$pseudo.txt");
 unlink("partie/mst_$pseudo.txt");
