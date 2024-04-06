@@ -20,8 +20,8 @@
             echo "<script>window.location.replace('./');</script>";
             exit();
         }
-        // Si le fichier est trop grand
-        if ($_FILES["photo"]["size"] > 1000000) {
+        // Si le fichier est trop grand (LONGBLOB = 4 Go)
+        if ($_FILES["photo"]["size"] > 4294967295) {
             echo "<script>alert('Le fichier est trop grand');</script>";
             echo "<script>window.location.replace('./');</script>";
             exit();

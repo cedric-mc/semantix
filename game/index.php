@@ -22,6 +22,10 @@
     $paires = array();
     $paires = fileToArray($user); // fileToArrayTree($user);
     $highchartsData = createDataForGraph($user, $paires);
+
+    $pairesTree = array();
+    $pairesTree = fileToArrayTree($user);
+    $highchartsDataTree = createDataForGraph($user, $pairesTree);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -52,7 +56,8 @@
             <div class="player-info">
                 <img src="<?php echo $user->getImageSrc();?>" alt="Profile Picture">
                 <div class="username me-3"><?php echo $user->getPseudo(); ?></div>
-                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfogame" aria-controls="offcanvasInfogame">Informations de la partie</button>
+                <button class="btn btn-dark me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasInfogame" aria-controls="offcanvasInfogame">Informations de la partie</button>
+                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTree" aria-controls="offcanvasTree">Graphique en arbre</button>
             </div>
             <!-- Formulaire pour ajouter un nouveau mot -->
             <div class="addWord">
@@ -77,9 +82,31 @@
                     <p>Score actuel : <?php echo calculateScore($user); ?></p>
                     <p>Nombre de mots : <?php echo count($game->getWordsArray()); ?></p>
                     <p>Dernier mot : <?php if (count($game->getWordsArray()) > 2) echo ucfirst($game->getLastWord()); else echo "Aucun mot entré"; ?></p>
-                    <p>Nombre de mots restants : <?php echo 7 - count($game->getWordsArray()) ?></p>
+                    <p>Nombre de mots restants :
+                        <?php
+                            if (7 - count($game->getWordsArray()) > 0) {
+                                echo 7 - count($game->getWordsArray());
+                            } else if (7 - count($game->getWordsArray()) == 0) {
+                                echo "<script>$('#endGameModal').modal('show');</script>";
+                            } else {
+                                // Ouvrir le modal de fin de partie
+                                echo "<script>$('#endGameModal').modal('show');</script>";
+                            }
+                        ?>
+                    </p>
                 </div>
             </div>
+            <!-- Offcanvas pour le graphique en arbre -->
+            <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="offcanvasTree" aria-labelledby="offcanvasTreeLabel">
+                <div class="offcanvas-header game-info-title">
+                    <h5 class="offcanvas-title" id="offcanvasTreeLabel">Graphique en arbre</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body game-info">
+                    <div class="graph" id="containerTree"></div><!-- Le graphique en arbre sera affiché ici -->
+                </div>
+            </div>
+            <!-- Modal de fin de partie -->
             <div class="modal fade" id="endGameModal" tabindex="-1" aria-labelledby="endGameModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -110,11 +137,19 @@
                     "nodes": nodes,
                     "links": links
                 };
-                let chart = createChart(highchartsData); // Créer ou mettre à jour le graphique
+
+                var nodesTree = <?php echo json_encode($highchartsDataTree["nodes"]); ?>;
+                var linksTree = <?php echo json_encode($highchartsDataTree["links"]); ?>;
+                var highchartsDataTree = {
+                    "nodes": nodesTree,
+                    "links": linksTree
+                };
+                let chart = createChart(highchartsData, 'container'); // Créer ou mettre à jour le graphique
+                let chartTree = createChartTree(highchartsDataTree, 'containerTree');
             }
 
-            function createChart(highchartsData) {
-                let chart = Highcharts.chart('container', {
+            function createChart(highchartsData, graphContainer) {
+                let chart = Highcharts.chart(graphContainer, {
                     chart: {
                         type: 'networkgraph',
                         plotBorderWidth: 0,
@@ -184,6 +219,76 @@
                 return chart;
             }
 
+            function createChartTree(highchartsData, graphContainer) {
+                let chart = Highcharts.chart(graphContainer, {
+                    chart: {
+                        type: 'networkgraph',
+                        plotBorderWidth: 0,
+                        animation: true
+                    },
+                    title: {
+                        text: ''
+                    },
+                    plotOptions: {
+                        networkgraph: {
+                            keys: ['from', 'to'],
+                            layoutAlgorithm: {
+                                enableSimulation: true,
+                                linkLength: 150,
+                                integration: 'verlet'
+                            },
+                            marker: {
+                                radius: 10
+                            },
+                            link: {
+                                width: 2,
+                                color: '#C0C0C0' // Couleur des liens - Argenté
+                            },
+                            node: {
+                                marker: {
+                                    fillColor: '#000000', // Couleur de remplissage des nœuds - Noir
+                                    lineWidth: 2,
+                                    lineColor: '#C0C0C0' // Couleur de la bordure des nœuds - Argenté
+                                },
+                                events: {
+                                    add: function(event) {
+                                        event.point.graphic.animate({
+                                            radius: 15
+                                        }, {
+                                            duration: 1000,
+                                            easing: 'elastic'
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                        name: 'K3',
+                        dataLabels: {
+                            enabled: true,
+                            linkFormat: '{point.weight}',
+                            style: {
+                                fontSize: '0.8rem',
+                                fontWeight: 'normal'
+                            }
+                        },
+                        data: highchartsData.links.map(function(link) {
+                            return {
+                                from: link.source,
+                                to: link.target,
+                                weight: link.linkTextPath
+                            };
+                        }),
+                        nodes: highchartsData.nodes
+                    }]
+                });
+
+                return chart;
+            }
 
             // Charger les données et créer le graphique
             loadData();

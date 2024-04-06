@@ -56,7 +56,7 @@
         }
     }
 
-    $commandeJava = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.semonkey.main.Main partie/game_data_" . $user->getPseudo() . ".txt 2>&1";
+    $commandeJava = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_" . $user->getPseudo() . ".txt 2>&1";
     exec($commandeJava, $output);
     $_SESSION['output'] = $output;
 

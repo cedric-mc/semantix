@@ -20,6 +20,13 @@
         $user = User::createUserFromUser(unserialize($_SESSION['user']));
         $game = Game::createGameFromGame(unserialize($_SESSION['game']));
         // Mettre en minuscule le mot
+        if (7 - count($game->getWordsArray()) == 0 || $game->getTour() == 0 || 7 - count($game->getWordsArray()) < 0) {
+            $_SESSION['game'] = serialize($game);
+            // Script JS pour afficher une alerte
+            echo "<script>alert('La partie est terminée.')</script>";
+            echo "<script>window.location.replace('./');</script>";
+            exit();
+        }
         $newWord = strtolower($_POST['word']);
         // Vérifier que le mot n'est pas dans le fichier de partie
         if ($game->isWordInFile($newWord)) {
@@ -52,7 +59,7 @@
         }
         exec("./C/bin/add_word C/fasttext-fr.bin $newWord " . $user->getPseudo());
         // Java : trier les paires
-        $commandeJar = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.semonkey.main.Main partie/game_data_" . $user->getPseudo() . ".txt partie/mst_" . $user->getPseudo() . ".txt 2>&1";
+        $commandeJar = "../../../jdk-21/bin/java -cp ChainMotor/target/classes fr.uge.main.Main partie/game_data_" . $user->getPseudo() . ".txt partie/mst_" . $user->getPseudo() . ".txt 2>&1";
         exec($commandeJar, $output);
         // Vérifier si le mot est dans l'arbre
         if (!isWordInTree($user, $newWord)) {
